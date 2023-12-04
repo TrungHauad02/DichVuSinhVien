@@ -108,25 +108,46 @@
                 <!-- Your Slide bar and main content goes here -->
 				<div class="container h-100">
 			        <div class="row h-100 justify-content-center align-items-center">
-			            <table class="table mw-80">
+			            <table class="table">
 			                <tbody>
 			                    <tr>
-			                        <td><label for="username" class="h4 justify-content-center">Tài khoản:</label></td>
+			                        <td><label for="username" class="h4">Tài khoản:</label></td>
 			                        <td><input type="text" id="username" class="form-control"></td>
 			                    </tr>
 			                    <tr>
-			                        <td><label for="password" class="h4 justify-content-center">Mật khẩu:</label></td>
-			                        <td><input type="password" id="password" class="form-control"></td>
+			                        <td><label for="email" class="h4">Email:</label></td>
+			                        <td>
+			                            <div class="row">
+			                                <div class="col"><input type="email" id="email" class="form-control"></div>
+			                                <div class="col-auto"><button class="btn btn-primary">Gửi mã</button></div>
+			                            </div>
+			                        </td>
 			                    </tr>
 			                    <tr>
-			                        <td><button class="btn btn-primary" onclick="window.location.href='QuenMatKhau.jsp'">Quên mật khẩu</button></td>
-			                        <td><button class="btn btn-primary">Đăng nhập</button></td>
+			                        <td><label for="otp" class="h4">OTP:</label></td>
+			                        <td>
+			                            <div class="row">
+			                                <div class="col"><input type="text" id="otp" class="form-control"></div>
+			                                <div class="col-auto"><button class="btn btn-primary">Xác nhận mã</button></div>
+			                            </div>
+			                        </td>
+			                    </tr>
+			                    <tr id="new-password-row" style="display: none;">
+			                        <td><label for="new-password" class="h4">Mật khẩu mới:</label></td>
+			                        <td><input type="password" id="new-password" class="form-control"></td>
+			                    </tr>
+			                    <tr id="confirm-password-row" style="display: none;">
+			                        <td><label for="confirm-password" class="h4">Nhập lại mật khẩu:</label></td>
+			                        <td><input type="password" id="confirm-password" class="form-control"></td>
+			                    </tr>
+			                    <tr>
+			                        <td></td>
+			                        <td><button class="btn btn-primary">Đổi mật khẩu</button></td>
 			                    </tr>
 			                </tbody>
 			            </table>
 			        </div>
 			    </div>
-            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->

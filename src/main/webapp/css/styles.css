@@ -11,3 +11,6 @@
 .mw-80 {
     max-width: 80%;
 }
+#content-wrapper{
+	overflow: hidden;
+ }
