@@ -1,0 +1,13 @@
+@charset "UTF-8";
+
+.nav-item{
+	font-size: 1.3rem;
+}
+
+.sidebar .nav-item .nav-link span{
+	font-size: 1.3rem;
+}
+
+.mw-80 {
+    max-width: 80%;
+}
