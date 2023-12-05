@@ -124,102 +124,113 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-				<div class="container h-80">
-			        <div class="row h-100 justify-content-center align-items-center">
-			            <!-- Table Thông tin cá nhân -->
-			            <table class="table">
-			                <thead>
-			                    <tr>
-			                        <th colspan="2" class="h3">Thông tin cá nhân</th>
-			                    </tr>
-			                </thead>
-			                <tbody>
-			                    <tr>
-			                        <td><label for="mssv" class="h4">MSSV:</label></td>
-			                        <td><input type="text" id="mssv" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="name" class="h4">Họ tên:</label></td>
-			                        <td><input type="text" id="name" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="dob" class="h4">Ngày sinh:</label></td>
-			                        <td><input type="date" id="dob" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-								    <td><label class="h4">Giới tính:</label></td>
-								    <td>
-								        <div class="form-check form-check-inline">
-								            <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-								            <label class="form-check-label h4" for="male">
-								                Nam
-								            </label>
-								        </div>
-								        <div class="form-check form-check-inline">
-								            <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-								            <label class="form-check-label h4" for="female">
-								                Nữ
-								            </label>
-								        </div>
-								    </td>
-								</tr>
+				<div class="container">
+				    <div class="row">
+				        <!-- Bảng Thông tin cá nhân -->
+				        <div class="col-lg-6">
+				            <table class="table">
+				                <thead>
+				                    <tr>
+				                        <th colspan="2" class="h3">Thông tin cá nhân</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+				                    <tr>
+				                        <td><label for="mssv" class="h4">MSSV:</label></td>
+				                        <td><input type="text" id="mssv" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="name" class="h4">Họ tên:</label></td>
+				                        <td><input type="text" id="name" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="dob" class="h4">Ngày sinh:</label></td>
+				                        <td><input type="date" id="dob" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label class="h4">Giới tính:</label></td>
+				                        <td>
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
+				                                <label class="form-check-label h4" for="male">
+				                                    Nam
+				                                </label>
+				                            </div>
+				                            <div class="form-check form-check-inline">
+				                                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
+				                                <label class="form-check-label h4" for="female">
+				                                    Nữ
+				                                </label>
+				                            </div>
+				                        </td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="cccd" class="h4">CCCD:</label></td>
+				                        <td><input type="text" id="cccd" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="faculty" class="h4">Khoa:</label></td>
+				                        <td><input type="text" id="faculty" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="course" class="h4">Khóa học:</label></td>
+				                        <td><input type="text" id="course" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="rl-score" class="h4">Điểm RL:</label></td>
+				                        <td><input type="text" id="rl-score" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="ctxh-score" class="h4">Điểm CTXH:</label></td>
+				                        <td><input type="text" id="ctxh-score" class="form-control"></td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				        </div>
+				
+				        <!-- Bảng Thông tin liên hệ -->
+				        <div class="col-lg-4">
+				            <table class="table">
+				                <thead>
+				                    <tr>
+				                        <th colspan="2" class="h3">Thông tin liên hệ</th>
+				                    </tr>
+				                </thead>
+				                <tbody>
+				                    <tr>
+				                        <td><label for="contact-name" class="h4">Họ tên:</label></td>
+				                        <td><input type="text" id="contact-name" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="phone" class="h4">SDT:</label></td>
+				                        <td><input type="tel" id="phone" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="email" class="h4">Email:</label></td>
+				                        <td><input type="email" id="email" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="address" class="h4">Địa chỉ:</label></td>
+				                        <td><input type="text" id="address" class="form-control"></td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				            <!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
+				            <div class="text-center mt-3">
+				            	<button class="btn btn-primary mr-3">Đổi mật khẩu</button>
+				                <button class="btn btn-primary ml-3">Cập nhật thông tin</button>
+				            </div>
+				        </div>
+                
+				
+				        <!-- Hình ảnh -->
+				        <div class="col-lg-2">
+				            <img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
+				        </div>
+				    </div>
+				</div>
 
-			                    <tr>
-			                        <td><label for="cccd" class="h4">CCCD:</label></td>
-			                        <td><input type="text" id="cccd" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="faculty" class="h4">Khoa:</label></td>
-			                        <td><input type="text" id="faculty" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="course" class="h4">Khóa học:</label></td>
-			                        <td><input type="text" id="course" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="rl-score" class="h4">Điểm RL:</label></td>
-			                        <td><input type="text" id="rl-score" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="ctxh-score" class="h4">Điểm CTXH:</label></td>
-			                        <td><input type="text" id="ctxh-score" class="form-control"></td>
-			                    </tr>
-			                </tbody>
-			            </table>
-			            <!-- Table Thông tin liên hệ -->
-			            <table class="table">
-			                <thead>
-			                    <tr>
-			                        <th colspan="2" class="h3">Thông tin liên hệ</th>
-			                    </tr>
-			                </thead>
-			                <tbody>
-			                    <tr>
-			                        <td><label for="contact-name" class="h4">Họ tên:</label></td>
-			                        <td><input type="text" id="contact-name" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="phone" class="h4">SDT:</label></td>
-			                        <td><input type="tel" id="phone" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="email" class="h4">Email:</label></td>
-			                        <td><input type="email" id="email" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="address" class="h4">Địa chỉ:</label></td>
-			                        <td><input type="text" id="address" class="form-control"></td>
-			                    </tr>
-			                </tbody>
-			            </table>
-			            <!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
-			            <button class="btn btn-primary">Đổi mật khẩu</button>
-			            <button class="btn btn-primary">Cập nhật thông tin</button>
-			            <!-- Hình ảnh -->
-			            <img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
-			        </div>
-			    </div>
-            </div>
+
             <!-- End of Main Content -->
 
             <!-- Footer -->
