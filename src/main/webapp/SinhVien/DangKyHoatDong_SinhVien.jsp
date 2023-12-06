@@ -32,7 +32,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.jsp">
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
 	            <div >
 	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
 	            </div>
@@ -124,7 +124,79 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
+				<div class="container">
+			        <div class="row">
+			            <div class="col">
+			               <div class="form-group row">
+							    <label for="activityType" class="col-sm-3 col-form-label">Loại hoạt động:</label>
+							    <div class="col-sm-5">
+							        <select class="form-control" id="activityType">
+							            <option>Hoạt động 1</option>
+							            <option>Hoạt động 2</option>
+							            <option>Hoạt động 3</option>
+							        </select>
+							    </div>
+							    <div class="col-sm-4">
+							        <select class="form-control" id="activityStatus">
+							            <option>Chưa diễn ra</option>
+							            <option>Đã đăng ký</option>
+							            <option>Đã hoàn thành</option>
+							        </select>
+							    </div>
+							</div>
 
+			                <table class="table table-bordered">
+			                    <thead>
+			                        <tr>
+			                            <th>Tên hoạt động</th>
+			                            <th>Ngày tổ chức</th>
+			                            <th>Khoa tổ chức</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>
+			                            <td>Hoạt động 1</td>
+			                            <td>01/01/2023</td>
+			                            <td>Khoa A</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			            </div>
+			            <div class="col">
+			                <form>
+			                    <div class="form-group">
+			                        <label for="activityName">Tên hoạt động:</label>
+			                        <input type="text" class="form-control" id="activityName">
+			                    </div>
+			                    <div class="form-group">
+			                        <label for="organizer">Tổ chức:</label>
+			                        <input type="text" class="form-control" id="organizer">
+			                    </div>
+			                    <div class="form-group">
+			                        <label for="rlPoints">Điểm RL:</label>
+			                        <input type="number" class="form-control" id="rlPoints" min="0">
+			                        <label for="ctxhPoints">Điểm CTXH:</label>
+			                        <input type="number" class="form-control" id="ctxhPoints" min="0">
+			                    </div>
+			                    <div class="form-group">
+			                        <label for="date">Ngày:</label>
+			                        <input type="date" class="form-control" id="date">
+			                        <label for="status">Trạng thái:</label>
+			                        <select class="form-control" id="status">
+			                            <option>Chưa diễn ra</option>
+			                            <option>Đã đăng ký</option>
+			                            <option>Đã hoàn thành</option>
+			                        </select>
+			                    </div>
+			                    <div class="form-group">
+			                        <label for="description">Mô tả:</label>
+			                        <textarea class="form-control" id="description" rows="3"></textarea>
+			                    </div>
+			                    <button type="submit" class="btn btn-primary">Đăng ký hoạt động</button>
+			                </form>
+			            </div>
+			        </div>
+			    </div>
             </div>
             <!-- End of Main Content -->
 

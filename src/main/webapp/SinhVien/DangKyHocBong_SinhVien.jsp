@@ -32,7 +32,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.jsp">
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
 	            <div >
 	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
 	            </div>
@@ -124,7 +124,41 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-
+				 <div class="container">
+			        <div class="row">
+			            <div class="col-8">
+			                <table class="table text-dark table-bordered">
+			                    <thead>
+			                        <tr>
+			                            <th>Tên học bổng</th>
+			                            <th>Điều kiện</th>
+			                            <th>Số lượng</th>
+			                            <th>Tiền thưởng</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                        <tr>
+			                            <td>Học bổng 1</td>
+			                            <td>Điều kiện 1</td>
+			                            <td>10</td>
+			                            <td>10.000.000đ</td>
+			                        </tr>
+			                    </tbody>
+			                </table>
+			            </div>
+			            <div class="col-4">
+			                <div class="d-flex justify-content-center">
+			                	<button type="button" class="btn btn-primary mb-3">Đăng ký học bổng</button>
+			                </div>
+			                <form>
+			                    <div class="form-group">
+			                        <label for="scholarshipDescription">Mô tả học bổng:</label>
+			                        <textarea class="form-control" id="scholarshipDescription" rows="3"></textarea>
+			                    </div>
+			                </form>
+			            </div>
+			        </div>
+			    </div>
             </div>
             <!-- End of Main Content -->
 

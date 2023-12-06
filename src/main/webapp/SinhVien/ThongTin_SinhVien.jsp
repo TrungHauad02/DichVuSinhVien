@@ -223,7 +223,7 @@
                 
 				
 				        <!-- Hình ảnh -->
-				        <div class="col-lg-2">
+				        <div class="col-lg-2 d-flex justify-content-center">
 				            <img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
 				        </div>
 				    </div>
