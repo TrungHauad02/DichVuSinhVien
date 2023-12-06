@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Thông tin cá nhân</title>
+<title>Thêm CTSV</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -190,109 +190,97 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
-
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Profile</h1>
-
+				<!-- Your Slide bar and main content goes here -->
+				<div class="container">
 					<div class="row">
+						<!-- Bảng Thông tin cá nhân -->
+						<div class="col-lg-6">
+							<table class="table">
+								<thead>
+									<tr>
+										<th colspan="2" class="h3">Thông tin cá nhân</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><label for="idCTSV" class="h4">ID_CTSV:</label></td>
+										<td><input type="text" id="idCTSV" class="form-control"></td>
+									</tr>
+									<tr>
+										<td><label for="name" class="h4">Họ tên:</label></td>
+										<td><input type="text" id="name" class="form-control"></td>
+									</tr>
+									<tr>
+										<td><label for="dob" class="h4">Ngày sinh:</label></td>
+										<td><input type="date" id="dob" class="form-control"></td>
+									</tr>
+									<tr>
+										<td><label class="h4">Giới tính:</label></td>
+										<td>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="gender"
+													id="male" value="male"> <label
+													class="form-check-label h4" for="male"> Nam </label>
+											</div>
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="gender"
+													id="female" value="female"> <label
+													class="form-check-label h4" for="female"> Nữ </label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td><label for="cccd" class="h4">CCCD:</label></td>
+										<td><input type="text" id="cccd" class="form-control"></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
 
-						<!-- Area Chart -->
-						<div class="col-xl-7 col-lg-7">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Thông tin cá
-										nhân</h6>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class=" row">
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Mã số admin:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">21110379</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Họ tên:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Nguyễn Văn A</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Ngày sinh:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Giới tính:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">CCCD:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Số yêu cầu đã xử
-											lý:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">SDT:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Email:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-									</div>
-
-								</div>
+						<!-- Bảng Thông tin liên hệ -->
+						<div class="col-lg-4">
+							<table class="table">
+								<thead>
+									<tr>
+										<th colspan="2" class="h3">Thông tin liên hệ</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><label for="contact-name" class="h4">Họ tên:</label></td>
+										<td><input type="text" id="contact-name"
+											class="form-control"></td>
+									</tr>
+									<tr>
+										<td><label for="phone" class="h4">SDT:</label></td>
+										<td><input type="tel" id="phone" class="form-control"></td>
+									</tr>
+									<tr>
+										<td><label for="email" class="h4">Email:</label></td>
+										<td><input type="email" id="email" class="form-control"></td>
+									</tr>
+									<tr>
+										<td><label for="address" class="h4">Địa chỉ:</label></td>
+										<td><input type="text" id="address" class="form-control"></td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
+							<div class="text-center mt-3">
+								<button class="btn btn-primary mr-3">Thêm CTSV</button>
 							</div>
 						</div>
-						<div class="col-xl-5 col-lg-5">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Admin</h6>
 
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div style="display: flex; justify-content: center;">
-										<img src="anhnen.png" width="150" height="188">
-									</div>
-									<div style="margin-top: 20px;"></div>
-									<div style="display: flex; justify-content: center;">
-										<div class="my-2"></div>
-										<a href="#" class="btn btn-primary btn-icon-split"> <span
-											class="icon text-white-50"> <i class="fas fa-edit"></i>
-										</span> <span class="text">Cập nhật thông tin</span>
-										</a>
-									</div>
-									<div style="margin-top: 20px;"></div>
-									<div style="display: flex; justify-content: center;">
-										<div class="my-2"></div>
-										<a href="#" class="btn btn-primary btn-icon-split"> <span
-											class="icon text-white-50"> <i class="fas fa-lock"></i>
 
-										</span> <span class="text">Đổi mật khẩu</span>
-										</a>
-									</div>
-
-								</div>
-							</div>
+						<!-- Hình ảnh -->
+						<div class="col-lg-2 d-flex justify-content-center">
+							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
 						</div>
 					</div>
-
 				</div>
-				<!-- /.container-fluid -->
+
+
+				<!-- End of Main Content -->
 
 			</div>
 			<!-- End of Main Content -->

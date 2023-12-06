@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Thông tin cá nhân</title>
+<title>Chính sách</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -69,12 +69,12 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Các loại quản lý:</h6>
-						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản lý
-							sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
+						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản
+							lý sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
 							lý CTSV</a> <a class="collapse-item" href="QuanLyKhoa_Admin.jsp">Quản
 							lý khoa</a> <a class="collapse-item" href="QuanLyHoatDong_Admin.jsp">Quản
-							lý hoạt động</a> <a class="collapse-item" href="QuanLyHocBong_Admin.jsp">Quản
-							lý học bổng</a>
+							lý hoạt động</a> <a class="collapse-item"
+							href="QuanLyHocBong_Admin.jsp">Quản lý học bổng</a>
 					</div>
 				</div></li>
 
@@ -82,8 +82,9 @@
 			<hr class="sidebar-divider">
 
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link" href="ThongTin_Admin.jsp">
-					<i class="fas fa-fw fa-user"></i> <span>Thông tin cá nhân</span>
+			<li class="nav-item"><a class="nav-link"
+				href="ThongTin_Admin.jsp"> <i class="fas fa-fw fa-user"></i> <span>Thông
+						tin cá nhân</span>
 			</a></li>
 			<hr class="sidebar-divider">
 			<li class="nav-item"><a class="nav-link" href="HoTroAdmin.jsp">
@@ -114,7 +115,7 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					
+
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
 						<a class="nav-link" href="index.html">
 							<div>
@@ -194,104 +195,28 @@
 				<div class="container-fluid">
 
 					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Profile</h1>
-
-					<div class="row">
-
-						<!-- Area Chart -->
-						<div class="col-xl-7 col-lg-7">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Thông tin cá
-										nhân</h6>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class=" row">
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Mã số admin:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">21110379</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Họ tên:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Nguyễn Văn A</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Ngày sinh:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Giới tính:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">CCCD:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Số yêu cầu đã xử
-											lý:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">SDT:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Email:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-						<div class="col-xl-5 col-lg-5">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Admin</h6>
-
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div style="display: flex; justify-content: center;">
-										<img src="anhnen.png" width="150" height="188">
-									</div>
-									<div style="margin-top: 20px;"></div>
-									<div style="display: flex; justify-content: center;">
-										<div class="my-2"></div>
-										<a href="#" class="btn btn-primary btn-icon-split"> <span
-											class="icon text-white-50"> <i class="fas fa-edit"></i>
-										</span> <span class="text">Cập nhật thông tin</span>
-										</a>
-									</div>
-									<div style="margin-top: 20px;"></div>
-									<div style="display: flex; justify-content: center;">
-										<div class="my-2"></div>
-										<a href="#" class="btn btn-primary btn-icon-split"> <span
-											class="icon text-white-50"> <i class="fas fa-lock"></i>
-
-										</span> <span class="text">Đổi mật khẩu</span>
-										</a>
-									</div>
-
-								</div>
-							</div>
-						</div>
+					<div style="display: flex; justify-content: center;">
+						<h1 class="h3 mb-4 text-gray-800">Chính sách của chúng tôi</h1>
 					</div>
-
+					<hr class="sidebar-divider">
+					<div>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna
+							aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+							ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
+							aute irure dolor in reprehenderit in voluptate velit esse cillum
+							dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+							cupidatat non proident, sunt in culpa qui officia deserunt mollit
+							anim id est laborum.</p>
+						<p>Faucibus a pellentesque sit amet porttitor eget dolor
+							morbi. Risus nullam eget felis eget nunc lobortis mattis aliquam
+							faucibus. Interdum consectetur libero id faucibus nisl tincidunt.
+							Dignissim suspendisse in est ante. Scelerisque purus semper eget
+							duis at tellus at urna condimentum. Tortor at auctor urna nunc id
+							cursus. Sociis natoque penatibus et magnis dis parturient</p>
+					</div>
 				</div>
+
 				<!-- /.container-fluid -->
 
 			</div>
