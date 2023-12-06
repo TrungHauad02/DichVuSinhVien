@@ -41,7 +41,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index.html">
+				href="index_Admin.jsp">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -87,11 +87,11 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Các loại quản lý:</h6>
-						<a class="collapse-item" href="utilities-color.html">Quản lý
-							sinh viên</a> <a class="collapse-item" href="utilities-border.html">Quản
-							lý CTSV</a> <a class="collapse-item" href="utilities-animation.html">Quản
-							lý khoa</a> <a class="collapse-item" href="utilities-other.html">Quản
-							lý hoạt động</a> <a class="collapse-item" href="utilities-other.html">Quản
+						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản lý
+							sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
+							lý CTSV</a> <a class="collapse-item" href="QuanLyKhoa_Admin.jsp">Quản
+							lý khoa</a> <a class="collapse-item" href="QuanLyHoatDong_Admin.jsp">Quản
+							lý hoạt động</a> <a class="collapse-item" href="QuanLyHocBong_Admin.jsp">Quản
 							lý học bổng</a>
 					</div>
 				</div></li>
@@ -100,7 +100,7 @@
 			<hr class="sidebar-divider">
 
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link" href="charts.html">
+			<li class="nav-item"><a class="nav-link" href="ThongTin_Admin.jsp">
 					<i class="fas fa-fw fa-user"></i> <span>Thông tin cá nhân</span>
 			</a></li>
 			<hr class="sidebar-divider">
@@ -132,7 +132,7 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-
+					
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
 						<a class="nav-link" href="index.html">
 							<div>
@@ -221,7 +221,7 @@
 							</div>
 							<div class="card-body">
 							<div>
-								<a href="#" class="btn btn-primary btn-icon-split">
+								<a href="ThemSV.jsp" class="btn btn-primary btn-icon-split">
                                         <span class="icon text-white-50">
                                            <i class="fa fa-plus"></i>
                                         </span>
