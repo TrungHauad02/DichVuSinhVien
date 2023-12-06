@@ -32,7 +32,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.jsp">
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
 	            <div >
 	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
 	            </div>

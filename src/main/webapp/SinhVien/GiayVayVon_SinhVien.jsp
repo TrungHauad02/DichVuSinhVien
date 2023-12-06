@@ -32,7 +32,7 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.jsp">
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
 	            <div >
 	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
 	            </div>
@@ -124,7 +124,22 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-
+				<div class="container d-flex justify-content-center align-items-center">
+			        <div class="col">
+				        <h2 class="mt-4">Đăng ký vay vốn</h2>
+				        <form>
+				            <div class="form-group">
+				                <label for="loanAmount">Khoản vay:</label>
+				                <input type="number" class="form-control" id="loanAmount" placeholder="Nhập số tiền bạn muốn vay" min="0">
+				            </div>
+				            <div class="form-group">
+				                <label for="loanPurpose">Mục đích vay:</label>
+				                <textarea class="form-control" id="loanPurpose" rows="3" placeholder="Nhập mục đích vay của bạn"></textarea>
+				            </div>
+				            <button type="submit" class="btn btn-primary">Đăng ký</button>
+				        </form>
+				    </div>
+			    </div>
             </div>
             <!-- End of Main Content -->
 
