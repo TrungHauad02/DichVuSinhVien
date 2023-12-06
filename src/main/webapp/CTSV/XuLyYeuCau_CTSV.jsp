@@ -1,12 +1,312 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>SB Admin 2 - Dashboard</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+
 </head>
-<body>
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+			<!-- Sidebar - Brand -->
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index.jsp">
+	            <div >
+	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
+	            </div>
+	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
+	        </a>
+        	<li class="nav-item active mt-5">
+                <a class="nav-link" href="ThongTin_CTSV.jsp">
+                    <span >Thông tin cá nhân</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active mt-2">
+                <a class="nav-link" href="ThemDiem_CTSV.jsp">
+                    <span >Thêm điểm</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active mt-2">
+                <a class="nav-link" href="ThemSinhVienVaoLop_CTSV.jsp">
+                    <span >Thêm sinh viên vào lớp</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active mt-2">
+                <a class="nav-link" href="XuLyYeuCau_CTSV.jsp">
+                    <span >Xử lý yêu cầu</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            <li class="nav-item active mt-2">
+                <a class="nav-link" href="PhanHoi_CTSV.jsp">
+                    <span >Phản hồi</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
+            
+        </ul>
+        <!-- End of Sidebar -->
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+                        <i class="fa fa-bars"></i>
+                    </button>
+
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+
+                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                        <li class="nav-item dropdown no-arrow d-sm-none">
+                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-search fa-fw"></i>
+                            </a>
+                            <!-- Dropdown - Messages -->
+                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                                aria-labelledby="searchDropdown">
+                                <form class="form-inline mr-auto w-100 navbar-search">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control bg-light border-0 small"
+                                            placeholder="Search for..." aria-label="Search"
+                                            aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-primary" type="button">
+                                                <i class="fas fa-search fa-sm"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </li>
+
+                        
+                        <div class="topbar-divider d-none d-sm-block"></div>
+
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <img class="img-profile rounded-circle"
+                                    src="img/undraw_profile.svg">
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Profile
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Settings
+                                </a>
+                                <a class="dropdown-item" href="#">
+                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Activity Log
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <h1>Bảng yêu cầu</h1>
+
+				    <div class="row">
+				      <div class="col-md-6">
+				        <table class="table" id = "myTable">
+						  <thead>
+						    <tr>
+						      <th>Phản hồi</th>
+						      <th>Thời gian phản hồi</th>
+						      <th>MSSV</th>
+						      <th>Trạng thái</th>
+						    </tr>
+						  </thead>
+						  <tbody>
+						    <tr>
+						      <td>Đã xử lý</td>
+						      <td>2023-12-04 12:00:00</td>
+						      <td>123456789</td>
+						      <td>Đã xử lý</td>
+						    </tr>
+						    <tr>
+						      <td>Chờ xử lý</td>
+						      <td>2023-12-03 12:00:00</td>
+						      <td>987654321</td>
+						      <td>Chờ xử lý</td>
+						    </tr>
+						  </tbody>
+						</table>
+												
+						<script>
+						document.getElementById("myTable").querySelectorAll("tr").forEach(function(tr) {
+						  tr.addEventListener("mouseover", function() {
+						    tr.style.backgroundColor = "yellow";
+						  });
+						
+						  tr.addEventListener("mouseout", function() {
+						    tr.style.backgroundColor = "";
+						  });
+						  tr.addEventListener("click", function() {
+							    alert("Bạn đã nhấp vào dòng này!");
+							  });
+						});
+						</script>
+				      </div>
+				      <div class="col-md-6">
+					      <div class = "row">
+						      <div class = "col-md-6">
+						        <label for="loai-yeucau">Loại yêu cầu</label>
+						        <select id="loai-yeucau" class="form-control">
+						          <option value="Loại 1">Giấy xác nhận sinh viên</option>
+						          <option value="Loại 2">Giấy vay vốn</option>
+						          <option value="Loại 3">Đăng ký học bổng</option>
+						          <option value="Loại 4">Đăng ký tham gia hoạt động</option>
+						        </select>
+						        </div>
+					        <div class="col-md-6">
+						        <label for="trang-thai">Trạng thái</label>
+						        <select id="trang-thai" class="form-control">
+						          <option value="Đang xử lý">Hoàn thành</option>
+						          <option value="Đã xử lý">Từ chối</option>
+						        </select>
+					        </div>
+				      	</div>
+				      	<div class="row">
+					      <div class="col-md-4">
+					        <label for="mssv">MSSV</label>
+					        <input type="text" id="mssv" class="form-control" placeholder="Nhập MSSV">
+					      </div>
+					
+					      <div class="col-md-4">
+					        <label for="ngay-phan-hoi">Ngày phản hồi</label>
+					        <input type="date" id="ngay-phan-hoi" class="form-control">
+					      </div>
+					
+					      <div class="col-md-4">
+					        <label for="ten-yeucau">Tên yêu cầu</label>
+					        <input type="text" id="ten-yeucau" class="form-control" placeholder="Nhập tên yêu cầu">
+					      </div>
+					    </div>
+					    <div class = "row">
+					    	<div class="col-md-12">
+						        <label for="chi-phi">Chi phí</label>
+						        <input type="number" id="chi-phi" class="form-control" placeholder="Nhập chi phí">
+						      </div>
+					    </div>
+					    <div class="row">
+						    <div class="col-md-8">
+						        <label for="noi-dung">Nội dung</label>
+						        <textarea id="noi-dung" class="form-control" placeholder="Nhập nội dung"></textarea>
+						      </div>
+						</div>
+				
+					    <div class="row">
+					      <div class="col-md-12">
+					        <button type="button" id="btn-xu-ly">Xử lý</button>
+					      </div>
+    			</div>
+				       </div>
+				      </div>
+				    
+    			</div>
+
+            </div>
+            <!-- End of Main Content -->
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2020</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.lordicon.com/lordicon.js"></script>
+
 
 </body>
 </html>
