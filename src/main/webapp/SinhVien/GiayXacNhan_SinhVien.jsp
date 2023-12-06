@@ -124,7 +124,53 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-
+				<div class="container mh-80">
+			        <div class="row table-container h6">
+			            <div class="col-md-9">
+			                <table class="table table-bordered text-dark">
+			                    <thead>
+			                        <tr>
+			                            <th>Thời gian đăng ký</th>
+			                            <th>Tên giấy tờ</th>
+			                            <th>STT</th>
+			                            <th>Chi phí</th>
+			                            <th>Thời gian nhận</th>
+			                            <th>Tình trạng</th>
+			                        </tr>
+			                    </thead>
+			                    <tbody>
+			                    <tr>
+		                            <td>2023-12-01 10:30:00</td>
+		                            <td>Giấy xác nhận sinh viên</td>
+		                            <td>1</td>
+		                            <td>200.00</td>
+		                            <td>2023-12-02 10:30:00</td>
+		                            <td>
+		                                <select>
+		                                    <option>Đang xử lý</option>
+		                                    <option>Hoàn thành</option>
+		                                    <option>Từ chối</option>
+		                                </select>
+		                            </td>
+		                        </tr>
+			                        <!-- Add your rows here -->
+			                    </tbody>
+			                </table>
+			            </div>
+			            <div class="col-md-3 d-flex flex-column align-items-center mt-auto mb-auto">
+			                <label class="text-dark h5">Giấy xác nhận sinh viên</label>
+			                <button class="btn btn-primary">Đăng ký</button>
+			            </div>
+			        </div>
+			        <div class="row notes-container">
+			            <div class="col-md-12">
+			                <fieldset style="border: 4px solid black; padding: 10px">
+					            <legend style="width: auto; border: none; padding: 0; margin: 2px 8px;">Ghi chú</legend>
+					            <textarea class="form-control h6 text-dark" rows="5" placeholder="Ghi chú" readonly>Đây là ghi chú</textarea>
+					        </fieldset>
+			            </div>
+			        </div>
+			    </div>
             </div>
             <!-- End of Main Content -->
 

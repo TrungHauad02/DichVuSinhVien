@@ -15,3 +15,20 @@
 	overflow: hidden;
  }
  
+ .scrollable-table {
+            height: 200px;
+            overflow-y: auto;
+            display: block;
+}
+
+.table-container {
+            height: 60vh;
+            overflow-y: auto;
+        }
+.notes-container {
+            height: 40vh;
+        }
+        
+.container{
+	padding: 0px 0px;
+}

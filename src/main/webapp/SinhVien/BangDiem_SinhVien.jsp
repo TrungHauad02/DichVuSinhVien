@@ -124,7 +124,49 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-
+				<div class="container ">
+			        <div class="row mt-2">
+			            <div class="col-md-2"><label class="text-dark h5">MSSV:</label></div>
+			            <div class="col-md-10"><label class="text-dark h5">2011034</label></div>
+			        </div>
+			        <div class="row mt-2">
+			            <div class="col-md-2 "><label class="text-dark h5">Họ tên:</label></div>
+			            <div class="col-md-10 "><label class="text-dark h5">Nguyễn Trung Hậu</label></div>
+			        </div>
+			        <div class="row mt-4 bg-white">
+			            <div class="col-md-12">
+			                <div class="scrollable-table">
+			                    <table class="table table-bordered text-dark h5">
+			                        <thead>
+			                            <tr>
+			                                <th>Môn học</th>
+			                                <th>Tín chỉ</th>
+			                                <th>Điểm</th>
+			                                <th>Loại điểm</th>
+			                            </tr>
+			                        </thead>
+			                        <tbody>
+			                            <!-- Add your rows here -->
+			                            <tr>
+			                                <td>Toán 2</td>
+			                                <td>3</td>
+			                                <td>8.5</td>
+			                                <td>Giữa kỳ</td>
+			                            </tr>
+			                            <tr>
+			                                <td>Toán 2</td>
+			                                <td>3</td>
+			                                <td>9</td>
+			                                <td>Cuối kỳ</td>
+			                            </tr>
+			                            <!-- End of rows -->
+			                        </tbody>
+			                    </table>
+			                </div>
+			            </div>
+			        </div>
+			    </div>
+			
             </div>
             <!-- End of Main Content -->
 
