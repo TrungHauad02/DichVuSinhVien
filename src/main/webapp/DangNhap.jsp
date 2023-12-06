@@ -106,27 +106,30 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-				<div class="container h-100">
-			        <div class="row h-100 justify-content-center align-items-center">
-			            <table class="table mw-80">
-			                <tbody>
-			                    <tr>
-			                        <td><label for="username" class="h4 justify-content-center">Tài khoản:</label></td>
-			                        <td><input type="text" id="username" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="password" class="h4 justify-content-center">Mật khẩu:</label></td>
-			                        <td><input type="password" id="password" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><button class="btn btn-primary" onclick="window.location.href='QuenMatKhau.jsp'">Quên mật khẩu</button></td>
-			                        <td><button class="btn btn-primary">Đăng nhập</button></td>
-			                    </tr>
-			                </tbody>
-			            </table>
-			        </div>
-			    </div>
-            </div>
+				
+				<div class="container">
+				    <div class="row h-100 justify-content-center align-items-center">
+				    	<form action="<%=request.getContextPath()%>/dangNhap" method="post">
+				            <table class="table mw-80">
+				                <tbody>
+				                    <tr>
+				                        <td><label for="username" class="h4 justify-content-center">Tài khoản:</label></td>
+				                        <td><input type="text" id="username" name="username" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><label for="password" class="h4 justify-content-center">Mật khẩu:</label></td>
+				                        <td><input type="password" id="password" name="password" class="form-control"></td>
+				                    </tr>
+				                    <tr>
+				                        <td><button class="btn btn-primary" onclick="window.location.href='QuenMatKhau.jsp'">Quên mật khẩu</button></td>
+				                        <td><button type="submit" class="btn btn-primary">Đăng nhập</button></td>
+				                    </tr>
+				                </tbody>
+				            </table>
+				     	</form>
+				     </div>
+				  </div>
+	            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
