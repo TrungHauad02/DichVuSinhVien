@@ -52,4 +52,23 @@ public class TaiKhoanDao {
             }
 		return phanQuyen;
 	}
+	public String MaNguoiDung(TaiKhoan tk)throws ClassNotFoundException {
+		String maND = "";
+		try (Connection connection = JDBCUtil.getConnection();
+                PreparedStatement preparedStatement = connection
+                .prepareStatement("select ID_"+tk.getPhanQuyen()
+                +" from "+tk.getPhanQuyen()+" where ID_TaiKhoan = ?")) {
+                preparedStatement.setString(1, tk.getTaiKhoan());
+
+                System.out.println(preparedStatement);
+                ResultSet rs = preparedStatement.executeQuery();
+                rs.next();
+                maND = rs.getString("ID_"+tk.getPhanQuyen());
+
+            } catch (SQLException e) {
+                HandleExeption.printSQLException(e);
+            }
+		return maND;
+	}
+	
 }

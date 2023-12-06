@@ -62,9 +62,11 @@ public class TaiKhoanController extends HttpServlet {
 		tk.setMatKhau(matKhau);
 		try {
             if (taiKhoanDao.DangNhap(tk)) {
-            	HttpSession session = request.getSession();
-                session.setAttribute("username", taiKhoan);                
-                switch (taiKhoanDao.LayPhanQuyen(tk)) {
+            	HttpSession session = request.getSession();              
+                tk.setPhanQuyen(taiKhoanDao.LayPhanQuyen(tk));
+                session.setAttribute("maND", taiKhoanDao.MaNguoiDung(tk));
+                session.setAttribute("phanQuyen", tk.getPhanQuyen());
+                switch (tk.getPhanQuyen()) {
                 case "quanly":
                 	response.sendRedirect(request.getContextPath()+"/Admin/index_Admin.jsp");
                     break;     
