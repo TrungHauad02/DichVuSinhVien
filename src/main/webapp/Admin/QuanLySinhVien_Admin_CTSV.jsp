@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>SB Admin 2 - Dashboard</title>
+<title>Quản lý sinh viên</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -52,7 +52,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index.html">
+			<li class="nav-item"><a class="nav-link" href="index_Admin.jsp">
 					<i class="fas fa-home"></i> <span>Trang chủ</span>
 			</a></li>
 
@@ -61,22 +61,6 @@
 
 			<!-- Heading -->
 			<div class="sidebar-heading">Dịch vụ</div>
-
-			<!-- Nav Item - Pages Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseTwo"
-				aria-expanded="true" aria-controls="collapseTwo"> <!-- <i class="fas fa-fw fa-cog"></i> -->
-					<i class="fas fa-fw fa-trophy"></i> <span>Điểm</span>
-			</a>
-				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
-					data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Cập nhật/ Xuất phiếu điểm:</h6>
-						<a class="collapse-item" href="buttons.html">Cập nhật</a> <a
-							class="collapse-item" href="cards.html">Xuất phiếu điểm</a>
-					</div>
-				</div></li>
-
 			<!-- Nav Item - Utilities Collapse Menu -->
 			<li class="nav-item"><a class="nav-link collapsed" href="#"
 				data-toggle="collapse" data-target="#collapseUtilities"
@@ -104,7 +88,7 @@
 					<i class="fas fa-fw fa-user"></i> <span>Thông tin cá nhân</span>
 			</a></li>
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="charts.html">
+			<li class="nav-item"><a class="nav-link" href="HoTroAdmin.jsp">
 					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 			<hr class="sidebar-divider d-none d-md-block">
@@ -142,7 +126,7 @@
 						</a>
 						<div class="topbar-divider d-none d-sm-block"></div>
 						<div>
-							<a class="nav-link" href="index.html"> <span class="high">Hỗ
+							<a class="nav-link" href="HoTroAdmin.jsp"> <span class="high">Hỗ
 									trợ</span>
 						</div>
 						</a>
