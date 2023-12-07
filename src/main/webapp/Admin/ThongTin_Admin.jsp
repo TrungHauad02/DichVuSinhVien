@@ -69,12 +69,14 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Các loại quản lý:</h6>
-						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản lý
-							sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
+						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản
+							lý sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
 							lý CTSV</a> <a class="collapse-item" href="QuanLyKhoa_Admin.jsp">Quản
 							lý khoa</a> <a class="collapse-item" href="QuanLyHoatDong_Admin.jsp">Quản
-							lý hoạt động</a> <a class="collapse-item" href="QuanLyHocBong_Admin.jsp">Quản
-							lý học bổng</a>
+							lý hoạt động</a> <a class="collapse-item"
+							href="QuanLyHocBong_Admin.jsp">Quản lý học bổng</a> <a
+							class="collapse-item" href="QuanLyLopHoc_Admin.jsp">Quản lý
+							lớp học</a>
 					</div>
 				</div></li>
 
@@ -82,8 +84,9 @@
 			<hr class="sidebar-divider">
 
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link" href="ThongTin_Admin.jsp">
-					<i class="fas fa-fw fa-user"></i> <span>Thông tin cá nhân</span>
+			<li class="nav-item"><a class="nav-link"
+				href="ThongTin_Admin.jsp"> <i class="fas fa-fw fa-user"></i> <span>Thông
+						tin cá nhân</span>
 			</a></li>
 			<hr class="sidebar-divider">
 			<li class="nav-item"><a class="nav-link" href="HoTroAdmin.jsp">
@@ -114,9 +117,9 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					
+
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="index.html">
+						<a class="nav-link" href="index_Admin.jsp">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>

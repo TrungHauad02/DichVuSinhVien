@@ -71,12 +71,14 @@
 					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<h6 class="collapse-header">Các loại quản lý:</h6>
-						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản lý
-							sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
+						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản
+							lý sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
 							lý CTSV</a> <a class="collapse-item" href="QuanLyKhoa_Admin.jsp">Quản
 							lý khoa</a> <a class="collapse-item" href="QuanLyHoatDong_Admin.jsp">Quản
-							lý hoạt động</a> <a class="collapse-item" href="QuanLyHocBong_Admin.jsp">Quản
-							lý học bổng</a>
+							lý hoạt động</a> <a class="collapse-item"
+							href="QuanLyHocBong_Admin.jsp">Quản lý học bổng</a> <a
+							class="collapse-item" href="QuanLyLopHoc_Admin.jsp">Quản lý
+							lớp học</a>
 					</div>
 				</div></li>
 
@@ -84,8 +86,9 @@
 			<hr class="sidebar-divider">
 
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link" href="ThongTin_Admin.jsp">
-					<i class="fas fa-fw fa-user"></i> <span>Thông tin cá nhân</span>
+			<li class="nav-item"><a class="nav-link"
+				href="ThongTin_Admin.jsp"> <i class="fas fa-fw fa-user"></i> <span>Thông
+						tin cá nhân</span>
 			</a></li>
 			<hr class="sidebar-divider">
 			<li class="nav-item"><a class="nav-link" href="HoTroAdmin.jsp">
@@ -116,9 +119,9 @@
 						<i class="fa fa-bars"></i>
 					</button>
 
-					
+
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="index.html">
+						<a class="nav-link" href="index_Admin.jsp">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
@@ -198,49 +201,51 @@
 					<h1 class="h3 mb-2 text-gray-800">Quản lý khoa</h1>
 					<!-- DataTales Example -->
 					<div class="row">
-					<div class="ccol-xl-6 col-lg-6 col-md-12 col-sm-12">
-						<div class="card shadow mb-4">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">Thông tin khoa</h6>
-							</div>
-							<div class="card-body">
-							<div style="margin-top: 20px;"></div>
-								<div class="table-responsive">
-									<table class="table table-bordered" id=" dataTable" width="100%" cellspacing="0"">
-										<thead>
-											<tr>
-												<th>ID_Khoa</th>
-												<th>Tên khoa</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!--   for (Todo todo: todos) {  -->
-											<c:forEach var="user" items="${listUser}">
-
+						<div class="ccol-xl-6 col-lg-6 col-md-12 col-sm-12">
+							<div class="card shadow mb-4">
+								<div class="card-header py-3">
+									<h6 class="m-0 font-weight-bold text-primary">Thông tin
+										khoa</h6>
+								</div>
+								<div class="card-body">
+									<div style="margin-top: 20px;"></div>
+									<div class="table-responsive">
+										<table class="table table-bordered" id=" dataTable"
+											width="100%" cellspacing="0"">
+											<thead>
 												<tr>
-													<%-- <td><c:out value="${user.id}" /></td>
+													<th>ID_Khoa</th>
+													<th>Tên khoa</th>
+													<th>Actions</th>
+												</tr>
+											</thead>
+											<tbody>
+												<!--   for (Todo todo: todos) {  -->
+												<c:forEach var="user" items="${listUser}">
+
+													<tr>
+														<%-- <td><c:out value="${user.id}" /></td>
 													<td><c:out value="${user.name}" /></td>
 													<td><c:out value="${user.email}" /></td>
 													<td><c:out value="${user.country}" /></td> --%>
 
-													<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-														&nbsp;&nbsp;&nbsp;&nbsp; <a
-														href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
-												</tr>
-											</c:forEach>
-											<td>1</td>
-											<td>CNTT</td>
-											<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-												&nbsp;&nbsp;&nbsp;&nbsp; <a
-												href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
-											<!-- } -->
-										</tbody>
+														<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
+															&nbsp;&nbsp;&nbsp;&nbsp; <a
+															href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+													</tr>
+												</c:forEach>
+												<td>1</td>
+												<td>CNTT</td>
+												<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
+													&nbsp;&nbsp;&nbsp;&nbsp; <a
+													href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+												<!-- } -->
+											</tbody>
 
-									</table>
+										</table>
+									</div>
 								</div>
 							</div>
-						</div>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
 							<table class="table">
@@ -255,16 +260,14 @@
 										<td><label for="tenKhoa" class="h5">Tên khoa:</label></td>
 										<td><input type="text" id="tenKhoa" class="form-control"></td>
 									</tr>
-									
+
 								</tbody>
 							</table>
 							<div class="text-center mt-3">
-								<a class="btn btn-primary btn-icon-split">
-                                        <span class="icon text-white-50">
-                                           <i class="fa fa-plus"></i>
-                                        </span>
-                                        <span class="text">Thêm khoa</span>
-                                    </a>
+								<a class="btn btn-primary btn-icon-split"> <span
+									class="icon text-white-50"> <i class="fa fa-plus"></i>
+								</span> <span class="text">Thêm khoa</span>
+								</a>
 							</div>
 						</div>
 					</div>

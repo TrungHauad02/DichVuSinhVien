@@ -74,7 +74,10 @@
 							lý CTSV</a> <a class="collapse-item" href="QuanLyKhoa_Admin.jsp">Quản
 							lý khoa</a> <a class="collapse-item" href="QuanLyHoatDong_Admin.jsp">Quản
 							lý hoạt động</a> <a class="collapse-item"
-							href="QuanLyHocBong_Admin.jsp">Quản lý học bổng</a>
+							href="QuanLyHocBong_Admin.jsp">Quản lý học bổng</a> <a
+							class="collapse-item" href="QuanLyHocBong_Admin.jsp">Quản lý
+							học bổng</a> <a class="collapse-item" href="QuanLyLopHoc_Admin.jsp">Quản
+							lý lớp học</a>
 					</div>
 				</div></li>
 
@@ -117,7 +120,7 @@
 
 
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="index.html">
+						<a class="nav-link" href="index_Admin.jsp">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
@@ -220,8 +223,9 @@
 					<div>
 						<div>
 							<div class="my-2"></div>
-							<a href="ChinhSach.jsp" class="btn btn-primary btn-icon-split"> <span
-								class="icon text-white-50"> <i class="fa fa-list-alt"></i>
+							<a href="ChinhSach.jsp" class="btn btn-primary btn-icon-split">
+								<span class="icon text-white-50"> <i
+									class="fa fa-list-alt"></i>
 							</span> <span class="text">Chính sách</span>
 							</a>
 						</div>
