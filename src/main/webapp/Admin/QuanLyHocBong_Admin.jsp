@@ -23,9 +23,9 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="../css/sb-admin-2.min.css" rel="stylesheet">
-<link href="../css/styles.css" rel="stylesheet">
-
+<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css" rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -58,48 +58,49 @@
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
-			<!-- Heading -->
-			<div class="sidebar-heading">Dịch vụ</div>
-			<!-- Nav Item - Utilities Collapse Menu -->
-			<li class="nav-item"><a class="nav-link collapsed" href="#"
-				data-toggle="collapse" data-target="#collapseUtilities"
-				aria-expanded="true" aria-controls="collapseUtilities"> <i
-					class="fas fa-fw fa-wrench"></i> <span>Quản lý</span>
-			</a>
-				<div id="collapseUtilities" class="collapse"
-					aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
-					<div class="bg-white py-2 collapse-inner rounded">
-						<h6 class="collapse-header">Các loại quản lý:</h6>
-						<a class="collapse-item" href="QuanLySinhVien_Admin_CTSV.jsp">Quản
-							lý sinh viên</a> <a class="collapse-item" href="QuanLyCTSV_Admin.jsp">Quản
-							lý CTSV</a> <a class="collapse-item" href="QuanLyKhoa_Admin.jsp">Quản
-							lý khoa</a> <a class="collapse-item" href="QuanLyHoatDong_Admin.jsp">Quản
-							lý hoạt động</a> <a class="collapse-item"
-							href="QuanLyHocBong_Admin.jsp">Quản lý học bổng</a> <a
-							class="collapse-item" href="QuanLyHocBong_Admin.jsp">Quản lý
-							học bổng</a> <a class="collapse-item" href="QuanLyLopHoc_Admin.jsp">Quản
-							lý lớp học</a>
-					</div>
-				</div></li>
+			<!-- Divider -->
+			<li class="nav-item"><a class="nav-link"
+				href="QuanLySinhVien_Admin_CTSV.jsp"> <span>Quản lý sinh
+						viên</span>
+			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
-
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="ThongTin_Admin.jsp"> <i class="fas fa-fw fa-user"></i> <span>Thông
-						tin cá nhân</span>
+				href="QuanLyCTSV_Admin.jsp"> <span>Quản lý CTSV</span>
 			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			<!-- Divider -->
+			<li class="nav-item"><a class="nav-link"
+				href="QuanLyKhoa_Admin.jsp"><span>Quản lý khoa</span> </a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			<!-- Divider -->
+			<li class="nav-item"><a class="nav-link"
+				href="QuanLyHoatDong_Admin.jsp"><span>Quản lý hoạt động</span> </a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			<!-- Divider -->
+			<li class="nav-item"><a class="nav-link"
+				href="QuanLyHocBong_Admin.jsp"> <i class="fas fa-fw fa-user"></i>
+					<span>Quản lý học bổng</span>
+			</a></li>
+
+			<hr class="sidebar-divider">
+			<li class="nav-item"><a class="nav-link"
+				href="QuanLyLopHoc_Admin.jsp"> <i class='fas fa-fw fa-headset'></i>
+					<span>Quản lý lớp học</span>
+			</a></li>
+
 			<hr class="sidebar-divider">
 			<li class="nav-item"><a class="nav-link" href="HoTroAdmin.jsp">
 					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
-			<hr class="sidebar-divider d-none d-md-block">
-			<!-- Sidebar Toggler (Sidebar) -->
-			<div class="text-center d-none d-md-inline">
-				<button class="rounded-circle border-0" id="sidebarToggle"></button>
-			</div>
 
 		</ul>
 		<!-- End of Sidebar -->
@@ -290,9 +291,7 @@
 								</tbody>
 							</table>
 							<div class="text-center mt-3">
-								<a class="btn btn-primary btn-icon-split"> <span
-									class="icon text-white-50"> <i class="fa fa-plus"></i>
-								</span> <span class="text">Thêm học bổng</span>
+								<a class="btn btn-primary btn-icon-split"> <span class="text">Thêm học bổng</span>
 								</a>
 							</div>
 

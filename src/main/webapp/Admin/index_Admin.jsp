@@ -22,8 +22,9 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="../css/sb-admin-2.min.css" rel="stylesheet">
-<link href="../css/styles.css" rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css" rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
