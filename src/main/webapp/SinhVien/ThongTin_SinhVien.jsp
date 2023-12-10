@@ -32,7 +32,6 @@
 	        dispatcher.forward(request, response);
 	    }
 	%>
-
     <!-- Page Wrapper -->
     <div id="wrapper">
 

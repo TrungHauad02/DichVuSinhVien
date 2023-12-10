@@ -32,8 +32,10 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./ThongTin_SinhVien.jsp">
-	            <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
+	            <div >
+	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
+	            </div>
 	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 	        </a>
         	<li class="nav-item active mt-5">
