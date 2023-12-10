@@ -19,11 +19,19 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
+    <link href="../css/styles.css" type="text/css" rel="stylesheet">
 
 </head>
 <body id="page-top">
+	<%
+	    String maND = (String) session.getAttribute("maND");
+	    if (maND == null) {
+	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
+	        dispatcher.forward(request, response);
+	    }
+	%>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
