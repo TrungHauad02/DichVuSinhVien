@@ -42,7 +42,13 @@ public class TaiKhoanController extends HttpServlet {
             switch (action) {
                 case "/dangNhap":
                 	dangNhap(request, response);
-                    break;     
+                    break;
+                case "/ThongTinSinhVien":
+                	ThongTinSinhVien(request, response);
+                	break;
+                case "/CapNhatSinhVien":
+                	CapNhatSinhVien(request, response);
+                	break;
                 default:
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
                     dispatcher.forward(request, response);
@@ -109,5 +115,44 @@ public class TaiKhoanController extends HttpServlet {
 	        e.printStackTrace();
 	    }
 	}
-
+	
+	private void ThongTinSinhVien(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, ServletException, IOException {
+		HttpSession session = request.getSession();
+		String maND = (String) session.getAttribute("maND");
+		RequestDispatcher dispatcher;
+	    SinhVien sinhvien = new SinhVien();
+		try {
+			sinhvien = taiKhoanDao.getSinhVien(maND);
+			request.setAttribute("sinhvien", sinhvien);
+		    if(sinhvien.getAnhCaNhan() != null) {
+		    	String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
+			    request.setAttribute("encodedImage", encodedImage);
+			}
+		    dispatcher = request.getRequestDispatcher("/SinhVien/ThongTin_SinhVien.jsp");
+		    dispatcher.forward(request, response);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private void CapNhatSinhVien(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, ServletException, IOException {
+		HttpSession session = request.getSession();
+		String maND = (String) session.getAttribute("maND");
+		RequestDispatcher dispatcher;
+	    SinhVien sinhvien = new SinhVien();
+		try {
+			sinhvien = taiKhoanDao.getSinhVien(maND);
+			request.setAttribute("sinhvien", sinhvien);
+		    if(sinhvien.getAnhCaNhan() != null) {
+		    	String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
+			    request.setAttribute("encodedImage", encodedImage);
+			}
+		    dispatcher = request.getRequestDispatcher("/SinhVien/ThongTin_SinhVien.jsp");
+		    dispatcher.forward(request, response);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }

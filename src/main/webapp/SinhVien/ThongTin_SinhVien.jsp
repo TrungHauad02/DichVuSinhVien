@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="Models.SinhVien" %>.
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
 
     <meta charset="utf-8">
@@ -136,27 +137,27 @@
 						        <tbody>
 						            <tr>
 						                <td><label for="mssv" class="h4">MSSV:</label></td>
-						                <td><input type="text" id="mssv" class="form-control" value="${sinhvien.getID_SinhVien}" readonly></td>
+						                <td><input type="text" id="mssv" class="form-control" value="${sinhvien.ID_SinhVien}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="name" class="h4">Họ tên:</label></td>
-						                <td><input type="text" id="name" class="form-control" value="${sinhvien.HoTen}" readonly></td>
+						                <td><input type="text" id="name" class="form-control" value="${sinhvien.getHoTen()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="dob" class="h4">Ngày sinh:</label></td>
-						                <td><input type="date" id="dob" class="form-control" value="${sinhvien.NgaySinh}" readonly></td>
+						                <td><input type="date" id="dob" class="form-control" value="${sinhvien.getNgaySinh()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label class="h4">Giới tính:</label></td>
 						                <td>
 						                    <div class="form-check form-check-inline">
-						                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" ${sinhvien.GioiTinh == 1 ? 'checked' : ''} readonly>
+						                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" ${sinhvien.getGioiTinh() == 1 ? 'checked' : ''} readonly>
 						                        <label class="form-check-label h4" for="male">
 						                            Nam
 						                        </label>
 						                    </div>
 						                    <div class="form-check form-check-inline">
-						                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" ${sinhvien.GioiTinh == 0 ? 'checked' : ''} readonly>
+						                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" ${sinhvien.getGioiTinh() == 0 ? 'checked' : ''} readonly>
 						                        <label class="form-check-label h4" for="female">
 						                            Nữ
 						                        </label>
@@ -165,23 +166,23 @@
 						            </tr>
 						            <tr>
 						                <td><label for="cccd" class="h4">CCCD:</label></td>
-						                <td><input type="text" id="cccd" class="form-control" value="${sinhvien.CCCD}" readonly></td>
+						                <td><input type="text" id="cccd" class="form-control" value="${sinhvien.getCCCD()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="faculty" class="h4">Khoa:</label></td>
-						                <td><input type="text" id="faculty" class="form-control" value="${sinhvien.Khoa}" readonly></td>
+						                <td><input type="text" id="faculty" class="form-control" value="${sinhvien.getKhoa()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="course" class="h4">Khóa học:</label></td>
-						                <td><input type="text" id="course" class="form-control" value="${sinhvien.NamHoc}" readonly></td>
+						                <td><input type="text" id="course" class="form-control" value="${sinhvien.getNamHoc()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="rl-score" class="h4">Điểm RL:</label></td>
-						                <td><input type="text" id="rl-score" class="form-control" value="${sinhvien.DiemRL}" readonly></td>
+						                <td><input type="text" id="rl-score" class="form-control" value="${sinhvien.getDiemRL()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="ctxh-score" class="h4">Điểm CTXH:</label></td>
-						                <td><input type="text" id="ctxh-score" class="form-control" value="${sinhvien.DiemCTXH}"readonly></td>
+						                <td><input type="text" id="ctxh-score" class="form-control" value="${sinhvien.getDiemCTXH()}"readonly></td>
 						            </tr>
 						        </tbody>
 						    </table>
@@ -199,19 +200,19 @@
 						        <tbody>
 						            <tr>
 						                <td><label for="contact-name" class="h4">Họ tên:</label></td>
-						                <td><input type="text" id="contact-name" class="form-control" value="${sinhvien.HoTen}" readonly></td>
+						                <td><input type="text" id="contact-name" class="form-control" value="${sinhvien.getHoTen()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="phone" class="h4">SDT:</label></td>
-						                <td><input type="tel" id="phone" class="form-control" value="${sinhvien.SDT}" readonly></td>
+						                <td><input type="tel" id="phone" class="form-control" value="${sinhvien.getSDT()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="email" class="h4">Email:</label></td>
-						                <td><input type="email" id="email" class="form-control" value="${sinhvien.Email}" readonly></td>
+						                <td><input type="email" id="email" class="form-control" value="${sinhvien.getEmail()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="address" class="h4">Địa chỉ:</label></td>
-						                <td><input type="text" id="address" class="form-control" value="${sinhvien.DiaChi}" readonly></td>
+						                <td><input type="text" id="address" class="form-control" value="${sinhvien.getDiaChi()}" readonly></td>
 						            </tr>
 						        </tbody>
 						    </table>
@@ -299,21 +300,20 @@
 	        var cancelButton = $('#cancel-button');
 	
 	        updateButton.on('click', function () {
-	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score').removeAttr('readonly');
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').removeAttr('readonly');
 	            updateButton.hide();
 	            confirmButton.show();
 	            cancelButton.show();
 	        });
 	
 	        confirmButton.on('click', function () {
-            	$('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score').attr('readonly', true);
+            	$('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
 	            var data = {
 	            	    mssv: $('#mssv').val(),
 	            	    name: $('#name').val(),
 	            	    dob: $('#dob').val(),
 	            	    gender: $('input[name=gender]:checked').val(),
 	            	    cccd: $('#cccd').val(),
-	            	    contactName: $('#contact-name').val(),
 	            	    phone: $('#phone').val(),
 	            	    email: $('#email').val(),
 	            	    address: $('#address').val()
@@ -333,7 +333,7 @@
 	        });
 	
 	        cancelButton.on('click', function () {
-	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score').attr('readonly', true);
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
 	            updateButton.show();
 	            confirmButton.hide();
 	            cancelButton.hide();
