@@ -14,9 +14,9 @@ public class JDBCUtil
 		try
 		{
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-			String url="jdbc:mysql://localhost:3306/qlsv?useSSl=false";
+			String url="jdbc:mysql://localhost:3306/qlsv";
 			String username="root";
-			String password="01092003hau";
+			String password="1234";
 			
 			conn=DriverManager.getConnection(url,username,password);
 		}

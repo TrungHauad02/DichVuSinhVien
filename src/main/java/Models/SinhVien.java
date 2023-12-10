@@ -22,8 +22,20 @@ public class SinhVien implements Serializable {
 
     public SinhVien() {
     }
+    
+    public SinhVien(String iD_SinhVien, String hoTen, String cCCD, int gioiTinh, Date ngaySinh, String namHoc,
+			int khoa) {
+		super();
+		ID_SinhVien = iD_SinhVien;
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		NamHoc = namHoc;
+		Khoa = khoa;
+	}
 
-    public String getID_SinhVien() {
+	public String getID_SinhVien() {
         return ID_SinhVien;
     }
 
