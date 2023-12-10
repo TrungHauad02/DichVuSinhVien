@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="Models.QuanLy"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -221,46 +223,49 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class=" row">
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Mã số admin:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">21110379</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Họ tên:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Nguyễn Văn A</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Ngày sinh:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Giới tính:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">CCCD:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Số yêu cầu đã xử
-											lý:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">SDT:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Email:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;"></div>
+										<c:forEach var="quanly" items="${quanly}">
+											<!-- Hiển thị thông tin từ đối tượng quanly -->
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">Mã số admin:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">
+												<c:out value="${quanly.iD_QuanLy}" />
+
+											</div>
+											<div style="margin-top: 40px;"></div>
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">Họ tên:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">Nguyễn Văn A</div>
+											<div style="margin-top: 40px;"></div>
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">Ngày sinh:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;"></div>
+											<div style="margin-top: 40px;"></div>
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">Giới tính:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;"></div>
+											<div style="margin-top: 40px;"></div>
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">CCCD:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;"></div>
+											<div style="margin-top: 40px;"></div>
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">SDT:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;"></div>
+											<div style="margin-top: 40px;"></div>
+											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;">Email:</div>
+											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+												style="text-align: left; width: 50%;"></div>
+											<!-- và các thuộc tính khác -->
+
+
+										</c:forEach>
 									</div>
 
 								</div>
@@ -277,16 +282,16 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div style="display: flex; justify-content: center;">
-										<img src="anhnen.png" width="150" height="188">
+										<img src="anhnen.png" width="130" height="160">
 									</div>
-									<div style="margin-top: 20px;"></div>
+									<div style="margin-top: 15px;"></div>
 									<div style="display: flex; justify-content: center;">
 										<div class="my-2"></div>
 										<a href="#" class="btn btn-primary btn-icon-split"> <span
 											class="text">Cập nhật thông tin</span>
 										</a>
 									</div>
-									<div style="margin-top: 20px;"></div>
+									<div style="margin-top: 15px;"></div>
 									<div style="display: flex; justify-content: center;">
 										<div class="my-2"></div>
 										<a href="#" class="btn btn-primary btn-icon-split"> <span
