@@ -241,7 +241,9 @@
 
 												<tr>
 													<td><c:out value="${SV.ID_SinhVien}" /></td>
-													<td><c:out value="${SV.HoTen}" /></td>
+													<td><c:out value="${SV.HoTen
+													
+													}" /></td>
 													<td><c:out value="${SV.mssv}" /></td>
 													<td><c:out value="${SV.mssv}" /></td>
 													<td><c:out value="${SV.mssv}" /></td>
