@@ -43,23 +43,36 @@ public class QuanLyController extends HttpServlet {
 
 		try {
 			switch (action) {
-			case "/quanly":
-				QuanLy(request, response);
+			
+				
+			case "/edit":
+				showEditForm(request, response);
+				break;
+			
+			default:
+				listQuanly(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
 	}
-	
-	private void QuanLy(HttpServletRequest request, HttpServletResponse response)
+	private void listQuanly(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		QuanLy quanLy = quanlyDAO.selectQuanly(id);
-		request.setAttribute("quanly", quanLy);
+		List<QuanLy> listQuanly = quanlyDAO.selectAllQuanLy();
+		request.setAttribute("listUser", listQuanly);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ThongTin_Admin.jsp");
 		dispatcher.forward(request, response);
 	}
 	
+	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
+			throws SQLException, ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		QuanLy existingUser = quanlyDAO.selectQuanly(id);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ThongTin_Admin.jsp");
+		request.setAttribute("user", existingUser);
+		dispatcher.forward(request, response);
+
+	}
 	
 }

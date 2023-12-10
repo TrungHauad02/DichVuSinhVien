@@ -34,6 +34,22 @@ public class QuanLy implements Serializable {
 
 
 
+	public QuanLy(int iD_QuanLy, String hoTen, String cCCD, String gioiTinh, Date ngaySinh, String sDT, String email,
+			int iD_TaiKhoan, int trangThai) {
+		super();
+		ID_QuanLy = iD_QuanLy;
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		SDT = sDT;
+		Email = email;
+		ID_TaiKhoan = iD_TaiKhoan;
+		TrangThai = trangThai;
+	}
+
+
+
 	public int getID_QuanLy() {
         return ID_QuanLy;
     }

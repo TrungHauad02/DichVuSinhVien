@@ -15,7 +15,7 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-     <jsp:include page="../head.jsp" />
+     <%-- <jsp:include page="../head.jsp" /> --%>
 </head>
 <body id="page-top">
 	<%

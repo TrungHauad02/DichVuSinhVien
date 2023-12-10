@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -223,15 +225,13 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class=" row">
-										<c:forEach var="quanly" items="${quanly}">
+										<c:forEach var="quanLy" items="${quanLyList}">
 											<!-- Hiển thị thông tin từ đối tượng quanly -->
 											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
 												style="text-align: left; width: 50%;">Mã số admin:</div>
 											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
 												style="text-align: left; width: 50%;">
-												<c:out value="${quanly.iD_QuanLy}" />
-
-											</div>
+												<c:out value="${quanLy.id}" /></div>
 											<div style="margin-top: 40px;"></div>
 											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
 												style="text-align: left; width: 50%;">Họ tên:</div>
