@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,15 +14,7 @@
     <title>SB Admin 2 - Dashboard</title>
 
     <!-- Custom fonts for this template-->
-    <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
-    <link href="../css/styles.css" type="text/css" rel="stylesheet">
-
+     <jsp:include page="../head.jsp" />
 </head>
 <body id="page-top">
 	<%
@@ -133,108 +126,113 @@
 				<div class="container">
 				    <div class="row">
 				        <!-- Bảng Thông tin cá nhân -->
-				        <div class="col-lg-6">
-				            <table class="table">
-				                <thead>
-				                    <tr>
-				                        <th colspan="2" class="h3">Thông tin cá nhân</th>
-				                    </tr>
-				                </thead>
-				                <tbody>
-				                    <tr>
-				                        <td><label for="mssv" class="h4">MSSV:</label></td>
-				                        <td><input type="text" id="mssv" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="name" class="h4">Họ tên:</label></td>
-				                        <td><input type="text" id="name" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="dob" class="h4">Ngày sinh:</label></td>
-				                        <td><input type="date" id="dob" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label class="h4">Giới tính:</label></td>
-				                        <td>
-				                            <div class="form-check form-check-inline">
-				                                <input class="form-check-input" type="radio" name="gender" id="male" value="male">
-				                                <label class="form-check-label h4" for="male">
-				                                    Nam
-				                                </label>
-				                            </div>
-				                            <div class="form-check form-check-inline">
-				                                <input class="form-check-input" type="radio" name="gender" id="female" value="female">
-				                                <label class="form-check-label h4" for="female">
-				                                    Nữ
-				                                </label>
-				                            </div>
-				                        </td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="cccd" class="h4">CCCD:</label></td>
-				                        <td><input type="text" id="cccd" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="faculty" class="h4">Khoa:</label></td>
-				                        <td><input type="text" id="faculty" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="course" class="h4">Khóa học:</label></td>
-				                        <td><input type="text" id="course" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="rl-score" class="h4">Điểm RL:</label></td>
-				                        <td><input type="text" id="rl-score" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="ctxh-score" class="h4">Điểm CTXH:</label></td>
-				                        <td><input type="text" id="ctxh-score" class="form-control"></td>
-				                    </tr>
-				                </tbody>
-				            </table>
-				        </div>
+						<div class="col-lg-6">
+						    <table class="table">
+						        <thead>
+						            <tr>
+						                <th colspan="2" class="h3">Thông tin cá nhân</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <tr>
+						                <td><label for="mssv" class="h4">MSSV:</label></td>
+						                <td><input type="text" id="mssv" class="form-control" value="${sinhvien.getID_SinhVien}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="name" class="h4">Họ tên:</label></td>
+						                <td><input type="text" id="name" class="form-control" value="${sinhvien.HoTen}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="dob" class="h4">Ngày sinh:</label></td>
+						                <td><input type="date" id="dob" class="form-control" value="${sinhvien.NgaySinh}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label class="h4">Giới tính:</label></td>
+						                <td>
+						                    <div class="form-check form-check-inline">
+						                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" ${sinhvien.GioiTinh == 1 ? 'checked' : ''} readonly>
+						                        <label class="form-check-label h4" for="male">
+						                            Nam
+						                        </label>
+						                    </div>
+						                    <div class="form-check form-check-inline">
+						                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" ${sinhvien.GioiTinh == 0 ? 'checked' : ''} readonly>
+						                        <label class="form-check-label h4" for="female">
+						                            Nữ
+						                        </label>
+						                    </div>
+						                </td>
+						            </tr>
+						            <tr>
+						                <td><label for="cccd" class="h4">CCCD:</label></td>
+						                <td><input type="text" id="cccd" class="form-control" value="${sinhvien.CCCD}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="faculty" class="h4">Khoa:</label></td>
+						                <td><input type="text" id="faculty" class="form-control" value="${sinhvien.Khoa}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="course" class="h4">Khóa học:</label></td>
+						                <td><input type="text" id="course" class="form-control" value="${sinhvien.NamHoc}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="rl-score" class="h4">Điểm RL:</label></td>
+						                <td><input type="text" id="rl-score" class="form-control" value="${sinhvien.DiemRL}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="ctxh-score" class="h4">Điểm CTXH:</label></td>
+						                <td><input type="text" id="ctxh-score" class="form-control" value="${sinhvien.DiemCTXH}"readonly></td>
+						            </tr>
+						        </tbody>
+						    </table>
+						</div>
+
 				
 				        <!-- Bảng Thông tin liên hệ -->
 				        <div class="col-lg-4">
-				            <table class="table">
-				                <thead>
-				                    <tr>
-				                        <th colspan="2" class="h3">Thông tin liên hệ</th>
-				                    </tr>
-				                </thead>
-				                <tbody>
-				                    <tr>
-				                        <td><label for="contact-name" class="h4">Họ tên:</label></td>
-				                        <td><input type="text" id="contact-name" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="phone" class="h4">SDT:</label></td>
-				                        <td><input type="tel" id="phone" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="email" class="h4">Email:</label></td>
-				                        <td><input type="email" id="email" class="form-control"></td>
-				                    </tr>
-				                    <tr>
-				                        <td><label for="address" class="h4">Địa chỉ:</label></td>
-				                        <td><input type="text" id="address" class="form-control"></td>
-				                    </tr>
-				                </tbody>
-				            </table>
-				            <!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
-				            <div class="text-center mt-3">
-				            	<button class="btn btn-primary mr-3">Đổi mật khẩu</button>
-				                <button class="btn btn-primary ml-3">Cập nhật thông tin</button>
-				            </div>
+						    <table class="table">
+						        <thead>
+						            <tr>
+						                <th colspan="2" class="h3">Thông tin liên hệ</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <tr>
+						                <td><label for="contact-name" class="h4">Họ tên:</label></td>
+						                <td><input type="text" id="contact-name" class="form-control" value="${sinhvien.HoTen}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="phone" class="h4">SDT:</label></td>
+						                <td><input type="tel" id="phone" class="form-control" value="${sinhvien.SDT}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="email" class="h4">Email:</label></td>
+						                <td><input type="email" id="email" class="form-control" value="${sinhvien.Email}" readonly></td>
+						            </tr>
+						            <tr>
+						                <td><label for="address" class="h4">Địa chỉ:</label></td>
+						                <td><input type="text" id="address" class="form-control" value="${sinhvien.DiaChi}" readonly></td>
+						            </tr>
+						        </tbody>
+						    </table>
+						    <!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
+						    <div class="text-center mt-3">
+						        <button class="btn btn-primary mr-3">Đổi mật khẩu</button>
+						        <button id="update-button" class="btn btn-primary ml-3">Cập nhật thông tin</button>
+						        <button id="confirm-button" class="btn btn-success ml-3" style="display: none;">Xác nhận</button>
+								<button id="cancel-button" class="btn btn-danger ml-3" style="display: none;">Hủy</button>
+						    </div>
+						</div>
+						
+						<!-- Hình ảnh -->
+						<div class="col-lg-2 d-flex flex-column justify-content-center">
+				            <div class="mb-3 text-center" style="height: 200px;"><img id="image" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommunity.atlassian.com%2Ft5%2FConfluence-questions%2FJIRA-macro-in-Confluence-filter-null%2Fqaq-p%2F459510&psig=AOvVaw0eHjxhflOKkqifXxdvIqMb&ust=1702293454249000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLCY37ffhIMDFQAAAAAdAAAAABAD"
+				             alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100"></div>
+				            <div class="text-center"><input type="file" id="selectImage" accept="image/*"></div>
 				        </div>
-                
-				
-				        <!-- Hình ảnh -->
-				        <div class="col-lg-2 d-flex justify-content-center">
-				            <img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
-				        </div>
-				    </div>
+						
 				</div>
+			</div>
 
 
             <!-- End of Main Content -->
@@ -276,5 +274,73 @@
     <script src="../js/demo/chart-area-demo.js"></script>
     <script src="../js/demo/chart-pie-demo.js"></script>
 	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<script>
+		document.getElementById('selectImage').addEventListener('change', function(event) {
+	        var files = event.target.files;
+	        if (files && files.length > 0) {
+	            var reader = new FileReader();
+	            reader.onload = function() {
+	                var dataURL = reader.result;
+	                if (dataURL != null) {
+	                    document.getElementById('image').src = dataURL;
+	                }
+	            };
+	            reader.readAsDataURL(files[0]);
+	        } else {
+	            console.error("No files selected or FileReader not supported.");
+	        }
+	    });
+	</script>
+	<script>
+		$(document).ready(function () {
+	        var updateButton = $('#update-button');
+	        var confirmButton = $('#confirm-button');
+	        var cancelButton = $('#cancel-button');
+	
+	        updateButton.on('click', function () {
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score').removeAttr('readonly');
+	            updateButton.hide();
+	            confirmButton.show();
+	            cancelButton.show();
+	        });
+	
+	        confirmButton.on('click', function () {
+            	$('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score').attr('readonly', true);
+	            var data = {
+	            	    mssv: $('#mssv').val(),
+	            	    name: $('#name').val(),
+	            	    dob: $('#dob').val(),
+	            	    gender: $('input[name=gender]:checked').val(),
+	            	    cccd: $('#cccd').val(),
+	            	    contactName: $('#contact-name').val(),
+	            	    phone: $('#phone').val(),
+	            	    email: $('#email').val(),
+	            	    address: $('#address').val()
+	            	};
+	            $.ajax({
+	                type: "POST",
+	                url: "<%= request.getContextPath() %>/CapNhatSinhVien",
+	                data: data,
+	                success: function (response) {
+	                    console.log(response);
+	                    window.location.href = '<%= request.getContextPath() %>/SinhVien/ThongTin_SinhVien.jsp';
+	                },
+	                error: function (error) {
+	                    console.log(error);
+	                }
+	            });
+	        });
+	
+	        cancelButton.on('click', function () {
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score').attr('readonly', true);
+	            updateButton.show();
+	            confirmButton.hide();
+	            cancelButton.hide();
+	        });
+	    });
+
+	</script>
+	
 </body>
 </html>

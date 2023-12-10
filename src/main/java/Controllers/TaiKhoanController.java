@@ -2,6 +2,7 @@ package Controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.List;
 
 import java.io.IOException;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpSession;
 
 import DAO.TaiKhoanDao;
 import Models.TaiKhoan;
+import Models.CTSV;
+import Models.QuanLy;
+import Models.SinhVien;
 
 /**
  * Servlet implementation class TaiKhoanController
@@ -54,39 +58,56 @@ public class TaiKhoanController extends HttpServlet {
 	}
 	
 	private void dangNhap(HttpServletRequest request, HttpServletResponse response)
-		    throws SQLException, ServletException, IOException {
-		String taiKhoan = request.getParameter("username");
-        String matKhau = request.getParameter("password");
-		TaiKhoan  tk = new TaiKhoan();
-		tk.setTaiKhoan(taiKhoan);
-		tk.setMatKhau(matKhau);
-		try {
-            if (taiKhoanDao.DangNhap(tk)) {
-            	HttpSession session = request.getSession();              
-                tk.setPhanQuyen(taiKhoanDao.LayPhanQuyen(tk));
-                session.setAttribute("maND", taiKhoanDao.MaNguoiDung(tk));
-                session.setAttribute("phanQuyen", tk.getPhanQuyen());
-                switch (tk.getPhanQuyen()) {
-                case "quanly":
-                	response.sendRedirect(request.getContextPath()+"/Admin/index_Admin.jsp");
-                    break;     
-                case "ctsv":
-                	response.sendRedirect(request.getContextPath()+"/CTSV/index_CTSV.jsp");
-                    break;
-                case "sinhvien":                
-                	response.sendRedirect(request.getContextPath()+"/SinhVien/index_SinhVien.jsp");
-                    break;
-                default:
-                	response.sendRedirect(request.getContextPath()+"/DangNhap.jsp");
-                    break;
-            }
-            } else {
-            	request.setAttribute("errMsg", "Thông tin đăng nhập không chính xác");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("DangNhap.jsp");
-				dispatcher.forward(request, response);
-            }
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
+	        throws SQLException, ServletException, IOException {
+	    String taiKhoan = request.getParameter("username");
+	    String matKhau = request.getParameter("password");
+	    TaiKhoan tk = new TaiKhoan();
+	    tk.setTaiKhoan(taiKhoan);
+	    tk.setMatKhau(matKhau);
+	    try {
+	        if (taiKhoanDao.DangNhap(tk)) {
+	            HttpSession session = request.getSession();              
+	            tk.setPhanQuyen(taiKhoanDao.LayPhanQuyen(tk));
+	            String maND = taiKhoanDao.MaNguoiDung(tk);
+	            session.setAttribute("maND", maND);
+	            session.setAttribute("phanQuyen", tk.getPhanQuyen());
+	            RequestDispatcher dispatcher;
+	            switch (tk.getPhanQuyen()) {
+	            case "quanly":
+	                QuanLy quanly = taiKhoanDao.getQuanLy(maND);
+	                request.setAttribute("quanly", quanly);
+	                dispatcher = request.getRequestDispatcher("/Admin/index_Admin.jsp");
+	                dispatcher.forward(request, response);
+	                break;     
+	            case "ctsv":
+	                CTSV ctsv = taiKhoanDao.getCTSV(maND);
+	                request.setAttribute("ctsv", ctsv);
+	                dispatcher = request.getRequestDispatcher("/CTSV/index_CTSV.jsp");
+	                dispatcher.forward(request, response);
+	                break;
+	            case "sinhvien":     
+	            	SinhVien sinhvien = taiKhoanDao.getSinhVien(maND);
+	                request.setAttribute("sinhvien", sinhvien);
+	                if(sinhvien.getAnhCaNhan() != null) {
+		                String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
+		                request.setAttribute("encodedImage", encodedImage);
+		            }
+	                dispatcher = request.getRequestDispatcher("/SinhVien/index_SinhVien.jsp");
+	                dispatcher.forward(request, response);
+	                break;
+	            default:
+	                dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
+	                dispatcher.forward(request, response);
+	                break;
+	            }
+	        } else {
+	            request.setAttribute("errMsg", "Thông tin đăng nhập không chính xác");
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
+	            dispatcher.forward(request, response);
+	        }
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
+	}
+
 }

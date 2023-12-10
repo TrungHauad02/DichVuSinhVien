@@ -19,6 +19,8 @@ public class SinhVien implements Serializable {
     private int DiemRL;
     private int DiemCTXH;
     private int TrangThai;
+    private String DiaChi;
+    private byte[] AnhCaNhan;
 
     public SinhVien() {
     }
@@ -125,5 +127,21 @@ public class SinhVien implements Serializable {
 
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+	public String getDiaChi() {
+		return DiaChi;
+	}
+
+	public void setDiaChi(String diaChi) {
+		DiaChi = diaChi;
+	}
+	
+	public byte[] getAnhCaNhan() {
+        return AnhCaNhan;
+    }
+
+    public void setAnhCaNhan(byte[] AnhCaNhan) {
+        this.AnhCaNhan = AnhCaNhan;
     }
 }
