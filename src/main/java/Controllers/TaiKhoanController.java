@@ -81,7 +81,7 @@ public class TaiKhoanController extends HttpServlet {
                     break;
             }
             } else {
-            	request.setAttribute("errMsg", "Thong tin dang nhap khong chinh xac");
+            	request.setAttribute("errMsg", "Thông tin đăng nhập không chính xác");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("DangNhap.jsp");
 				dispatcher.forward(request, response);
             }

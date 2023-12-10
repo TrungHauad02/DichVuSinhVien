@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +21,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
+	<link href="${pageContext.request.contextPath}/css/styles.css" type="text/css" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -113,6 +114,13 @@
 				                        <td><label for="password" class="h4 justify-content-center">Mật khẩu:</label></td>
 				                        <td><input type="password" id="password" name="password" class="form-control"></td>
 				                    </tr>
+				                    <% if (request.getAttribute("errMsg") != null) { %>
+				                    <tr>
+				                    	<td colspan=2>
+						                    <p class="text-danger"><%= request.getAttribute("errMsg") %></p>											
+										</td>
+									</tr>
+									<% } %>
 				                    <tr>
 				                        <td><button class="btn btn-primary" onclick="window.location.href='QuenMatKhau.jsp'">Quên mật khẩu</button></td>
 				                        <td><button type="submit" class="btn btn-primary">Đăng nhập</button></td>

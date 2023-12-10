@@ -5,43 +5,61 @@ import java.io.Serializable;
 public class ThamGiaLopHoc implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    private String ID_SinhVien;
-    private int ID_LopHoc;
-    private int ID_BangDiem;
-    private int TrangThai;
-
+    private String idSinhVien;
+    private int idLopHoc;
+    private float diemQuaTrinh;
+    private float diemCuoiKy;
+    private int trangThai;
+    
     public ThamGiaLopHoc() {
     }
-
-    public String getID_SinhVien() {
-        return ID_SinhVien;
+    
+    public ThamGiaLopHoc(String idSinhVien, int idLopHoc, float diemQuaTrinh, float diemCuoiKy, int trangThai) {
+        this.idSinhVien = idSinhVien;
+        this.idLopHoc = idLopHoc;
+        this.diemQuaTrinh = diemQuaTrinh;
+        this.diemCuoiKy = diemCuoiKy;
+        this.trangThai = trangThai;
     }
 
-    public void setID_SinhVien(String ID_SinhVien) {
-        this.ID_SinhVien = ID_SinhVien;
+    // getters and setters
+    public String getIdSinhVien() {
+        return idSinhVien;
     }
 
-    public int getID_LopHoc() {
-        return ID_LopHoc;
+    public void setIdSinhVien(String idSinhVien) {
+        this.idSinhVien = idSinhVien;
     }
 
-    public void setID_LopHoc(int ID_LopHoc) {
-        this.ID_LopHoc = ID_LopHoc;
+    public int getIdLopHoc() {
+        return idLopHoc;
     }
 
-    public int getID_BangDiem() {
-        return ID_BangDiem;
+    public void setIdLopHoc(int idLopHoc) {
+        this.idLopHoc = idLopHoc;
     }
 
-    public void setID_BangDiem(int ID_BangDiem) {
-        this.ID_BangDiem = ID_BangDiem;
+    public float getDiemQuaTrinh() {
+        return diemQuaTrinh;
+    }
+
+    public void setDiemQuaTrinh(float diemQuaTrinh) {
+        this.diemQuaTrinh = diemQuaTrinh;
+    }
+
+    public float getDiemCuoiKy() {
+        return diemCuoiKy;
+    }
+
+    public void setDiemCuoiKy(float diemCuoiKy) {
+        this.diemCuoiKy = diemCuoiKy;
     }
 
     public int getTrangThai() {
-        return TrangThai;
+        return trangThai;
     }
 
-    public void setTrangThai(int TrangThai) {
-        this.TrangThai = TrangThai;
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
 }
