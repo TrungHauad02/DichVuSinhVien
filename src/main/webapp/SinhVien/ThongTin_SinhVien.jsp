@@ -15,7 +15,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Thông tin sinh viên</title>
 
     <!-- Custom fonts for this template	-->
     <jsp:include page="../head.jsp" />
@@ -47,7 +47,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="BangDiem_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
                     <span >Bảng điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -252,7 +252,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Trang web của nhóm 12</span>
                     </div>
                 </div>	
             </footer>

@@ -11,9 +11,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Trang Chủ</title>
 
-    <!-- Custom fonts for this template-->
     <jsp:include page="../head.jsp" />
 
 </head>
@@ -38,7 +37,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="BangDiem_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
                     <span >Bảng điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -92,7 +91,7 @@
                         <li class="nav-item dropdown no-arrow ml-auto">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">Trung Hậu</span>
+                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">${sinhvien.getHoTen()}</span>
 								<lord-icon
 								    src="https://cdn.lordicon.com/kthelypq.json"
 								    trigger="hover"
@@ -126,7 +125,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Trang web của nhóm 12</span>
                     </div>
                 </div>	
             </footer>
