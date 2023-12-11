@@ -3,7 +3,7 @@ package Models;
 import java.io.Serializable;
 import java.util.Date;
 
-public class YeuCau implements Serializable {
+public class TableYeuCau implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int ID_YeuCau;
@@ -11,9 +11,9 @@ public class YeuCau implements Serializable {
     private Date ThoiGianGui;
     private String ID_SinhVien;
     private int ID_DichVu;
-    private int ID_BangDichVu;
+    private String TenDichVu;
 
-    public YeuCau() {
+    public TableYeuCau() {
     }
 
     public int getID_YeuCau() {
@@ -55,12 +55,10 @@ public class YeuCau implements Serializable {
     public void setID_DichVu(int ID_DichVu) {
         this.ID_DichVu = ID_DichVu;
     }
-
-	public int getID_BangDichVu() {
-		return ID_BangDichVu;
-	}
-
-	public void setID_BangDichVu(int iD_BangDichVu) {
-		ID_BangDichVu = iD_BangDichVu;
-	}
+    public String getTenDichVu() {
+    	return TenDichVu;
+    }
+    public void setTenDichVu(String TenDichVu) {
+    	this.TenDichVu = TenDichVu; 
+    }
 }

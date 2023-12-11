@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="Models.SinhVien" %>.
+<%@ page import="Models.SinhVien" %>
+<%@ page import="DAO.TaiKhoanDao" %>
+<%@ page import="java.util.Base64" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -12,10 +15,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Thông tin sinh viên</title>
 
-    <!-- Custom fonts for this template-->
-     <%-- <jsp:include page="../head.jsp" /> --%>
+    <!-- Custom fonts for this template	-->
+    <jsp:include page="../head.jsp" />
 </head>
 <body id="page-top">
 	<%
@@ -32,19 +35,19 @@
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
+	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="./index_SinhVien.jsp">
 	            <div >
 	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
 	            </div>
 	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 	        </a>
         	<li class="nav-item active mt-5">
-                <a class="nav-link" href="ThongTin_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath() %>/ThongTinSinhVien">
                     <span >Thông tin cá nhân</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="BangDiem_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
                     <span >Bảng điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -98,7 +101,7 @@
                         <li class="nav-item dropdown no-arrow ml-auto">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">Trung Hậu</span>
+                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">${sinhvien.getHoTen()}</span>
 								<lord-icon
 								    src="https://cdn.lordicon.com/kthelypq.json"
 								    trigger="hover"
@@ -144,20 +147,20 @@
 						                <td><input type="text" id="name" class="form-control" value="${sinhvien.getHoTen()}" readonly></td>
 						            </tr>
 						            <tr>
-						                <td><label for="dob" class="h4">Ngày sinh:</label></td>
-						                <td><input type="date" id="dob" class="form-control" value="${sinhvien.getNgaySinh()}" readonly></td>
+						            	<td><label for="dob" class="h4">Ngày sinh:</label></td>
+								        <td><input type="date" id="dob" class="form-control" value="${sinhvien.getNgaySinh()}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label class="h4">Giới tính:</label></td>
 						                <td>
 						                    <div class="form-check form-check-inline">
-						                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" ${sinhvien.getGioiTinh() == 1 ? 'checked' : ''} readonly>
+						                        <input class="form-check-input" type="radio" name="gender" id="male" value="male" ${sinhvien.getGioiTinh() == 1 ? 'checked' : ''}>
 						                        <label class="form-check-label h4" for="male">
 						                            Nam
 						                        </label>
 						                    </div>
 						                    <div class="form-check form-check-inline">
-						                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" ${sinhvien.getGioiTinh() == 0 ? 'checked' : ''} readonly>
+						                        <input class="form-check-input" type="radio" name="gender" id="female" value="female" ${sinhvien.getGioiTinh() == 0 ? 'checked' : ''}>
 						                        <label class="form-check-label h4" for="female">
 						                            Nữ
 						                        </label>
@@ -218,18 +221,25 @@
 						    </table>
 						    <!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
 						    <div class="text-center mt-3">
+							    <c:if test="${not empty errMsg}">
+							        <p class="text-danger">${errMsg}</p>
+							    </c:if>
+							</div>
+
+						    <div class="text-center mt-3">
 						        <button class="btn btn-primary mr-3">Đổi mật khẩu</button>
 						        <button id="update-button" class="btn btn-primary ml-3">Cập nhật thông tin</button>
 						        <button id="confirm-button" class="btn btn-success ml-3" style="display: none;">Xác nhận</button>
 								<button id="cancel-button" class="btn btn-danger ml-3" style="display: none;">Hủy</button>
 						    </div>
 						</div>
-						
 						<!-- Hình ảnh -->
 						<div class="col-lg-2 d-flex flex-column justify-content-center">
-				            <div class="mb-3 text-center" style="height: 200px;"><img id="image" src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommunity.atlassian.com%2Ft5%2FConfluence-questions%2FJIRA-macro-in-Confluence-filter-null%2Fqaq-p%2F459510&psig=AOvVaw0eHjxhflOKkqifXxdvIqMb&ust=1702293454249000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLCY37ffhIMDFQAAAAAdAAAAABAD"
-				             alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100"></div>
-				            <div class="text-center"><input type="file" id="selectImage" accept="image/*"></div>
+				            <div class="mb-3 text-center" style="height: 200px;">
+					            <img id="image" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan())}"
+	                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
+                 			</div>
+				            <div class="text-center"><input type="file" id="selectImage" accept="image/*" style="display: none;"></div>
 				        </div>
 						
 				</div>
@@ -242,7 +252,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Trang web của nhóm 12</span>
                     </div>
                 </div>	
             </footer>
@@ -259,24 +269,9 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-	<script>
+    
+    <jsp:include page="../Scripts.jsp" />
+	<script>    
 		document.getElementById('selectImage').addEventListener('change', function(event) {
 	        var files = event.target.files;
 	        if (files && files.length > 0) {
@@ -298,48 +293,89 @@
 	        var updateButton = $('#update-button');
 	        var confirmButton = $('#confirm-button');
 	        var cancelButton = $('#cancel-button');
+	        console.log(updateButton);
 	
 	        updateButton.on('click', function () {
 	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').removeAttr('readonly');
 	            updateButton.hide();
 	            confirmButton.show();
 	            cancelButton.show();
+	            $('#selectImage').show();
 	        });
 	
 	        confirmButton.on('click', function () {
-            	$('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
-	            var data = {
-	            	    mssv: $('#mssv').val(),
-	            	    name: $('#name').val(),
-	            	    dob: $('#dob').val(),
-	            	    gender: $('input[name=gender]:checked').val(),
-	            	    cccd: $('#cccd').val(),
-	            	    phone: $('#phone').val(),
-	            	    email: $('#email').val(),
-	            	    address: $('#address').val()
-	            	};
-	            $.ajax({
-	                type: "POST",
-	                url: "<%= request.getContextPath() %>/CapNhatSinhVien",
-	                data: data,
-	                success: function (response) {
-	                    console.log(response);
-	                    window.location.href = '<%= request.getContextPath() %>/SinhVien/ThongTin_SinhVien.jsp';
-	                },
-	                error: function (error) {
-	                    console.log(error);
-	                }
-	            });
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
+	            var imageInput = document.getElementById('selectImage');
+
+	            if (imageInput.files.length > 0) {
+	                var reader = new FileReader();
+
+	                reader.onload = function () {
+	                    var dataURL = reader.result;
+
+	                    var data = {
+	                        mssv: $('#mssv').val(),
+	                        name: $('#name').val(),
+	                        dob: $('#dob').val(),
+	                        gender: $('input[name=gender]:checked').val(),
+	                        cccd: $('#cccd').val(),
+	                        phone: $('#phone').val(),
+	                        email: $('#email').val(),
+	                        address: $('#address').val(),
+	                        image: dataURL
+	                    };
+
+	                    $.ajax({
+	                        type: "POST",
+	                        url: "<%= request.getContextPath() %>/CapNhatSinhVien",
+	                        data: data,
+	                        success: function (response) {
+	                            console.log(response);
+	                            window.location.href = '<%= request.getContextPath() %>/ThongTinSinhVien';
+	                        },
+	                        error: function (error) {
+	                            console.log(error);
+	                        }
+	                    });
+	                };
+
+	                reader.readAsDataURL(imageInput.files[0]);
+	            } else {
+	                var data = {
+	                    mssv: $('#mssv').val(),
+	                    name: $('#name').val(),
+	                    dob: $('#dob').val(),
+	                    gender: $('input[name=gender]:checked').val(),
+	                    cccd: $('#cccd').val(),
+	                    phone: $('#phone').val(),
+	                    email: $('#email').val(),
+	                    address: $('#address').val()
+	                };
+
+	                $.ajax({
+	                    type: "POST",
+	                    url: "<%= request.getContextPath() %>/CapNhatSinhVien",
+	                    data: data,
+	                    success: function (response) {
+	                        console.log(response);
+	                        window.location.href = '<%= request.getContextPath() %>/ThongTinSinhVien';
+	                    },
+	                    error: function (error) {
+	                        console.log(error);
+	                    }
+	                });
+	            }
 	        });
+
 	
 	        cancelButton.on('click', function () {
 	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
 	            updateButton.show();
 	            confirmButton.hide();
 	            cancelButton.hide();
+	            $('#selectImage').hide();
 	        });
 	    });
-
 	</script>
 	
 </body>

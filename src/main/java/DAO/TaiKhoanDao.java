@@ -61,7 +61,7 @@ public class TaiKhoanDao {
                 PreparedStatement preparedStatement = connection
                 .prepareStatement("select ID_"+tk.getPhanQuyen()
                 +" from "+tk.getPhanQuyen()+" where ID_TaiKhoan = ?")) {
-                preparedStatement.setString(1, tk.getTaiKhoan());
+                preparedStatement.setInt(1, tk.getID_TaiKhoan());
 
                 System.out.println(preparedStatement);
                 ResultSet rs = preparedStatement.executeQuery();
@@ -185,6 +185,24 @@ public class TaiKhoanDao {
             HandleExeption.printSQLException(e);
         }
 		return status;
+	}
+	
+	
+	public int LayID_TaiKhoan(TaiKhoan tk)throws ClassNotFoundException {
+		int ID = 0;
+		try (Connection connection = JDBCUtil.getConnection();
+                PreparedStatement preparedStatement = connection
+                .prepareStatement("select ID_TaiKhoan from taikhoan where TaiKhoan = ?")) {
+                preparedStatement.setString(1, tk.getTaiKhoan());
+
+                ResultSet rs = preparedStatement.executeQuery();
+                rs.next();
+                ID = rs.getInt("ID_TaiKhoan");
+
+            } catch (SQLException e) {
+                HandleExeption.printSQLException(e);
+            }
+		return ID;
 	}
 
 }

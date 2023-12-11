@@ -7,6 +7,7 @@ public class LopHoc implements Serializable {
 
     private int ID_LopHoc;
     private String MonHoc;
+    private String TenLopHoc;
     private int TinChi;
     private int TrangThai;
 
@@ -44,4 +45,12 @@ public class LopHoc implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+	public String getTenLopHoc() {
+		return TenLopHoc;
+	}
+
+	public void setTenLopHoc(String tenLopHoc) {
+		TenLopHoc = tenLopHoc;
+	}
 }
