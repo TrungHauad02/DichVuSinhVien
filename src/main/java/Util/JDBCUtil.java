@@ -3,51 +3,43 @@ package Util;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Date;
-import java.time.LocalDate;
 
-public class JDBCUtil
-{
+public class JDBCUtil {
 	public static Connection getConnection()
 	{
-		Connection conn=null;
-		try
-		{
+		Connection conn = null;
+		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-			String url="jdbc:mysql://localhost:3306/qlsv?useSSl=false";
-			String username="root";
-			String password="1234";
+			String url = System.getenv("DB_URL");
+			String username = System.getenv("DB_USERNAME");
+			String password = System.getenv("DB_PASSWORD");
 			
-			conn=DriverManager.getConnection(url,username,password);
+			conn = DriverManager.getConnection(url, username, password);
+			System.out.println("Connection Successfully!");
 		}
-		catch (SQLException e)
-		{
-			//TODO Auto-generated catch block
-			System.out.println("Connection error...");
+		catch (SQLException e){
 			e.printStackTrace();
 		}
+		
 		return conn;
 	}
+	
 	public static void closeConnection(Connection conn)
 	{
-		try {
-			if(conn!=null)
-			{
-				System.out.println("Close connection!");
-				conn.close();	
-			}
-		}
-		catch (SQLException e)
+		try 
 		{
-			//TODO Auto-generated catch block
+			if (conn != null)
+			{
+				conn.close();
+			}
+		} catch (SQLException e)
+		{
+			System.out.println("Connection Error...");
 			e.printStackTrace();
 		}
 	}
-	public static Date getSQLDate(LocalDate date) {
-        return java.sql.Date.valueOf(date);
-    }
-
-    public static LocalDate getUtilDate(Date sqlDate) {
-        return sqlDate.toLocalDate();
-    }
+	public static void main(String args[])
+	{
+		getConnection();
+	}
 }
