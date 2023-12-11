@@ -13,7 +13,7 @@
     <meta name="author" content="">
 
     <title>SB Admin 2 - Dashboard</title>
-    <jsp:include page="./head.jsp" />
+    <%-- <jsp:include page="./head.jsp" /> --%>
 </head>
 <body id="page-top">
 	

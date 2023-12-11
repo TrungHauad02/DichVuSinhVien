@@ -23,9 +23,14 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
+	rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
+	rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -232,29 +237,22 @@
 										</thead>
 										<tbody>
 											<!--   for (Todo todo: todos) {  -->
-											<c:forEach var="user" items="${listUser}">
+											<c:forEach var="SV" items="${listSV}">
 
 												<tr>
-													<%-- <td><c:out value="${user.id}" /></td>
-													<td><c:out value="${user.name}" /></td>
-													<td><c:out value="${user.email}" /></td>
-													<td><c:out value="${user.country}" /></td> --%>
-
+													<td><c:out value="${SV.ID_SinhVien}" /></td>
+													<td><c:out value="${SV.HoTen
+													
+													}" /></td>
+													<td><c:out value="${SV.mssv}" /></td>
+													<td><c:out value="${SV.mssv}" /></td>
+													<td><c:out value="${SV.mssv}" /></td>
 													<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
 														href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
 												</tr>
 											</c:forEach>
-											<td>21110379</td>
-											<td>Mai Trần Bách</td>
-											<th>2023/01/01</th>
-											<th>Nam</th>
-											<th>32392372332</th>
-											<td>CNTT</td>
-											<td>K21</td>
-											<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-												&nbsp;&nbsp;&nbsp;&nbsp; <a
-												href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+
 											<!-- } -->
 										</tbody>
 
