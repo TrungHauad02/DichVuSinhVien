@@ -42,32 +42,5 @@ public class SinhVienController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-	/*
-	 * private void listSV(HttpServletRequest request, HttpServletResponse response)
-	 * throws SQLException, IOException, ServletException { List<SinhVien> listSV =
-	 * sinhvienDAO.selectAllSV(); request.setAttribute("listSV", listSV);
-	 * RequestDispatcher dispatcher =
-	 * request.getRequestDispatcher("./Admin/QuanLySinhVien_Admin_CTSV.jsp");
-	 * dispatcher.forward(request, response); }
-	 * 
-	 * private void showNewForm(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException { RequestDispatcher dispatcher
-	 * = request.getRequestDispatcher("./Admin/QuanLySinhVien_Admin_CTSV.jsp");
-	 * dispatcher.forward(request, response); }
-	 * 
-	 * private void showEditForm(HttpServletRequest request, HttpServletResponse
-	 * response) throws SQLException, ServletException, IOException { String id =
-	 * request.getParameter("id"); SinhVien existingSV = sinhvienDAO.selectSV(id);
-	 * RequestDispatcher dispatcher =
-	 * request.getRequestDispatcher("./Admin/QuanLySinhVien_Admin_CTSV.jsp");
-	 * request.setAttribute("SV", existingSV); dispatcher.forward(request,
-	 * response);
-	 * 
-	 * } private void deleteUser(HttpServletRequest request, HttpServletResponse
-	 * response) throws SQLException, IOException { int id =
-	 * Integer.parseInt(request.getParameter("id")); sinhvienDAO.deleteUser(id);
-	 * response.sendRedirect("list");
-	 * 
-	 * }
-	 */
+	
 }

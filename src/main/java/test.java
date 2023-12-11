@@ -8,12 +8,13 @@ import DAO.TaiKhoanDao;
 
 public class test {
 	public static void main(String args[]) {
-		SinhVienDAO dao = new SinhVienDAO();
-		List<SinhVien> list = dao.selectAllSV();
-		for (SinhVien o : list) 
-		{
-			System.out.println(o);
-		}
+		QuanLyDAO dao = new QuanLyDAO();
+		/* List<SinhVien> list = dao.selectAllSV(); */
+		QuanLy a = dao.selectAdmin(1);
+		/*
+		 * for (SinhVien o : list) { System.out.println(o); }
+		 */
+		System.out.println(a);
 
 	}
 }
