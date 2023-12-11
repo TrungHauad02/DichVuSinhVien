@@ -96,7 +96,7 @@ public class TaiKhoanController extends HttpServlet {
 	            case "quanly":
 	                QuanLy quanly = taiKhoanDao.getQuanLy(maND);
 	                session.setAttribute("quanly", quanly);
-	                dispatcher = request.getRequestDispatcher("/Admin/index_Admin.jsp");
+	                dispatcher = request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
 	                dispatcher.forward(request, response);
 	                break;     
 	            case "ctsv":
