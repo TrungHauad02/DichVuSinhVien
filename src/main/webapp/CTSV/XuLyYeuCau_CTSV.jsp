@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,8 +21,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
+    <link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
 
 </head>
 <body id="page-top">
@@ -39,22 +40,22 @@
 	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 	        </a>
         	<li class="nav-item active mt-5">
-                <a class="nav-link" href="ThongTin_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/ThongTin_CTSV/${ctsvId}">
                     <span >Thông tin cá nhân</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="ThemDiem_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/ThemDiem?ctsvId=${ctsvId}">
                     <span >Thêm điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="ThemSinhVienVaoLop_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/ThemSinhVien?ctsvId=${ctsvId}">
                     <span >Thêm sinh viên vào lớp</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="XuLyYeuCau_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/xu-ly-yeu-cau?ctsvId=${ctsvId}">
                     <span >Xử lý yêu cầu</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -157,25 +158,23 @@
 				        <table class="table" id = "myTable">
 						  <thead>
 						    <tr>
-						      <th>Phản hồi</th>
-						      <th>Thời gian phản hồi</th>
+						      <th>Mã yêu cầu</th>
 						      <th>MSSV</th>
+						      <th>Dịch vụ</th>
+						      <th>Thời gian phản hồi</th>
 						      <th>Trạng thái</th>
 						    </tr>
 						  </thead>
 						  <tbody>
-						    <tr>
-						      <td>Đã xử lý</td>
-						      <td>2023-12-04 12:00:00</td>
-						      <td>123456789</td>
-						      <td>Đã xử lý</td>
-						    </tr>
-						    <tr>
-						      <td>Chờ xử lý</td>
-						      <td>2023-12-03 12:00:00</td>
-						      <td>987654321</td>
-						      <td>Chờ xử lý</td>
-						    </tr>
+						        <c:forEach var="lopHoc" items="${danhSachYeuCau}">
+						        	<tr>
+							 			<td> ${lopHoc.getID_YeuCau()}</td>
+							 			<td> ${lopHoc.getID_SinhVien()}</td>
+							 			<td> ${lopHoc.getTenDichVu()}</td>
+							 			<td> ${lopHoc.getThoiGianGui()}</td>
+							 			<td> ${lopHoc.getTrangThai()}</td>
+						            </tr>
+						        </c:forEach>						  
 						  </tbody>
 						</table>
 												

@@ -18,7 +18,17 @@ public class CTSV implements Serializable {
 
     public CTSV() {
     }
-
+    public CTSV(int ID_CTSV, String HoTen, String CCCD, String GioiTinh, Date NgaySinh, String SDT, String Email, int ID_TaiKhoan, int TrangThai) {
+    	this.ID_CTSV = ID_CTSV;
+    	this.HoTen = HoTen;
+    	this.CCCD = CCCD;
+    	this.GioiTinh = GioiTinh;
+    	this.NgaySinh = NgaySinh;
+    	this.SDT = SDT;
+    	this.Email = Email;
+    	this.ID_TaiKhoan = ID_TaiKhoan;
+    	this.TrangThai = TrangThai;
+    }
     public int getID_CTSV() {
         return ID_CTSV;
     }
