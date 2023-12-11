@@ -18,7 +18,7 @@ public class SinhVienDAO {
 			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
 	private static final String SELECT_SV_BY_ID = "select * where ID_SinhVien =?";
-	private static final String SELECT_ALL_SV = "select * from sinhvien";
+	private static final String SELECT_ALL_SV = "select ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, NamHoc, Khoa, ID_TaiKhoan, DiemRL, DiemCTXH, TrangThai from SINHVIEN";
 	private static final String DELETE_USERS_SQL = "delete from sinhvien where ID_SinhVien = ?;";
 	private static final String UPDATE_SV_SQL = "update sinhvien set HoTen = ?, CCCD = ?, GioiTinh = ?, NgaySinh = ?, SDT = ?, Email = ?, NamHoc = ?, Khoa = ?, DiemRL = ?, DiemCTXH = ? where ID_SinhVien = ?;";
 
@@ -90,10 +90,8 @@ public class SinhVienDAO {
 				int diemRL = rs.getInt("DiemRL");
 				int diemCTXH = rs.getInt("DiemCTXH");
 				int trangthai = rs.getInt("TrangThai");
-				String diachi = rs.getString("DiaChi");
-				byte[] anhdaidien = rs.getBytes("AnhCaNhan");
 				sinhvien = new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTK,
-						diemRL, diemCTXH, trangthai, diachi, anhdaidien);
+						diemRL, diemCTXH, trangthai);
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -128,10 +126,8 @@ public class SinhVienDAO {
 				int diemRL = rs.getInt("DiemRL");
 				int diemCTXH = rs.getInt("DiemCTXH");
 				int trangthai = rs.getInt("TrangThai");
-				String diachi = rs.getString("DiaChi");
-				byte[] anhdaidien = rs.getBytes("AnhCaNhan");
 				sinhviens.add(new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTK,
-						diemRL, diemCTXH, trangthai, diachi, anhdaidien));
+						diemRL, diemCTXH, trangthai));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);

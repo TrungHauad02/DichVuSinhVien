@@ -22,14 +22,11 @@ public class SinhVien implements Serializable {
     private String DiaChi;
     private byte[] AnhCaNhan;
 
-    public SinhVien() {
-    }
-    
     
 
+
 	public SinhVien(String iD_SinhVien, String hoTen, String cCCD, int gioiTinh, Date ngaySinh, String sDT,
-			String email, String namHoc, int khoa, int iD_TaiKhoan, int diemRL, int diemCTXH, int trangThai,
-			String diaChi, byte[] anhCaNhan) {
+			String email, String namHoc, int khoa, int iD_TaiKhoan, int diemRL, int diemCTXH, int trangThai) {
 		super();
 		ID_SinhVien = iD_SinhVien;
 		HoTen = hoTen;
@@ -44,12 +41,15 @@ public class SinhVien implements Serializable {
 		DiemRL = diemRL;
 		DiemCTXH = diemCTXH;
 		TrangThai = trangThai;
-		DiaChi = diaChi;
-		AnhCaNhan = anhCaNhan;
 	}
 
 
 
+
+
+
+	public SinhVien() {
+	}
 	public String getID_SinhVien() {
         return ID_SinhVien;
     }
@@ -169,4 +169,19 @@ public class SinhVien implements Serializable {
     public void setAnhCaNhan(byte[] AnhCaNhan) {
         this.AnhCaNhan = AnhCaNhan;
     }
+
+
+
+
+
+
+	@Override
+	public String toString() {
+		return "SinhVien [ID_SinhVien=" + ID_SinhVien + ", HoTen=" + HoTen + ", CCCD=" + CCCD + ", GioiTinh=" + GioiTinh
+				+ ", NgaySinh=" + NgaySinh + ", SDT=" + SDT + ", Email=" + Email + ", NamHoc=" + NamHoc + ", Khoa="
+				+ Khoa + ", ID_TaiKhoan=" + ID_TaiKhoan + ", DiemRL=" + DiemRL + ", DiemCTXH=" + DiemCTXH
+				+ ", TrangThai=" + TrangThai + "]";
+	}
 }
+
+
