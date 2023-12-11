@@ -52,22 +52,22 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayXacNhan_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayXacNhan_SinhVien.jsp">
                     <span >Giấy xác nhận</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayVayVon_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayVayVon_SinhVien.jsp">
                     <span >Giấy vay vốn</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHoatDong_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/DangKyHoatDong_SinhVien.jsp">
                     <span >Đăng ký hoạt động</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHocBong_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/DangKyHocBong_SinhVien.jsp">
                     <span >Đăng ký học bổng</span></a>
             </li>
             <hr class="sidebar-divider my-0">

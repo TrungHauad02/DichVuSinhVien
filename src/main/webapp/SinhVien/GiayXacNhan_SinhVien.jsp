@@ -18,7 +18,14 @@
 
 </head>
 <body id="page-top">
-
+	<%
+	    String maND = (String) session.getAttribute("maND");
+	    if (maND == null) {
+	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
+	        dispatcher.forward(request, response);
+	    }
+	%>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -121,34 +128,50 @@
 			        <div class="row table-container h6">
 			            <div class="col-md-9">
 			                <table class="table table-bordered text-dark">
-			                    <thead>
-			                        <tr>
-			                            <th>Thời gian đăng ký</th>
-			                            <th>Tên giấy tờ</th>
-			                            <th>STT</th>
-			                            <th>Chi phí</th>
-			                            <th>Thời gian nhận</th>
-			                            <th>Tình trạng</th>
-			                        </tr>
-			                    </thead>
-			                    <tbody>
-			                    <tr>
-		                            <td>2023-12-01 10:30:00</td>
-		                            <td>Giấy xác nhận sinh viên</td>
-		                            <td>1</td>
-		                            <td>200.00</td>
-		                            <td>2023-12-02 10:30:00</td>
-		                            <td>
-		                                <select>
-		                                    <option>Đang xử lý</option>
-		                                    <option>Hoàn thành</option>
-		                                    <option>Từ chối</option>
-		                                </select>
-		                            </td>
-		                        </tr>
-			                        <!-- Add your rows here -->
-			                    </tbody>
-			                </table>
+						        <thead>
+						            <tr>
+						                <th>Thời gian đăng ký</th>
+						                <th>Tên giấy tờ</th>
+						                <th>STT</th>
+						                <th>Chi phí</th>
+						                <th>Thời gian nhận</th>
+						                <th>Tình trạng</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <!-- Danh sách Giấy Vay -->
+						            <c:forEach var="giayVay" items="${dsgiayvay}">
+						                <tr>
+						                    <td>${giayVay.ngayNhan}</td>
+						                    <td>Giấy vay vốn</td>
+						                    <td>${giayVay.ID_GiayVay}</td>
+						                    <td>${giayVay.soTien}</td>
+						                    <td>${giayVay.ngayNhan}</td>
+						                    <td>
+						                        <select>
+						                            <option>${giayVay.trangThai == 0 ? 'Đang xử lý' : giayVay.trangThai == 1 ? 'Hoàn thành' : 'Từ chối'}</option>
+						                        </select>
+						                    </td>
+						                </tr>
+						            </c:forEach>
+						
+						            <!-- Danh sách Giấy Xác Nhận -->
+						            <c:forEach var="giayXN" items="${dsgiayxn}">
+						                <tr>
+						                    <td>${giayXN.ngayNhan}</td>
+						                    <td>Giấy xác nhận sinh viên</td>
+						                    <td>${giayXN.ID_GiayXN}</td>
+						                    <td>200.00</td> <!-- Thay thế bằng thuộc tính tương ứng trong đối tượng -->
+						                    <td>${giayXN.ngayNhan}</td>
+						                    <td>
+						                        <select>
+						                            <option>${giayXN.trangThai == 0 ? 'Đang xử lý' : giayXN.trangThai == 1 ? 'Hoàn thành' : 'Từ chối'}</option>
+						                        </select>
+						                    </td>
+						                </tr>
+						            </c:forEach>
+						        </tbody>
+						    </table>
 			            </div>
 			            <div class="col-md-3 d-flex flex-column align-items-center mt-auto mb-auto">
 			                <label class="text-dark h5">Giấy xác nhận sinh viên</label>
