@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.SinhVienDAO;
 import Models.SinhVien;
 
-@WebServlet("/SinhVien")
+@WebServlet("/sinhVien")
 public class SinhVienController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -37,8 +37,7 @@ public class SinhVienController extends HttpServlet {
 
         request.setAttribute("svList", svList);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("QuanLySinhVien_Admin_CTSV.jsp");
-        dispatcher.forward(request, response);
+        request.getRequestDispatcher("/Admin/QuanLySinhVien_Admin_CTSV.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

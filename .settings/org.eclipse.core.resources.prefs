@@ -2,7 +2,6 @@
 <<<<<<<=HEAD
 >>>>>>>=origin/TrungHau
 eclipse.preferences.version=1
-encoding//src/main/java/Controllers/QuanLyController.java=UTF-8
 encoding//src/main/java/Controllers/TaiKhoanController.java=UTF-8
 encoding//src/main/java/DAO/QuanLyDAO.java=UTF-8
 encoding//src/main/webapp/Admin/QuanLySinhVien_Admin_CTSV.jsp=UTF-8

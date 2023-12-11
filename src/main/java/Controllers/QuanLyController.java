@@ -2,7 +2,6 @@ package Controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -13,10 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.QuanLyDAO;
-import DAO.TaiKhoanDao;
 import Models.QuanLy;
 
-@WebServlet("/ThongTin_Admin/*")
+@WebServlet("/admin")
 public class QuanLyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -27,7 +25,7 @@ public class QuanLyController extends HttpServlet {
 
 	private QuanLyDAO quanlyDAO;
 
-	public void init() {
+	public void init(ServletConfig config) throws ServletException {
 		quanlyDAO = new QuanLyDAO();
 
 	}
@@ -40,11 +38,34 @@ public class QuanLyController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		/*
+		 * String action = request.getServletPath();
+		 * 
+		 * try { switch (action) {
+		 * 
+		 * case "/CapNhatAdmin": CapNhatAdmin(request, response); break;
+		 * 
+		 * default: RequestDispatcher dispatcher =
+		 * request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
+		 * dispatcher.forward(request, response); break; } } catch (SQLException ex) {
+		 * throw new ServletException(ex); }
+		 */
 		int idquanly = Integer.parseInt(request.getPathInfo().substring(1));
-		QuanLy quanly = quanlyDAO.getQuanLy(idquanly);
+		QuanLy quanly = quanlyDAO.selectAdmin(idquanly);
+		
 		request.setAttribute("quanly", quanly);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/ThongTin_Admin.jsp");
-		dispatcher.forward(request, response);
+		request.getRequestDispatcher("/Admin/ThongTin_SinhVien.jsp").forward(request, response);
 	}
+	/*
+	 * private void CapNhatAdmin(HttpServletRequest request, HttpServletResponse
+	 * response) throws SQLException, ServletException, IOException { int id =
+	 * Integer.parseInt(request.getPathInfo().substring(1)); QuanLy existingadmin =
+	 * quanlyDAO.selectAdmin(id); RequestDispatcher dispatcher =
+	 * request.getRequestDispatcher("/Admin/CapNhatAdmin.jsp");
+	 * request.setAttribute("quanly", existingadmin); dispatcher.forward(request,
+	 * response);
+	 * 
+	 * }
+	 */
 
 }
