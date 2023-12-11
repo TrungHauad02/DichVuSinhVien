@@ -121,4 +121,12 @@ public class QuanLy implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+
+
+	@Override
+	public String toString() {
+		return "QuanLy [ID_QuanLy=" + ID_QuanLy + ", HoTen=" + HoTen + ", CCCD=" + CCCD + ", GioiTinh=" + GioiTinh
+				+ ", NgaySinh=" + NgaySinh + ", SDT=" + SDT + ", Email=" + Email + "]";
+	}
 }
