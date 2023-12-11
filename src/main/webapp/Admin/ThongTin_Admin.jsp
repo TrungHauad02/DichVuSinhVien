@@ -225,13 +225,13 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class=" row">
-										<c:forEach var="quanLy" items="${quanLyList}">
+<%-- 										<c:forEach var="quanLy" items="${listQuanly}"> --%>
 											<!-- Hiển thị thông tin từ đối tượng quanly -->
 											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
 												style="text-align: left; width: 50%;">Mã số admin:</div>
 											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
 												style="text-align: left; width: 50%;">
-												<c:out value="${quanLy.id}" /></div>
+												<label>${quanly.ID_QuanLy}</label></div>
 											<div style="margin-top: 40px;"></div>
 											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
 												style="text-align: left; width: 50%;">Họ tên:</div>
@@ -265,7 +265,7 @@
 											<!-- và các thuộc tính khác -->
 
 
-										</c:forEach>
+<%-- 										</c:forEach> --%>
 									</div>
 
 								</div>

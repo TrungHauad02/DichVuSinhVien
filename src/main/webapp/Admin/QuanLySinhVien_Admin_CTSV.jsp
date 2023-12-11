@@ -240,16 +240,12 @@
 											<c:forEach var="SV" items="${listSV}">
 
 												<tr>
-													<td><c:out value="${SV.ID_SinhVien}" /></td>
-													<td><c:out value="${SV.HoTen
+													<td><c:out value="${SV.id}" /></td>
+													<td><c:out value="${SV.HoTen}" /></td>
 													
-													}" /></td>
-													<td><c:out value="${SV.mssv}" /></td>
-													<td><c:out value="${SV.mssv}" /></td>
-													<td><c:out value="${SV.mssv}" /></td>
-													<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
+													<td><a href="edit?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
-														href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+														href="delete?id=<c:out value='${SV.ID_SinhVien}' />">Delete</a></td>
 												</tr>
 											</c:forEach>
 

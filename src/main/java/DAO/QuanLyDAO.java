@@ -2,7 +2,6 @@ package DAO;
 
 import java.sql.Connection;
 import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +14,7 @@ import Util.JDBCUtil;
 
 public class QuanLyDAO {
 
-	private static final String SELECT_QUANLY_BY_ID = "select * from quanly where ID_QuanLy =?";
+	private static final String SELECT_QUANLY_BY_ID = "select * from quanly where ID_QuanLy = ?";
 	private static final String SELECT_ALL_QUANLYS = "select * from quanly";
 	private static final String UPDATE_QUANLYS_SQL = "update quanly set HoTen = ?,CCCD= ?, GioiTinh =?, NgaySinh =?, SDT =?, Email =? where ID_QuanLy = ?;";
 
@@ -69,9 +68,9 @@ public class QuanLyDAO {
 		return quanly;
 	}
 
-	public List<QuanLy> selectAllQuanLy() {
+	public QuanLy selectAllQuanLy() {
 
-		List<QuanLy> quanLyList = new ArrayList<>();
+		QuanLy quanLy = new QuanLy();
 
 		try (Connection conn = JDBCUtil.getConnection();
 				PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_QUANLYS);
@@ -88,14 +87,13 @@ public class QuanLyDAO {
 				int idTaiKhoan = rs.getInt("ID_TaiKhoan");
 				int trangThai = rs.getInt("TrangThai");
 
-				QuanLy quanLy = new QuanLy(idQuanLy, hoTen, cccd, gioiTinh, ngaySinh, sdt, email, idTaiKhoan,
+				quanLy = new QuanLy(idQuanLy, hoTen, cccd, gioiTinh, ngaySinh, sdt, email, idTaiKhoan,
 						trangThai);
-				quanLyList.add(quanLy);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return quanLyList;
+		return quanLy;
 	}
 }
