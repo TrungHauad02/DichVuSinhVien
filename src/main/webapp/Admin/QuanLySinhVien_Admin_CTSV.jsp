@@ -237,12 +237,16 @@
 										</thead>
 										<tbody>
 											<!--   for (Todo todo: todos) {  -->
-											<c:forEach var="SV" items="${listSV}">
+											<c:forEach var="SV" items="${svList}">
 
 												<tr>
-													<td><c:out value="${SV.id}" /></td>
-													<td><c:out value="${SV.HoTen}" /></td>
-													
+													<td><c:out value="${SV.ID_SinhVien}" /></td>
+													<td><c:out value="${SV.getHoTen()}" /></td>
+													<td><c:out value="${SV.getNgaySinh()}" /></td>
+													<td><c:out value="${SV.getGioiTinh()}" /></td>
+													<td><c:out value="${SV.getCCCD()}" /></td>
+													<td><c:out value="${SV.getKhoa()}" /></td>
+													<td><c:out value="${SV.getNamHoc()}" /></td>
 													<td><a href="edit?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
 														href="delete?id=<c:out value='${SV.ID_SinhVien}' />">Delete</a></td>
