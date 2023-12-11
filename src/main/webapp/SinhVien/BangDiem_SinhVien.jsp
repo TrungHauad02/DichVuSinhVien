@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="Models.LopHoc" %>
+<%@ page import="Models.ThamGiaLopHoc" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -11,7 +14,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Bảng điểm</title>
 
     <!-- Custom fonts for this template-->
     
@@ -19,7 +22,14 @@
 
 </head>
 <body id="page-top">
-
+	<%
+	    String maND = (String) session.getAttribute("maND");
+	    if (maND == null) {
+	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
+	        dispatcher.forward(request, response);
+	    }
+	%>
     <!-- Page Wrapper -->
     <div id="wrapper">
 
@@ -33,12 +43,12 @@
 	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 	        </a>
         	<li class="nav-item active mt-5">
-                <a class="nav-link" href="ThongTin_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinSinhVien">
                     <span >Thông tin cá nhân</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="BangDiem_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
                     <span >Bảng điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -92,7 +102,7 @@
                         <li class="nav-item dropdown no-arrow ml-auto">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">Trung Hậu</span>
+                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">${sinhvien.getHoTen()}</span>
 								<lord-icon
 								    src="https://cdn.lordicon.com/kthelypq.json"
 								    trigger="hover"
@@ -121,41 +131,41 @@
 				<div class="container ">
 			        <div class="row mt-2">
 			            <div class="col-md-2"><label class="text-dark h5">MSSV:</label></div>
-			            <div class="col-md-10"><label class="text-dark h5">2011034</label></div>
+			            <div class="col-md-10"><label class="text-dark h5">${sinhvien.getID_SinhVien()}</label></div>
 			        </div>
 			        <div class="row mt-2">
 			            <div class="col-md-2 "><label class="text-dark h5">Họ tên:</label></div>
-			            <div class="col-md-10 "><label class="text-dark h5">Nguyễn Trung Hậu</label></div>
+			            <div class="col-md-10 "><label class="text-dark h5">${sinhvien.getHoTen()}</label></div>
 			        </div>
 			        <div class="row mt-4 bg-white">
 			            <div class="col-md-12">
 			                <div class="scrollable-table">
 			                    <table class="table table-bordered text-dark h5">
-			                        <thead>
-			                            <tr>
-			                                <th>Môn học</th>
-			                                <th>Tín chỉ</th>
-			                                <th>Điểm</th>
-			                                <th>Loại điểm</th>
-			                            </tr>
-			                        </thead>
-			                        <tbody>
-			                            <!-- Add your rows here -->
-			                            <tr>
-			                                <td>Toán 2</td>
-			                                <td>3</td>
-			                                <td>8.5</td>
-			                                <td>Giữa kỳ</td>
-			                            </tr>
-			                            <tr>
-			                                <td>Toán 2</td>
-			                                <td>3</td>
-			                                <td>9</td>
-			                                <td>Cuối kỳ</td>
-			                            </tr>
-			                            <!-- End of rows -->
-			                        </tbody>
-			                    </table>
+							        <thead>
+							            <tr>
+							                <th>Lớp học</th>
+							                <th>Tín chỉ</th>
+							                <th>Điểm quá trình</th>
+							                <th>Điểm cuối kỳ</th>
+							            </tr>
+							        </thead>
+							        <% List<LopHoc> dslophoc = (List<LopHoc>) request.getAttribute("dslophoc");
+						               for (LopHoc lophoc : dslophoc) { %>
+						                <tr>
+						                    <td><%= lophoc.getTenLopHoc() %></td>
+						                    <td><%= lophoc.getTinChi() %></td>
+						                   
+						                    <% List<ThamGiaLopHoc> dsThamGia = (List<ThamGiaLopHoc>) request.getAttribute("bangdiem");
+						                       for (ThamGiaLopHoc tglh : dsThamGia) {
+						                           if (tglh.getIdLopHoc() == lophoc.getID_LopHoc()) { %>
+						                               <td><%= tglh.getDiemQuaTrinh() %></td>
+						                               <td><%= tglh.getDiemCuoiKy() %></td>
+						                           <% } %>
+						                    <% } %>
+						                </tr>
+						            <% } %>
+							        </tbody>
+   								 </table>
 			                </div>
 			            </div>
 			        </div>
@@ -168,7 +178,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Trang web của nhóm 12</span>
                     </div>
                 </div>	
             </footer>

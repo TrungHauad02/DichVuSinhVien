@@ -58,6 +58,9 @@ public class TaiKhoanController extends HttpServlet {
                 case "/CapNhatSinhVien":
                 	CapNhatSinhVien(request, response);
                 	break;
+                case "/BangDiemSinhVien":
+                	BangDiemSinhVien(request, response);
+                	break;
                 default:
                     RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
                     dispatcher.forward(request, response);
@@ -90,19 +93,19 @@ public class TaiKhoanController extends HttpServlet {
 	            switch (tk.getPhanQuyen()) {
 	            case "quanly":
 	                QuanLy quanly = taiKhoanDao.getQuanLy(maND);
-	                request.setAttribute("quanly", quanly);
+	                session.setAttribute("quanly", quanly);
 	                dispatcher = request.getRequestDispatcher("/Admin/index_Admin.jsp");
 	                dispatcher.forward(request, response);
 	                break;     
 	            case "ctsv":
 	                CTSV ctsv = taiKhoanDao.getCTSV(maND);
-	                request.setAttribute("ctsv", ctsv);
+	                session.setAttribute("ctsv", ctsv);
 	                dispatcher = request.getRequestDispatcher("/CTSV/index_CTSV.jsp");
 	                dispatcher.forward(request, response);
 	                break;
 	            case "sinhvien":     
 	            	SinhVien sinhvien = taiKhoanDao.getSinhVien(maND);
-	                request.setAttribute("sinhvien", sinhvien);
+	            	session.setAttribute("sinhvien", sinhvien);
 	                if(sinhvien.getAnhCaNhan() != null) {
 		                String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
 		                request.setAttribute("encodedImage", encodedImage);
@@ -188,6 +191,21 @@ public class TaiKhoanController extends HttpServlet {
 			if(!status) {
 				request.setAttribute("errMsg", "Cập nhật không thành công");
 		    }
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	private void BangDiemSinhVien(HttpServletRequest request, HttpServletResponse response)
+	        throws SQLException, ServletException, IOException {
+		HttpSession session = request.getSession();
+		String maND = (String) session.getAttribute("maND");
+		RequestDispatcher dispatcher;
+	    SinhVien sinhvien = new SinhVien();
+		try {
+			sinhvien = taiKhoanDao.getSinhVien(maND);
+			request.setAttribute("sinhvien", sinhvien);
+		    dispatcher = request.getRequestDispatcher("/SinhVien/BangDiem_SinhVien.jsp");
+		    dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
