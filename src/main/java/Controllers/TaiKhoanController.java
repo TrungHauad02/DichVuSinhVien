@@ -90,6 +90,8 @@ public class TaiKhoanController extends HttpServlet {
 	            session.setAttribute("maND", maND);
 	            session.setAttribute("phanQuyen", tk.getPhanQuyen());
 	            RequestDispatcher dispatcher;
+	            System.out.println(maND);
+
 	            switch (tk.getPhanQuyen()) {
 	            case "quanly":
 	                QuanLy quanly = taiKhoanDao.getQuanLy(maND);
