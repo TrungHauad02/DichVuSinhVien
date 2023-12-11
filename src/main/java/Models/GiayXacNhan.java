@@ -12,6 +12,7 @@ public class GiayXacNhan implements Serializable {
     private String ID_SinhVien;
     private int ID_DichVu;
     private int TrangThai;
+    private int ID_YeuCau;
 
     public GiayXacNhan() {
     }
@@ -62,5 +63,13 @@ public class GiayXacNhan implements Serializable {
 
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
+    }
+
+    public int getID_YeuCau() {
+        return ID_YeuCau;
+    }
+
+    public void setID_YeuCau(int ID_YeuCau) {
+        this.ID_YeuCau = ID_YeuCau;
     }
 }

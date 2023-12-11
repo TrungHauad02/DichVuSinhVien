@@ -11,6 +11,7 @@ public class HocBong implements Serializable {
     private int SoLuong;
     private int TienThuong;
     private int ID_DichVu;
+    private int ID_YeuCau;
 
     public HocBong() {
     }
@@ -61,5 +62,13 @@ public class HocBong implements Serializable {
 
     public void setID_DichVu(int ID_DichVu) {
         this.ID_DichVu = ID_DichVu;
+    }
+
+    public int getID_YeuCau() {
+        return ID_YeuCau;
+    }
+
+    public void setID_YeuCau(int ID_YeuCau) {
+        this.ID_YeuCau = ID_YeuCau;
     }
 }

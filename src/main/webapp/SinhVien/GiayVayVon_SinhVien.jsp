@@ -17,7 +17,14 @@
      <jsp:include page="../head.jsp" />
 </head>
 <body id="page-top">
-
+	<%
+	    String maND = (String) session.getAttribute("maND");
+	    if (maND == null) {
+	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
+	        dispatcher.forward(request, response);
+	    }
+	%>
     <!-- Page Wrapper -->
     <div id="wrapper">
 

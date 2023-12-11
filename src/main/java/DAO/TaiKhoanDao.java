@@ -66,7 +66,10 @@ public class TaiKhoanDao {
                 System.out.println(preparedStatement);
                 ResultSet rs = preparedStatement.executeQuery();
                 rs.next();
-                maND = rs.getString("ID_"+tk.getPhanQuyen());
+                if("sinhvien".equals(tk.getPhanQuyen()))
+                	maND = rs.getString("ID_"+tk.getPhanQuyen());
+                else
+                	maND = String.valueOf(rs.getInt("ID_"+tk.getPhanQuyen()));
 
             } catch (SQLException e) {
                 HandleExeption.printSQLException(e);
