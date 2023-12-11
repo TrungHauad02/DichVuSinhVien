@@ -18,8 +18,9 @@ public class TaiKhoanDao {
 	public TaiKhoanDao() {
 	}
 	
-	public boolean DangNhap(TaiKhoan tk) throws ClassNotFoundException {
-	        boolean status = false;
+	
+	public int DangNhap(TaiKhoan tk) throws ClassNotFoundException {
+		int status = -1;
 	        Class.forName("com.mysql.jdbc.Driver");
 	        try (Connection connection = JDBCUtil.getConnection();
 	                // Step 2:Create a statement using connection object
@@ -30,7 +31,8 @@ public class TaiKhoanDao {
 
 	                System.out.println(preparedStatement);
 	                ResultSet rs = preparedStatement.executeQuery();
-	                status = rs.next();
+	                rs.next();
+	                status = rs.getInt("ID_TaiKhoan");
 
 	            } catch (SQLException e) {
 	                HandleExeption.printSQLException(e);
@@ -81,10 +83,9 @@ public class TaiKhoanDao {
 		CTSV ctsv = new CTSV();
 		
 		try (Connection connection = JDBCUtil.getConnection();
-                // Step 2:Create a statement using connection object
                 PreparedStatement preparedStatement = connection
                 .prepareStatement("select * from ctsv where ID_CTSV = ? and TrangThai = 1")) {
-                preparedStatement.setString(1, maND);
+                preparedStatement.setInt(1, Integer.parseInt(maND));
 
                 System.out.println(preparedStatement);
                 ResultSet rs = preparedStatement.executeQuery();
@@ -141,7 +142,7 @@ public class TaiKhoanDao {
 	    try (Connection connection = JDBCUtil.getConnection();
 	            PreparedStatement preparedStatement = connection
 	            .prepareStatement("select * from QUANLY where ID_QuanLy = ?")) {
-	            preparedStatement.setString(1, maND);
+	            preparedStatement.setInt(1, Integer.parseInt(maND));
 
 	            System.out.println(preparedStatement);
 	            ResultSet rs = preparedStatement.executeQuery();

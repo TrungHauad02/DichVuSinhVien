@@ -83,7 +83,9 @@ public class TaiKhoanController extends HttpServlet {
 	    tk.setTaiKhoan(taiKhoan);
 	    tk.setMatKhau(matKhau);
 	    try {
-	        if (taiKhoanDao.DangNhap(tk)) {
+		    int login = taiKhoanDao.DangNhap(tk);
+	        if (login != -1) {
+	        	tk.setID_TaiKhoan(login);
 	            HttpSession session = request.getSession();              
 	            tk.setPhanQuyen(taiKhoanDao.LayPhanQuyen(tk));
 	            String maND = taiKhoanDao.MaNguoiDung(tk);

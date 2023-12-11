@@ -16,9 +16,10 @@ import javax.servlet.http.HttpSession;
 
 import DAO.GiayVayVonDAO;
 import DAO.GiayXacNhanDAO;
+import DAO.YeuCauDAO;
 import Models.GiayVayVon;
 import Models.GiayXacNhan;
-import Models.SinhVien;
+import Models.YeuCau;
 
 /**
  * Servlet implementation class GiayXacNhanController
@@ -36,7 +37,7 @@ public class GiayXacNhanController extends HttpServlet {
 
         try {
             switch (action) {
-                case "/ThongTinDS":
+                case "ThongTinDS":
                 	ThongTinDS(request, response);
                     break;
                 default:
@@ -59,11 +60,14 @@ public class GiayXacNhanController extends HttpServlet {
 	    
 	    GiayVayVonDAO giayVayVonDAO = new GiayVayVonDAO();
 	    GiayXacNhanDAO giayXacNhanDAO = new GiayXacNhanDAO();
+	    YeuCauDAO yeucauDAO = new YeuCauDAO();
 		try {
 			List<GiayVayVon> dsgiayvay = giayVayVonDAO.getDSGiayVay(mssv);
 			List<GiayXacNhan> dsgiayxn = giayXacNhanDAO.getDSGiayXN(mssv);
+			List<YeuCau> dsyeucau = yeucauDAO.getDSYeuCau(mssv);
 			request.setAttribute("dsgiayvay", dsgiayvay);
 		    request.setAttribute("dsgiayxn", dsgiayxn);
+		    request.setAttribute("dsyeucau", dsyeucau);
 
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/SinhVien/GiayXacNhan_SinhVien.jsp");
 		    dispatcher.forward(request, response);
