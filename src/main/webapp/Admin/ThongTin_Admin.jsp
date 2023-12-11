@@ -1,9 +1,9 @@
-
-
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="Models.QuanLy"%>
+<%@ page import="DAO.QuanLyDAO"%>
+<%@ page import="DAO.TaiKhoanDao"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,7 +37,14 @@
 </head>
 
 <body id="page-top">
-
+	<%
+	String maND = (String) session.getAttribute("maND");
+	if (maND == null) {
+		request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
+		dispatcher.forward(request, response);
+	}
+	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,7 +67,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index_Admin.jsp">
+			<li class="nav-item"><a class="nav-link" href="ThongTin_Admin.jsp">
 					<i class="fas fa-home"></i> <span>Trang chủ</span>
 			</a></li>
 
@@ -131,7 +138,7 @@
 
 
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="index_Admin.jsp">
+						<a class="nav-link" href="Admin/ThongTin_Admin.jsp">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
@@ -225,47 +232,43 @@
 								<!-- Card Body -->
 								<div class="card-body">
 									<div class=" row">
-<%-- 										<c:forEach var="quanLy" items="${listQuanly}"> --%>
-											<!-- Hiển thị thông tin từ đối tượng quanly -->
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">Mã số admin:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">
-												<label>${quanly.ID_QuanLy}</label></div>
-											<div style="margin-top: 40px;"></div>
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">Họ tên:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">Nguyễn Văn A</div>
-											<div style="margin-top: 40px;"></div>
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">Ngày sinh:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;"></div>
-											<div style="margin-top: 40px;"></div>
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">Giới tính:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;"></div>
-											<div style="margin-top: 40px;"></div>
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">CCCD:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;"></div>
-											<div style="margin-top: 40px;"></div>
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">SDT:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;"></div>
-											<div style="margin-top: 40px;"></div>
-											<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;">Email:</div>
-											<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-												style="text-align: left; width: 50%;"></div>
-											<!-- và các thuộc tính khác -->
-
-
-<%-- 										</c:forEach> --%>
+										<!-- Hiển thị thông tin từ đối tượng quanly -->
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">Mã số admin:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.ID_QuanLy}
+										</div>
+										<div style="margin-top: 40px;"></div>
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">Họ tên:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.getHoTen()}</div>
+										<div style="margin-top: 40px;"></div>
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">Ngày sinh:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.getNgaySinh()}</div>
+										<div style="margin-top: 40px;"></div>
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">Giới tính:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.getGioiTinh()}</div>
+										<div style="margin-top: 40px;"></div>
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">CCCD:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.getCCCD()}</div>
+										<div style="margin-top: 40px;"></div>
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">SDT:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.getSDT()}</div>
+										<div style="margin-top: 40px;"></div>
+										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">Email:</div>
+										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
+											style="text-align: left; width: 50%;">${quanly.getEmail()}</div>
+										<!-- và các thuộc tính khác -->
 									</div>
 
 								</div>

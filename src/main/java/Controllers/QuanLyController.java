@@ -13,22 +13,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.QuanLyDAO;
+import DAO.TaiKhoanDao;
 import Models.QuanLy;
 
-
-@WebServlet("/QuanLy")
+@WebServlet("/ThongTin_Admin/*")
 public class QuanLyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	private QuanLyDAO quanlyDAO;
 
 	public QuanLyController() {
 		super();
 
 	}
 
-	public void init()
-	{
+	private QuanLyDAO quanlyDAO;
+
+	public void init() {
 		quanlyDAO = new QuanLyDAO();
 
 	}
@@ -38,11 +37,11 @@ public class QuanLyController extends HttpServlet {
 
 		doGet(request, response);
 	}
- 
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		int id = Integer.parseInt(request.getPathInfo().substring(1));
-		QuanLy quanly = quanlyDAO.selectQuanly(id);
+		int idquanly = Integer.parseInt(request.getPathInfo().substring(1));
+		QuanLy quanly = quanlyDAO.getQuanLy(idquanly);
 		request.setAttribute("quanly", quanly);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/ThongTin_Admin.jsp");
 		dispatcher.forward(request, response);

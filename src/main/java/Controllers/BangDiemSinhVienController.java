@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 import Models.SinhVien;
 import Models.ThamGiaLopHoc;
 import Models.LopHoc;
-import DAO.ThamGiaLopHocDAO;
-import DAO.LopHocDAO;
+import DAO.ThamGiaLopHocDao;
+import DAO.LopHocDao;
 /**
  * Servlet implementation class BangDiemSinhVienController
  */
