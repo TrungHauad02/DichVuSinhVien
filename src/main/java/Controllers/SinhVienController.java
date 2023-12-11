@@ -46,7 +46,7 @@ public class SinhVienController extends HttpServlet {
 				showEditForm(request, response);
 				break;
 			default:
-				listUser(request, response);
+				listSV(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
@@ -56,17 +56,17 @@ public class SinhVienController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
-	private void listUser(HttpServletRequest request, HttpServletResponse response)
+	private void listSV(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
 		List<SinhVien> listSV = sinhvienDAO.selectAllSV();
 		request.setAttribute("listSV", listSV);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("QuanLySinhVien_Admin_CTSV.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./Admin/QuanLySinhVien_Admin_CTSV.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	private void showNewForm(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./Admin/QuanLySinhVien_Admin_CTSV.jsp");
 		dispatcher.forward(request, response);
 	}
 
@@ -74,15 +74,11 @@ public class SinhVienController extends HttpServlet {
 			throws SQLException, ServletException, IOException {
 		String id = request.getParameter("id");
 		SinhVien existingSV = sinhvienDAO.selectSV(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("user-form.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./Admin/QuanLySinhVien_Admin_CTSV.jsp");
 		request.setAttribute("SV", existingSV);
 		dispatcher.forward(request, response);
 
 	}
-
-	
-	
-
 	private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		sinhvienDAO.deleteUser(id);

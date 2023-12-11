@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.QuanLyDAO;
 import Models.QuanLy;
 
+
 @WebServlet("/QuanLy")
 public class QuanLyController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,10 +24,11 @@ public class QuanLyController extends HttpServlet {
 
 	public QuanLyController() {
 		super();
-		
+
 	}
 
-	public void init(ServletConfig config) throws ServletException {
+	public void init()
+	{
 		quanlyDAO = new QuanLyDAO();
 
 	}
@@ -36,43 +38,14 @@ public class QuanLyController extends HttpServlet {
 
 		doGet(request, response);
 	}
-
+ 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String action = request.getServletPath();
-
-		try {
-			switch (action) {
-			
-				
-			case "/edit":
-				showEditForm(request, response);
-				break;
-			
-			default:
-				listQuanly(request, response);
-				break;
-			}
-		} catch (SQLException ex) {
-			throw new ServletException(ex);
-		}
-	}
-	private void listQuanly(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, IOException, ServletException {
-		List<QuanLy> listQuanly = quanlyDAO.selectAllQuanLy();
-		request.setAttribute("listUser", listQuanly);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ThongTin_Admin.jsp");
+		int id = Integer.parseInt(request.getPathInfo().substring(1));
+		QuanLy quanly = quanlyDAO.selectQuanly(id);
+		request.setAttribute("quanly", quanly);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Admin/ThongTin_Admin.jsp");
 		dispatcher.forward(request, response);
 	}
-	
-	private void showEditForm(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id"));
-		QuanLy existingUser = quanlyDAO.selectQuanly(id);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ThongTin_Admin.jsp");
-		request.setAttribute("user", existingUser);
-		dispatcher.forward(request, response);
 
-	}
-	
 }
