@@ -49,7 +49,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayXacNhan_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
                     <span >Giấy xác nhận</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -144,13 +144,15 @@
 						                <tr>
 						                    <td>${giayVay.ngayNhan}</td>
 						                    <td>Giấy vay vốn</td>
-						                    <td>${giayVay.ID_GiayVay}</td>
+						                    <td>${giayVay.ID_YeuCau}</td>
 						                    <td>${giayVay.soTien}</td>
 						                    <td>${giayVay.ngayNhan}</td>
 						                    <td>
-						                        <select>
-						                            <option>${giayVay.trangThai == 0 ? 'Đang xử lý' : giayVay.trangThai == 1 ? 'Hoàn thành' : 'Từ chối'}</option>
-						                        </select>
+						                        <c:forEach var="yeuCau" items="${dsyeucau}">
+									                <c:if test="${giayVay.ID_YeuCau eq yeuCau.ID_YeuCau}">
+									                    ${yeuCau.trangThai}
+									                </c:if>
+									            </c:forEach>
 						                    </td>
 						                </tr>
 						            </c:forEach>
@@ -160,13 +162,15 @@
 						                <tr>
 						                    <td>${giayXN.ngayNhan}</td>
 						                    <td>Giấy xác nhận sinh viên</td>
-						                    <td>${giayXN.ID_GiayXN}</td>
-						                    <td>200.00</td> <!-- Thay thế bằng thuộc tính tương ứng trong đối tượng -->
+						                    <td>${giayXN.ID_YeuCau}</td>
+						                    <td>0</td> <!-- Thay thế bằng thuộc tính tương ứng trong đối tượng -->
 						                    <td>${giayXN.ngayNhan}</td>
 						                    <td>
-						                        <select>
-						                            <option>${giayXN.trangThai == 0 ? 'Đang xử lý' : giayXN.trangThai == 1 ? 'Hoàn thành' : 'Từ chối'}</option>
-						                        </select>
+						                       <c:forEach var="yeuCau" items="${dsyeucau}">
+									                <c:if test="${giayXN.ID_YeuCau eq yeuCau.ID_YeuCau}">
+									                    ${yeuCau.trangThai}
+									                </c:if>
+									            </c:forEach>
 						                    </td>
 						                </tr>
 						            </c:forEach>

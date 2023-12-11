@@ -18,7 +18,6 @@ public class GiayVayVonDAO {
 		public List<GiayVayVon> getDSGiayVay(String mssv) throws ClassNotFoundException 
 		{
 			List<GiayVayVon> dsGiayVay = new ArrayList<>();
-			Class.forName("com.mysql.jdbc.Driver");
 			
 			Class.forName("com.mysql.jdbc.Driver");
 	        try (Connection connection = JDBCUtil.getConnection();
