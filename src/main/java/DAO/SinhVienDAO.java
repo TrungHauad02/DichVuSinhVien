@@ -17,10 +17,10 @@ public class SinhVienDAO {
 			+ "  (ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, NamHoc, Khoa, DiemRL, DiemCTXH) VALUES "
 			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-	private static final String SELECT_SV_BY_ID = "select ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, NamHoc, Khoa from sinhvien where ID_SinhVien =?";
+	private static final String SELECT_SV_BY_ID = "select * where ID_SinhVien =?";
 	private static final String SELECT_ALL_SV = "select * from sinhvien";
 	private static final String DELETE_USERS_SQL = "delete from sinhvien where ID_SinhVien = ?;";
-	private static final String UPDATE_SV_SQL = "update users set HoTen = ?, CCCD = ?, GioiTinh = ?, NgaySinh = ?, SDT = ?, Email = ?, NamHoc = ?, Khoa = ?, DiemRL = ?, DiemCTXH = ? where ID_SinhVien = ?;";
+	private static final String UPDATE_SV_SQL = "update sinhvien set HoTen = ?, CCCD = ?, GioiTinh = ?, NgaySinh = ?, SDT = ?, Email = ?, NamHoc = ?, Khoa = ?, DiemRL = ?, DiemCTXH = ? where ID_SinhVien = ?;";
 
 	public void insertUser(SinhVien sinhvien) throws SQLException {
 		// try-with-resource statement will auto close the connection.
@@ -80,11 +80,20 @@ public class SinhVienDAO {
 			while (rs.next()) {
 				String hoTen = rs.getString("HoTen");
 				String cCCD = rs.getString("CCCD");
-				int gioiTinh = rs.getInt("gioiTinh");
+				int gioiTinh = rs.getInt("GioiTinh");
 				Date ngaySinh = rs.getDate("NgaySinh");
+				String sdt = rs.getString("SDT");
+				String email = rs.getString("Email");
 				String namHoc = rs.getString("NamHoc");
 				int khoa = rs.getInt("Khoa");
-				sinhvien = new SinhVien(iD_SinhVien,hoTen,cCCD,gioiTinh,ngaySinh,namHoc,khoa);
+				int idTK = rs.getInt("ID_TaiKhoan");
+				int diemRL = rs.getInt("DiemRL");
+				int diemCTXH = rs.getInt("DiemCTXH");
+				int trangthai = rs.getInt("TrangThai");
+				String diachi = rs.getString("DiaChi");
+				byte[] anhdaidien = rs.getBytes("AnhCaNhan");
+				sinhvien = new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTK,
+						diemRL, diemCTXH, trangthai, diachi, anhdaidien);
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -109,11 +118,20 @@ public class SinhVienDAO {
 				String iD_SinhVien = rs.getString("ID_SinhVien");
 				String hoTen = rs.getString("HoTen");
 				String cCCD = rs.getString("CCCD");
-				int gioiTinh = rs.getInt("gioiTinh");
+				int gioiTinh = rs.getInt("GioiTinh");
 				Date ngaySinh = rs.getDate("NgaySinh");
+				String sdt = rs.getString("SDT");
+				String email = rs.getString("Email");
 				String namHoc = rs.getString("NamHoc");
 				int khoa = rs.getInt("Khoa");
-				sinhviens.add(new SinhVien(iD_SinhVien,hoTen,cCCD,gioiTinh,ngaySinh,namHoc,khoa));
+				int idTK = rs.getInt("ID_TaiKhoan");
+				int diemRL = rs.getInt("DiemRL");
+				int diemCTXH = rs.getInt("DiemCTXH");
+				int trangthai = rs.getInt("TrangThai");
+				String diachi = rs.getString("DiaChi");
+				byte[] anhdaidien = rs.getBytes("AnhCaNhan");
+				sinhviens.add(new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTK,
+						diemRL, diemCTXH, trangthai, diachi, anhdaidien));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
