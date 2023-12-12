@@ -1,6 +1,7 @@
 package DAO;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.GiayXacNhan;
+import Models.YeuCau;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
@@ -46,5 +48,27 @@ public class GiayXacNhanDAO {
 		
 		return dsGiayXN;
 	}
-	
+	public boolean ThemGiayXN(GiayXacNhan giayxn) throws ClassNotFoundException {
+	    boolean status = false;
+		String sql = "INSERT INTO GIAYXACNHAN (NoiDung, NgayNhan, ID_SinhVien, ID_DichVu, TrangThai, ID_YeuCau)\r\n"
+				+ "VALUES (?, ?, ?, ?, 1, ?)";
+	    try (Connection connection = JDBCUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.
+	        prepareStatement(sql)) {
+
+	        preparedStatement.setString(1, giayxn.getNoiDung());
+	        preparedStatement.setDate(2, new java.sql.Date(giayxn.getNgayNhan().getTime()));
+	        preparedStatement.setString(3, giayxn.getID_SinhVien());
+	        preparedStatement.setInt(4, giayxn.getID_DichVu());
+	        preparedStatement.setInt(5, giayxn.getID_YeuCau());
+	        
+	        System.out.println(preparedStatement);
+	        int affectedRows = preparedStatement.executeUpdate();
+	        status = (affectedRows > 0);
+	    } catch (SQLException e) {
+	        HandleExeption.printSQLException(e);
+	    }
+
+	    return status;
+	}
 }
