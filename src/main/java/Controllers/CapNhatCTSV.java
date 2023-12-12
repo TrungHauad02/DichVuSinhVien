@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -18,19 +19,20 @@ import Models.QuanLy;
 @WebServlet("/updatectsv")
 public class CapNhatCTSV extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    private QuanLyDAO dao;
-    public CapNhatCTSV() {
-        super();
-        
-    }
+
+	private QuanLyDAO dao;
+
+	public CapNhatCTSV() {
+		super();
+
+	}
 
 	public void init(ServletConfig config) throws ServletException {
 		dao = new QuanLyDAO();
 	}
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int idctsv = Integer.parseInt(request.getParameter("id"));
 		QuanLyDAO dao = new QuanLyDAO();
 		CTSV ctsv = dao.selectCTSV(idctsv);
@@ -38,26 +40,27 @@ public class CapNhatCTSV extends HttpServlet {
 		request.getRequestDispatcher("/Admin/CapNhatCTSV.jsp").forward(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		int idctsv = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String cccd = request.getParameter("cccd");
 		String gioitinh = request.getParameter("gender");
 		java.util.Date ngaySinh = null;
-	    try {
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-	        String dobParameter = request.getParameter("date");
-	        if (dobParameter != null && !dobParameter.isEmpty()) {
-	            ngaySinh = sdf.parse(dobParameter);
-	        }
-	    } catch (ParseException e) {
-	        e.printStackTrace();
-	    }
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String dobParameter = request.getParameter("date");
+			if (dobParameter != null && !dobParameter.isEmpty()) {
+				ngaySinh = sdf.parse(dobParameter);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
 		String sdt = request.getParameter("sdt");
 		String email = request.getParameter("email");
-		
-		CTSV ctsv = new CTSV(idctsv, name, ngaySinh, gioitinh, cccd, sdt, email);
+
+		CTSV ctsv = new CTSV(idctsv, name, cccd, gioitinh, ngaySinh, sdt, email);
 		dao.updateCTSV(ctsv);
 		response.sendRedirect("quanlyctsv");
 	}

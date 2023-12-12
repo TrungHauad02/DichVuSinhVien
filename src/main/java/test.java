@@ -14,10 +14,10 @@ public class test
 	public static void main(String args[]) 
 	{
 		QuanLyDAO dao = new QuanLyDAO();
-		 List<SinhVien> list = dao.selectAllSV(); 
+		 List<Khoa> list = dao.selectAllKhoa(); 
 		/* Khoa a = dao.selectKhoa(1); */
 		
-		  for (SinhVien o : list) { System.out.println(o); }
+		  for (Khoa o : list) { System.out.println(o); }
 		 
 			/* System.out.println(a); */
 

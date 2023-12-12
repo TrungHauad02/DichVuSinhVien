@@ -20,17 +20,6 @@ public class SinhVien implements Serializable {
     private int DiemCTXH;
     private int TrangThai;
     private String DiaChi;
-    public SinhVien(String iD_SinhVien, String hoTen, Date ngaySinh,  int gioiTinh, String cCCD, int khoa, String namHoc
-			) {
-		super();
-		ID_SinhVien = iD_SinhVien;
-		HoTen = hoTen;
-		CCCD = cCCD;
-		GioiTinh = gioiTinh;
-		NgaySinh = ngaySinh;
-		Khoa = khoa;
-		NamHoc = namHoc;
-	}
 
 	private byte[] AnhCaNhan;
 
@@ -55,17 +44,34 @@ public class SinhVien implements Serializable {
 	}
 
 
+	public SinhVien(String hoTen, String cCCD, int gioiTinh, Date ngaySinh, String sDT, String email, String namHoc,
+			int khoa, int iD_TaiKhoan) {
+		super();
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		SDT = sDT;
+		Email = email;
+		NamHoc = namHoc;
+		Khoa = khoa;
+		ID_TaiKhoan = iD_TaiKhoan;
+	}
+
+
+
+
+
+
+
+
+
 
 
 
 
 	public SinhVien() {
 	}
-	public SinhVien(String hoTen2, String cccd2, int gioiTinh2, Date ngaySinh2, String sdt2, String email2,
-			String namHoc2, int khoa2, int idTaiKhoan) {
-		// TODO Auto-generated constructor stub
-	}
-
 
 
 
