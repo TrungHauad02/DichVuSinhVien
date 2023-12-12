@@ -13,6 +13,7 @@ public class HoatDong implements Serializable {
     private Date NgayThamGia;
     private int ID_DichVu;
     private int TrangThai;
+    private String NoiDung;
 
     public HoatDong() {
     }
@@ -72,4 +73,12 @@ public class HoatDong implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+	public String getNoiDung() {
+		return NoiDung;
+	}
+
+	public void setNoiDung(String noiDung) {
+		NoiDung = noiDung;
+	}
 }

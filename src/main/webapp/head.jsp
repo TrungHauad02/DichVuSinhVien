@@ -7,8 +7,8 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/styles.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/styles.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
 	<style>
     .scrollable-table {
         max-height: 400px;
@@ -44,5 +44,8 @@
     .scrollable-table tbody {
 	    flex-direction: column; 
 	    align-items: stretch;
+	}
+	.common-btn {
+    width: 100%;
 	}
 </style>

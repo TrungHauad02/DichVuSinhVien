@@ -76,7 +76,7 @@
 						</li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow ml-auto">
-                            <a class="nav-link dropdown-toggle" href="DangNhap.jsp">
+                            <a class="nav-link dropdown-toggle" href="#">
                                 <span class="mr-4 d-none d-lg-inline text-gray-900 medium">Đăng Nhập</span>
 								<lord-icon
 								    src="https://cdn.lordicon.com/kthelypq.json"
@@ -94,7 +94,7 @@
 				<div class="container">
 				    <div class="row h-100 justify-content-center align-items-center">
 				    	<form action="<%=request.getContextPath()%>/dangNhap" method="post">
-				            <table class="table mw-80">
+				            <table class="table">
 				                <tbody>
 				                    <tr>
 				                        <td><label for="username" class="h4 justify-content-center">Tài khoản:</label></td>
@@ -112,8 +112,8 @@
 									</tr>
 									<% } %>
 				                    <tr>
-				                        <td><button class="btn btn-primary" onclick="window.location.href='QuenMatKhau.jsp'">Quên mật khẩu</button></td>
-				                        <td><button type="submit" class="btn btn-primary">Đăng nhập</button></td>
+				                        <td><button class="btn btn-primary common-btn"  onclick="window.location.href='QuenMatKhau.jsp'">Quên mật khẩu</button></td>
+				                        <td><button type="submit" class="btn btn-primary ">Đăng nhập</button></td>
 				                    </tr>
 				                </tbody>
 				            </table>
