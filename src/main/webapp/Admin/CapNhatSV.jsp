@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Quản lý sinh viên</title>
+<title>Cập nhật sinh viên</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -46,7 +45,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index_Admin.jsp">
+				href="admin">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -57,7 +56,7 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index_Admin.jsp">
+			<li class="nav-item"><a class="nav-link" href="admin">
 					<i class="fas fa-home"></i> <span>Trang chủ</span>
 			</a></li>
 
@@ -65,7 +64,7 @@
 			<hr class="sidebar-divider">
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLySinhVien_Admin_CTSV.jsp"> <span>Quản lý sinh
+				href="quanlysinhvien"> <span>Quản lý sinh
 						viên</span>
 			</a></li>
 
@@ -128,7 +127,7 @@
 
 
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="index_Admin.jsp">
+						<a class="nav-link" href="admin">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
@@ -201,69 +200,72 @@
 
 				</nav>
 				<!-- End of Topbar -->
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
 
-					<!-- Page Heading -->
-					<h1 class="h3 mb-2 text-gray-800">Quản lý sinh viên</h1>
-					<!-- DataTales Example -->
-					<div>
-						<div class="card shadow mb-4">
-							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">Thông tin
-									sinh viên</h6>
+				<!-- Your Slide bar and main content goes here -->
+				<div class="container">
+				<form action="updateadmin" method="post">
+					<div class="row">
+						<!-- Bảng Thông tin cá nhân -->
+						<div class="col-lg-6">
+							<table class="table">
+								<thead>
+									<tr>
+										<th colspan="2" class="h3">Thông tin cá nhân</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><label for="mssv" class="h4">MSSV:</label></td>
+										<td><input type="text" id="mssv" name="mssv" class="form-control" value="${sv.ID_SinhVien}"></td>
+									</tr>
+									<tr>
+										<td><label for="name" class="h4">Họ tên:</label></td>
+										<td><input type="text" id="name" name="name" class="form-control" value="${sv.getHoTen()}"></td>
+									</tr>
+									<tr>
+										<td><label for="dob" class="h4">Ngày sinh:</label></td>
+										<td><input type="date" id="dob" name="date" class="form-control" value="${sv.getNgaySinh()}"></td>
+									</tr>
+									<tr>
+										<td><label class="h4">Giới tính:</label></td>
+										<td>
+											<input type="text" id="dob" name="gender" class="form-control"
+											value="${quanly.getGioiTinh()}">
+
+										</td>
+									</tr>
+									<tr>
+										<td><label for="cccd" class="h4">CCCD:</label></td>
+										<td><input type="text" id="cccd" name="cccd" class="form-control" value="${sv.getCCCD()}"></td>
+									</tr>
+									<tr>
+										<td><label for="faculty" class="h4">Khoa:</label></td>
+										<td><input type="text" id="faculty" name="khoa" class="form-control" value="${sv.getSDT()}"></td>
+									</tr>
+									<tr>
+										<td><label for="course" class="h4">Khóa học:</label></td>
+										<td><input type="text" id="course" name="khoaHoc" class="form-control" value="${sv.getEmail()}"></td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
+							<div class="text-center mt-3">
+								<button class="btn btn-primary mr-3">Cập nhật Admin</button>
 							</div>
-							<div class="card-body">
-								<div>
-									<a href="<%=request.getContextPath()%>/new" class="btn btn-primary btn-icon-split">
-										<span class="text">Thêm sinh viên</span>
-									</a>
-									
-								</div>
-								<div style="margin-top: 20px;"></div>
-								<div class="table-responsive">
-									<table class="table table-bordered" id=" dataTable"
-										width="100%" cellspacing="0"">
-										<thead>
-											<tr>
-												<th>MSSV</th>
-												<th>Họ tên</th>
-												<th>Ngày sinh</th>
-												<th>Giới tính</th>
-												<th>CCCD</th>
-												<th>Khoa</th>
-												<th>Khóa học</th>
-												<th>Actions</th>
-											</tr>
-										</thead>
-										<tbody>
-											<!--   for (Todo todo: todos) {  -->
-											<c:forEach var="SV" items="${svList}">
+							<div style="margin-top: 40px;"></div>
+						</div>
 
-												<tr>
-													<td><c:out value="${SV.ID_SinhVien}" /></td>
-													<td><c:out value="${SV.getHoTen()}" /></td>
-													<td><c:out value="${SV.getNgaySinh()}" /></td>
-													<td><c:out value="${SV.getGioiTinh()}" /></td>
-													<td><c:out value="${SV.getCCCD()}" /></td>
-													<td><c:out value="${SV.getKhoa()}" /></td>
-													<td><c:out value="${SV.getNamHoc()}" /></td>
-													<td><a href="<%= request.getContextPath() %>/quanlysinhvien/edit?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>
-														&nbsp;&nbsp;&nbsp;&nbsp; <a
-														href="delete?id=<c:out value='${SV.ID_SinhVien}' />">Delete</a></td>
-												</tr>
-											</c:forEach>
+						</form>
 
-											<!-- } -->
-										</tbody>
-
-									</table>
-								</div>
-							</div>
+						<!-- Hình ảnh -->
+						<div class="col-lg-2 d-flex justify-content-center">
+							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
 						</div>
 					</div>
 				</div>
-				<!-- /.container-fluid -->
+
+
+				<!-- End of Main Content -->
 
 			</div>
 			<!-- End of Main Content -->
@@ -311,6 +313,7 @@
 			</div>
 		</div>
 	</div>
+
 	
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>

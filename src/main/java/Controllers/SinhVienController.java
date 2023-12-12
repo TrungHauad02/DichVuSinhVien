@@ -20,7 +20,7 @@ import Models.SinhVien;
 public class SinhVienController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    private SinhVienDAO sinhvienDAO;
+private SinhVienDAO sinhvienDAO;
     public SinhVienController() {
         super();
         
