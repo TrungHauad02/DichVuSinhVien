@@ -157,7 +157,7 @@
 						                   
 						                    <% List<ThamGiaLopHoc> dsThamGia = (List<ThamGiaLopHoc>) request.getAttribute("bangdiem");
 						                       for (ThamGiaLopHoc tglh : dsThamGia) {
-						                           if (tglh.getIdLopHoc() == lophoc.getID_LopHoc()) { %>
+						                           if (tglh.getID_LopHoc() == lophoc.getID_LopHoc()) { %>
 						                               <td><%= tglh.getDiemQuaTrinh() %></td>
 						                               <td><%= tglh.getDiemCuoiKy() %></td>
 						                           <% } %>

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 
 <head>
 
@@ -126,7 +126,7 @@
 				<div class="container d-flex justify-content-center align-items-center">
 			        <div class="col">
 				        <h2 class="mt-4">Đăng ký vay vốn</h2>
-				        <form>
+				        <form action="<%=request.getContextPath()%>/DangKyVay" method="post">
 				            <div class="form-group">
 				                <label for="loanAmount">Khoản vay:</label>
 				                <input type="number" class="form-control" id="loanAmount" placeholder="Nhập số tiền bạn muốn vay" min="0">

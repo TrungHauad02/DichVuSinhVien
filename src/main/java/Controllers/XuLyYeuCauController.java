@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.LopHocDao;
-import DAO.ThamGiaLopHocDao;
+import DAO.LopHocDAO;
+import DAO.ThamGiaLopHocDAO;
 import DAO.XuLyYeuCauDao;
 import Models.LopHoc;
 import Models.TableYeuCau;
