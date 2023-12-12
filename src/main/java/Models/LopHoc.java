@@ -14,7 +14,17 @@ public class LopHoc implements Serializable {
     public LopHoc() {
     }
 
-    public int getID_LopHoc() {
+    public LopHoc(int iDKhoa, String tenKhoa, int tinChi2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "LopHoc [ID_LopHoc=" + ID_LopHoc + ", MonHoc=" + MonHoc + ", TenLopHoc=" + TenLopHoc + ", TinChi="
+				+ TinChi + ", TrangThai=" + TrangThai + "]";
+	}
+
+	public int getID_LopHoc() {
         return ID_LopHoc;
     }
 

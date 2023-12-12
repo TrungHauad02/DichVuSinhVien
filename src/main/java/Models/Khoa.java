@@ -12,7 +12,22 @@ public class Khoa implements Serializable {
     public Khoa() {
     }
 
-    public int getID_Khoa() {
+    
+	
+
+	public Khoa(int iDKhoa, String tenKhoa2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Khoa(int id, String tenKhoa2, int trangthai2) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+	public int getID_Khoa() {
         return ID_Khoa;
     }
 
@@ -24,7 +39,12 @@ public class Khoa implements Serializable {
         return TenKhoa;
     }
 
-    public void setTenKhoa(String TenKhoa) {
+    @Override
+	public String toString() {
+		return "Khoa [ID_Khoa=" + ID_Khoa + ", TenKhoa=" + TenKhoa + ", TrangThai=" + TrangThai + "]";
+	}
+
+	public void setTenKhoa(String TenKhoa) {
         this.TenKhoa = TenKhoa;
     }
 

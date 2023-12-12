@@ -10,27 +10,39 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.CTSV;
+import Models.Khoa;
+import Models.LopHoc;
 import Models.QuanLy;
 import Models.SinhVien;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class QuanLyDAO {
+	// admin
 	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?,SDT=?, Email=? WHERE ID_QuanLY = ? and TrangThai = 1";
 	private static final String SELECT_ADMIN_BY_ID = "select * from QUANLY where ID_QuanLy =? and TrangThai = 1";
 
-
-
+	// sv
 	private static final String SELECT_SV_BY_ID = "select * from SINHVIEN where ID_SinhVien =? and TrangThai = 1";
 	private static final String SELECT_ALL_SV = "select ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, NamHoc, Khoa, ID_TaiKhoan, DiemRL, DiemCTXH, TrangThai from SINHVIEN where TrangThai = 1";
 	private static final String UPDATE_SV_SQL = "update SINHVIEN set HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?, NamHoc = ?, Khoa = ? where ID_SinhVien = ?";
 	private static final String DELETE_SV_SQL = "UPDATE SINHVIEN SET TrangThai = 0 WHERE ID_SinhVien = ?";
-	
+
+	// ctsv
 	private static final String SELECT_CTSV_BY_ID = "select * from CTSV where ID_CTSV =? and TrangThai = 1";
 	private static final String SELECT_ALL_CTSV = "select ID_CTSV, HoTen, NgaySinh, GioiTinh, CCCD, SDT, Email from CTSV where TrangThai = 1";
 	private static final String UPDATE_CTSV_SQL = "UPDATE CTSV SET HoTen=?, CCCD=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE ID_CTSV = ?";
 	private static final String DELETE_CTSV_SQL = "UPDATE CTSV SET TrangThai = 0 WHERE ID_CTSV = ?";
-	//Admin
+
+	// khoa
+	private static final String SELECT_ALL_KHOA = "select ID_Khoa, TenKhoa from KHOA where TrangThai = 1";
+	private static final String INSERT_KHOA_SQL = "INSERT INTO KHOA" + "  (ID_Khoa, TenKhoa) VALUES " + " (?, ?);";
+	private static final String DELETE_KHOA_SQL = "UPDATE KHOA SET TrangThai = 0 WHERE ID_Khoa = ?";
+
+	// lophoc
+	private static final String SELECT_ALL_LOPHOC = "select ID_LopHoc, MonHoc, TinChi from LOPHOC where TrangThai = 1";
+	private static final String DELETE_LOPHOC_SQL = "UPDATE LOPHOC SET TrangThai = 0 WHERE ID_LopHoc = ?";
+	// Admin
 	public QuanLy selectAdmin(int idquanly) {
 		QuanLy quanly = null;
 		// Step 1: Establishing a Connection
@@ -78,8 +90,8 @@ public class QuanLyDAO {
 		}
 		return rowUpdated;
 	}
-	
-	//SV
+
+	// SV
 	/*
 	 * public void insertSV(SinhVien sinhvien) throws SQLException { try {
 	 * Connection conn = JDBCUtil.getConnection(); PreparedStatement
@@ -99,28 +111,28 @@ public class QuanLyDAO {
 	 */
 	// Your existing connection code and other methods...
 
-    public static void insertSV(SinhVien sinhVien) {
-    	try (Connection conn = JDBCUtil.getConnection()) {
-            String storedProcedure = "{CALL ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
-            try (CallableStatement cs = conn.prepareCall(storedProcedure)) {
-                cs.setString(1, sinhVien.getHoTen());
-                cs.setString(2, sinhVien.getCCCD());
-                cs.setInt(3, sinhVien.getGioiTinh());
-                cs.setDate(4, new java.sql.Date(sinhVien.getNgaySinh().getTime()));
-                cs.setString(5, sinhVien.getSDT());
-                cs.setString(6, sinhVien.getEmail());
-                cs.setString(7, sinhVien.getNamHoc());
-                cs.setInt(8, sinhVien.getKhoa());
-                cs.setInt(9, sinhVien.getID_TaiKhoan());
+	public static void insertSV(SinhVien sinhVien) {
+		try (Connection conn = JDBCUtil.getConnection()) {
+			String storedProcedure = "{CALL ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+			try (CallableStatement cs = conn.prepareCall(storedProcedure)) {
+				cs.setString(1, sinhVien.getHoTen());
+				cs.setString(2, sinhVien.getCCCD());
+				cs.setInt(3, sinhVien.getGioiTinh());
+				cs.setDate(4, new java.sql.Date(sinhVien.getNgaySinh().getTime()));
+				cs.setString(5, sinhVien.getSDT());
+				cs.setString(6, sinhVien.getEmail());
+				cs.setString(7, sinhVien.getNamHoc());
+				cs.setInt(8, sinhVien.getKhoa());
+				cs.setInt(9, sinhVien.getID_TaiKhoan());
 
-                cs.executeUpdate();
-            }
-        } catch (SQLException e) {
-        	HandleExeption.printSQLException(e);
-        }
-    }
+				cs.executeUpdate();
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
 
-	public boolean updateSV(SinhVien sinhvien)  {
+	public boolean updateSV(SinhVien sinhvien) {
 		boolean rowUpdated = false;
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -221,8 +233,8 @@ public class QuanLyDAO {
 		}
 		return rowDeleted;
 	}
-	
-	//CTSV
+
+	// CTSV
 	public CTSV selectCTSV(int idctsv) {
 		CTSV ctsv = null;
 		// Step 1: Establishing a Connection
@@ -251,6 +263,7 @@ public class QuanLyDAO {
 		}
 		return ctsv;
 	}
+
 	public List<CTSV> selectAllCTSV() {
 
 		// using try-with-resources to avoid closing resources (boiler plate code)
@@ -279,7 +292,7 @@ public class QuanLyDAO {
 		}
 		return ctsvs;
 	}
-	
+
 	public boolean updateCTSV(CTSV ctsv) {
 		boolean rowUpdated = false;
 		try {
@@ -298,8 +311,8 @@ public class QuanLyDAO {
 		}
 		return rowUpdated;
 	}
-	
-	public boolean deleteCTSV(int id)  {
+
+	public boolean deleteCTSV(int id) {
 		boolean rowDeleted = false;
 		try {
 			Connection conn = JDBCUtil.getConnection();
@@ -312,6 +325,89 @@ public class QuanLyDAO {
 		}
 		return rowDeleted;
 	}
+
+	// Khoa
+	public void inserKhoa(Khoa khoa) throws SQLException {
+		// try-with-resource statement will auto close the connection.
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_KHOA_SQL);
+			preparedStatement.setInt(1, khoa.getID_Khoa());
+			preparedStatement.setString(2, khoa.getTenKhoa());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
+
+	public List<Khoa> selectAllKhoa() {
+
+		List<Khoa> khoas = new ArrayList<>();
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_KHOA);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int iDKhoa = rs.getInt(1);
+				String tenKhoa = rs.getString(2);
+				khoas.add(new Khoa(iDKhoa, tenKhoa));
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return khoas;
+	}
+	public boolean deleteKhoa(int id) {
+		boolean rowDeleted = false;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement statement = conn.prepareStatement(DELETE_KHOA_SQL);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			rowDeleted = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return rowDeleted;
+	}
+
 	
-	
+
+	// LopHoc
+
+	public List<LopHoc> selectAllLopHoc() {
+
+		List<LopHoc> lopHocs = new ArrayList<>();
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_LOPHOC);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int iDKhoa = rs.getInt(1);
+				String tenKhoa = rs.getString(2);
+				int tinChi = rs.getInt(3);
+				lopHocs.add(new LopHoc(iDKhoa, tenKhoa, tinChi));
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return lopHocs;
+	}
+	public boolean deleteLopHoc(int id) {
+		boolean rowDeleted = false;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement statement = conn.prepareStatement(DELETE_LOPHOC_SQL);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			rowDeleted = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return rowDeleted;
+	}
 }
