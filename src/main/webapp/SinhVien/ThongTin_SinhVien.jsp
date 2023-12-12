@@ -52,7 +52,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
+                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinDSGiayXacNhan">
                     <span >Giấy xác nhận</span></a>
             </li>
             <hr class="sidebar-divider my-0">

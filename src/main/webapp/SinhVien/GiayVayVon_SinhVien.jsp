@@ -48,12 +48,12 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
+                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinDSGiayXacNhan">
                     <span >Giấy xác nhận</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayVayVon_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayVayVon_SinhVien.jsp">
                     <span >Giấy vay vốn</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -126,14 +126,14 @@
 				<div class="container d-flex justify-content-center align-items-center">
 			        <div class="col">
 				        <h2 class="mt-4">Đăng ký vay vốn</h2>
-				        <form action="<%=request.getContextPath()%>/DangKyVay" method="post">
+				        <form action="<%=request.getContextPath()%>/DangKyGiayVay" method="post" accept-charset="UTF-8">
 				            <div class="form-group">
 				                <label for="loanAmount">Khoản vay:</label>
-				                <input type="number" class="form-control" id="loanAmount" placeholder="Nhập số tiền bạn muốn vay" min="0">
+				                <input type="number" class="form-control" id="loanAmount" name="loanAmount" placeholder="Nhập số tiền bạn muốn vay" min="0">
 				            </div>
 				            <div class="form-group">
 				                <label for="loanPurpose">Mục đích vay:</label>
-				                <textarea class="form-control" id="loanPurpose" rows="3" placeholder="Nhập mục đích vay của bạn"></textarea>
+				                <textarea class="form-control" id="loanPurpose" name="loanPurpose" rows="3" placeholder="Nhập mục đích vay của bạn"></textarea>
 				            </div>
 				            <button type="submit" class="btn btn-primary">Đăng ký</button>
 				        </form>
@@ -164,5 +164,33 @@
     </a>
     <!-- Bootstrap core JavaScript-->
     <jsp:include page="../Scripts.jsp" />
+    <% if (request.getAttribute("completeMsg") != null) { %>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ${completeMsg}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- JavaScript to trigger the modal -->
+        <script>
+            $(document).ready(function() {
+            	console.log('Document ready function');
+                $('#myModal').modal('show');
+            });
+        </script>
+    <% } %>
 </body>
 </html>
