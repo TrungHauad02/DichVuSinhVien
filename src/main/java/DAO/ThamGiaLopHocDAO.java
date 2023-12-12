@@ -24,7 +24,6 @@ public class ThamGiaLopHocDAO {
 	    	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_SINHVIENLOPHOC);){
 	        preparedStatement.setInt(1, idLopHoc);
 	        ResultSet rs = preparedStatement.executeQuery();
-
 	        while (rs.next()) {
 	            ThamGiaLopHoc sinhvienlop = new ThamGiaLopHoc();
 	            sinhvienlop.setIdSinhVien(rs.getString("ID_SinhVien"));
@@ -52,7 +51,6 @@ public class ThamGiaLopHocDAO {
 	}
 	public ThamGiaLopHocDAO() {
 	}
-
 	public List<ThamGiaLopHoc> getBangDiem(String mssv) throws ClassNotFoundException {
 		List<ThamGiaLopHoc> bangDiem = new ArrayList<>();
         Class.forName("com.mysql.jdbc.Driver");
