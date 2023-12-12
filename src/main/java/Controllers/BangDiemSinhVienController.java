@@ -16,8 +16,8 @@ import javax.servlet.http.HttpSession;
 import Models.SinhVien;
 import Models.ThamGiaLopHoc;
 import Models.LopHoc;
-import DAO.ThamGiaLopHocDao;
-import DAO.LopHocDao;
+import DAO.ThamGiaLopHocDAO ;
+import DAO.LopHocDAO;
 /**
  * Servlet implementation class BangDiemSinhVienController
  */
@@ -48,7 +48,7 @@ public class BangDiemSinhVienController extends HttpServlet {
 	        throws SQLException, ServletException, IOException {
 		HttpSession session = request.getSession();
 		String maND = (String) session.getAttribute("maND");
-		ThamGiaLopHocDAO tglhDAO = new ThamGiaLopHocDAO();
+		ThamGiaLopHocDAO  tglhDAO = new ThamGiaLopHocDAO ();
 		LopHocDAO lophocDAO = new LopHocDAO();
 		RequestDispatcher dispatcher;
 		try {
