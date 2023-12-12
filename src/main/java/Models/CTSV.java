@@ -4,7 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class CTSV implements Serializable {
-    private static final long serialVersionUID = 1L;
+    @Override
+	public String toString() {
+		return "CTSV [ID_CTSV=" + ID_CTSV + ", HoTen=" + HoTen + ", CCCD=" + CCCD + ", GioiTinh=" + GioiTinh
+				+ ", NgaySinh=" + NgaySinh + ", SDT=" + SDT + ", Email=" + Email + ", ID_TaiKhoan=" + ID_TaiKhoan
+				+ ", TrangThai=" + TrangThai + "]";
+	}
+
+	private static final long serialVersionUID = 1L;
 
     private int ID_CTSV;
     private String HoTen;
@@ -18,7 +25,19 @@ public class CTSV implements Serializable {
 
     public CTSV() {
     }
-    public CTSV(int ID_CTSV, String HoTen, String CCCD, String GioiTinh, Date NgaySinh, String SDT, String Email, int ID_TaiKhoan, int TrangThai) {
+    
+    public CTSV(int iD_CTSV, String hoTen, String cCCD, String gioiTinh, Date ngaySinh, String sDT, String email) {
+		super();
+		ID_CTSV = iD_CTSV;
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		SDT = sDT;
+		Email = email;
+	}
+
+	public CTSV(int ID_CTSV, String HoTen, String CCCD, String GioiTinh, Date NgaySinh, String SDT, String Email, int ID_TaiKhoan, int TrangThai) {
     	this.ID_CTSV = ID_CTSV;
     	this.HoTen = HoTen;
     	this.CCCD = CCCD;
@@ -29,7 +48,11 @@ public class CTSV implements Serializable {
     	this.ID_TaiKhoan = ID_TaiKhoan;
     	this.TrangThai = TrangThai;
     }
-    public int getID_CTSV() {
+    public CTSV(int idctsv, String name, Date ngaySinh2, String gioitinh2, String cccd2, String sdt2, String email2) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public int getID_CTSV() {
         return ID_CTSV;
     }
 

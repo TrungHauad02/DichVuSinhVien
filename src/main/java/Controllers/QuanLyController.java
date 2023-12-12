@@ -44,16 +44,4 @@ public class QuanLyController extends HttpServlet {
 		request.setAttribute("quanly", quanly);
 		request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp").forward(request, response);
 	}
-	/*
-	 * private void CapNhatAdmin(HttpServletRequest request, HttpServletResponse
-	 * response) throws SQLException, ServletException, IOException { int id =
-	 * Integer.parseInt(request.getPathInfo().substring(1)); QuanLy existingadmin =
-	 * quanlyDAO.selectAdmin(id); RequestDispatcher dispatcher =
-	 * request.getRequestDispatcher("/Admin/CapNhatAdmin.jsp");
-	 * request.setAttribute("quanly", existingadmin); dispatcher.forward(request,
-	 * response);
-	 * 
-	 * }
-	 */
-
 }

@@ -23,9 +23,14 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
+	rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
+	rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -222,9 +227,9 @@
 											<tr>
 												<th>ID_CTSV</th>
 												<th>Họ tên</th>
-												<th>Ngày sinh</th>
-												<th>Giới tính</th>
 												<th>CCCD</th>
+												<th>Giới tính</th>
+												<th>Ngày sinh</th>
 												<th>SDT</th>
 												<th>Email</th>
 												<th>Actions</th>
@@ -232,30 +237,21 @@
 										</thead>
 										<tbody>
 											<!--   for (Todo todo: todos) {  -->
-											<c:forEach var="user" items="${listUser}">
+											<c:forEach var="ctsv" items="${ctsvList}">
 
 												<tr>
-													<%-- <td><c:out value="${user.id}" /></td>
-													<td><c:out value="${user.name}" /></td>
-													<td><c:out value="${user.email}" /></td>
-													<td><c:out value="${user.country}" /></td> --%>
-
-													<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
+													<td><c:out value="${ctsv.ID_CTSV}" /></td>
+													<td><c:out value="${ctsv.getHoTen()}" /></td>
+													<td><c:out value="${ctsv.getCCCD()}" /></td>
+													<td><c:out value="${ctsv.getGioiTinh()}" /></td>
+													<td><c:out value="${ctsv.getNgaySinh()}" /></td>
+													<td><c:out value="${ctsv.getSDT()}" /></td>
+													<td><c:out value="${ctsv.getEmail()}" /></td>
+													<td><a href="updatectsv?id=<c:out value='${ctsv.ID_CTSV}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
-														href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+														href="deletectsv?id=<c:out value='${ctsv.ID_CTSV}' />">Delete</a></td>
 												</tr>
 											</c:forEach>
-											<td>21110443</td>
-											<td>Nguyễn Trung Hậu</td>
-											<th>2023/01/01</th>
-											<th>Nam</th>
-											<th>32392372332</th>
-											<td>09473243434</td>
-											<td>hau2k3@gmail.com</td>
-											<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-												&nbsp;&nbsp;&nbsp;&nbsp; <a
-												href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
-											<!-- } -->
 										</tbody>
 
 									</table>
