@@ -15,8 +15,7 @@ import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class LopHocDAO {
-	public LopHocDAO(){
-	}
+	public LopHocDAO(){}
 	private static final String SELECT_LOPHOC = "SELECT ID_LopHoc, MonHoc, TinChi FROM LopHoc;";
 	 public static List<LopHoc> selectLopHoc() throws SQLException {
 	        List<LopHoc> dtLopHoc = new ArrayList<>();
