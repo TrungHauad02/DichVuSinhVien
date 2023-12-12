@@ -20,9 +20,20 @@ public class SinhVien implements Serializable {
     private int DiemCTXH;
     private int TrangThai;
     private String DiaChi;
-    private byte[] AnhCaNhan;
+    public SinhVien(String iD_SinhVien, String hoTen, Date ngaySinh,  int gioiTinh, String cCCD, int khoa, String namHoc
+			) {
+		super();
+		ID_SinhVien = iD_SinhVien;
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		Khoa = khoa;
+		NamHoc = namHoc;
+	}
 
-    
+	private byte[] AnhCaNhan;
+
 
 
 	public SinhVien(String iD_SinhVien, String hoTen, String cCCD, int gioiTinh, Date ngaySinh, String sDT,

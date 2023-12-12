@@ -38,18 +38,6 @@ public class QuanLyController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/*
-		 * String action = request.getServletPath();
-		 * 
-		 * try { switch (action) {
-		 * 
-		 * case "/CapNhatAdmin": CapNhatAdmin(request, response); break;
-		 * 
-		 * default: RequestDispatcher dispatcher =
-		 * request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
-		 * dispatcher.forward(request, response); break; } } catch (SQLException ex) {
-		 * throw new ServletException(ex); }
-		 */
 		int idquanly = 1;
 		QuanLy quanly = quanlyDAO.selectAdmin(idquanly);
 		

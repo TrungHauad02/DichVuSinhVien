@@ -215,10 +215,11 @@
 							</div>
 							<div class="card-body">
 								<div>
-									<a href="<%=request.getContextPath()%>/new" class="btn btn-primary btn-icon-split">
-										<span class="text">Thêm sinh viên</span>
+									<a href="insertsv"
+										class="btn btn-primary btn-icon-split"> <span class="text">Thêm
+											sinh viên</span>
 									</a>
-									
+
 								</div>
 								<div style="margin-top: 20px;"></div>
 								<div class="table-responsive">
@@ -244,11 +245,13 @@
 													<td><c:out value="${SV.ID_SinhVien}" /></td>
 													<td><c:out value="${SV.getHoTen()}" /></td>
 													<td><c:out value="${SV.getNgaySinh()}" /></td>
-													<td><c:out value="${SV.getGioiTinh()}" /></td>
+													<td><c:if test="${SV.getGioiTinh()==1}">Nam</c:if> <c:if
+															test="${SV.getGioiTinh()==0}">Nữ</c:if></td>
 													<td><c:out value="${SV.getCCCD()}" /></td>
 													<td><c:out value="${SV.getKhoa()}" /></td>
 													<td><c:out value="${SV.getNamHoc()}" /></td>
-													<td><a href="<%= request.getContextPath() %>/quanlysinhvien/edit?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>
+													<td><a
+														href="updatesv?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
 														href="delete?id=<c:out value='${SV.ID_SinhVien}' />">Delete</a></td>
 												</tr>
@@ -311,7 +314,7 @@
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
