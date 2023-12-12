@@ -12,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Đăng nhập</title>
     <jsp:include page="./head.jsp" />
 </head>
 <body id="page-top">
@@ -127,7 +127,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+                        <span>Trang web của nhóm 12</span>
                     </div>
                 </div>	
             </footer>

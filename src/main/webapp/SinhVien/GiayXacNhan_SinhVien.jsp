@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -49,7 +52,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
+                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinDSGiayXacNhan">
                     <span >Giấy xác nhận</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -138,15 +141,19 @@
 						                <th>Tình trạng</th>
 						            </tr>
 						        </thead>
-						        <tbody>
+						        <tbody class="dsgiayvay">
 						            <!-- Danh sách Giấy Vay -->
-						            <c:forEach var="giayVay" items="${dsgiayvay}">
-						                <tr>
-						                    <td>${giayVay.ngayNhan}</td>
+						            <c:forEach var="giayVay" items="${dsgiayvay}" varStatus="status">
+						                <tr class="clickable-row" data-id="${status.index}">
+						                    <td><c:forEach var="yeuCau" items="${dsyeucau}">
+									                <c:if test="${giayVay.ID_YeuCau eq yeuCau.ID_YeuCau}">
+									                    ${yeuCau.getThoiGianGui()}
+									                </c:if>
+									            </c:forEach></td>
 						                    <td>Giấy vay vốn</td>
-						                    <td>${giayVay.ID_YeuCau}</td>
-						                    <td>${giayVay.soTien}</td>
-						                    <td>${giayVay.ngayNhan}</td>
+						                    <td>${giayVay.getID_YeuCau()}</td>
+						                    <td>${giayVay.getSoTien()}</td>
+						                    <td>${giayVay.getNgayNhan()}</td>
 						                    <td>
 						                        <c:forEach var="yeuCau" items="${dsyeucau}">
 									                <c:if test="${giayVay.ID_YeuCau eq yeuCau.ID_YeuCau}">
@@ -156,10 +163,11 @@
 						                    </td>
 						                </tr>
 						            </c:forEach>
-						
+								</tbody>
+								<tbody class="dsgiayxn">
 						            <!-- Danh sách Giấy Xác Nhận -->
-						            <c:forEach var="giayXN" items="${dsgiayxn}">
-						                <tr>
+						            <c:forEach var="giayXN" items="${dsgiayxn}" varStatus="status">
+						                <tr class="clickable-row" data-id="${status.index}">
 						                    <td>${giayXN.ngayNhan}</td>
 						                    <td>Giấy xác nhận sinh viên</td>
 						                    <td>${giayXN.ID_YeuCau}</td>
@@ -179,14 +187,14 @@
 			            </div>
 			            <div class="col-md-3 d-flex flex-column align-items-center mt-auto mb-auto">
 			                <label class="text-dark h5">Giấy xác nhận sinh viên</label>
-			                <button class="btn btn-primary">Đăng ký</button>
+			                <button class="btn btn-primary" data-toggle="modal" data-target="#SignUpSucceed">Đăng ký</button>			            
 			            </div>
 			        </div>
 			        <div class="row notes-container">
 			            <div class="col-md-12">
 			                <fieldset style="border: 4px solid black; padding: 10px">
 					            <legend style="width: auto; border: none; padding: 0; margin: 2px 8px;">Ghi chú</legend>
-					            <textarea class="form-control h6 text-dark" rows="5" placeholder="Ghi chú" readonly>Đây là ghi chú</textarea>
+					            <textarea id="noteTextArea" class="form-control h6 text-dark" rows="5" placeholder="Ghi chú" readonly>Đây là ghi chú</textarea>
 					        </fieldset>
 			            </div>
 			        </div>
@@ -208,28 +216,59 @@
         <!-- End of Content Wrapper -->
 
     </div>
+    
+    <!-- Add SignUpSucceed -->
+    <div class="modal fade" id="SignUpSucceed">
+    	<div class="modal-dialog modal-lg">
+	      <div class="modal-content">
+	        <div class="modal-header bg-primary text-white">
+	          <h5 class="modal-title">Đăng ký giấy xác nhận thành công</h5>
+	        </div>
+	        <div class="modal-body">
+	          <form action="">
+	            <div class="form-group">
+	            <%
+				    LocalDateTime thoiGianHienTai = LocalDateTime.now();				
+				    LocalDateTime ngayMai940 = thoiGianHienTai.plusDays(1).withHour(9).withMinute(40);
+				    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+				    String ngayNhan = ngayMai940.format(formatter);
+				%>
+	              <label for="body">Thông báo</label>
+	              <textarea name="editor1" class="form-control" readonly>Bạn đã đăng ký giấy xác nhận thành công thành công
+	              Liên hệ với phòng CTSV để nhận giấy vào <%= ngayNhan %></textarea>
+	            </div>
+	          </form>
+	        </div>
+	        <div class="modal-footer">
+	        	<button class="btn btn-primary" data-dismiss="modal">Hủy</button>
+	        	<a class="nav-link" href="<%= request.getContextPath()%>/DangKyGiayXacNhan">
+	          		<button class="btn btn-primary">Hoàn thành</button>
+	          	</a>
+	        </div>
+	      </div>
+	    </div>
+    </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+    
+    <jsp:include page="../Scripts.jsp" />
+	<script>
+	    $(document).ready(function () {
+	        $(".clickable-row").click(function () {
+	            var index = $(this).data("id");
+	            var noiDung = "";
+				console.log("Đã click hàng");
+	            if ($(this).closest("tbody").hasClass("dsgiayvay")) {
+	                noiDung = "${dsgiayvay.get(index).getNoiDung()}";
+	            } else {
+	                noiDung = "${dsgiayxn.get(index).getNoiDung()}";
+	            }
+	            $("#noteTextArea").prop("readonly", false);
+	            $("#noteTextArea").val(noiDung);
+	            $("#noteTextArea").prop("readonly", true);
+	        });
+	    });
+	</script>
 </body>
 </html>

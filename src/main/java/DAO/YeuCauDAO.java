@@ -1,8 +1,12 @@
 package DAO;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.mysql.jdbc.Statement;
+
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -43,6 +47,34 @@ public class YeuCauDAO {
 	    return dsYeuCau;
 	}
 
+	public int ThemYeuCau(YeuCau yc) throws ClassNotFoundException {
+		int status = -1;
+		String sql = "INSERT INTO YEUCAU (TrangThai, ThoiGianGui, ID_SinhVien, ID_DichVu) VALUES (?,?,?,?) ";
+	    try (Connection connection = JDBCUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.
+	        prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
+	        preparedStatement.setString(1, yc.getTrangThai());
+	        preparedStatement.setDate(2, new java.sql.Date(yc.getThoiGianGui().getTime()));
+	        preparedStatement.setString(3, yc.getID_SinhVien());
+	        preparedStatement.setInt(4, yc.getID_DichVu());
+	        
+	        System.out.println(preparedStatement);
+	        int affectedRows = preparedStatement.executeUpdate();
+	        if (affectedRows > 0) {
+	        	try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+	                if (generatedKeys.next()) {
+	                	status = generatedKeys.getInt(1);
+	                } else {
+	                    throw new SQLException("Không thể lấy ID được sinh ra.");
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        HandleExeption.printSQLException(e);
+	    }
+
+	    return status;
+	}
 	
 }
