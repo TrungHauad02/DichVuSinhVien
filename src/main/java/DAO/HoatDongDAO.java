@@ -33,6 +33,7 @@ public class HoatDongDAO {
 	            	hd.setNgayThamGia(rs.getDate("NgayThamGia"));
 	            	hd.setID_DichVu(rs.getInt("ID_DichVu"));
 	            	hd.setTrangThai(rs.getInt("TrangThai"));
+	            	hd.setNoiDung(rs.getString("NoiDung"));
 	            	           
 	            	dsHD.add(hd);
 	               }

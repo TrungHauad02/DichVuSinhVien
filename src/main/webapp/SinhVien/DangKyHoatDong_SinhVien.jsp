@@ -96,7 +96,7 @@
 				<div class="container">
 			        <div class="row">
 			            <div class="col-6">
-			               <div class="form-group row">
+			               <!--<div class="form-group row">
 							    <label for="activityType" class="col-sm-7 col-form-label">Trạng thái hoạt động:</label>
 							    <div class="col-sm-5">
 							        <select class="form-control" id="activityStatus">
@@ -105,7 +105,7 @@
 							            <option>Tất cả</option>
 							        </select>
 							    </div>
-							</div>
+							</div> -->
 
 			                <table class="table table-bordered">
 						        <thead>
@@ -117,39 +117,68 @@
 						        </thead>
 						        <tbody>
 						            <c:forEach var="hd" items="${dshd}" varStatus="status">
-									    <tr class="clickable-row" data-id="${hd.getID_HoatDong()}">
+						            <c:forEach var="tochuc" items="${dstochuc}">
+									  <c:if test="${tochuc.getID_HoatDong() eq hd.getID_HoatDong()}">
+									  	<c:set var="statusValue" value="Chưa đăng ký"/>
+								            <c:forEach var="thamgiahd" items="${dsthamgiahd}">
+								                <c:if test="${thamgiahd.getID_HoatDong() eq hd.getID_HoatDong()}">
+								                    <c:forEach var="yeucau" items="${dsyeucau}">
+								                        <c:if test="${yeucau.getID_YeuCau() eq thamgiahd.getID_YeuCau()}">
+								                            <c:choose>
+								                                <c:when test="${yeucau.getTrangThai() eq 'DangXuLy'}">
+								                                    <c:set var="statusValue" value="Đã đăng ký"/>
+								                                </c:when>
+								                                <c:when test="${yeucau.getTrangThai() eq 'Hoanthanh'}">
+								                                    <c:set var="statusValue" value="Đã tham gia"/>
+								                                </c:when>
+								                                <c:when test="${yeucau.getTrangThai() eq 'TuChoi'}">
+								                                    <c:set var="statusValue" value="Bị từ chối"/>
+								                                </c:when>
+								                            </c:choose>
+								                        </c:if>
+								                    </c:forEach>
+								                </c:if>
+								            </c:forEach>
+									    <tr class="clickable-row" data-id="${hd.getID_HoatDong()}" data-tenhoatdong="${hd.getTenHoatDong()}"
+									    data-ngaythamgia="${hd.getNgayThamGia()}" data-khoatochuc="${tochuc.getKhoaTC().getTenKhoa()}"
+									    data-diemrl="${hd.getDiemRL()}" data-diemctxh ="${hd.getDiemCTXH()}" data-noidung ="${hd.getNoiDung()}"
+									    data-trangthai="${statusValue}"
+									    >
 									        <td>${hd.getTenHoatDong()}</td>
 									        <td>${hd.getNgayThamGia()}</td>
 									        <td>
-									            <c:forEach var="tochuc" items="${dstochuc}">
-									                <c:if test="${tochuc.getID_HoatDong() eq hd.getID_HoatDong()}">
-									                    ${tochuc.getKhoaTC().getTenKhoa()}
-									                </c:if>
-									            </c:forEach>
-									        </td>
+									            ${tochuc.getKhoaTC().getTenKhoa()}
+										    </td>
 									    </tr>
+									  </c:if>
+									</c:forEach>
 									</c:forEach>
 						        </tbody>
 						    </table>
 			            </div>
 			            <div class="col-6">
-			                <form>
+			                <form action="<%=request.getContextPath()%>/DangKyHoatDong" method="post">
+			                    <input type="hidden" id="idHoatDong" name="idHoatDong" value=""/>
 			                    <div class="form-group">
 			                        <label for="activityName">Tên hoạt động:</label>
-			                        <input type="text" class="form-control" id="activityName">
+			                        <input type="text" class="form-control" name="activityName" id="activityName">
 			                    </div>
 			                    <div class="form-group">
 			                        <label for="organizer">Tổ chức:</label>
 			                        <input type="text" class="form-control" id="organizer">
 			                    </div>
+			                    <div class="form-row">
+							        <div class="form-group col-md-6">
+							            <label for="rlPoints">Điểm RL:</label>
+							            <input type="number" class="form-control" id="rlPoints" min="0">
+							        </div>
+							        <div class="form-group col-md-6">
+							            <label for="ctxhPoints">Điểm CTXH:</label>
+							            <input type="number" class="form-control" id="ctxhPoints" min="0">
+							        </div>
+							    </div>
 			                    <div class="form-group">
-			                        <label for="rlPoints">Điểm RL:</label>
-			                        <input type="number" class="form-control" id="rlPoints" min="0">
-			                        <label for="ctxhPoints">Điểm CTXH:</label>
-			                        <input type="number" class="form-control" id="ctxhPoints" min="0">
-			                    </div>
-			                    <div class="form-group">
-			                        <label for="date">Ngày:</label>
+			                        <label for="date">Ngày tổ chức:</label>
 			                        <input type="date" class="form-control" id="date">
 			                        <label for="status">Trạng thái:</label>
 			                        <input type="text" class="form-control" id="status">
@@ -158,7 +187,7 @@
 			                        <label for="description">Mô tả:</label>
 			                        <textarea class="form-control" id="description" rows="3"></textarea>
 			                    </div>
-			                    <button type="submit" class="btn btn-primary">Đăng ký hoạt động</button>
+			                    <button type="submit" class="btn btn-primary" id="btnSubmit" style="display: none;">Đăng ký hoạt động</button>
 			                </form>
 			            </div>
 			        </div>
@@ -190,36 +219,62 @@
     <jsp:include page="../Scripts.jsp" />
     
     <!-- Custum JavaScript-->
-    <c:set var="dstochucArray" value="${dstochuc.toArray()}"/>
-    <c:set var="dshoatdongArray" value="${dshoatdong.toArray()}"/>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $(".clickable-row").click(function () {
-            	console.log("Đã click");
-                var idHoatDong = $(this).data("id");
-                var organizerName = "";
-                var dstochucArray = <c:out value="${dstochucArray}" escapeXml="false"/>;
-                var dshoatdongArray = <c:out value="${dshoatdongArray}" escapeXml="false"/>;
+	<script>
+	    $(document).ready(function () {
+	        $(".clickable-row").click(function () {
+	            console.log("Đã click");
+	            var idHoatDong = $(this).data("id");
+	            var tenHoatDong = $(this).data("tenhoatdong");
+	            var ngayThamGia = $(this).data("ngaythamgia");
+	            var khoaToChuc = $(this).data("khoatochuc");
+	            var diemRL = $(this).data("diemrl");
+	            var diemCTXH = $(this).data("diemctxh");
+				var noidung = $(this).data("noidung");
+				var trangthai = $(this).data("trangthai");
+				var btnSubmit = $('#btnSubmit');
+				if (trangthai === "Chưa đăng ký") {
+				    btnSubmit.show();
+				} else {
+				    btnSubmit.hide();
+				}
+				$("#idHoatDong").val(idHoatDong);
+	            $("#activityName").val(tenHoatDong).prop("readonly", true);
+	            $("#organizer").val(khoaToChuc).prop("readonly", true);
+	            $("#rlPoints").val(diemRL).prop("readonly", true);
+	            $("#ctxhPoints").val(diemCTXH).prop("readonly", true);
+	            $("#date").val(ngayThamGia).prop("readonly", true);
+	            $("#description").val(noidung).prop("readonly", true);
+	            $("#status").val(trangthai).prop("readonly", true);
+	        });
+	    });
+	</script>
+ <% if (request.getAttribute("completeMsg") != null) { %>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ${completeMsg}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                $.each(dstochucArray, function (index, tochuc) {
-                    if (tochuc.ID_HoatDong == idHoatDong) {	
-                        organizerName = tochuc.KhoaTC.TenKhoa;
-                        return false;
-                    }
-                });
-                var activityName = "";
-                $.each(${dshoatdongArray}, function(index, hoatdong) {
-                    if (hoatdong.ID_HoatDong == idHoatDong) {
-                    	activityName = hoatdong.TenHoatDong;
-                    	return false;
-                 	}
-                });
-
-            	$("#activityName").val(activityName).prop("readonly", true);
-            	$("#organizer").val(organizerName).prop("readonly", true);
-            	
+        <!-- JavaScript to trigger the modal -->
+        <script>
+            $(document).ready(function() {
+            	console.log('Document ready function');
+                $('#myModal').modal('show');
             });
-        });
-    </script>
+        </script>
+    <% } %>
 </body>
 </html>

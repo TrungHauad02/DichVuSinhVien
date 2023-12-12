@@ -22,7 +22,9 @@ public class ThamGiaHoatDongDAO {
 		
 		try (Connection connection = JDBCUtil.getConnection();
 	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM thamgiahd where ID_SinhVien = ?")) {
-	            ResultSet rs = preparedStatement.executeQuery();
+			preparedStatement.setString(1, mssv);
+			System.out.println(preparedStatement);    
+			ResultSet rs = preparedStatement.executeQuery();
 
 	            while (rs.next()) {
 	            	ThamGiaHD tghd = new ThamGiaHD();
@@ -37,5 +39,29 @@ public class ThamGiaHoatDongDAO {
 	            }
 		
 		return dsThamGiaHD;
+	}
+	
+	public boolean ThemThamGiaHD(ThamGiaHD thamgiahd) throws ClassNotFoundException {
+		boolean status = false;
+		String sql = "INSERT INTO ThamGiaHD (ID_SinhVien, ID_HoatDong, TrangThai, ID_YeuCau)\r\n"
+				+ "VALUES (?, ?, ?, ?)";
+	    try (Connection connection = JDBCUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.
+	        prepareStatement(sql)) {
+
+	    	preparedStatement.setString(1, thamgiahd.getID_SinhVien());
+	    	preparedStatement.setInt(2, thamgiahd.getID_HoatDong());
+	        preparedStatement.setInt(3, thamgiahd.getTrangThai());
+	        preparedStatement.setInt(4, thamgiahd.getID_YeuCau());
+
+	    	
+	        System.out.println(preparedStatement);
+	        int affectedRows = preparedStatement.executeUpdate();
+	        status = (affectedRows > 0);
+	    } catch (SQLException e) {
+	        HandleExeption.printSQLException(e);
+	    }
+
+	    return status;
 	}
 }
