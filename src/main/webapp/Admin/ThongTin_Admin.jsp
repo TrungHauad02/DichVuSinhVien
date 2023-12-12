@@ -48,7 +48,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index_Admin.jsp">
+				href="admin">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -60,7 +60,7 @@
 
 			<!-- Nav Item - Dashboard -->
 			<li class="nav-item"><a class="nav-link"
-				href="ThongTin_Admin.jsp"> <i class="fas fa-home"></i> <span>Trang
+				href="admin"> <i class="fas fa-home"></i> <span>Trang
 						chủ</span>
 			</a></li>
 
@@ -68,7 +68,7 @@
 			<hr class="sidebar-divider">
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLySinhVien_Admin_CTSV.jsp"> <span>Quản lý sinh
+				href="quanlysinhvien"> <span>Quản lý sinh
 						viên</span>
 			</a></li>
 
@@ -131,7 +131,7 @@
 
 
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="Admin/ThongTin_Admin.jsp">
+						<a class="nav-link" href="admin">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
