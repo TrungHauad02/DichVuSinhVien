@@ -30,45 +30,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
-	            <div >
-	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
-	            </div>
-	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
-	        </a>
-        	<li class="nav-item active mt-5">
-                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinSinhVien">
-                    <span >Thông tin cá nhân</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
-                    <span >Bảng điểm</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinDSGiayXacNhan">
-                    <span >Giấy xác nhận</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayVayVon_SinhVien.jsp">
-                    <span >Giấy vay vốn</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHoatDong_SinhVien.jsp">
-                    <span >Đăng ký hoạt động</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHocBong_SinhVien.jsp">
-                    <span >Đăng ký học bổng</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-        </ul>
+        <jsp:include page="./Sidebar_SinhVien.jsp" />
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
