@@ -41,7 +41,7 @@
 			<!-- Sidebar - Brand -->
 			<a
 				class="sidebar-brand d-flex align-items-center justify-content-center"
-				href="index_Admin.jsp">
+				href="admin">
 				<div class="sidebar-brand-icon rotate-n-15">
 					<i class="fas fa-laugh-wink"></i>
 				</div>
@@ -52,53 +52,52 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="index_Admin.jsp">
-					<i class="fas fa-home"></i> <span>Trang chủ</span>
+			<li class="nav-item"><a class="nav-link" href="admin"> <i
+					class="fas fa-home"></i> <span>Trang chủ</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			<!-- Divider -->
+			<li class="nav-item"><a class="nav-link" href="quanlysinhvien">
+					<span>Quản lý sinh viên</span>
+			</a></li>
+
+			<!-- Divider -->
+			<hr class="sidebar-divider">
+			<!-- Divider -->
+			<li class="nav-item"><a class="nav-link" href="quanlyctsv">
+					<span>Quản lý CTSV</span>
 			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLySinhVien_Admin_CTSV.jsp"> <span>Quản lý sinh
-						viên</span>
-			</a></li>
+				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLyCTSV_Admin.jsp"> <span>Quản lý CTSV</span>
-			</a></li>
+				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLyKhoa_Admin.jsp"><span>Quản lý khoa</span> </a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="QuanLyHoatDong_Admin.jsp"><span>Quản lý hoạt động</span> </a></li>
-
-			<!-- Divider -->
-			<hr class="sidebar-divider">
-			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="QuanLyHocBong_Admin.jsp"> <i class="fas fa-fw fa-user"></i>
+				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
 					<span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLyLopHoc_Admin.jsp"> <i class='fas fa-fw fa-headset'></i>
+				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
 					<span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="HoTroAdmin.jsp">
+			<li class="nav-item"><a class="nav-link" href="hotro">
 					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
@@ -123,7 +122,7 @@
 
 
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="index_Admin.jsp">
+						<a class="nav-link" href="admin">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
@@ -131,7 +130,7 @@
 						</a>
 						<div class="topbar-divider d-none d-sm-block"></div>
 						<div>
-							<a class="nav-link" href="HoTroAdmin.jsp"> <span class="high">Hỗ
+							<a class="nav-link" href="hotro"> <span class="high">Hỗ
 									trợ</span>
 						</div>
 						</a>
