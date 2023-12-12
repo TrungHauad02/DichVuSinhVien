@@ -57,7 +57,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayVayVon_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayVayVon_SinhVien.jsp">
                     <span >Giấy vay vốn</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -130,7 +130,7 @@
 				<div class="container mh-80">
 			        <div class="row table-container h6">
 			            <div class="col-md-9">
-			                <table class="table table-bordered text-dark">
+			                <table class="table table-bordered text-dark scrollable-table">
 						        <thead>
 						            <tr>
 						                <th>Thời gian đăng ký</th>
@@ -194,7 +194,7 @@
 			            <div class="col-md-12">
 			                <fieldset style="border: 4px solid black; padding: 10px">
 					            <legend style="width: auto; border: none; padding: 0; margin: 2px 8px;">Ghi chú</legend>
-					            <textarea id="noteTextArea" class="form-control h6 text-dark" rows="5" placeholder="Ghi chú" readonly>Đây là ghi chú</textarea>
+					            <textarea id="noteTextArea" class="form-control h6 text-dark" rows="5" placeholder="Ghi chú" readonly></textarea>
 					        </fieldset>
 			            </div>
 			        </div>

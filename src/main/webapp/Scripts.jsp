@@ -22,6 +22,7 @@
     <script src="${pageContext.request.contextPath}/js/demo/chart-area-demo.js"></script>
     <script src="${pageContext.request.contextPath}/js/demo/chart-pie-demo.js"></script>
 	<script src="https://cdn.lordicon.com/lordicon.js"></script>
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	
+	
 </body>
 </html>

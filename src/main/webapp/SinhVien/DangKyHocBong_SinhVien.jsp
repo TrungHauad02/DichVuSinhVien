@@ -49,12 +49,12 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
+                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinDSGiayXacNhan">
                     <span >Giấy xác nhận</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayVayVon_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayVayVon_SinhVien.jsp">
                     <span >Giấy vay vốn</span></a>
             </li>
             <hr class="sidebar-divider my-0">
