@@ -22,9 +22,14 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
+	rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
+	rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -198,99 +203,90 @@
 
 				<!-- Your Slide bar and main content goes here -->
 				<div class="container">
+
 					<div class="row">
-						<!-- Bảng Thông tin cá nhân -->
-						<div class="col-lg-6">
-							<table class="table">
-								<thead>
-									<tr>
-										<th colspan="2" class="h3">Thông tin cá nhân</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><label for="mssv" class="h4">MSSV:</label></td>
-										<td><input type="text" id="mssv" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="name" class="h4">Họ tên:</label></td>
-										<td><input type="text" id="name" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="dob" class="h4">Ngày sinh:</label></td>
-										<td><input type="date" id="dob" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h4">Giới tính:</label></td>
-										<td>
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="gender"
-													id="male" value="male"> <label
-													class="form-check-label h4" for="male"> Nam </label>
-											</div>
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="gender"
-													id="female" value="female"> <label
-													class="form-check-label h4" for="female"> Nữ </label>
-											</div>
-										</td>
-									</tr>
-									<tr>
-										<td><label for="cccd" class="h4">CCCD:</label></td>
-										<td><input type="text" id="cccd" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="faculty" class="h4">Khoa:</label></td>
-										<td><input type="text" id="faculty" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="course" class="h4">Khóa học:</label></td>
-										<td><input type="text" id="course" class="form-control"></td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
+						<form action="insertsv" method="post">
+							<!-- Bảng Thông tin cá nhân -->
+							<div class="col-lg-6">
+								<table class="table">
+									<thead>
+										<tr>
+											<th colspan="2" class="h3">Thông tin cá nhân</th>
+										</tr>
+									</thead>
+									<tbody>
+										
+										<tr>
+											<td><label for="name" class="h4">Họ tên:</label></td>
+											<td><input type="text" id="name" name="name"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="cccd" class="h4">CCCD:</label></td>
+											<td><input type="text" id="cccd" name="cccd"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h4">Giới tính:</label></td>
+											<td>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="gender"
+														id="male" value="1"> <label
+														class="form-check-label h4" for="male"> Nam </label>
+												</div>
+												<div class="form-check form-check-inline">
+													<input class="form-check-input" type="radio" name="gender"
+														id="female" value="2"> <label
+														class="form-check-label h4" for="female"> Nữ </label>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<td><label for="dob" class="h4">Ngày sinh:</label></td>
+											<td><input type="date" id="dob" name="date"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="faculty" class="h4">SDT:</label></td>
+											<td><input type="text" id="faculty" name="sdt"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="course" class="h4">Email:</label></td>
+											<td><input type="text" id="course" name="email"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="course" class="h4">Khóa học:</label></td>
+											<td><input type="text" id="course" name="khoaHoc"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="faculty" class="h4">Khoa:</label></td>
+											<td><input type="text" id="faculty" name="khoa"
+												class="form-control"></td>
+										</tr>
 
-						<!-- Bảng Thông tin liên hệ -->
-						<div class="col-lg-4">
-							<table class="table">
-								<thead>
-									<tr>
-										<th colspan="2" class="h3">Thông tin liên hệ</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td><label for="contact-name" class="h4">Họ tên:</label></td>
-										<td><input type="text" id="contact-name"
-											class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="phone" class="h4">SDT:</label></td>
-										<td><input type="tel" id="phone" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="email" class="h4">Email:</label></td>
-										<td><input type="email" id="email" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="address" class="h4">Địa chỉ:</label></td>
-										<td><input type="text" id="address" class="form-control"></td>
-									</tr>
-								</tbody>
-							</table>
-							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
-							<div class="text-center mt-3">
-								<button class="btn btn-primary mr-3">Thêm sinh viên</button>
+										<tr>
+											<td><label for="course" class="h4">ID tài khoản:</label></td>
+											<td><input type="text" id="course" name="idTK"
+												class="form-control"></td>
+										</tr>
+
+									</tbody>
+								</table>
+								<div class="text-center mt-3">
+									<button class="btn btn-primary mr-3">Thêm sinh viên</button>
+								</div>
+								<div style="margin-top: 40px;"></div>
 							</div>
-						</div>
-
-
+						</form>
 						<!-- Hình ảnh -->
 						<div class="col-lg-2 d-flex justify-content-center">
 							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
 						</div>
 					</div>
+
 				</div>
 
 

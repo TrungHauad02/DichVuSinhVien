@@ -10,7 +10,7 @@ public class test {
 	public static void main(String args[]) {
 		QuanLyDAO dao = new QuanLyDAO();
 		/* List<SinhVien> list = dao.selectAllSV(); */
-		QuanLy a = dao.selectAdmin(1);
+		SinhVien a = dao.selectSV("1");
 		/*
 		 * for (SinhVien o : list) { System.out.println(o); }
 		 */
