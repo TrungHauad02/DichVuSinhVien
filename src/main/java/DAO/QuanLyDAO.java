@@ -13,7 +13,7 @@ import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class QuanLyDAO {
-	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?, CCCD=?, GioiTinh=?, NgaySinh=?,SDT=?, Email=? WHERE ID_QuanLY = ?";
+	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?,SDT=?, Email=? WHERE ID_QuanLY = ?";
 	private static final String SELECT_ADMIN_BY_ID = "select * from QUANLY where ID_QuanLy =?";
 	public QuanLy selectAdmin(int idquanly) {
 		QuanLy quanly = null;
@@ -43,15 +43,15 @@ public class QuanLyDAO {
 		}
 		return quanly;
 	}
-	public boolean updateAdmin(QuanLy quanly) throws SQLException {
+	public boolean updateAdmin(QuanLy quanly)  {
 		boolean rowUpdated = false;
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			PreparedStatement statement = conn.prepareStatement(UPDATE_ADMIN_SQL);
 			statement.setString(1, quanly.getHoTen());
-			statement.setString(2, quanly.getCCCD());
+			statement.setDate(2, new java.sql.Date(quanly.getNgaySinh().getTime()));
 			statement.setString(3, quanly.getGioiTinh());
-			statement.setDate(4, new java.sql.Date(quanly.getNgaySinh().getTime()));
+			statement.setString(4, quanly.getCCCD());
 			statement.setString(5, quanly.getSDT());
 			statement.setString(6, quanly.getEmail()); 
 			statement.setInt(7, quanly.getID_QuanLy());

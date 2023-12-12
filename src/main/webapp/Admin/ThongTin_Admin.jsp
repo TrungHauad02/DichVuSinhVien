@@ -37,7 +37,6 @@
 </head>
 
 <body id="page-top">
-	
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -60,8 +59,9 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="ThongTin_Admin.jsp">
-					<i class="fas fa-home"></i> <span>Trang chủ</span>
+			<li class="nav-item"><a class="nav-link"
+				href="ThongTin_Admin.jsp"> <i class="fas fa-home"></i> <span>Trang
+						chủ</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -283,7 +283,8 @@
 									<div style="margin-top: 15px;"></div>
 									<div style="display: flex; justify-content: center;">
 										<div class="my-2"></div>
-									<a href="CapNhatAdmin" class="btn btn-primary btn-icon-split"> <span
+										<a href="updateadmin?id=${quanly.ID_QuanLy}"
+											class="btn btn-primary btn-icon-split"> <span
 											class="text">Cập nhật thông tin</span>
 										</a>
 									</div>

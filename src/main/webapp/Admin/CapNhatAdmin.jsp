@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Thêm sinh viên</title>
+<title>Cập nhật admin</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -203,6 +203,7 @@
 
 				<!-- Your Slide bar and main content goes here -->
 				<div class="container">
+				<form action="updateadmin" method="post">
 					<div class="row">
 						<!-- Bảng Thông tin cá nhân -->
 						<div class="col-lg-6">
@@ -215,42 +216,35 @@
 								<tbody>
 									<tr>
 										<td><label for="mssv" class="h4">ID:</label></td>
-										<td><input type="text" id="mssv" class="form-control"></td>
+										<td><input type="text" id="mssv" name="id" class="form-control" value="${quanly.ID_QuanLy}"></td>
 									</tr>
 									<tr>
 										<td><label for="name" class="h4">Họ tên:</label></td>
-										<td><input type="text" id="name" class="form-control"></td>
+										<td><input type="text" id="name" name="name" class="form-control" value="${quanly.getHoTen()}"></td>
 									</tr>
 									<tr>
 										<td><label for="dob" class="h4">Ngày sinh:</label></td>
-										<td><input type="date" id="dob" class="form-control"></td>
+										<td><input type="date" id="dob" name="date" class="form-control" value="${quanly.getNgaySinh()}"></td>
 									</tr>
 									<tr>
 										<td><label class="h4">Giới tính:</label></td>
 										<td>
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="gender"
-													id="male" value="male"> <label
-													class="form-check-label h4" for="male"> Nam </label>
-											</div>
-											<div class="form-check form-check-inline">
-												<input class="form-check-input" type="radio" name="gender"
-													id="female" value="female"> <label
-													class="form-check-label h4" for="female"> Nữ </label>
-											</div>
+											<input type="text" id="dob" name="gender" class="form-control"
+											value="${quanly.getGioiTinh()}">
+
 										</td>
 									</tr>
 									<tr>
 										<td><label for="cccd" class="h4">CCCD:</label></td>
-										<td><input type="text" id="cccd" class="form-control"></td>
+										<td><input type="text" id="cccd" name="cccd" class="form-control" value="${quanly.getCCCD()}"></td>
 									</tr>
 									<tr>
 										<td><label for="faculty" class="h4">SDT:</label></td>
-										<td><input type="text" id="faculty" class="form-control"></td>
+										<td><input type="text" id="faculty" name="sdt" class="form-control" value="${quanly.getSDT()}"></td>
 									</tr>
 									<tr>
 										<td><label for="course" class="h4">Email:</label></td>
-										<td><input type="text" id="course" class="form-control"></td>
+										<td><input type="text" id="course" name="email" class="form-control" value="${quanly.getEmail()}"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -261,7 +255,7 @@
 							<div style="margin-top: 40px;"></div>
 						</div>
 
-						
+						</form>
 
 						<!-- Hình ảnh -->
 						<div class="col-lg-2 d-flex justify-content-center">
