@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="Models.QuanLy"%>
-<%@ page import="DAO.QuanLyDAO"%>
-<%@ page import="DAO.TaiKhoanDao"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Thông tin cá nhân</title>
+<title>Cập nhật admin</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -37,6 +33,7 @@
 </head>
 
 <body id="page-top">
+
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -59,9 +56,8 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link"
-				href="ThongTin_Admin.jsp"> <i class="fas fa-home"></i> <span>Trang
-						chủ</span>
+			<li class="nav-item"><a class="nav-link" href="index_Admin.jsp">
+					<i class="fas fa-home"></i> <span>Trang chủ</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -131,7 +127,7 @@
 
 
 					<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-						<a class="nav-link" href="Admin/ThongTin_Admin.jsp">
+						<a class="nav-link" href="index_Admin.jsp">
 							<div>
 								<span class="high">Trang chủ</span>
 							</div>
@@ -205,104 +201,71 @@
 				</nav>
 				<!-- End of Topbar -->
 
-				<!-- Begin Page Content -->
-				<div class="container-fluid">
-
-					<!-- Page Heading -->
-					<h1 class="h3 mb-4 text-gray-800">Profile</h1>
-
+				<!-- Your Slide bar and main content goes here -->
+				<div class="container">
+				<form action="updateadmin" method="post">
 					<div class="row">
+						<!-- Bảng Thông tin cá nhân -->
+						<div class="col-lg-6">
+							<table class="table">
+								<thead>
+									<tr>
+										<th colspan="2" class="h3">Thông tin cá nhân</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><label for="mssv" class="h4">ID:</label></td>
+										<td><input type="text" id="mssv" name="id" class="form-control" value="${quanly.ID_QuanLy}"></td>
+									</tr>
+									<tr>
+										<td><label for="name" class="h4">Họ tên:</label></td>
+										<td><input type="text" id="name" name="name" class="form-control" value="${quanly.getHoTen()}"></td>
+									</tr>
+									<tr>
+										<td><label for="dob" class="h4">Ngày sinh:</label></td>
+										<td><input type="date" id="dob" name="date" class="form-control" value="${quanly.getNgaySinh()}"></td>
+									</tr>
+									<tr>
+										<td><label class="h4">Giới tính:</label></td>
+										<td>
+											<input type="text" id="dob" name="gender" class="form-control"
+											value="${quanly.getGioiTinh()}">
 
-						<!-- Area Chart -->
-						<div class="col-xl-7 col-lg-7">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Thông tin cá
-										nhân</h6>
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div class=" row">
-										<!-- Hiển thị thông tin từ đối tượng quanly -->
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Mã số admin:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.ID_QuanLy}
-										</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Họ tên:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.getHoTen()}</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Ngày sinh:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.getNgaySinh()}</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Giới tính:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.getGioiTinh()}</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">CCCD:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.getCCCD()}</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">SDT:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.getSDT()}</div>
-										<div style="margin-top: 40px;"></div>
-										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">Email:</div>
-										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.getEmail()}</div>
-										<!-- và các thuộc tính khác -->
-									</div>
-
-								</div>
+										</td>
+									</tr>
+									<tr>
+										<td><label for="cccd" class="h4">CCCD:</label></td>
+										<td><input type="text" id="cccd" name="cccd" class="form-control" value="${quanly.getCCCD()}"></td>
+									</tr>
+									<tr>
+										<td><label for="faculty" class="h4">SDT:</label></td>
+										<td><input type="text" id="faculty" name="sdt" class="form-control" value="${quanly.getSDT()}"></td>
+									</tr>
+									<tr>
+										<td><label for="course" class="h4">Email:</label></td>
+										<td><input type="text" id="course" name="email" class="form-control" value="${quanly.getEmail()}"></td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
+							<div class="text-center mt-3">
+								<button class="btn btn-primary mr-3">Cập nhật Admin</button>
 							</div>
+							<div style="margin-top: 40px;"></div>
 						</div>
-						<div class="col-xl-5 col-lg-5">
-							<div class="card shadow mb-4">
-								<!-- Card Header - Dropdown -->
-								<div
-									class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-									<h6 class="m-0 font-weight-bold text-primary">Admin</h6>
 
-								</div>
-								<!-- Card Body -->
-								<div class="card-body">
-									<div style="display: flex; justify-content: center;">
-										<img src="anhnen.png" width="130" height="160">
-									</div>
-									<div style="margin-top: 15px;"></div>
-									<div style="display: flex; justify-content: center;">
-										<div class="my-2"></div>
-										<a href="updateadmin?id=${quanly.ID_QuanLy}"
-											class="btn btn-primary btn-icon-split"> <span
-											class="text">Cập nhật thông tin</span>
-										</a>
-									</div>
-									<div style="margin-top: 15px;"></div>
-									<div style="display: flex; justify-content: center;">
-										<div class="my-2"></div>
-										<a href="#" class="btn btn-primary btn-icon-split"> <span
-											class="text">Đổi mật khẩu</span>
-										</a>
-									</div>
+						</form>
 
-								</div>
-							</div>
+						<!-- Hình ảnh -->
+						<div class="col-lg-2 d-flex justify-content-center">
+							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
 						</div>
 					</div>
-
 				</div>
-				<!-- /.container-fluid -->
+
+
+				<!-- End of Main Content -->
 
 			</div>
 			<!-- End of Main Content -->

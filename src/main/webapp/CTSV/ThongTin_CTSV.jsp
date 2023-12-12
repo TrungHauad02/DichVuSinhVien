@@ -21,9 +21,9 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="../css/styles.css" rel="stylesheet">
-
+    <link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body id="page-top">
 
@@ -40,22 +40,22 @@
 	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 	        </a>
         	<li class="nav-item active mt-5">
-                <a class="nav-link" href="ThongTin_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/ThongTin_CTSV/${ctsv.ID_CTSV}">
                     <span >Thông tin cá nhân</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="ThemDiem_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/ThemDiem?ctsvId=${ctsv.ID_CTSV}">
                     <span >Thêm điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="ThemSinhVienVaoLop_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/ThemSinhVien?ctsvId=${ctsv.ID_CTSV}">
                     <span >Thêm sinh viên vào lớp</span></a>
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="XuLyYeuCau_CTSV.jsp">
+                <a class="nav-link" href="/DichVuSinhVien/xu-ly-yeu-cau?ctsvId=${ctsv.ID_CTSV}">
                     <span >Xử lý yêu cầu</span></a>
             </li>
             <hr class="sidebar-divider my-0">
@@ -161,31 +161,28 @@
                             </div>
                             <div class="form-group">
                                 <label for="ten">Họ Tên</label>
-                                <label for="ten" class="form-control">${ctsv.HoTen}</label>
+                                <label for="ten" class="form-control">${ctsv.getHoTen()}</label>
                             </div>
                             <div class="form-group">
                                 <label for="ngaysinh">Ngày sinh</label>
-                                <input type="date" class="form-control" id="ngaysinh">
+                                <input type="date" class="form-control" id="ngaysinh" value="${ctsv.getNgaySinh()}">
                             </div>
                             <div class="form-group">
                                 <label for="gioitinh">Giới tính</label>
-                                <label for="gioitinh" class="form-control">${ctsv.GioiTinh}</label>
+                                <label for="gioitinh" class="form-control">${ctsv.getGioiTinh()}</label>
                             </div>
                             <div class="form-group">
                                 <label for="cccd">CCCD</label>
-                                <label for="cccd" class="form-control">${ctsv.CCCD}</label>
+                                <label for="cccd" class="form-control">${ctsv.getCCCD()}</label>
                             </div>
-                            <div class="form-group">
-                                <label for="soyeucau">Số yêu cầu đã xử lý</label>
-                                <label for="soyeucau" class="form-control">Số yêu cầu đã xử lý</label>
-                            </div>
+                            
                             <div class="form-group">
                                 <label for="sodienthoai">Số điện thoại</label>
-                                <label for="sodienthoai" class="form-control">${ctsv.SDT}</label>
+                                <input type="" id="sdt"  class="form-control" value="${ctsv.getSDT()}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <label for="email" class="form-control">${ctsv.Email}</label>
+                                <input type="text" id= "email" class="form-control" value="${ctsv.getEmail()}">
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -194,10 +191,10 @@
 	                        </div>
 	                        <div class = "row">
 	                        <div class="col-md-6">
-	                            <button type="button" class="btn btn-success">Cập nhật thông tin</button>
+	                            <button type="button" class="btn btn-success" id="updateButton">Cập nhật thông tin</button>
 	                        </div>
                             <div class="col-md-6">
-	                            <button type="button" class="btn btn-primary">Đổi mật khẩu</button>
+	                            <button type="button" class="btn btn-primary" id="reset-password-button">Đổi mật khẩu</button>
 	                        </div>
 	                        </div>
                         </div>
@@ -262,6 +259,33 @@
     <script src="../js/sb-admin-2.min.js"></script>
     <script src="https://cdn.lordicon.com/lordicon.js"></script>
 
+<script>
 
+$("#updateButton").on("click", function(){
+    const sdtValue = $("#sdt").val(); 
+    const emailValue = $("#email").val();
+	const url = "/DichVuSinhVien/ThongTin_CTSV/" + ${ctsv.ID_CTSV};
+    $.ajax({
+        url: url,
+        method: "PUT",
+        contentType: "application/json; charset=utf-8",
+        data: JSON.stringify({
+            sdt: sdtValue,
+            email: emailValue,
+        }),
+        success: function (data) {
+        	 window.location.href = url
+        },
+        error: function () {
+            console.log("Error saving data");
+        }
+    });		
+	})
+	
+$("#reset-password-button").on("click", function(){
+    const sdtValue = $("#sdt").val(); 
+	window.location.href = "/DichVuSinhVien/reset-password"
+	})	
+</script>
 </body>
 </html>

@@ -21,7 +21,7 @@ public class QuanLy implements Serializable {
     
     
 
-    public QuanLy(int iD_QuanLy, String hoTen, String cCCD, String gioiTinh, Date ngaySinh, String sDT, String email) {
+    public QuanLy(int iD_QuanLy, String hoTen, Date ngaySinh,  String gioiTinh,String cCCD , String sDT, String email) {
 		super();
 		ID_QuanLy = iD_QuanLy;
 		HoTen = hoTen;
@@ -121,4 +121,12 @@ public class QuanLy implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+
+
+	@Override
+	public String toString() {
+		return "QuanLy [ID_QuanLy=" + ID_QuanLy + ", HoTen=" + HoTen + ", CCCD=" + CCCD + ", GioiTinh=" + GioiTinh
+				+ ", NgaySinh=" + NgaySinh + ", SDT=" + SDT + ", Email=" + Email + "]";
+	}
 }

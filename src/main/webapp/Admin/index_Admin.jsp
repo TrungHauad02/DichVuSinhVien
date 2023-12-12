@@ -72,7 +72,7 @@
 					<ul class="navbar-nav" style="width: 100%;">
 
 						<li class="nav-item"><a class="nav-link text-gray-900 medium"
-							href="#">Trang Chủ</a></li>
+							href="ThongTin_Admin.jsp">Trang Chủ</a></li>
 						<li class="nav-item"><a class="nav-link text-gray-900 medium"
 							href="#">Hỗ Trợ</a></li>
 						<!-- Nav Item - User Information -->

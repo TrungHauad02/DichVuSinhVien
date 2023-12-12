@@ -23,7 +23,7 @@ public class ThamGiaLopHoc implements Serializable {
     }
 
     // getters and setters
-    public String getIdSinhVien() {
+    public String getID_SinhVien() {
         return idSinhVien;
     }
 
@@ -31,7 +31,7 @@ public class ThamGiaLopHoc implements Serializable {
         this.idSinhVien = idSinhVien;
     }
 
-    public int getIdLopHoc() {
+    public int getID_LopHoc() {
         return idLopHoc;
     }
 
