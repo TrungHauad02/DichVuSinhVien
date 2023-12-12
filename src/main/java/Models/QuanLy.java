@@ -21,7 +21,7 @@ public class QuanLy implements Serializable {
     
     
 
-    public QuanLy(int iD_QuanLy, String hoTen, String cCCD, String gioiTinh, Date ngaySinh, String sDT, String email) {
+    public QuanLy(int iD_QuanLy, String hoTen, Date ngaySinh,  String gioiTinh,String cCCD , String sDT, String email) {
 		super();
 		ID_QuanLy = iD_QuanLy;
 		HoTen = hoTen;
