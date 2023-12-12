@@ -8,6 +8,7 @@ public class ThamGiaHD implements Serializable {
     private String ID_SinhVien;
     private int ID_HoatDong;
     private int TrangThai;
+    private int ID_YeuCau;
 
     public ThamGiaHD() {
     }
@@ -35,4 +36,12 @@ public class ThamGiaHD implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+	public int getID_YeuCau() {
+		return ID_YeuCau;
+	}
+
+	public void setID_YeuCau(int iD_YeuCau) {
+		ID_YeuCau = iD_YeuCau;
+	}
 }

@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="Models.HoatDong" %>
+<%@ page import="Models.Khoa" %>
+<%@ page import="Models.ToChuc" %>
+<%@ page import="Models.YeuCau" %>
+<%@ page import="Models.ThamGiaHD" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,45 +37,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
-	            <div >
-	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
-	            </div>
-	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
-	        </a>
-        	<li class="nav-item active mt-5">
-                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinSinhVien">
-                    <span >Thông tin cá nhân</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
-                    <span >Bảng điểm</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinDSGiayXacNhan">
-                    <span >Giấy xác nhận</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/GiayVayVon_SinhVien.jsp">
-                    <span >Giấy vay vốn</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHoatDong_SinhVien.jsp">
-                    <span >Đăng ký hoạt động</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHocBong_SinhVien.jsp">
-                    <span >Đăng ký học bổng</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-        </ul>
+        <jsp:include page="./Sidebar_SinhVien.jsp" />
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -126,43 +95,44 @@
                 <!-- Your Slide bar and main content goes here -->
 				<div class="container">
 			        <div class="row">
-			            <div class="col">
+			            <div class="col-6">
 			               <div class="form-group row">
-							    <label for="activityType" class="col-sm-3 col-form-label">Loại hoạt động:</label>
+							    <label for="activityType" class="col-sm-7 col-form-label">Trạng thái hoạt động:</label>
 							    <div class="col-sm-5">
-							        <select class="form-control" id="activityType">
-							            <option>Hoạt động 1</option>
-							            <option>Hoạt động 2</option>
-							            <option>Hoạt động 3</option>
-							        </select>
-							    </div>
-							    <div class="col-sm-4">
 							        <select class="form-control" id="activityStatus">
 							            <option>Chưa diễn ra</option>
-							            <option>Đã đăng ký</option>
 							            <option>Đã hoàn thành</option>
+							            <option>Tất cả</option>
 							        </select>
 							    </div>
 							</div>
 
 			                <table class="table table-bordered">
-			                    <thead>
-			                        <tr>
-			                            <th>Tên hoạt động</th>
-			                            <th>Ngày tổ chức</th>
-			                            <th>Khoa tổ chức</th>
-			                        </tr>
-			                    </thead>
-			                    <tbody>
-			                        <tr>
-			                            <td>Hoạt động 1</td>
-			                            <td>01/01/2023</td>
-			                            <td>Khoa A</td>
-			                        </tr>
-			                    </tbody>
-			                </table>
+						        <thead>
+						            <tr>
+						                <th>Tên hoạt động</th>
+						                <th>Ngày tổ chức</th>
+						                <th>Khoa tổ chức</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <c:forEach var="hd" items="${dshd}" varStatus="status">
+									    <tr class="clickable-row" data-id="${hd.getID_HoatDong()}">
+									        <td>${hd.getTenHoatDong()}</td>
+									        <td>${hd.getNgayThamGia()}</td>
+									        <td>
+									            <c:forEach var="tochuc" items="${dstochuc}">
+									                <c:if test="${tochuc.getID_HoatDong() eq hd.getID_HoatDong()}">
+									                    ${tochuc.getKhoaTC().getTenKhoa()}
+									                </c:if>
+									            </c:forEach>
+									        </td>
+									    </tr>
+									</c:forEach>
+						        </tbody>
+						    </table>
 			            </div>
-			            <div class="col">
+			            <div class="col-6">
 			                <form>
 			                    <div class="form-group">
 			                        <label for="activityName">Tên hoạt động:</label>
@@ -182,11 +152,7 @@
 			                        <label for="date">Ngày:</label>
 			                        <input type="date" class="form-control" id="date">
 			                        <label for="status">Trạng thái:</label>
-			                        <select class="form-control" id="status">
-			                            <option>Chưa diễn ra</option>
-			                            <option>Đã đăng ký</option>
-			                            <option>Đã hoàn thành</option>
-			                        </select>
+			                        <input type="text" class="form-control" id="status">
 			                    </div>
 			                    <div class="form-group">
 			                        <label for="description">Mô tả:</label>
@@ -222,5 +188,38 @@
     </a>
     <!-- Bootstrap core JavaScript-->
     <jsp:include page="../Scripts.jsp" />
+    
+    <!-- Custum JavaScript-->
+    <c:set var="dstochucArray" value="${dstochuc.toArray()}"/>
+    <c:set var="dshoatdongArray" value="${dshoatdong.toArray()}"/>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".clickable-row").click(function () {
+            	console.log("Đã click");
+                var idHoatDong = $(this).data("id");
+                var organizerName = "";
+                var dstochucArray = <c:out value="${dstochucArray}" escapeXml="false"/>;
+                var dshoatdongArray = <c:out value="${dshoatdongArray}" escapeXml="false"/>;
+
+                $.each(dstochucArray, function (index, tochuc) {
+                    if (tochuc.ID_HoatDong == idHoatDong) {	
+                        organizerName = tochuc.KhoaTC.TenKhoa;
+                        return false;
+                    }
+                });
+                var activityName = "";
+                $.each(${dshoatdongArray}, function(index, hoatdong) {
+                    if (hoatdong.ID_HoatDong == idHoatDong) {
+                    	activityName = hoatdong.TenHoatDong;
+                    	return false;
+                 	}
+                });
+
+            	$("#activityName").val(activityName).prop("readonly", true);
+            	$("#organizer").val(organizerName).prop("readonly", true);
+            	
+            });
+        });
+    </script>
 </body>
 </html>

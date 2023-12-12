@@ -2,12 +2,15 @@ package Models;
 
 import java.io.Serializable;
 
+import DAO.ToChucDAO;
+
 public class ToChuc implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int ID_HoatDong;
     private int ID_Khoa;
     private int TrangThai;
+    private Khoa KhoaTC;
 
     public ToChuc() {
     }
@@ -35,4 +38,17 @@ public class ToChuc implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+	public Khoa getKhoaTC() {
+		return KhoaTC;
+	}
+
+	public void setKhoaTC() {
+		ToChucDAO tochucDAO = new ToChucDAO();
+		try {
+			KhoaTC = tochucDAO.LayKhoaTC(this.ID_Khoa);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
