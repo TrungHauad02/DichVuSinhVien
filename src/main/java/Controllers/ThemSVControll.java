@@ -16,49 +16,52 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.QuanLyDAO;
 import Models.SinhVien;
 
-
 @WebServlet("/insertsv")
 public class ThemSVControll extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    private QuanLyDAO dao;
-    public ThemSVControll() {
-        super();
-       
-    }
 
-	
+	private QuanLyDAO dao;
+
+	public ThemSVControll() {
+		super();
+
+	}
+
 	public void init(ServletConfig config) throws ServletException {
 		dao = new QuanLyDAO();
 	}
 
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Admin/ThemSV.jsp");
 		dispatcher.forward(request, response);
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		String hoTen = request.getParameter("name");
-        String cccd = request.getParameter("cccd");
-        int gioiTinh = Integer.parseInt(request.getParameter("gender"));
-		/*
-		 * java.util.Date ngaySinh = null; try { SimpleDateFormat sdf = new
-		 * SimpleDateFormat("yyyy-MM-dd"); String dobParameter =
-		 * request.getParameter("date"); if (dobParameter != null &&
-		 * !dobParameter.isEmpty()) { ngaySinh = sdf.parse(dobParameter); } } catch
-		 * (ParseException e) { e.printStackTrace(); }
-		 */
-        Date ngaySinh = Date.valueOf(request.getParameter("ngaySinh"));
-	    String sdt = request.getParameter("sdt");
-	    String email = request.getParameter("email");
-	    String namHoc = request.getParameter("khoaHoc");
-	    int khoa = Integer.parseInt(request.getParameter("khoa"));
-	    int idTaiKhoan = Integer.parseInt(request.getParameter("idTK"));
-	    SinhVien sinhVien = new SinhVien(hoTen, cccd, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTaiKhoan);
-	    dao.insertSV(sinhVien);
-        response.sendRedirect("quanlysinhvien");
+		String cccd = request.getParameter("cccd");
+		int gioiTinh = Integer.parseInt(request.getParameter("gender"));
+
+		java.util.Date ngaySinh = null;
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String dobParameter = request.getParameter("date");
+			if (dobParameter != null && !dobParameter.isEmpty()) {
+				ngaySinh = sdf.parse(dobParameter);
+			}
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+
+		String sdt = request.getParameter("sdt");
+		String email = request.getParameter("email");
+		String namHoc = request.getParameter("khoaHoc");
+		int khoa = Integer.parseInt(request.getParameter("khoa"));
+		int idTaiKhoan = Integer.parseInt(request.getParameter("idTK"));
+		SinhVien sinhVien = new SinhVien(hoTen, cccd, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTaiKhoan);
+		dao.insertSV(sinhVien);
+		response.sendRedirect("quanlysinhvien");
 	}
 
 }

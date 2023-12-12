@@ -1,3 +1,4 @@
+
 package DAO;
 
 import java.sql.CallableStatement;
@@ -6,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +44,7 @@ public class QuanLyDAO {
 	// lophoc
 	private static final String SELECT_ALL_LOPHOC = "select ID_LopHoc, MonHoc, TinChi from LOPHOC where TrangThai = 1";
 	private static final String DELETE_LOPHOC_SQL = "UPDATE LOPHOC SET TrangThai = 0 WHERE ID_LopHoc = ?";
+
 	// Admin
 	public QuanLy selectAdmin(int idquanly) {
 		QuanLy quanly = null;
@@ -111,7 +114,7 @@ public class QuanLyDAO {
 	 */
 	// Your existing connection code and other methods...
 
-	public static void insertSV(SinhVien sinhVien) {
+	public void insertSV(SinhVien sinhVien) {
 		try (Connection conn = JDBCUtil.getConnection()) {
 			String storedProcedure = "{CALL ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
 			try (CallableStatement cs = conn.prepareCall(storedProcedure)) {
@@ -359,6 +362,7 @@ public class QuanLyDAO {
 		}
 		return khoas;
 	}
+
 	public boolean deleteKhoa(int id) {
 		boolean rowDeleted = false;
 		try {
@@ -372,8 +376,6 @@ public class QuanLyDAO {
 		}
 		return rowDeleted;
 	}
-
-	
 
 	// LopHoc
 
@@ -397,6 +399,7 @@ public class QuanLyDAO {
 		}
 		return lopHocs;
 	}
+
 	public boolean deleteLopHoc(int id) {
 		boolean rowDeleted = false;
 		try {
