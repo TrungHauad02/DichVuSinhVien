@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Cập nhật sinh viên</title>
+<title>Cập nhật CTSV</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -56,15 +56,16 @@
 			<hr class="sidebar-divider my-0">
 
 			<!-- Nav Item - Dashboard -->
-			<li class="nav-item"><a class="nav-link" href="admin"> <i
-					class="fas fa-home"></i> <span>Trang chủ</span>
+			<li class="nav-item"><a class="nav-link" href="admin">
+					<i class="fas fa-home"></i> <span>Trang chủ</span>
 			</a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link" href="quanlysinhvien">
-					<span>Quản lý sinh viên</span>
+			<li class="nav-item"><a class="nav-link"
+				href="quanlysinhvien"> <span>Quản lý sinh
+						viên</span>
 			</a></li>
 
 			<!-- Divider -->
@@ -202,99 +203,87 @@
 
 				<!-- Your Slide bar and main content goes here -->
 				<div class="container">
-					<form action="updatesv" method="post">
-						<div class="row">
-							<!-- Bảng Thông tin cá nhân -->
-							<div class="col-lg-6">
-								<table class="table">
-									<thead>
-										<tr>
-											<th colspan="2" class="h3">Thông tin cá nhân</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td><label for="mssv" class="h4">MSSV:</label></td>
-											<td><input type="text" id="mssv" name="id"
-												class="form-control" value="${sv.ID_SinhVien}"></td>
-										</tr>
-										<tr>
-											<td><label for="name" class="h4">Họ tên:</label></td>
-											<td><input type="text" id="name" name="name"
-												class="form-control" value="${sv.getHoTen()}"></td>
-										</tr>
-										<tr>
-											<td><label for="dob" class="h4">Ngày sinh:</label></td>
-											<td><input type="date" id="dob" name="date"
-												class="form-control" value="${sv.getNgaySinh()}"></td>
-										</tr>
-										<tr>
-											<td><label class="h4">Giới tính:</label></td>
-											<td>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="gender"
-														id="male" value="1" 
-														checked> <label
-														class="form-check-label h4" for="male"> Nam </label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="gender"
-														id="female" value="0"
-														checked}> <label
-														class="form-check-label h4" for="female"> Nữ </label>
-												</div>
-											</td>
-										</tr>
-										<tr>
-											<td><label for="cccd" class="h4">CCCD:</label></td>
-											<td><input type="text" id="cccd" name="cccd"
-												class="form-control" value="${sv.getCCCD()}"></td>
-										</tr>
-										<tr>
-											<td><label for="faculty" class="h4">Khoa:</label></td>
-											<td><input type="text" id="faculty" name="khoa"
-												class="form-control" value="${sv.getKhoa()}"></td>
-										</tr>
-										<tr>
-											<td><label for="course" class="h4">Khóa học:</label></td>
-											<td><input type="text" id="course" name="khoaHoc"
-												class="form-control" value="${sv.getNamHoc()}"></td>
-										</tr>
-									</tbody>
-								</table>
-								<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
-								<div class="text-center mt-3">
-									<button class="btn btn-primary mr-3">Cập nhật sinh viên</button>
-								</div>
-								<div style="margin-top: 40px;"></div>
-							</div>
-					</form>
+				<form action="updatectsv" method="post">
+					<div class="row">
+						<!-- Bảng Thông tin cá nhân -->
+						<div class="col-lg-6">
+							<table class="table">
+								<thead>
+									<tr>
+										<th colspan="2" class="h3">Thông tin cá nhân</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td><label for="mssv" class="h4">ID:</label></td>
+										<td><input type="text" id="mssv" name="id" class="form-control" value="${ctsv.ID_CTSV}"></td>
+									</tr>
+									<tr>
+										<td><label for="name" class="h4">Họ tên:</label></td>
+										<td><input type="text" id="name" name="name" class="form-control" value="${ctsv.getHoTen()}"></td>
+									</tr>
+									<tr>
+										<td><label for="cccd" class="h4">CCCD:</label></td>
+										<td><input type="text" id="cccd" name="cccd" class="form-control" value="${ctsv.getCCCD()}"></td>
+									</tr>
+									<tr>
+										<td><label class="h4">Giới tính:</label></td>
+										<td>
+											<input type="text" id="dob" name="gender" class="form-control"
+											value="${ctsv.getGioiTinh()}">
 
-					<!-- Hình ảnh -->
-					<div class="col-lg-2 d-flex justify-content-center">
-						<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
+										</td>
+									</tr>
+									<tr>
+										<td><label for="dob" class="h4">Ngày sinh:</label></td>
+										<td><input type="date" id="dob" name="date" class="form-control" value="${ctsv.getNgaySinh()}"></td>
+									</tr>
+									
+									
+									<tr>
+										<td><label for="faculty" class="h4">SDT:</label></td>
+										<td><input type="text" id="faculty" name="sdt" class="form-control" value="${ctsv.getSDT()}"></td>
+									</tr>
+									<tr>
+										<td><label for="course" class="h4">Email:</label></td>
+										<td><input type="text" id="course" name="email" class="form-control" value="${ctsv.getEmail()}"></td>
+									</tr>
+								</tbody>
+							</table>
+							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
+							<div class="text-center mt-3">
+								<button class="btn btn-primary mr-3">Cập nhật CTSV</button>
+							</div>
+							<div style="margin-top: 40px;"></div>
+						</div>
+
+						</form>
+
+						<!-- Hình ảnh -->
+						<div class="col-lg-2 d-flex justify-content-center">
+							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
+						</div>
 					</div>
 				</div>
+
+
+				<!-- End of Main Content -->
+
 			</div>
-
-
 			<!-- End of Main Content -->
 
-		</div>
-		<!-- End of Main Content -->
-
-		<!-- Footer -->
-		<footer class="sticky-footer bg-white">
-			<div class="container my-auto">
-				<div class="copyright text-center my-auto">
-					<span>Copyright &copy; Your Website 2023</span>
+			<!-- Footer -->
+			<footer class="sticky-footer bg-white">
+				<div class="container my-auto">
+					<div class="copyright text-center my-auto">
+						<span>Copyright &copy; Your Website 2023</span>
+					</div>
 				</div>
-			</div>
-		</footer>
-		<!-- End of Footer -->
+			</footer>
+			<!-- End of Footer -->
 
-	</div>
-	<!-- End of Content Wrapper -->
+		</div>
+		<!-- End of Content Wrapper -->
 
 	</div>
 	<!-- End of Page Wrapper -->

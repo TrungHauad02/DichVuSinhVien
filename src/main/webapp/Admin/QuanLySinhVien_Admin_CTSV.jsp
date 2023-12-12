@@ -253,7 +253,7 @@
 													<td><a
 														href="updatesv?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
-														href="delete?id=<c:out value='${SV.ID_SinhVien}' />">Delete</a></td>
+														href="deletesv?id=<c:out value='${SV.ID_SinhVien}' />">Delete</a></td>
 												</tr>
 											</c:forEach>
 

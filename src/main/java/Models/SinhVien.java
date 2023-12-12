@@ -61,6 +61,16 @@ public class SinhVien implements Serializable {
 
 	public SinhVien() {
 	}
+	public SinhVien(String hoTen2, String cccd2, int gioiTinh2, Date ngaySinh2, String sdt2, String email2,
+			String namHoc2, int khoa2, int idTaiKhoan) {
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+
+
+
 	public String getID_SinhVien() {
         return ID_SinhVien;
     }

@@ -9,24 +9,27 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Models.CTSV;
 import Models.QuanLy;
 import Models.SinhVien;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
 public class QuanLyDAO {
-	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?,SDT=?, Email=? WHERE ID_QuanLY = ?";
-	private static final String SELECT_ADMIN_BY_ID = "select * from QUANLY where ID_QuanLy =?";
+	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?,SDT=?, Email=? WHERE ID_QuanLY = ? and TrangThai = 1";
+	private static final String SELECT_ADMIN_BY_ID = "select * from QUANLY where ID_QuanLy =? and TrangThai = 1";
 
-	private static final String INSERT_SVS_SQL = "INSERT INTO sinhvien"
-			+ "  (ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, NamHoc, Khoa, DiemRL, DiemCTXH) VALUES "
-			+ " (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
 
-	private static final String SELECT_SV_BY_ID = "select * from SINHVIEN where ID_SinhVien =?";
-	private static final String SELECT_ALL_SV = "select ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, NamHoc, Khoa, ID_TaiKhoan, DiemRL, DiemCTXH, TrangThai from SINHVIEN";
-	private static final String DELETE_USERS_SQL = "delete from sinhvien where ID_SinhVien = ?;";
+
+	private static final String SELECT_SV_BY_ID = "select * from SINHVIEN where ID_SinhVien =? and TrangThai = 1";
+	private static final String SELECT_ALL_SV = "select ID_SinhVien, HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, NamHoc, Khoa, ID_TaiKhoan, DiemRL, DiemCTXH, TrangThai from SINHVIEN where TrangThai = 1";
 	private static final String UPDATE_SV_SQL = "update SINHVIEN set HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?, NamHoc = ?, Khoa = ? where ID_SinhVien = ?";
+	private static final String DELETE_SV_SQL = "UPDATE SINHVIEN SET TrangThai = 0 WHERE ID_SinhVien = ?";
 	
+	private static final String SELECT_CTSV_BY_ID = "select * from CTSV where ID_CTSV =? and TrangThai = 1";
+	private static final String SELECT_ALL_CTSV = "select ID_CTSV, HoTen, NgaySinh, GioiTinh, CCCD, SDT, Email from CTSV where TrangThai = 1";
+	private static final String UPDATE_CTSV_SQL = "UPDATE CTSV SET HoTen=?, CCCD=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE ID_CTSV = ?";
+	private static final String DELETE_CTSV_SQL = "UPDATE CTSV SET TrangThai = 0 WHERE ID_CTSV = ?";
 	//Admin
 	public QuanLy selectAdmin(int idquanly) {
 		QuanLy quanly = null;
@@ -96,26 +99,24 @@ public class QuanLyDAO {
 	 */
 	// Your existing connection code and other methods...
 
-    public void insertSV(String hoTen, String cccd, int gioiTinh, 
-                           java.util.Date ngaySinh, String sdt, String email, 
-                           String namHoc, int khoa, int idTaiKhoan) {
-        try (Connection conn = JDBCUtil.getConnection();
-             CallableStatement callableStatement = conn.prepareCall("{call ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}")) {
-            
-            callableStatement.setString(1, hoTen);
-            callableStatement.setString(2, cccd);
-            callableStatement.setInt(3, gioiTinh);
-            callableStatement.setDate(4, (Date) ngaySinh);
-            callableStatement.setString(5, sdt);
-            callableStatement.setString(6, email);
-            callableStatement.setString(7, namHoc);
-            callableStatement.setInt(8, khoa);
-            callableStatement.setInt(9, idTaiKhoan);
+    public static void insertSV(SinhVien sinhVien) {
+    	try (Connection conn = JDBCUtil.getConnection()) {
+            String storedProcedure = "{CALL ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+            try (CallableStatement cs = conn.prepareCall(storedProcedure)) {
+                cs.setString(1, sinhVien.getHoTen());
+                cs.setString(2, sinhVien.getCCCD());
+                cs.setInt(3, sinhVien.getGioiTinh());
+                cs.setDate(4, new java.sql.Date(sinhVien.getNgaySinh().getTime()));
+                cs.setString(5, sinhVien.getSDT());
+                cs.setString(6, sinhVien.getEmail());
+                cs.setString(7, sinhVien.getNamHoc());
+                cs.setInt(8, sinhVien.getKhoa());
+                cs.setInt(9, sinhVien.getID_TaiKhoan());
 
-            callableStatement.execute();
+                cs.executeUpdate();
+            }
         } catch (SQLException e) {
         	HandleExeption.printSQLException(e);
-            // Handle the exception as needed
         }
     }
 
@@ -207,16 +208,110 @@ public class QuanLyDAO {
 		return sinhviens;
 	}
 
-	public boolean deleteSV(int id) throws SQLException {
+	public boolean deleteSV(String id) {
 		boolean rowDeleted = false;
 		try {
 			Connection conn = JDBCUtil.getConnection();
-			PreparedStatement statement = conn.prepareStatement(DELETE_USERS_SQL);
-			statement.setInt(1, id);
+			PreparedStatement statement = conn.prepareStatement(DELETE_SV_SQL);
+			statement.setString(1, id);
+			statement.executeUpdate();
 			rowDeleted = statement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
 		}
 		return rowDeleted;
 	}
+	
+	//CTSV
+	public CTSV selectCTSV(int idctsv) {
+		CTSV ctsv = null;
+		// Step 1: Establishing a Connection
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_CTSV_BY_ID);
+			preparedStatement.setInt(1, idctsv);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int id = rs.getInt("ID_CTSV");
+				String hoten = rs.getString("HoTen");
+				String cccd = rs.getString("CCCD");
+				String gioitinh = rs.getString("GioiTinh");
+				Date ngaysinh = rs.getDate("NgaySinh");
+				String sdt = rs.getString("SDT");
+				String email = rs.getString("Email");
+				int id_TaiKhoan = rs.getInt("ID_TaiKhoan");
+				int trangthai = rs.getInt("TrangThai");
+				ctsv = new CTSV(id, hoten, cccd, gioitinh, ngaysinh, sdt, email, id_TaiKhoan, trangthai);
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return ctsv;
+	}
+	public List<CTSV> selectAllCTSV() {
+
+		// using try-with-resources to avoid closing resources (boiler plate code)
+		List<CTSV> ctsvs = new ArrayList<>();
+		// Step 1: Establishing a Connection
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			// Step 2:Create a statement using connection object
+			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_CTSV);
+			// Step 3: Execute the query or update query
+			ResultSet rs = preparedStatement.executeQuery();
+
+			// Step 4: Process the ResultSet object.
+			while (rs.next()) {
+				int iD_SinhVien = rs.getInt("ID_CTSV");
+				String hoTen = rs.getString("HoTen");
+				String cCCD = rs.getString("CCCD");
+				String gioiTinh = rs.getString("GioiTinh");
+				Date ngaySinh = rs.getDate("NgaySinh");
+				String sdt = rs.getString("SDT");
+				String email = rs.getString("Email");
+				ctsvs.add(new CTSV(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email));
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return ctsvs;
+	}
+	
+	public boolean updateCTSV(CTSV ctsv) {
+		boolean rowUpdated = false;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement statement = conn.prepareStatement(UPDATE_CTSV_SQL);
+			statement.setString(1, ctsv.getHoTen());
+			statement.setString(2, ctsv.getCCCD());
+			statement.setString(3, ctsv.getGioiTinh());
+			statement.setDate(4, new java.sql.Date(ctsv.getNgaySinh().getTime()));
+			statement.setString(5, ctsv.getSDT());
+			statement.setString(6, ctsv.getEmail());
+			statement.setInt(7, ctsv.getID_CTSV());
+			rowUpdated = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return rowUpdated;
+	}
+	
+	public boolean deleteCTSV(int id)  {
+		boolean rowDeleted = false;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement statement = conn.prepareStatement(DELETE_CTSV_SQL);
+			statement.setInt(1, id);
+			statement.executeUpdate();
+			rowDeleted = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return rowDeleted;
+	}
+	
+	
 }

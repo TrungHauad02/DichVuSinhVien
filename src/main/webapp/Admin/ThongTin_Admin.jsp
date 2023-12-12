@@ -76,7 +76,7 @@
 			<hr class="sidebar-divider">
 			<!-- Divider -->
 			<li class="nav-item"><a class="nav-link"
-				href="QuanLyCTSV_Admin.jsp"> <span>Quản lý CTSV</span>
+				href="quanlyctsv"> <span>Quản lý CTSV</span>
 			</a></li>
 
 			<!-- Divider -->
