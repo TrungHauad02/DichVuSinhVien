@@ -78,32 +78,30 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
+						lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
+						lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
-					<span>Quản lý học bổng</span>
+			<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
+					<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link"
-				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
-					<span>Quản lý lớp học</span>
+			<li class="nav-item"><a class="nav-link" href="quanlylophoc">
+					<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="hotro">
-					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
+			<li class="nav-item"><a class="nav-link" href="hotro"> <i
+					class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
 		</ul>
@@ -213,15 +211,18 @@
 									CTSV</h6>
 							</div>
 							<div class="card-body">
-								<div>
-									<a href="insertctsv" class="btn btn-primary btn-icon-split">
-										<span class="text">Thêm CTSV</span>
-									</a>
+								<div class="row">
+									<div class="col-xl-5">
+										<a href="insertctsv" class="btn btn-primary btn-icon-split">
+											<span class="text">Thêm CTSV</span>
+										</a>
+									</div>
+
 								</div>
 								<div style="margin-top: 20px;"></div>
 								<div class="table-responsive">
-									<table class="table table-bordered" id=" dataTable"
-										width="100%" cellspacing="0"">
+									<table class="table table-bordered" id=" myTable" width="100%"
+										cellspacing="0"">
 										<thead>
 											<tr>
 												<th>ID_CTSV</th>
@@ -246,7 +247,8 @@
 													<td><c:out value="${ctsv.getNgaySinh()}" /></td>
 													<td><c:out value="${ctsv.getSDT()}" /></td>
 													<td><c:out value="${ctsv.getEmail()}" /></td>
-													<td><a href="updatectsv?id=<c:out value='${ctsv.ID_CTSV}' />">Edit</a>
+													<td><a
+														href="updatectsv?id=<c:out value='${ctsv.ID_CTSV}' />">Edit</a>
 														&nbsp;&nbsp;&nbsp;&nbsp; <a
 														href="deletectsv?id=<c:out value='${ctsv.ID_CTSV}' />">Delete</a></td>
 												</tr>
@@ -307,7 +309,6 @@
 			</div>
 		</div>
 	</div>
-
 	<!-- Bootstrap core JavaScript-->
 	<script src="../vendor/jquery/jquery.min.js"></script>
 	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

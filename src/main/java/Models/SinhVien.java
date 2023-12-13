@@ -56,10 +56,8 @@ public class SinhVien implements Serializable {
 		Khoa = khoa;
 	}
 
-
-
 	public SinhVien(String hoTen, String cCCD, int gioiTinh, Date ngaySinh, String sDT, String email, String namHoc,
-			int khoa) {
+			int khoa, int iD_TaiKhoan) {
 		super();
 		HoTen = hoTen;
 		CCCD = cCCD;
@@ -69,7 +67,10 @@ public class SinhVien implements Serializable {
 		Email = email;
 		NamHoc = namHoc;
 		Khoa = khoa;
+		ID_TaiKhoan = iD_TaiKhoan;
 	}
+
+
 
 	public SinhVien() {
 	}
