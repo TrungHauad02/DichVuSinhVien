@@ -41,7 +41,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/SinhVien/DangKyHocBong_SinhVien.jsp">
+                <a class="nav-link" href="<%= request.getContextPath()%>/DSHocBong">
                     <span >Đăng ký học bổng</span></a>
             </li>
             <hr class="sidebar-divider my-0">

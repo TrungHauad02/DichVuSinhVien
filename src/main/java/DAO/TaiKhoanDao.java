@@ -208,5 +208,68 @@ public class TaiKhoanDao {
             }
 		return ID;
 	}
+	
+	public boolean CheckTrueMail(String tk, String email)throws ClassNotFoundException {
+		boolean status = false;
+		TaiKhoan taikhoan = new TaiKhoan();
+		taikhoan.setTaiKhoan(tk);
+		String phanQuyen = this.LayPhanQuyen(taikhoan);
+		taikhoan.setPhanQuyen(phanQuyen);
+		try (Connection connection = JDBCUtil.getConnection();
+                PreparedStatement preparedStatement = connection
+                .prepareStatement("select * from taikhoan where TaiKhoan = ?")) {
+                preparedStatement.setString(1, tk);
 
+                System.out.println(preparedStatement);
+                ResultSet rs = preparedStatement.executeQuery();
+                rs.next();
+                taikhoan.setID_TaiKhoan(rs.getInt("ID_TaiKhoan"));
+
+            } catch (SQLException e) {
+                HandleExeption.printSQLException(e);
+            }
+		String maND = this.MaNguoiDung(taikhoan);
+		try (Connection connection = JDBCUtil.getConnection();
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("Select * from " + phanQuyen +" where ID_"+phanQuyen +" = ?")) {
+
+			if(phanQuyen.equals("sinhvien"))
+				preparedStatement.setString(1, maND);
+			else
+				preparedStatement.setInt(1, Integer.parseInt(maND));
+
+            ResultSet rs = preparedStatement.executeQuery();
+            while(rs.next())
+            {
+            	if(rs.getString("Email").equals(email))
+            	{
+            		status = true;
+            		break;
+            	}
+            }
+
+        } catch (SQLException e) {
+            HandleExeption.printSQLException(e);
+        }
+		return status;		
+				
+	}
+	
+	public boolean updateMK(TaiKhoan tk)throws ClassNotFoundException {
+		boolean status = false;
+		
+		try (Connection connection = JDBCUtil.getConnection();
+                PreparedStatement preparedStatement = connection
+                        .prepareStatement("UPDATE TAIKHOAN SET MatKhau = ? WHERE TaiKhoan = ?")) {
+			preparedStatement.setString(1, tk.getMatKhau());
+			preparedStatement.setString(2, tk.getTaiKhoan());
+            
+            int rowsAffected = preparedStatement.executeUpdate();
+            status = rowsAffected > 0;
+
+        } catch (SQLException e) {
+            HandleExeption.printSQLException(e);
+        }
+		return status;
+	}
 }
