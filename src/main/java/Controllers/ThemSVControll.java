@@ -58,7 +58,8 @@ public class ThemSVControll extends HttpServlet {
 		String email = request.getParameter("email");
 		String namHoc = request.getParameter("khoaHoc");
 		int khoa = Integer.parseInt(request.getParameter("khoa"));
-		SinhVien sinhVien = new SinhVien(hoTen, cccd, gioiTinh, ngaySinh, sdt, email, namHoc, khoa);
+		int id_TaiKhoan = Integer.parseInt(request.getParameter("idTK"));
+		SinhVien sinhVien = new SinhVien(hoTen, cccd, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, id_TaiKhoan);
 		dao.insertSV(sinhVien);
 		response.sendRedirect("quanlysinhvien");
 	}

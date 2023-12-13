@@ -16,7 +16,6 @@ public class HocBong implements Serializable {
     private int ID_DichVu;
 
     private int TrangThai;
-    private String NoiDung;
     private boolean isDaNhan;
 
 
@@ -114,14 +113,6 @@ public class HocBong implements Serializable {
     public void setgetTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
-	public String getNoiDung() {
-		return NoiDung;
-	}
-
-	public void setNoiDung(String noiDung) {
-		NoiDung = noiDung;
-	}
-	
 	public boolean isDaNhan(String mssv) {
 		boolean status = false;
 		NhanHocBongDAO nhanhbDAO = new NhanHocBongDAO();

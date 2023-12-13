@@ -202,7 +202,6 @@
 				<div class="container">
 					<form action="insertsv" method="post">
 						<div class="row">
-
 							<!-- Bảng Thông tin cá nhân -->
 							<div class="col-lg-6">
 								<table class="table">
