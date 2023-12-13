@@ -1,5 +1,6 @@
 package Controllers;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -12,8 +13,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import DAO.LopHocDao;
-import DAO.ThamGiaLopHocDao;
+import org.json.JSONObject;
+
+import DAO.LopHocDAO;
+import DAO.ThamGiaLopHocDAO;
+import DAO.ThemSinhVienLopDao;
 import DAO.XuLyYeuCauDao;
 import Models.LopHoc;
 import Models.TableYeuCau;
@@ -58,7 +62,24 @@ public class XuLyYeuCauController extends HttpServlet {
 		}
         
 	}
-	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			BufferedReader reader = request.getReader();
+	        StringBuilder jsonData = new StringBuilder();
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            jsonData.append(line);
+	        } 
+	        JSONObject jsonObject = new JSONObject(jsonData.toString());
+	        String trangthai = jsonObject.getString("trangthai");
+	        int idYeuCau = Integer.parseInt(jsonObject.getString("idYC"));
+	        XuLyYeuCauDao.xuLyYeuCau(trangthai ,idYeuCau);
+			}
+			    catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

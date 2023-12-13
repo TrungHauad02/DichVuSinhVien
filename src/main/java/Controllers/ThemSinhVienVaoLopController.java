@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import DAO.LopHocDao;
-import DAO.ThamGiaLopHocDao;
+import DAO.LopHocDAO;
+import DAO.ThamGiaLopHocDAO;
 import DAO.ThemSinhVienLopDao;
 import Models.LopHoc;
 import Models.SinhVien;
@@ -43,7 +43,7 @@ public class ThemSinhVienVaoLopController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			List<LopHoc> danhSachLopHoc = new ArrayList<>();
-			danhSachLopHoc = LopHocDao.selectLopHoc();
+			danhSachLopHoc = LopHocDAO.selectLopHoc();
 			
 	        request.setAttribute("danhSachLopHoc", danhSachLopHoc);
 
@@ -103,7 +103,7 @@ public class ThemSinhVienVaoLopController extends HttpServlet {
 		e.printStackTrace();
 	}
 }
-	
+ 
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 		

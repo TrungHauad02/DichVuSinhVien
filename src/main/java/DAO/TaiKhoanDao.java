@@ -62,12 +62,10 @@ public class TaiKhoanDao {
                 .prepareStatement("select ID_"+tk.getPhanQuyen()
                 +" from "+tk.getPhanQuyen()+" where ID_TaiKhoan = ?")) {
                 preparedStatement.setInt(1, tk.getID_TaiKhoan());
-
                 System.out.println(preparedStatement);
                 ResultSet rs = preparedStatement.executeQuery();
                 rs.next();
                 maND = rs.getString("ID_"+tk.getPhanQuyen());
-
             } catch (SQLException e) {
                 HandleExeption.printSQLException(e);
             }
