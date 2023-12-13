@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="Models.HoatDong" %>
+<%@ page import="Models.Khoa" %>
+<%@ page import="Models.ToChuc" %>
+<%@ page import="Models.YeuCau" %>
+<%@ page import="Models.ThamGiaHD" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,45 +37,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
-	            <div >
-	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
-	            </div>
-	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
-	        </a>
-        	<li class="nav-item active mt-5">
-                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinSinhVien">
-                    <span >Thông tin cá nhân</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
-                    <span >Bảng điểm</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
-                    <span >Giấy xác nhận</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayVayVon_SinhVien.jsp">
-                    <span >Giấy vay vốn</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHoatDong_SinhVien.jsp">
-                    <span >Đăng ký hoạt động</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHocBong_SinhVien.jsp">
-                    <span >Đăng ký học bổng</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-        </ul>
+        <jsp:include page="./Sidebar_SinhVien.jsp" />
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -108,12 +77,12 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="ThongTin_SinhVien.jsp">
+                                <a class="dropdown-item" href="<%= request.getContextPath()%>/ThongTinSinhVien">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Thông tin cá nhân
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../DangNhap.jsp" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="<%= request.getContextPath()%>/DangXuat" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đăng xuất
                                 </a>
@@ -126,73 +95,99 @@
                 <!-- Your Slide bar and main content goes here -->
 				<div class="container">
 			        <div class="row">
-			            <div class="col">
-			               <div class="form-group row">
-							    <label for="activityType" class="col-sm-3 col-form-label">Loại hoạt động:</label>
+			            <div class="col-6">
+			               <!--<div class="form-group row">
+							    <label for="activityType" class="col-sm-7 col-form-label">Trạng thái hoạt động:</label>
 							    <div class="col-sm-5">
-							        <select class="form-control" id="activityType">
-							            <option>Hoạt động 1</option>
-							            <option>Hoạt động 2</option>
-							            <option>Hoạt động 3</option>
-							        </select>
-							    </div>
-							    <div class="col-sm-4">
 							        <select class="form-control" id="activityStatus">
 							            <option>Chưa diễn ra</option>
-							            <option>Đã đăng ký</option>
 							            <option>Đã hoàn thành</option>
+							            <option>Tất cả</option>
 							        </select>
 							    </div>
-							</div>
+							</div> -->
 
 			                <table class="table table-bordered">
-			                    <thead>
-			                        <tr>
-			                            <th>Tên hoạt động</th>
-			                            <th>Ngày tổ chức</th>
-			                            <th>Khoa tổ chức</th>
-			                        </tr>
-			                    </thead>
-			                    <tbody>
-			                        <tr>
-			                            <td>Hoạt động 1</td>
-			                            <td>01/01/2023</td>
-			                            <td>Khoa A</td>
-			                        </tr>
-			                    </tbody>
-			                </table>
+						        <thead>
+						            <tr>
+						                <th>Tên hoạt động</th>
+						                <th>Ngày tổ chức</th>
+						                <th>Khoa tổ chức</th>
+						            </tr>
+						        </thead>
+						        <tbody>
+						            <c:forEach var="hd" items="${dshd}" varStatus="status">
+						            <c:forEach var="tochuc" items="${dstochuc}">
+									  <c:if test="${tochuc.getID_HoatDong() eq hd.getID_HoatDong()}">
+									  	<c:set var="statusValue" value="Chưa đăng ký"/>
+								            <c:forEach var="thamgiahd" items="${dsthamgiahd}">
+								                <c:if test="${thamgiahd.getID_HoatDong() eq hd.getID_HoatDong()}">
+								                    <c:forEach var="yeucau" items="${dsyeucau}">
+								                        <c:if test="${yeucau.getID_YeuCau() eq thamgiahd.getID_YeuCau()}">
+								                            <c:choose>
+								                                <c:when test="${yeucau.getTrangThai() eq 'DangXuLy'}">
+								                                    <c:set var="statusValue" value="Đã đăng ký"/>
+								                                </c:when>
+								                                <c:when test="${yeucau.getTrangThai() eq 'Hoanthanh'}">
+								                                    <c:set var="statusValue" value="Đã tham gia"/>
+								                                </c:when>
+								                                <c:when test="${yeucau.getTrangThai() eq 'TuChoi'}">
+								                                    <c:set var="statusValue" value="Bị từ chối"/>
+								                                </c:when>
+								                            </c:choose>
+								                        </c:if>
+								                    </c:forEach>
+								                </c:if>
+								            </c:forEach>
+									    <tr class="clickable-row" data-id="${hd.getID_HoatDong()}" data-tenhoatdong="${hd.getTenHoatDong()}"
+									    data-ngaythamgia="${hd.getNgayThamGia()}" data-khoatochuc="${tochuc.getKhoaTC().getTenKhoa()}"
+									    data-diemrl="${hd.getDiemRL()}" data-diemctxh ="${hd.getDiemCTXH()}" data-noidung ="${hd.getNoiDung()}"
+									    data-trangthai="${statusValue}"
+									    >
+									        <td>${hd.getTenHoatDong()}</td>
+									        <td>${hd.getNgayThamGia()}</td>
+									        <td>
+									            ${tochuc.getKhoaTC().getTenKhoa()}
+										    </td>
+									    </tr>
+									  </c:if>
+									</c:forEach>
+									</c:forEach>
+						        </tbody>
+						    </table>
 			            </div>
-			            <div class="col">
-			                <form>
+			            <div class="col-6">
+			                <form action="<%=request.getContextPath()%>/DangKyHoatDong" method="post">
+			                    <input type="hidden" id="idHoatDong" name="idHoatDong" value=""/>
 			                    <div class="form-group">
 			                        <label for="activityName">Tên hoạt động:</label>
-			                        <input type="text" class="form-control" id="activityName">
+			                        <input type="text" class="form-control" name="activityName" id="activityName">
 			                    </div>
 			                    <div class="form-group">
 			                        <label for="organizer">Tổ chức:</label>
 			                        <input type="text" class="form-control" id="organizer">
 			                    </div>
+			                    <div class="form-row">
+							        <div class="form-group col-md-6">
+							            <label for="rlPoints">Điểm RL:</label>
+							            <input type="number" class="form-control" id="rlPoints" min="0">
+							        </div>
+							        <div class="form-group col-md-6">
+							            <label for="ctxhPoints">Điểm CTXH:</label>
+							            <input type="number" class="form-control" id="ctxhPoints" min="0">
+							        </div>
+							    </div>
 			                    <div class="form-group">
-			                        <label for="rlPoints">Điểm RL:</label>
-			                        <input type="number" class="form-control" id="rlPoints" min="0">
-			                        <label for="ctxhPoints">Điểm CTXH:</label>
-			                        <input type="number" class="form-control" id="ctxhPoints" min="0">
-			                    </div>
-			                    <div class="form-group">
-			                        <label for="date">Ngày:</label>
+			                        <label for="date">Ngày tổ chức:</label>
 			                        <input type="date" class="form-control" id="date">
 			                        <label for="status">Trạng thái:</label>
-			                        <select class="form-control" id="status">
-			                            <option>Chưa diễn ra</option>
-			                            <option>Đã đăng ký</option>
-			                            <option>Đã hoàn thành</option>
-			                        </select>
+			                        <input type="text" class="form-control" id="status">
 			                    </div>
 			                    <div class="form-group">
 			                        <label for="description">Mô tả:</label>
 			                        <textarea class="form-control" id="description" rows="3"></textarea>
 			                    </div>
-			                    <button type="submit" class="btn btn-primary">Đăng ký hoạt động</button>
+			                    <button type="submit" class="btn btn-primary" id="btnSubmit" style="display: none;">Đăng ký hoạt động</button>
 			                </form>
 			            </div>
 			        </div>
@@ -221,21 +216,65 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <jsp:include page="../Scripts.jsp" />
+    
+    <!-- Custum JavaScript-->
+	<script>
+	    $(document).ready(function () {
+	        $(".clickable-row").click(function () {
+	            console.log("Đã click");
+	            var idHoatDong = $(this).data("id");
+	            var tenHoatDong = $(this).data("tenhoatdong");
+	            var ngayThamGia = $(this).data("ngaythamgia");
+	            var khoaToChuc = $(this).data("khoatochuc");
+	            var diemRL = $(this).data("diemrl");
+	            var diemCTXH = $(this).data("diemctxh");
+				var noidung = $(this).data("noidung");
+				var trangthai = $(this).data("trangthai");
+				var btnSubmit = $('#btnSubmit');
+				if (trangthai === "Chưa đăng ký") {
+				    btnSubmit.show();
+				} else {
+				    btnSubmit.hide();
+				}
+				$("#idHoatDong").val(idHoatDong);
+	            $("#activityName").val(tenHoatDong).prop("readonly", true);
+	            $("#organizer").val(khoaToChuc).prop("readonly", true);
+	            $("#rlPoints").val(diemRL).prop("readonly", true);
+	            $("#ctxhPoints").val(diemCTXH).prop("readonly", true);
+	            $("#date").val(ngayThamGia).prop("readonly", true);
+	            $("#description").val(noidung).prop("readonly", true);
+	            $("#status").val(trangthai).prop("readonly", true);
+	        });
+	    });
+	</script>
+ <% if (request.getAttribute("completeMsg") != null) { %>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ${completeMsg}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <!-- JavaScript to trigger the modal -->
+        <script>
+            $(document).ready(function() {
+            	console.log('Document ready function');
+                $('#myModal').modal('show');
+            });
+        </script>
+    <% } %>
 </body>
 </html>

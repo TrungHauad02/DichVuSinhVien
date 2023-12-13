@@ -1,17 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/sb-admin-2.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="${pageContext.request.contextPath}/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
-	<link href="${pageContext.request.contextPath}/css/styles.css" type="text/css" rel="stylesheet">
-	
-</head>
-</html>
+    <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/styles.css" type="text/css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
+	<style>
+    .scrollable-table {
+        max-height: 400px;
+        overflow-y: auto;
+        display: flex; /* Sử dụng flex container để các cột nằm theo chiều dọc */
+        flex-direction: column; /* Đặt hướng của flex container là dọc */
+    }
+
+    .scrollable-table thead,
+    .scrollable-table tbody,
+    .scrollable-table tr,
+    .scrollable-table th,
+    .scrollable-table td {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .scrollable-table th,
+    .scrollable-table td {
+        text-align: left; 
+        padding: 8px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .scrollable-table thead {
+        position: sticky;
+        top: 0;
+        background-color: #f2f2f2;
+        z-index: 1;
+    }
+    .scrollable-table tbody {
+	    flex-direction: column; 
+	    align-items: stretch;
+	}
+	.common-btn {
+    width: 100%;
+	}
+</style>

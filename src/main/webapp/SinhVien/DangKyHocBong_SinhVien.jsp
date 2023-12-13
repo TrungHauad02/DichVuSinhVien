@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="Models.HocBong" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -30,45 +32,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-			<!-- Sidebar - Brand -->
-	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="../index_SinhVien.jsp">
-	            <div >
-	                <img src="../assets/Logo.png"  alt="Logo HCMUTE" class ="mh-100 mw-100">
-	            </div>
-	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
-	        </a>
-        	<li class="nav-item active mt-5">
-                <a class="nav-link" href="<%= request.getContextPath()%>/ThongTinSinhVien">
-                    <span >Thông tin cá nhân</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
-                    <span >Bảng điểm</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/GiayXacNhan/ThongTinDS">
-                    <span >Giấy xác nhận</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="GiayVayVon_SinhVien.jsp">
-                    <span >Giấy vay vốn</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHoatDong_SinhVien.jsp">
-                    <span >Đăng ký hoạt động</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-            <li class="nav-item active mt-2">
-                <a class="nav-link" href="DangKyHocBong_SinhVien.jsp">
-                    <span >Đăng ký học bổng</span></a>
-            </li>
-            <hr class="sidebar-divider my-0">
-        </ul>
+        <jsp:include page="./Sidebar_SinhVien.jsp" />
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -108,12 +72,12 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="ThongTin_SinhVien.jsp">
+                                <a class="dropdown-item" href="<%= request.getContextPath()%>/ThongTinSinhVien">
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Thông tin cá nhân
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="../DangNhap.jsp" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="<%= request.getContextPath()%>/DangXuat" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Đăng xuất
                                 </a>
@@ -137,23 +101,30 @@
 			                        </tr>
 			                    </thead>
 			                    <tbody>
-			                        <tr>
-			                            <td>Học bổng 1</td>
-			                            <td>Điều kiện 1</td>
-			                            <td>10</td>
-			                            <td>10.000.000đ</td>
-			                        </tr>
+			                        <c:forEach var="hocbong" items="${dshb}" varStatus="status">
+			                            <tr class="clickable-row"
+			                            data-id="${hocbong.getID_HocBong()}" data-noidung="${hocbong.getNoiDung()}"
+			                            data-isdanhan = "${hocbong.getisDaNhan()}"
+			                             >
+			                                <td>${hocbong.getTenHocBong()}</td>
+			                                <td>${hocbong.getDieuKien()}</td>
+			                                <td>${hocbong.getSoLuong()}</td>
+			                                <td>${hocbong.getTienThuong()}</td>
+			                            </tr>
+                        			</c:forEach>
 			                    </tbody>
 			                </table>
 			            </div>
 			            <div class="col-4">
 			                <div class="d-flex justify-content-center">
-			                	<button type="button" class="btn btn-primary mb-3">Đăng ký học bổng</button>
-			                </div>
+							    <button type="button" id="btnSubmit" class="btn btn-primary mb-3" style="display: none;">Đăng ký học bổng</button>
+								<p id="errorDaDangKy" class="text-danger" style="display: none;">Bạn đã đăng ký học bổng này rồi!</label>
+							</div>
 			                <form>
 			                    <div class="form-group">
 			                        <label for="scholarshipDescription">Mô tả học bổng:</label>
 			                        <textarea class="form-control" id="scholarshipDescription" rows="3"></textarea>
+    								<input type="hidden" id="hiddenHocBongId" name="hiddenHocBongId" value="">
 			                    </div>
 			                </form>
 			            </div>
@@ -183,21 +154,79 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <jsp:include page="../Scripts.jsp" />
+    <script>
+	    $(document).ready(function () {
+	        $(".clickable-row").click(function () {
+	            console.log("Đã click");
+	            var idHocBong = $(this).data("id");
+				var noidung = $(this).data("noidung");
+				var isDaNhan = $(this).data("isdanhan");
+				
+				console.log(idHocBong);
+				var btnSubmit = $('#btnSubmit');
+				var errorDaDangKy = $('#errorDaDangKy');
+				if (isDaNhan === false || isDaNhan === "false") {
+				    btnSubmit.show();
+				    errorDaDangKy.hide();
+				} else {
+				    btnSubmit.hide();
+				    errorDaDangKy.show();
+				}
+				$("#scholarshipDescription").val(noidung).prop("readonly", true);
+				$("#hiddenHocBongId").val(idHocBong).prop("readonly", true);
+	        });
+	        
+	        $("#btnSubmit").click(function () {
+	        	var idHocBong = $("#hiddenHocBongId").val(); 
+	            console.log(idHocBong);
+	            var data = {
+	                ID_HocBong: idHocBong
+	            };
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+	            $.ajax({
+	                type: "POST",
+	                url: "<%= request.getContextPath() %>/DangKyHocBong",
+	                data: data,
+	                success: function (response) {
+	                    console.log(response);
+	                    window.location.href = '<%= request.getContextPath() %>/DSHocBong';
+	                },
+	                error: function (error) {
+	                    console.log(error);
+	                }
+	            });
+	        });
+	    });
+	</script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin-2.min.js"></script>
+ 	<% if (session.getAttribute("completeMsgDKHocBong") != null) { %>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ${completeMsgDKHocBong}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Page level plugins -->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="../js/demo/chart-area-demo.js"></script>
-    <script src="../js/demo/chart-pie-demo.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <!-- JavaScript to trigger the modal -->
+        <script>
+            $(document).ready(function() {
+            	console.log('Document ready function');
+                $('#myModal').modal('show');
+            });
+        </script>
+    <% } %>
 </body>
 </html>

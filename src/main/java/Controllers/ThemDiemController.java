@@ -15,8 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.JSONObject;
 
-import DAO.LopHocDao;
-import DAO.ThamGiaLopHocDao;
+import DAO.LopHocDAO;
+import DAO.ThamGiaLopHocDAO;
 import Models.LopHoc;
 import Models.ThamGiaLopHoc;
 
@@ -44,7 +44,7 @@ public class ThemDiemController extends HttpServlet {
 			// TO DO... check session
 			//----
 			List<LopHoc> danhSachLopHoc = new ArrayList<>();
-			danhSachLopHoc = LopHocDao.selectLopHoc();
+			danhSachLopHoc = LopHocDAO.selectLopHoc();
 			
 	        request.setAttribute("danhSachLopHoc", danhSachLopHoc);
  
@@ -63,7 +63,7 @@ public class ThemDiemController extends HttpServlet {
 	        List<ThamGiaLopHoc> DSSinhVienLop = new ArrayList<>();
 	        
 	        if (lopHoc != 0) {
-	        	DSSinhVienLop = ThamGiaLopHocDao.selectSinhVienThamGia(lopHoc);
+	        	DSSinhVienLop = ThamGiaLopHocDAO.selectSinhVienThamGia(lopHoc);
 	        }
 	        request.setAttribute("DSSinhVienLop", DSSinhVienLop);
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("/CTSV/ThemDiem_CTSV.jsp");
@@ -93,7 +93,7 @@ public class ThemDiemController extends HttpServlet {
         float diemQT = Float.parseFloat(jsonObject.getString("diemQT"));
         float diemCK = Float.parseFloat(jsonObject.getString("diemCK"));
         
-        ThamGiaLopHocDao.updateDiemSinhVien(lopHoc, mssv, diemQT, diemCK);
+        ThamGiaLopHocDAO.updateDiemSinhVien(lopHoc, mssv, diemQT, diemCK);
 	}
 
 }

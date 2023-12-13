@@ -45,4 +45,31 @@ public class GiayVayVonDAO {
 			
 			return dsGiayVay;
 		}
+		
+		public boolean ThemGiayVayVon(GiayVayVon giayvay)throws ClassNotFoundException 
+		{
+			boolean status = false;
+			String sql = "INSERT INTO GIAYVAYVON (NoiDung, NgayNhan, ID_SinhVien, ID_DichVu, SoTien, TrangThai, ID_YeuCau)\r\n"
+					+ "VALUES (?, ?, ?, ?, ?, ?, ?)";
+		    try (Connection connection = JDBCUtil.getConnection();
+		         PreparedStatement preparedStatement = connection.
+		        prepareStatement(sql)) {
+
+		    	preparedStatement.setString(1, giayvay.getNoiDung());
+		    	preparedStatement.setDate(2, new java.sql.Date(giayvay.getNgayNhan().getTime()));
+		        preparedStatement.setString(3, giayvay.getID_SinhVien());
+		        preparedStatement.setInt(4, giayvay.getID_DichVu());
+		        preparedStatement.setInt(5, giayvay.getSoTien());
+		        preparedStatement.setInt(6, giayvay.getTrangThai());
+		        preparedStatement.setInt(7, giayvay.getID_YeuCau());
+		    	
+		        System.out.println(preparedStatement);
+		        int affectedRows = preparedStatement.executeUpdate();
+		        status = (affectedRows > 0);
+		    } catch (SQLException e) {
+		        HandleExeption.printSQLException(e);
+		    }
+
+		    return status;
+		}
 }

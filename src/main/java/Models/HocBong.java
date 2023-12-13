@@ -2,6 +2,8 @@ package Models;
 
 import java.io.Serializable;
 
+import DAO.NhanHocBongDAO;
+
 public class HocBong implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -12,7 +14,11 @@ public class HocBong implements Serializable {
     private int SoLuong;
     private int TienThuong;
     private int ID_DichVu;
+
     private int TrangThai;
+    private String NoiDung;
+    private boolean isDaNhan;
+
 
     public HocBong() {
     }
@@ -100,6 +106,7 @@ public class HocBong implements Serializable {
         this.ID_DichVu = ID_DichVu;
     }
 
+
     public int getTrangThai() {
         return TrangThai;
     }
@@ -107,4 +114,30 @@ public class HocBong implements Serializable {
     public void setgetTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+	public String getNoiDung() {
+		return NoiDung;
+	}
+
+	public void setNoiDung(String noiDung) {
+		NoiDung = noiDung;
+	}
+	
+	public boolean isDaNhan(String mssv) {
+		boolean status = false;
+		NhanHocBongDAO nhanhbDAO = new NhanHocBongDAO();
+		try {
+			status = nhanhbDAO.isDaNhanHocBong(mssv, ID_HocBong);
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+		return status;
+	}
+
+	public boolean getisDaNhan() {
+		return isDaNhan;
+	}
+
+	public void setDaNhan(String mssv) {
+		this.isDaNhan = isDaNhan(mssv);
+	}
 }

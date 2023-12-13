@@ -2,8 +2,6 @@ package Controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -16,25 +14,32 @@ import javax.servlet.http.HttpSession;
 
 import DAO.GiayVayVonDAO;
 import DAO.GiayXacNhanDAO;
+import DAO.HoatDongDAO;
+import DAO.KhoaDAO;
+import DAO.ThamGiaHoatDongDAO;
+import DAO.ToChucDAO;
 import DAO.YeuCauDAO;
 import Models.GiayVayVon;
 import Models.GiayXacNhan;
+import Models.HoatDong;
+import Models.Khoa;
+import Models.ThamGiaHD;
+import Models.ToChuc;
 import Models.YeuCau;
 
-/**
- * Servlet implementation class GiayXacNhanController
- */
-@WebServlet("/ThongTinDSGiayXacNhan")
-public class GiayXacNhanController extends HttpServlet {
+
+@WebServlet("/DSHoatDong")
+public class HoatDongController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public GiayXacNhanController() {
+
+    public HoatDongController() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			ThongTinDS(request, response);
+			DSHoatDong(request, response);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (ServletException e) {
@@ -47,28 +52,30 @@ public class GiayXacNhanController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	private void ThongTinDS(HttpServletRequest request, HttpServletResponse response)
+	private void DSHoatDong(HttpServletRequest request, HttpServletResponse response)
 	        throws SQLException, ServletException, IOException {
 		HttpSession session = request.getSession();
 		String mssv = (String) session.getAttribute("maND");
 	    
-	    GiayVayVonDAO giayVayVonDAO = new GiayVayVonDAO();
-	    GiayXacNhanDAO giayXacNhanDAO = new GiayXacNhanDAO();
-	    YeuCauDAO yeucauDAO = new YeuCauDAO();
+		HoatDongDAO hoatdongDAO = new HoatDongDAO();
+		ToChucDAO tochucDAO = new ToChucDAO();
+		ThamGiaHoatDongDAO thamgiahdDAO = new ThamGiaHoatDongDAO();
+		YeuCauDAO yeucauDAO = new YeuCauDAO();
 	    RequestDispatcher dispatcher;
 		try {
-			List<GiayVayVon> dsgiayvay = giayVayVonDAO.getDSGiayVay(mssv);
-			List<GiayXacNhan> dsgiayxn = giayXacNhanDAO.getDSGiayXN(mssv);
+			List<HoatDong> dshd = hoatdongDAO.LayDSHoatDong();
+			List<ToChuc> dstochuc = tochucDAO.LayDSToChuc();
+			List<ThamGiaHD> dsthamgiahd = thamgiahdDAO.LayDSThamGiaHD(mssv);
 			List<YeuCau> dsyeucau = yeucauDAO.getDSYeuCau(mssv);
-			request.setAttribute("dsgiayvay", dsgiayvay);
-		    request.setAttribute("dsgiayxn", dsgiayxn);
-		    request.setAttribute("dsyeucau", dsyeucau);
+			request.setAttribute("dshd", dshd);
+			request.setAttribute("dstochuc", dstochuc);
+			request.setAttribute("dsthamgiahd", dsthamgiahd);
+			request.setAttribute("dsyeucau", dsyeucau);
 
-		    dispatcher = request.getRequestDispatcher("/SinhVien/GiayXacNhan_SinhVien.jsp");
+		    dispatcher = request.getRequestDispatcher("/SinhVien/DangKyHoatDong_SinhVien.jsp");
 		    dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}    
 	}
 }
-
