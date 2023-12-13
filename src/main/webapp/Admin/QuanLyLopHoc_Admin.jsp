@@ -13,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Quản lý khoa</title>
+<title>Quản lý lớp học</title>
 
 <!-- Custom fonts for this template-->
 <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -78,32 +78,30 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
+						lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
+						lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
-					<span>Quản lý học bổng</span>
+			<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
+					<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link"
-				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
-					<span>Quản lý lớp học</span>
+			<li class="nav-item"><a class="nav-link" href="quanlylophoc">
+					<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="hotro">
-					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
+			<li class="nav-item"><a class="nav-link" href="hotro"> <i
+					class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
 		</ul>
@@ -221,7 +219,8 @@
 											<thead>
 												<tr>
 													<th>Mã lớp</th>
-													<th>Tên môn học</th>
+													<th>Môn học</th>
+													<th>Tên lớp học</th>
 													<th>Tín chỉ</th>
 													<th>Actions</th>
 												</tr>
@@ -233,12 +232,14 @@
 													<tr>
 														<td><c:out value="${lophoc.ID_LopHoc}" /></td>
 														<td><c:out value="${lophoc.getMonHoc()}" /></td>
+														<td><c:out value="${lophoc.getTenLopHoc()}" /></td>
 														<td><c:out value="${lophoc.getTinChi()}" /></td>
 
-														<td><a href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+														<td><a
+															href="deletelophoc?id=<c:out value='${lophoc.ID_LopHoc}' />">Delete</a></td>
 													</tr>
 												</c:forEach>
-												
+
 											</tbody>
 
 										</table>
@@ -247,34 +248,33 @@
 							</div>
 						</div>
 						<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-							<table class="table">
-								<thead>
-								</thead>
-								<tbody>
-									<tr>
-										<td><label for="idLop" class="h5">Mã lớp:</label></td>
-										<td><input type="text" id="idLop" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="tenLop" class="h5">Tên lớp:</label></td>
-										<td><input type="text" id="tenLop" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="tenMH" class="h5">Tên môn học:</label></td>
-										<td><input type="text" id="tenMH" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="tin" class="h5">Tín chỉ:</label></td>
-										<td><input type="text" id="tin" class="form-control"></td>
-									</tr>
+							<form action="quanlylophoc" method="post">
+								<table class="table">
+									<thead>
+									</thead>
+									<tbody>
+										<tr>
+											<td><label for="tenMH" class="h5">Môn học:</label></td>
+											<td><input type="text" id="tenMH" name="monHoc"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="tenMH" class="h5">Tên lớp học</label></td>
+											<td><input type="text" id="tenMH" name="tenLop"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="tin" class="h5">Tín chỉ:</label></td>
+											<td><input type="text" id="tin" name="tinChi"
+												class="form-control"></td>
+										</tr>
 
-								</tbody>
-							</table>
-							<div class="text-center mt-3">
-								<a class="btn btn-primary btn-icon-split"> <span
-									class="text">Thêm lớp</span>
-								</a>
-							</div>
+									</tbody>
+								</table>
+								<div class="text-center mt-3">
+									<button class="btn btn-primary mr-3">Thêm lớp học</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

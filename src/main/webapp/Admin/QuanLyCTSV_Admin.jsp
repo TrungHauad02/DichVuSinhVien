@@ -214,7 +214,7 @@
 							</div>
 							<div class="card-body">
 								<div>
-									<a href="ThemCTSV.jsp" class="btn btn-primary btn-icon-split">
+									<a href="insertctsv" class="btn btn-primary btn-icon-split">
 										<span class="text">Thêm CTSV</span>
 									</a>
 								</div>

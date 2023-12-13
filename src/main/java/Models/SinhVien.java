@@ -42,10 +42,24 @@ public class SinhVien implements Serializable {
 		DiemCTXH = diemCTXH;
 		TrangThai = trangThai;
 	}
+	
+
+
+	public SinhVien(String iD_SinhVien, String hoTen, Date ngaySinh, int gioiTinh, String cCCD, int khoa, String namHoc) {
+		super();
+		ID_SinhVien = iD_SinhVien;
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		NamHoc = namHoc;
+		Khoa = khoa;
+	}
+
 
 
 	public SinhVien(String hoTen, String cCCD, int gioiTinh, Date ngaySinh, String sDT, String email, String namHoc,
-			int khoa, int iD_TaiKhoan) {
+			int khoa) {
 		super();
 		HoTen = hoTen;
 		CCCD = cCCD;
@@ -55,27 +69,10 @@ public class SinhVien implements Serializable {
 		Email = email;
 		NamHoc = namHoc;
 		Khoa = khoa;
-		ID_TaiKhoan = iD_TaiKhoan;
 	}
-
-
-
-
-
-
-
-
-
-
-
-
 
 	public SinhVien() {
 	}
-
-
-
-
 
 	public String getID_SinhVien() {
         return ID_SinhVien;

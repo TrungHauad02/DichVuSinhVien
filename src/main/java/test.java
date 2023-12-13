@@ -3,6 +3,7 @@ import java.util.List;
 import DAO.QuanLyDAO;
 import DAO.SinhVienDAO;
 import Models.CTSV;
+import Models.HoatDong;
 import Models.Khoa;
 import Models.LopHoc;
 import Models.QuanLy;
@@ -14,10 +15,10 @@ public class test
 	public static void main(String args[]) 
 	{
 		QuanLyDAO dao = new QuanLyDAO();
-		 List<Khoa> list = dao.selectAllKhoa(); 
+		 List<HoatDong> list = dao.selectAllHoatDong(); 
 		/* Khoa a = dao.selectKhoa(1); */
 		
-		  for (Khoa o : list) { System.out.println(o); }
+		  for (HoatDong o : list) { System.out.println(o); }
 		 
 			/* System.out.println(a); */
 

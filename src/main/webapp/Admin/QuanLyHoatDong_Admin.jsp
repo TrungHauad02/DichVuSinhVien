@@ -78,32 +78,30 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
+						lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
+						lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
-					<span>Quản lý học bổng</span>
+			<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
+					<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link"
-				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
-					<span>Quản lý lớp học</span>
+			<li class="nav-item"><a class="nav-link" href="quanlylophoc">
+					<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="hotro">
-					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
+			<li class="nav-item"><a class="nav-link" href="hotro"> <i
+					class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
 		</ul>
@@ -222,36 +220,31 @@
 												<tr>
 													<th>Mã hoạt động</th>
 													<th>Tên hoạt động</th>
-													<th>Ngày tổ chức</th>
-													<th>Khoa</th>
-													<th>Trạng thái</th>
+													<th>Nội dung</th>
+													<th>ĐRL</th>
+													<th>ĐCTXH</th>
+													<th>Ngày tham gia</th>
+													<th>ID dịch vụ</th>
 													<th>Actions</th>
 												</tr>
 											</thead>
 											<tbody>
 												<!--   for (Todo todo: todos) {  -->
-												<c:forEach var="user" items="${listUser}">
+												<c:forEach var="HD" items="${hoatDongList}">
 
 													<tr>
-														<%-- <td><c:out value="${user.id}" /></td>
-													<td><c:out value="${user.name}" /></td>
-													<td><c:out value="${user.email}" /></td>
-													<td><c:out value="${user.country}" /></td> --%>
-
-														<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-															&nbsp;&nbsp;&nbsp;&nbsp; <a
-															href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+														<td><c:out value="${HD.ID_HoatDong}" /></td>
+														<td><c:out value="${HD.getTenHoatDong()}" /></td>
+														<td><c:out value="${HD.getNoiDung()}" /></td>
+														<td><c:out value="${HD.getDiemRL()}" /></td>
+														<td><c:out value="${HD.getDiemCTXH()}" /></td>
+														<td><c:out value="${HD.getNgayThamGia()}" /></td>
+														<td><c:out value="${HD.getID_DichVu()}" /></td>
+														<td><a
+															href="deletehoatdong?id=<c:out value='${HD.ID_HoatDong}'/>">Delete</a></td>
 													</tr>
 												</c:forEach>
-												<td>1</td>
-												<td>Đông yêu thương</td>
-												<th>2023/11/20</th>
-												<th>CNTT</th>
-												<th>Đã hoàn thành</th>
-												<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-													&nbsp;&nbsp;&nbsp;&nbsp; <a
-													href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
-												<!-- } -->
+
 											</tbody>
 
 										</table>
@@ -260,40 +253,46 @@
 							</div>
 						</div>
 						<div class="ccol-xl-6 col-lg-6 col-md-12 col-sm-12">
-							<table class="table">
-								<tbody>
-									<tr>
-										<td><label class="h5">Mã hoạt động:</label></td>
-										<td><input type="text" id="maHD" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Tên hoạt động:</label></td>
-										<td><input type="text" id="tenHD" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="dob" class="h5">Ngày tổ chức:</label></td>
-										<td><input type="date" id="dob" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="khoa" class="h5">Khoa</label></td>
-										<td><select id="khoa" class="form-control">
-												<option value="HoanThanh">CNTT</option>
-										</select></td>
-									</tr>
-									<tr>
-										<td><label for="trangThai" class="h5">Trạng thái</label></td>
-										<td><select id="tragnThai" class="form-control">
-												<option value="HoanThanh">Hoàn thành</option>
-												<option value="ChuaHoanThanh">Chưa hoàn thành</option>
-										</select></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="text-center mt-3">
-								<a class="btn btn-primary btn-icon-split"> <span
-									class="text">Thêm hoạt động</span>
-								</a>
-							</div>
+							<form action="quanlyhoatdong" method="post">
+								<table class="table">
+									<tbody>
+										<tr>
+											<td><label class="h5">Tên hoạt động:</label></td>
+											<td><input type="text" id="tenHD" name="name"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Nội dung:</label></td>
+											<td><input type="text" id="tenHD" name="noidung"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Điểm RL:</label></td>
+											<td><input type="text" id="tenHD" name="drl"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Điểm CTXH:</label></td>
+											<td><input type="text" id="tenHD" name="diemctxh"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="dob" class="h5">Ngày tổ chức:</label></td>
+											<td><input type="date" id="dob" name="date"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="khoa" class="h5">ID Dịch vụ:</label></td>
+											<td><input type="text" id="dob" name="iddichvu"
+												class="form-control"></td>
+										</tr>
+
+									</tbody>
+								</table>
+								<div class="text-center mt-3">
+									<button class="btn btn-primary mr-3">Thêm hoạt động</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

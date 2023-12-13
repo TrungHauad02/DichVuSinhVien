@@ -12,18 +12,21 @@ public class Khoa implements Serializable {
     public Khoa() {
     }
 
-    
 	
 
-	public Khoa(int iDKhoa, String tenKhoa2) {
-		// TODO Auto-generated constructor stub
+	public Khoa(int iD_Khoa, String tenKhoa, int trangThai) {
+		super();
+		ID_Khoa = iD_Khoa;
+		TenKhoa = tenKhoa;
+		TrangThai = trangThai;
 	}
 
 
-	public Khoa(int id, String tenKhoa2, int trangthai2) {
-		// TODO Auto-generated constructor stub
-	}
 
+	public Khoa(String tenKhoa) {
+		super();
+		TenKhoa = tenKhoa;
+	}
 
 
 

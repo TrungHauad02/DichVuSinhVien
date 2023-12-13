@@ -8,6 +8,7 @@ public class HoatDong implements Serializable {
 
     private int ID_HoatDong;
     private String TenHoatDong;
+    private String NoiDung;
     private int DiemRL;
     private int DiemCTXH;
     private Date NgayThamGia;
@@ -17,6 +18,29 @@ public class HoatDong implements Serializable {
 
     public HoatDong() {
     }
+    
+    public HoatDong(String tenHoatDong, String noiDung, int diemRL, int diemCTXH, Date ngayThamGia, int iD_DichVu) {
+		super();
+		TenHoatDong = tenHoatDong;
+		NoiDung = noiDung;
+		DiemRL = diemRL;
+		DiemCTXH = diemCTXH;
+		NgayThamGia = ngayThamGia;
+		ID_DichVu = iD_DichVu;
+	}
+
+	public HoatDong(int iD_HoatDong, String tenHoatDong, String noiDung, int diemRL, int diemCTXH, Date ngayThamGia,
+			int iD_DichVu, int trangThai) {
+		super();
+		ID_HoatDong = iD_HoatDong;
+		TenHoatDong = tenHoatDong;
+		NoiDung = noiDung;
+		DiemRL = diemRL;
+		DiemCTXH = diemCTXH;
+		NgayThamGia = ngayThamGia;
+		ID_DichVu = iD_DichVu;
+		TrangThai = trangThai;
+	}
 
     public int getID_HoatDong() {
         return ID_HoatDong;
@@ -33,12 +57,22 @@ public class HoatDong implements Serializable {
     public void setTenHoatDong(String TenHoatDong) {
         this.TenHoatDong = TenHoatDong;
     }
+    
+    public String getNoiDung() {
+        return NoiDung;
+    }
+
+    public void setNoiDung(String NoiDung) {
+        this.NoiDung = NoiDung;
+    }
 
     public int getDiemRL() {
         return DiemRL;
     }
 
-    public void setDiemRL(int DiemRL) {
+    
+
+	public void setDiemRL(int DiemRL) {
         this.DiemRL = DiemRL;
     }
 

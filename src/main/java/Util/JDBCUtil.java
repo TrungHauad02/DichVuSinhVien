@@ -14,7 +14,7 @@ public class JDBCUtil {
 			 * String url = System.getenv("jdbc:mysql://localhost:3306/qlsv"); String
 			 * username = System.getenv("root"); String password = System.getenv("1234");
 			 */
-			String url = "jdbc:mysql://localhost:3306/qlsv";
+			String url = "jdbc:mysql://localhost:3306/dichvusinhvien";
 			String username = "root";
 			String password = "1234";
 			
