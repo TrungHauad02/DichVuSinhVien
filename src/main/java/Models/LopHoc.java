@@ -14,8 +14,21 @@ public class LopHoc implements Serializable {
     public LopHoc() {
     }
 
-    public LopHoc(int iDKhoa, String tenKhoa, int tinChi2) {
-		// TODO Auto-generated constructor stub
+	public LopHoc(String monHoc, String tenLopHoc, int tinChi) {
+		super();
+		MonHoc = monHoc;
+		TenLopHoc = tenLopHoc;
+		TinChi = tinChi;
+	}
+
+
+	public LopHoc(int iD_LopHoc, String monHoc, String tenLopHoc, int tinChi, int trangThai) {
+		super();
+		ID_LopHoc = iD_LopHoc;
+		MonHoc = monHoc;
+		TenLopHoc = tenLopHoc;
+		TinChi = tinChi;
+		TrangThai = trangThai;
 	}
 
 	@Override

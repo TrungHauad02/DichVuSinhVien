@@ -78,32 +78,30 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
+						lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
+						lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
-					<span>Quản lý học bổng</span>
+			<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
+					<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link"
-				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
-					<span>Quản lý lớp học</span>
+			<li class="nav-item"><a class="nav-link" href="quanlylophoc">
+					<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="hotro">
-					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
+			<li class="nav-item"><a class="nav-link" href="hotro"> <i
+					class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
 		</ul>
@@ -231,13 +229,14 @@
 
 													<tr>
 														<td><c:out value="${khoa.ID_Khoa}" /></td>
-														<td><c:out value="${user.getTenKhoa()}" /></td>
-														
+														<td><c:out value="${khoa.getTenKhoa()}" /></td>
 
-														<td><a href="deletekhoa?id=<c:out value='${user.id}' />">Delete</a></td>
+
+														<td><a
+															href="deletekhoa?id=<c:out value='${khoa.ID_Khoa}' />">Delete</a></td>
 													</tr>
 												</c:forEach>
-												
+
 												<!-- } -->
 											</tbody>
 
@@ -246,28 +245,27 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
-							<table class="table">
-								<thead>
-								</thead>
-								<tbody>
-									<tr>
-										<td><label for="idKhoa" class="h5">ID Khoa:</label></td>
-										<td><input type="text" id="idKhoa" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label for="tenKhoa" class="h5">Tên khoa:</label></td>
-										<td><input type="text" id="tenKhoa" class="form-control"></td>
-									</tr>
 
-								</tbody>
-							</table>
-							<div class="text-center mt-3">
-								<a class="btn btn-primary btn-icon-split"> <span
-									class="text">Thêm khoa</span>
-								</a>
-							</div>
+						<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
+							<form action="quanlykhoa" method="post">
+								<table class="table">
+									<thead>
+									</thead>
+									<tbody>
+										<tr>
+											<td><label for="tenKhoa" class="h5">Tên khoa:</label></td>
+											<td><input type="text" id="tenKhoa" name="tenKhoa"
+												class="form-control"></td>
+										</tr>
+
+									</tbody>
+								</table>
+								<div class="text-center mt-3">
+									<button class="btn btn-primary mr-3">Thêm khoa</button>
+								</div>
+							</form>
 						</div>
+
 					</div>
 				</div>
 				<!-- /.container-fluid -->

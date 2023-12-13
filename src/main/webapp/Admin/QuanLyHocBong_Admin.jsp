@@ -23,9 +23,14 @@
 	rel="stylesheet">
 
 <!-- Custom styles for this template-->
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
+	rel="stylesheet">
+<link
+	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
+	rel="stylesheet">
+<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
+	rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -73,32 +78,30 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
+						lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
+						lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
-					<span>Quản lý học bổng</span>
+			<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
+					<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link"
-				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
-					<span>Quản lý lớp học</span>
+			<li class="nav-item"><a class="nav-link" href="quanlylophoc">
+					<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="hotro">
-					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
+			<li class="nav-item"><a class="nav-link" href="hotro"> <i
+					class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
 		</ul>
@@ -217,38 +220,31 @@
 												<tr>
 													<th>Mã học bổng</th>
 													<th>Tên học bổng</th>
+													<th>Nội dung</th>
 													<th>Điều kiện</th>
-													<th>Số lượng còn lại</th>
-													<th>Số lượng đã phát</th>
+													<th>Số lượng</th>
 													<th>Tiền thưởng</th>
+													<th>Dịch vụ</th>
 													<th>Actions</th>
 												</tr>
 											</thead>
 											<tbody>
 												<!--   for (Todo todo: todos) {  -->
-												<c:forEach var="user" items="${listUser}">
+												<c:forEach var="HB" items="${hocBongList}">
 
 													<tr>
-														<%-- <td><c:out value="${user.id}" /></td>
-													<td><c:out value="${user.name}" /></td>
-													<td><c:out value="${user.email}" /></td>
-													<td><c:out value="${user.country}" /></td> --%>
-
-														<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-															&nbsp;&nbsp;&nbsp;&nbsp; <a
-															href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
+														<td><c:out value="${HB.ID_HocBong}" /></td>
+														<td><c:out value="${HB.getTenHocBong()}" /></td>
+														<td><c:out value="${HB.getNoiDung()}" /></td>
+														<td><c:out value="${HB.getDieuKien()}" /></td>
+														<td><c:out value="${HB.getSoLuong()}" /></td>
+														<td><c:out value="${HB.getTienThuong()}" /></td>
+														<td><c:out value="${HB.getID_DichVu()}" /></td>
+														<td><a
+															href="deletehocbong?id=<c:out value='${HB.ID_HocBong}' />">Delete</a></td>
 													</tr>
 												</c:forEach>
-												<td>1</td>
-												<td>Học bổng du học</td>
-												<th>9.0</th>
-												<th>120</th>
-												<th>20</th>
-												<th>20.000.000</th>
-												<td><a href="edit?id=<c:out value='${user.id}' />">Edit</a>
-													&nbsp;&nbsp;&nbsp;&nbsp; <a
-													href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
-												<!-- } -->
+
 											</tbody>
 
 										</table>
@@ -257,43 +253,46 @@
 							</div>
 						</div>
 						<div class="ccol-xl-6 col-lg-6 col-md-12 col-sm-12">
-							<table class="table">
-								<tbody>
-									<tr>
-										<td><label class="h5">Mã học bổng:</label></td>
-										<td><input type="text" id="maHB" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Tên học bổng:</label></td>
-										<td><input type="text" id="tenHB" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Điều kiện:</label></td>
-										<td><input type="text" id="DK" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Số lượng còn lại:</label></td>
-										<td><input type="text" id="SLConLai" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Số lượng còn lại:</label></td>
-										<td><input type="text" id="SLConLai" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Số lượng đã phát:</label></td>
-										<td><input type="text" id="SLDaPhat" class="form-control"></td>
-									</tr>
-									<tr>
-										<td><label class="h5">Tiền thưởng:</label></td>
-										<td><input type="text" id="tien" class="form-control"></td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="text-center mt-3">
-								<a class="btn btn-primary btn-icon-split"> <span class="text">Thêm học bổng</span>
-								</a>
-							</div>
+							<form action="quanlyhocbong" method="post">
+								<table class="table">
+									<tbody>
+										<tr>
+											<td><label class="h5">Tên học bổng:</label></td>
+											<td><input type="text" id="tenHB" name="tenHB"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Nội dung:</label></td>
+											<td><input type="text" id="tenHB" name="noidung"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Điều kiện:</label></td>
+											<td><input type="text" id="DK" name="dieukien"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Số lượng:</label></td>
+											<td><input type="text" id="SLConLai" name="soluong"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">Tiền thưởng:</label></td>
+											<td><input type="text" id="SLConLai" name="tienthuong"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label class="h5">ID Dịch vụ:</label></td>
+											<td><input type="text" id="SLDaPhat" name="iddichvu"
+												class="form-control"></td>
+										</tr>
 
+									</tbody>
+								</table>
+								<div class="text-center mt-3">
+									<button class="btn btn-primary mr-3">Thêm học bổng</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>

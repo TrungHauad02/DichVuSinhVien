@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import Models.CTSV;
+import Models.HoatDong;
+import Models.HocBong;
 import Models.Khoa;
 import Models.LopHoc;
 import Models.QuanLy;
@@ -31,32 +33,44 @@ public class QuanLyDAO {
 	private static final String DELETE_SV_SQL = "UPDATE SINHVIEN SET TrangThai = 0 WHERE ID_SinhVien = ?";
 
 	// ctsv
+	private static final String INSERT_CTSV_SQL = "INSERT INTO CTSV"
+			+ "(HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email) VALUES" + " (?, ?, ?, ?, ?, ?)";
 	private static final String SELECT_CTSV_BY_ID = "select * from CTSV where ID_CTSV =? and TrangThai = 1";
 	private static final String SELECT_ALL_CTSV = "select ID_CTSV, HoTen, NgaySinh, GioiTinh, CCCD, SDT, Email from CTSV where TrangThai = 1";
 	private static final String UPDATE_CTSV_SQL = "UPDATE CTSV SET HoTen=?, CCCD=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE ID_CTSV = ?";
 	private static final String DELETE_CTSV_SQL = "UPDATE CTSV SET TrangThai = 0 WHERE ID_CTSV = ?";
 
 	// khoa
-	private static final String SELECT_ALL_KHOA = "select ID_Khoa, TenKhoa from KHOA where TrangThai = 1";
-	private static final String INSERT_KHOA_SQL = "INSERT INTO KHOA" + "  (ID_Khoa, TenKhoa) VALUES " + " (?, ?);";
+	private static final String INSERT_KHOA_SQL = "INSERT INTO KHOA" + "  (TenKhoa) VALUES " + " (?)";
+	private static final String SELECT_ALL_KHOA = "select * from KHOA where TrangThai = 1";
 	private static final String DELETE_KHOA_SQL = "UPDATE KHOA SET TrangThai = 0 WHERE ID_Khoa = ?";
 
 	// lophoc
-	private static final String SELECT_ALL_LOPHOC = "select ID_LopHoc, MonHoc, TinChi from LOPHOC where TrangThai = 1";
+	private static final String INSERT_LOPHOC_SQL = "INSERT INTO LOPHOC" + "  (MonHoc, TenLopHoc, TinChi) VALUES "
+			+ " (?,?,?)";
+	private static final String SELECT_ALL_LOPHOC = "select * from LOPHOC where TrangThai = 1";
 	private static final String DELETE_LOPHOC_SQL = "UPDATE LOPHOC SET TrangThai = 0 WHERE ID_LopHoc = ?";
+
+	// HoatDong
+	private static final String INSERT_HOATDONG_SQL = "INSERT INTO HOATDONG"
+			+ "  (TenHoatDong, NoiDung, DiemRL, DiemCTXH, NgayThamGia, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
+	private static final String SELECT_ALL_HOATDONG = "select * from HOATDONG where TrangThai = 1";
+	private static final String DELETE_HOATDONG_SQL = "UPDATE HOATDONG SET TrangThai = 0 WHERE ID_HoatDong = ?";
+	
+	//HocBong
+	private static final String INSERT_HOCBONG_SQL = "INSERT INTO HOCBONG"
+			+ "  (TenHocBong, NoiDung, DieuKien, SoLuong, TienThuong, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
+	private static final String SELECT_ALL_HOCBONG = "select * from HOCBONG where TrangThai = 1";
+	private static final String DELETE_HOCBONG_SQL = "UPDATE HOCBONG SET TrangThai = 0 WHERE ID_HocBong = ?";
 
 	// Admin
 	public QuanLy selectAdmin(int idquanly) {
 		QuanLy quanly = null;
-		// Step 1: Establishing a Connection
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ADMIN_BY_ID);
 			preparedStatement.setInt(1, idquanly);
-			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
-
-			// Step 4: Process the ResultSet object.
 			while (rs.next()) {
 				int id = rs.getInt("ID_QuanLy");
 				String hoten = rs.getString("HoTen");
@@ -93,27 +107,8 @@ public class QuanLyDAO {
 		}
 		return rowUpdated;
 	}
-
-	// SV
-	/*
-	 * public void insertSV(SinhVien sinhvien) throws SQLException { try {
-	 * Connection conn = JDBCUtil.getConnection(); PreparedStatement
-	 * preparedStatement = conn.prepareStatement(INSERT_SVS_SQL);
-	 * preparedStatement.setString(1, sinhvien.getID_SinhVien());
-	 * preparedStatement.setString(2, sinhvien.getHoTen());
-	 * preparedStatement.setString(3, sinhvien.getCCCD());
-	 * preparedStatement.setInt(4, sinhvien.getGioiTinh());
-	 * preparedStatement.setDate(5, (Date) sinhvien.getNgaySinh());
-	 * preparedStatement.setString(6, sinhvien.getSDT());
-	 * preparedStatement.setString(7, sinhvien.getEmail());
-	 * preparedStatement.setString(8, sinhvien.getNamHoc());
-	 * preparedStatement.setInt(9, sinhvien.getKhoa()); preparedStatement.setInt(10,
-	 * sinhvien.getDiemRL()); preparedStatement.setInt(11, sinhvien.getDiemCTXH());
-	 * preparedStatement.executeUpdate(); } catch (SQLException e) {
-	 * HandleExeption.printSQLException(e); } }
-	 */
-	// Your existing connection code and other methods...
-
+	
+	//SV
 	public void insertSV(SinhVien sinhVien) {
 		try (Connection conn = JDBCUtil.getConnection()) {
 			String storedProcedure = "{CALL ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
@@ -238,17 +233,29 @@ public class QuanLyDAO {
 	}
 
 	// CTSV
+	public void insertCTSV(CTSV ctsv) {
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_CTSV_SQL);
+			preparedStatement.setString(1, ctsv.getHoTen());
+			preparedStatement.setString(2, ctsv.getCCCD());
+			preparedStatement.setString(3, ctsv.getGioiTinh());
+			preparedStatement.setDate(4, new java.sql.Date(ctsv.getNgaySinh().getTime()));
+			preparedStatement.setString(5, ctsv.getSDT());
+			preparedStatement.setString(6, ctsv.getEmail());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
+
 	public CTSV selectCTSV(int idctsv) {
 		CTSV ctsv = null;
-		// Step 1: Establishing a Connection
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_CTSV_BY_ID);
 			preparedStatement.setInt(1, idctsv);
-			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
-
-			// Step 4: Process the ResultSet object.
 			while (rs.next()) {
 				int id = rs.getInt("ID_CTSV");
 				String hoten = rs.getString("HoTen");
@@ -330,13 +337,12 @@ public class QuanLyDAO {
 	}
 
 	// Khoa
-	public void inserKhoa(Khoa khoa) throws SQLException {
+	public void inserKhoa(Khoa khoa) {
 		// try-with-resource statement will auto close the connection.
 		try {
 			Connection conn = JDBCUtil.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_KHOA_SQL);
-			preparedStatement.setInt(1, khoa.getID_Khoa());
-			preparedStatement.setString(2, khoa.getTenKhoa());
+			preparedStatement.setString(1, khoa.getTenKhoa());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -353,9 +359,10 @@ public class QuanLyDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int iDKhoa = rs.getInt(1);
-				String tenKhoa = rs.getString(2);
-				khoas.add(new Khoa(iDKhoa, tenKhoa));
+				int iDKhoa = rs.getInt("ID_Khoa");
+				String tenKhoa = rs.getString("TenKhoa");
+				int trangThai = rs.getInt("TrangThai");
+				khoas.add(new Khoa(iDKhoa, tenKhoa, trangThai));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -378,6 +385,20 @@ public class QuanLyDAO {
 	}
 
 	// LopHoc
+	public void inserLopHoc(LopHoc lopHoc) {
+		// try-with-resource statement will auto close the connection.
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_LOPHOC_SQL);
+			preparedStatement.setString(1, lopHoc.getMonHoc());
+			preparedStatement.setString(2, lopHoc.getTenLopHoc());
+			preparedStatement.setInt(3, lopHoc.getTinChi());
+
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
 
 	public List<LopHoc> selectAllLopHoc() {
 
@@ -389,10 +410,12 @@ public class QuanLyDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int iDKhoa = rs.getInt(1);
-				String tenKhoa = rs.getString(2);
-				int tinChi = rs.getInt(3);
-				lopHocs.add(new LopHoc(iDKhoa, tenKhoa, tinChi));
+				int iDLopHoc = rs.getInt(1);
+				String monHoc = rs.getString(2);
+				String tenLopHoc = rs.getString(3);
+				int tinChi = rs.getInt(4);
+				int trangThai = rs.getInt(5);
+				lopHocs.add(new LopHoc(iDLopHoc, monHoc, tenLopHoc, tinChi, trangThai));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -406,6 +429,121 @@ public class QuanLyDAO {
 			Connection conn = JDBCUtil.getConnection();
 			PreparedStatement statement = conn.prepareStatement(DELETE_LOPHOC_SQL);
 			statement.setInt(1, id);
+			statement.executeUpdate();
+			rowDeleted = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return rowDeleted;
+	}
+
+	// HoatDong
+	public void inserHoatDong(HoatDong hoatDong) {
+		// try-with-resource statement will auto close the connection.
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_HOATDONG_SQL);
+			preparedStatement.setString(1, hoatDong.getTenHoatDong());
+			preparedStatement.setString(2, hoatDong.getNoiDung());
+			preparedStatement.setInt(3, hoatDong.getDiemRL());
+			preparedStatement.setInt(4, hoatDong.getDiemCTXH());
+			preparedStatement.setDate(5, new java.sql.Date(hoatDong.getNgayThamGia().getTime()));
+			preparedStatement.setInt(6, hoatDong.getID_DichVu());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
+	public List<HoatDong> selectAllHoatDong() {
+
+		List<HoatDong> hoatDongs = new ArrayList<>();
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_HOATDONG);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int idHoatDong = rs.getInt(1);
+				String tenHoatDong = rs.getString(2);
+				String noiDung = rs.getString(3);
+				int diemRL = rs.getInt(4);
+				int diemCTXH = rs.getInt(5);
+				Date ngayThamGia = rs.getDate(6);
+				int idDichVu = rs.getInt(7);
+				int trangThai = rs.getInt(8);
+				hoatDongs.add(new HoatDong(idHoatDong, tenHoatDong, noiDung, diemRL, diemCTXH, ngayThamGia, idDichVu,
+						trangThai));
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return hoatDongs;
+	}
+
+	public boolean deleteHoatDong(int idHoatDong) {
+		boolean rowDeleted = false;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement statement = conn.prepareStatement(DELETE_HOATDONG_SQL);
+			statement.setInt(1, idHoatDong);
+			statement.executeUpdate();
+			rowDeleted = statement.executeUpdate() > 0;
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return rowDeleted;
+	}
+	
+	//HocBong
+	public void inserHocBong(HocBong hocBong) {
+		// try-with-resource statement will auto close the connection.
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_HOCBONG_SQL);
+			preparedStatement.setString(1, hocBong.getTenHocBong());
+			preparedStatement.setString(2, hocBong.getNoiDung());
+			preparedStatement.setFloat(3, hocBong.getDieuKien());
+			preparedStatement.setInt(4, hocBong.getSoLuong());
+			preparedStatement.setInt(5, hocBong.getTienThuong());
+			preparedStatement.setInt(6, hocBong.getID_DichVu());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
+	public List<HocBong> selectAllHocBong() {
+
+		List<HocBong> hocBongs = new ArrayList<>();
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_ALL_HOCBONG);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			while (rs.next()) {
+				int idHocBong = rs.getInt(1);
+				String tenHocBong = rs.getString(2);
+				String noiDung = rs.getString(3);
+				float dieuKien = rs.getFloat(4);
+				int soLuong = rs.getInt(5);
+				int tienThuong = rs.getInt(6);
+				int idDichVu = rs.getInt(7);
+				int trangThai = rs.getInt(8);
+				hocBongs.add(new HocBong(idHocBong, tenHocBong, noiDung, dieuKien, soLuong, tienThuong, idDichVu,
+						trangThai));
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return hocBongs;
+	}
+	public boolean deleteHocBong(int idHocBong) {
+		boolean rowDeleted = false;
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement statement = conn.prepareStatement(DELETE_HOCBONG_SQL);
+			statement.setInt(1, idHocBong);
 			statement.executeUpdate();
 			rowDeleted = statement.executeUpdate() > 0;
 		} catch (SQLException e) {

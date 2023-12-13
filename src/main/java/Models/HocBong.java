@@ -9,17 +9,48 @@ public class HocBong implements Serializable {
 
     private int ID_HocBong;
     private String TenHocBong;
+    private String NoiDung;
     private float DieuKien;
     private int SoLuong;
     private int TienThuong;
     private int ID_DichVu;
+
+    private int TrangThai;
     private String NoiDung;
     private boolean isDaNhan;
 
+
     public HocBong() {
     }
+    
 
-    public int getID_HocBong() {
+    public HocBong(int iD_HocBong, String tenHocBong, String noiDung, float dieuKien, int soLuong, int tienThuong,
+			int iD_DichVu, int trangThai) {
+		super();
+		ID_HocBong = iD_HocBong;
+		TenHocBong = tenHocBong;
+		NoiDung = noiDung;
+		DieuKien = dieuKien;
+		SoLuong = soLuong;
+		TienThuong = tienThuong;
+		ID_DichVu = iD_DichVu;
+		TrangThai = trangThai;
+	}
+
+
+
+	public HocBong(String tenHocBong, String noiDung, float dieuKien, int soLuong, int tienThuong, int iD_DichVu) {
+		super();
+		TenHocBong = tenHocBong;
+		NoiDung = noiDung;
+		DieuKien = dieuKien;
+		SoLuong = soLuong;
+		TienThuong = tienThuong;
+		ID_DichVu = iD_DichVu;
+	}
+
+
+	public int getID_HocBong() {
         return ID_HocBong;
     }
 
@@ -33,6 +64,14 @@ public class HocBong implements Serializable {
 
     public void setTenHocBong(String TenHocBong) {
         this.TenHocBong = TenHocBong;
+    }
+    
+    public String getNoiDung() {
+        return NoiDung;
+    }
+
+    public void setNoiDung(String NoiDung) {
+        this.NoiDung = NoiDung;
     }
 
     public float getDieuKien() {
@@ -67,6 +106,14 @@ public class HocBong implements Serializable {
         this.ID_DichVu = ID_DichVu;
     }
 
+
+    public int getTrangThai() {
+        return TrangThai;
+    }
+
+    public void setgetTrangThai(int TrangThai) {
+        this.TrangThai = TrangThai;
+    }
 	public String getNoiDung() {
 		return NoiDung;
 	}

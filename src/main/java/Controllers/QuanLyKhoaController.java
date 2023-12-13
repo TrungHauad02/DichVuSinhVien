@@ -39,7 +39,10 @@ public class QuanLyKhoaController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		String tenKhoa = request.getParameter("tenKhoa");
+		Khoa khoa = new Khoa(tenKhoa);
+		dao.inserKhoa(khoa);
+		response.sendRedirect("quanlykhoa");
 	}
 
 }

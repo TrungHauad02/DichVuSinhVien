@@ -200,9 +200,9 @@
 
 				<!-- Your Slide bar and main content goes here -->
 				<div class="container">
+					<form action="insertsv" method="post">
+						<div class="row">
 
-					<div class="row">
-						<form action="insertsv" method="post">
 							<!-- Bảng Thông tin cá nhân -->
 							<div class="col-lg-6">
 								<table class="table">
@@ -277,13 +277,13 @@
 								</div>
 								<div style="margin-top: 40px;"></div>
 							</div>
-						</form>
-						<!-- Hình ảnh -->
-						<div class="col-lg-2 d-flex justify-content-center">
-							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
-						</div>
-					</div>
 
+							<!-- Hình ảnh -->
+							<div class="col-lg-2 d-flex justify-content-center">
+								<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
+							</div>
+						</div>
+					</form>
 				</div>
 
 
