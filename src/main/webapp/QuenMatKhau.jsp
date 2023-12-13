@@ -11,19 +11,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>Quên mật khẩu</title>
 
     <!-- Custom fonts for this template-->
-    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css" rel="stylesheet">
-    <link href="https://storage.googleapis.com/nguyenphat/css/styles.css" rel="stylesheet">
-	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-
+    
+     <jsp:include page="./head.jsp" />
 </head>
 <body id="page-top">
 
@@ -79,28 +71,7 @@
 								    trigger="hover"
 								    style="width:50px;height:50px">
 								</lord-icon>
-                            </a>
-                            <!-- <!-- Dropdown - User Information
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Profile
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Settings
-                                </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Activity Log
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
-                                </a>
-                            </div> -->
+                            </a>                           
                         </li>
                     </ul>
 
@@ -110,43 +81,40 @@
 				<div class="container h-100">
 			        <div class="row h-100 justify-content-center align-items-center">
 			            <table class="table">
-			                <tbody>
-			                    <tr>
-			                        <td><label for="username" class="h4">Tài khoản:</label></td>
-			                        <td><input type="text" id="username" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="email" class="h4">Email:</label></td>
-			                        <td>
-			                            <div class="row">
-			                                <div class="col"><input type="email" id="email" class="form-control"></div>
-			                                <div class="col-auto"><button class="btn btn-primary">Gửi mã</button></div>
-			                            </div>
-			                        </td>
-			                    </tr>
-			                    <tr>
-			                        <td><label for="otp" class="h4">OTP:</label></td>
-			                        <td>
-			                            <div class="row">
-			                                <div class="col"><input type="text" id="otp" class="form-control"></div>
-			                                <div class="col-auto"><button class="btn btn-primary">Xác nhận mã</button></div>
-			                            </div>
-			                        </td>
-			                    </tr>
-			                    <tr id="new-password-row" style="display: none;">
-			                        <td><label for="new-password" class="h4">Mật khẩu mới:</label></td>
-			                        <td><input type="password" id="new-password" class="form-control"></td>
-			                    </tr>
-			                    <tr id="confirm-password-row" style="display: none;">
-			                        <td><label for="confirm-password" class="h4">Nhập lại mật khẩu:</label></td>
-			                        <td><input type="password" id="confirm-password" class="form-control"></td>
-			                    </tr>
-			                    <tr>
-			                        <td></td>
-			                        <td><button class="btn btn-primary">Đổi mật khẩu</button></td>
-			                    </tr>
-			                </tbody>
-			            </table>
+						    <tbody>
+						        <tr>
+						            <td><label for="username" class="h4">Tài khoản:</label></td>
+						            <td><input type="text" id="username" class="form-control"></td>
+						        </tr>
+						        <tr>
+						            <td><label for="email" class="h4">Email:</label></td>
+						            <td>
+						                <div class="row">
+						                    <div class="col"><input type="email" id="email" class="form-control"></div>
+						                    <div class="col-auto"><button id="sendOTPBtn" class="btn btn-primary">Gửi mã</button></div>
+						                </div>
+						            </td>
+						        </tr>
+						        <tr>
+						            <td><label for="otp" class="h4">OTP:</label></td>
+						            <td>
+						                <div class="row">
+						                    <div class="col"><input type="text" id="otp" name="otp" class="form-control"></div>
+						                    <div class="col-auto"><button class="btn btn-primary" id="confirmOTPBtn">Xác nhận mã</button></div>
+						                </div>
+						            </td>
+						        </tr>
+						        <tr id="new-password-row" style="display: none;">
+						            <td><label for="new-password" class="h4">Mật khẩu mới:</label></td>
+						            <td><input type="password" id="new-password" class="form-control"></td>
+						        </tr>
+						        <tr>
+						            <td></td>
+						            <td><button id="changePasswordBtn" class="btn btn-primary" style="display: none;">Đổi mật khẩu</button></td>
+						        </tr>
+						    </tbody>
+						</table>
+
 			        </div>
 			    </div>
             <!-- End of Main Content -->
@@ -172,21 +140,104 @@
         <i class="fas fa-angle-up"></i>
     </a>
     <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <jsp:include page="./Scripts.jsp" />
+    <script>
+    $(document).ready(function () {
+    	var username = sessionStorage.getItem('username');
+        var email = sessionStorage.getItem('email');
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+        $("#username").val(username);
+        $("#email").val(email);
+        $("#sendOTPBtn").click(function () {
+            var username = $("#username").val();
+            var email = $("#email").val();
+			console.log("Đã click");
+            if (username && email) {
+                $.ajax({
+                    type: "POST",
+                    url: "<%= request.getContextPath() %>/GuiOTP",
+                    data: { username: username, email: email },
+                    success: function (response) {
+                        console.log(response);
+                        console.log(username);
+                        sessionStorage.setItem('username', username);
+                        sessionStorage.setItem('email', email);
+                        window.location.href = '<%= request.getContextPath() %>/QuenMatKhau.jsp';
+                    },
+                    error: function (error) {
+                        console.log(error);
+                    }
+                });
+            } else {
+                alert("Vui lòng nhập đầy đủ thông tin Tài khoản và Email.");
+            }
+        });
+        $("#confirmOTPBtn").click(function () {
+        	console.log("Đã click xác nhận");
+            var enteredOTP = $("#otp").val();
+            var trueOTP = "${sessionScope.TRUEOTP}";
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+        	console.log(trueOTP);
+            if (enteredOTP === trueOTP) {
+                <% session.removeAttribute("TRUEOTP");%>
+                $("#new-password-row, #changePasswordBtn").show();
+                $("#sendOTPBtn").prop("disabled", true);
+            	$("#confirmOTPBtn").prop("disabled", true);
+            } else {            	
+                alert("OTP is incorrect. Please try again.");
+            }
+        });
+        $("#changePasswordBtn").click(function () {
+            var username = $("#username").val();
+            var newPassword = $("#new-password").val();
 
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+            $.ajax({
+                type: "POST",
+                url: "<%= request.getContextPath() %>/DoiMatKhau",
+                data: {
+                    username: username,
+                    newPassword: newPassword
+                },
+                success: function (response) {
+                    alert("Mật khẩu đã được thay đổi thành công!");
+                	window.location.href = '<%= request.getContextPath() %>/DangNhap.jsp';
+                },
+                error: function (error) {
+                    console.log("Error changing password: ", error);
+                }
+            });
+        });
+    });
+</script>
+<% if (session.getAttribute("SendMessage") != null) { %>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="myModalLabel">Thông báo</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        ${SendMessage}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Thoát</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+        <!-- JavaScript to trigger the modal -->
+        <script>
+            $(document).ready(function() {
+            	console.log('Document ready function');
+                $('#myModal').modal('show');
+                <% session.removeAttribute("SendMessage");%>
+            });
+        </script>
+    <% } %>
 </body>
 </html>
