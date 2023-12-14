@@ -54,6 +54,7 @@ public class HoatDongController extends HttpServlet {
 	}
 	private void DSHoatDong(HttpServletRequest request, HttpServletResponse response)
 	        throws SQLException, ServletException, IOException {
+		
 		HttpSession session = request.getSession();
 		String mssv = (String) session.getAttribute("maND");
 	    

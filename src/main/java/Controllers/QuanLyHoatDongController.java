@@ -32,6 +32,7 @@ public class QuanLyHoatDongController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		List<HoatDong> hoatDongList = dao.selectAllHoatDong();
 		request.setAttribute("hoatDongList", hoatDongList);
 		request.getRequestDispatcher("/Admin/QuanLyHoatDong_Admin.jsp").forward(request, response);
@@ -39,6 +40,7 @@ public class QuanLyHoatDongController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String tenHD = request.getParameter("name");
 		String noiDung = request.getParameter("noidung");
 		int drl = Integer.parseInt(request.getParameter("drl"));

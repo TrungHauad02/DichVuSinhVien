@@ -31,12 +31,14 @@ public class ThemCTSVController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Admin/ThemCTSV.jsp");
 		dispatcher.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String tk = request.getParameter("taikhoan");
 		String matKhau = request.getParameter("matkhau");
 		String phanQuyen = "ctsv";

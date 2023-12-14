@@ -32,6 +32,7 @@ public class QuanLyLopHoc extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		List<LopHoc> lopHocList = dao.selectAllLopHoc();
 		request.setAttribute("lopHocList", lopHocList);
 		request.getRequestDispatcher("/Admin/QuanLyLopHoc_Admin.jsp").forward(request, response);
@@ -39,6 +40,7 @@ public class QuanLyLopHoc extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String monHoc = request.getParameter("monHoc");
 		String tenLopHoc = request.getParameter("tenLop");
 		int tinChi = Integer.parseInt(request.getParameter("tinChi"));

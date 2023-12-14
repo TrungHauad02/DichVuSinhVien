@@ -38,6 +38,7 @@ public class QuanLyController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int idquanly = 1;
 		QuanLy quanly = quanlyDAO.selectAdmin(idquanly);
 		

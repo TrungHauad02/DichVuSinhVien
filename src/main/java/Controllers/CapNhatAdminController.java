@@ -33,6 +33,7 @@ public class CapNhatAdminController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int idQuanly = Integer.parseInt(request.getParameter("id"));
 		QuanLyDAO dao = new QuanLyDAO();
 		QuanLy quanly = dao.selectAdmin(idQuanly);
@@ -42,7 +43,7 @@ public class CapNhatAdminController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		int idQuanly = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		java.util.Date ngaySinh = null;

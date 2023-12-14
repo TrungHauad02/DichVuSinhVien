@@ -33,14 +33,6 @@
 </head>
 
 <body id="page-top">
-<%
-	    String maND = (String) session.getAttribute("maND");
-	    if (maND == null) {
-	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
-	        dispatcher.forward(request, response);
-	    }
-	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
@@ -115,8 +107,8 @@
 						</form>
 
 						<!-- Hình ảnh -->
-						<div class="col-lg-2 d-flex justify-content-center">
-							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
+						<div class="col-lg-3 " >
+							<img src="https://storage.googleapis.com/nguyenphat/assets/anhnen.png" alt="Hình ảnh" width="330" height="380">
 						</div>
 					</div>
 				</div>

@@ -32,6 +32,7 @@ public class QuanLyKhoaController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		List<Khoa> khoaList = dao.selectAllKhoa();
 		request.setAttribute("khoaList", khoaList);
 		request.getRequestDispatcher("/Admin/QuanLyKhoa_Admin.jsp").forward(request, response);
@@ -39,6 +40,7 @@ public class QuanLyKhoaController extends HttpServlet {
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String tenKhoa = request.getParameter("tenKhoa");
 		Khoa khoa = new Khoa(tenKhoa);
 		dao.inserKhoa(khoa);
