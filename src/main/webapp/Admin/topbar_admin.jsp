@@ -35,7 +35,7 @@
 		<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
 			<a class="nav-link" href="<%=request.getContextPath() %>/admin">
 				<div>
-					<span class="high">Thông tin cá nhân</span>
+					<span class="high">Trang chủ</span>
 				</div>
 
 			</a>
@@ -73,13 +73,30 @@
 				</div></li>
 
 			<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow"><a
-				class="nav-link dropdown-toggle" href="<%=request.getContextPath() %>/DangXuat" id="userDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <span
-					class="mr-2 d-none d-lg-inline text-gray-600 small">Đăng
-						xuất</span>
-			</a> <!-- Dropdown - User Information --></li>
+			<li class="nav-item dropdown no-arrow ml-auto">
+                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-4 d-none d-lg-inline text-gray-900 medium">${quanly.getHoTen()}</span>
+								<lord-icon
+								    src="https://cdn.lordicon.com/kthelypq.json"
+								    trigger="hover"
+								    style="width:50px;height:50px">
+								</lord-icon>
+                            </a>
+                            <!-- Dropdown - User Information -->
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                                aria-labelledby="userDropdown">
+                                <a class="dropdown-item" href="<%= request.getContextPath()%>/admin">
+                                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Thông tin cá nhân
+                                </a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="<%= request.getContextPath()%>/DangXuat">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    Đăng xuất
+                                </a>
+                            </div>
+                        </li>
 
 		</ul>
 
