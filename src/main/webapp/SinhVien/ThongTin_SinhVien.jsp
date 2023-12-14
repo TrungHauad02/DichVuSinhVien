@@ -102,7 +102,7 @@
 						            </tr>
 						            <tr>
 						                <td><label for="faculty" class="h4">Khoa:</label></td>
-						                <td><input type="text" id="faculty" class="form-control" value="${sinhvien.getKhoa()}" readonly></td>
+						                <td><input type="text" id="faculty" class="form-control" value="${tenkhoa}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="course" class="h4">Khóa học:</label></td>

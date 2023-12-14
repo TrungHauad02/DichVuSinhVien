@@ -36,4 +36,24 @@ public class KhoaDAO {
 		
 		return dsKhoa;
 	}
+	public Khoa LayKhoaTheoID(int ID_Khoa) throws ClassNotFoundException {
+		Khoa khoa = new Khoa();
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		try (Connection connection = JDBCUtil.getConnection();
+	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM KHOA Where TrangThai = 1 AND ID_Khoa = ?")) {
+			preparedStatement.setInt(1, ID_Khoa);
+			ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+	                khoa.setID_Khoa(rs.getInt("ID_Khoa"));
+	                khoa.setTenKhoa(rs.getString("TenKhoa"));
+	                khoa.setTrangThai(rs.getInt("TrangThai"));
+	               }
+	            } catch (SQLException e) {
+	                HandleExeption.printSQLException(e);
+	            }
+		
+		return khoa;
+	}
 }
