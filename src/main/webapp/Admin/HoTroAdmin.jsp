@@ -15,21 +15,7 @@
 <title>Hỗ trợ</title>
 
 <!-- Custom fonts for this template-->
-<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
-	rel="stylesheet">
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
-	rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
-	rel="stylesheet">
+<jsp:include page="../head.jsp" />
 </head>
 
 <body id="page-top">
@@ -70,7 +56,7 @@
 					</div>
 					<div>
 						<label> <i class="fa fa-arrow-right"></i> <label>
-								Click vào: <a target="_blank" href="DoiMatKhau">Đổi mật khẩu</a>
+								Click vào: <a target="_blank" href="<%=request.getContextPath()%>/Admin/DoiMK_Admin.jsp">Đổi mật khẩu</a>
 						</label>
 						</label>
 					</div>
@@ -106,15 +92,7 @@
 	</a>
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="../vendor/jquery/jquery.min.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="../js/sb-admin-2.min.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+	<jsp:include page="../Scripts.jsp" />
 
 </body>
 
