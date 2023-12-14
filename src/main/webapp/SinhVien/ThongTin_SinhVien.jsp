@@ -178,13 +178,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Trang web của nhóm 12</span>
-                    </div>
-                </div>	
-            </footer>
+    			<jsp:include page="../footer.jsp" />
             <!-- End of Footer -->
 
         </div>
@@ -195,7 +189,7 @@
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
+        <i class="fas fa-angle-up">top</i>
     </a>
     <!-- Bootstrap core JavaScript-->
     

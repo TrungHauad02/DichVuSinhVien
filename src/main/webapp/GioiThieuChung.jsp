@@ -57,10 +57,10 @@
                     <ul class="navbar-nav" style="width: 100%;">
                     
                     	<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="#">Trang Chủ</a>
+							<a class ="nav-link text-gray-900 medium" href="./index.jsp">Trang Chủ</a>
 						</li>
 						<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="<%= request.getContextPath()%>/HoTroSinhVien">Hỗ Trợ</a>
+							<a class ="nav-link text-gray-900 medium" href="./HoTroSinhVien.jsp">Hỗ Trợ</a>
 						</li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow ml-auto">
@@ -78,7 +78,7 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-				<div class="container min-vh-100 d-flex flex-column align-items-center justify-content-center text-center">
+				<div class="container mh-80 d-flex flex-column align-items-center justify-content-center text-center">
 			        <div class="row">
 			            <div class="col">
 			                <p>Đây là trang web dịch vụ sinh viên của nhóm 12<br/></p>
@@ -105,13 +105,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Trang web của nhóm 12</span>
-                    </div>
-                </div>	
-            </footer>
+    			<jsp:include page="./footer.jsp" />
             <!-- End of Footer -->
 
         </div>

@@ -61,10 +61,10 @@
                     <ul class="navbar-nav" style="width: 100%;">
                     
                     	<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="#">Trang Chủ</a>
+							<a class ="nav-link text-gray-900 medium" href="./index.jsp">Trang Chủ</a>
 						</li>
 						<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="<%= request.getContextPath()%>/HoTroSinhVien.jsp">Hỗ Trợ</a>
+							<a class ="nav-link text-gray-900 medium" href="./HoTroSinhVien.jsp">Hỗ Trợ</a>
 						</li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow ml-auto">
@@ -96,7 +96,7 @@
 					</div>
 					<div style="margin-top: 20px;"></div>
 					<div>
-						<label> <label class="h5">Bạn muốn thay đổi mật
+						<label> <label class="h5">Bạn đã quên mật
 								khẩu?</label>
 						</label>
 					</div>
@@ -119,13 +119,7 @@
 				<!-- End of Main Content -->
 
 				<!-- Footer -->
-				<footer class="sticky-footer bg-white">
-					<div class="container my-auto">
-						<div class="copyright text-center my-auto">
-							<span>Trang web của nhóm 12</span>
-						</div>
-					</div>
-				</footer>
+    				<jsp:include page="./footer.jsp" />
 				<!-- End of Footer -->
 
 			</div>
