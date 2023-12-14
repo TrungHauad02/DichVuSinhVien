@@ -1,8 +1,12 @@
 package Controllers;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,8 +16,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import DAO.LopHocDAO;
 import DAO.ThamGiaLopHocDAO;
+import DAO.ThemSinhVienLopDao;
 import DAO.XuLyYeuCauDao;
 import Models.LopHoc;
 import Models.TableYeuCau;
@@ -26,7 +33,7 @@ import Models.ThamGiaLopHoc;
 public class XuLyYeuCauController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
+    /**a
      * @see HttpServlet#HttpServlet()
      */
     public XuLyYeuCauController() {
@@ -58,13 +65,46 @@ public class XuLyYeuCauController extends HttpServlet {
 		}
         
 	}
-	
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			BufferedReader reader = request.getReader();
+	        StringBuilder jsonData = new StringBuilder();
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            jsonData.append(line);
+	        } 
+	        JSONObject jsonObject = new JSONObject(jsonData.toString());
+	        String trangthai = jsonObject.getString("trangthai");
+	        int idYeuCau = Integer.parseInt(jsonObject.getString("idYC"));
+	        XuLyYeuCauDao.xuLyYeuCau(trangthai ,idYeuCau);
+			}
+			    catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
+		try {
+			BufferedReader reader = request.getReader();
+	        StringBuilder jsonData = new StringBuilder();
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            jsonData.append(line);
+	        } 
+	        JSONObject jsonObject = new JSONObject(jsonData.toString());
+	        String trangthai = jsonObject.getString("trangthai");
+	        int idYeuCau = Integer.parseInt(jsonObject.getString("idYC"));
+	        int idCtsv = jsonObject.getInt("idctsv");
+	        String noidungphanhoi = jsonObject.getString("noidungph");
+	        LocalDateTime thoidiemphanhoi = LocalDateTime.now();
+	        XuLyYeuCauDao.themPhanHoi(noidungphanhoi, trangthai, thoidiemphanhoi, idCtsv, idYeuCau);
+			}
+			    catch (SQLException e) {
+				// TODO Auto-generated catch block 
+				e.printStackTrace();
+			}
+		}
 }
