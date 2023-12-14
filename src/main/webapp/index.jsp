@@ -85,11 +85,11 @@
 							<a class ="nav-link text-gray-900 medium" href="./index.jsp">Trang Chủ</a>
 						</li>
 						<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="./HoTroSinhVien.jsp">Hỗ Trợ</a>
+							<a class ="nav-link text-gray-900 medium" href="<%=request.getContextPath()%>/HoTroSinhVien.jsp">Hỗ Trợ</a>
 						</li>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow ml-auto">
-                            <a class="nav-link dropdown-toggle" href="DangNhap.jsp">
+                            <a class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/DangNhap.jsp">
                                 <span class="mr-4 d-none d-lg-inline text-gray-900 medium">Đăng Nhập</span>
 								<lord-icon
 								    src="https://cdn.lordicon.com/kthelypq.json"
