@@ -14,7 +14,31 @@
     <title>Trang Chủ</title>
 
     <jsp:include page="../head.jsp" />
-
+	<style>
+	    .container {
+	      display: flex;
+	      flex-wrap: wrap;
+	    }
+	
+	    .rectangle {
+	      width: 200px;
+	      height: 100px;
+	      border: 1px solid #000;
+	      
+	      margin: 10px;
+	      display: flex;
+	      align-items: center;
+	      justify-content: center;
+	      background-color: #f0f0f0;
+      	  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+      	  
+	    }
+	    .rectangle p {
+	    	color: black; 
+      		margin: 0;
+      		text-align: center;
+    	}
+	  </style>
 </head>
 <body id="page-top">
 	<%
@@ -52,18 +76,27 @@
                 </nav>  
 
                 <!-- Your Slide bar and main content goes here -->
-
+				<div class="container">
+			        <div class="rectangle">
+				      <p>Trang web dịch vụ sinh viên</p>
+				    </div>
+				
+				    <div class="rectangle">
+				      <p>Trang web phục vụ cho quản lý</p>
+				    </div>
+				    <div class="rectangle">
+				      <p>Trang web phục vụ cho ctsv</p>
+				    </div>
+				    <div class="rectangle">
+				      <p>Trang web phục vụ cho sinh viên</p>
+				    </div>
+			    </div>
+				
             </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Trang web của nhóm 12</span>
-                    </div>
-                </div>	
-            </footer>
+    			<jsp:include page="../footer.jsp" />
             <!-- End of Footer -->
 
         </div>
