@@ -10,18 +10,17 @@ import Models.QuanLy;
 import Models.SinhVien;
 import DAO.TaiKhoanDao;
 
-public class test 
-{
-	public static void main(String args[]) 
-	{
+public class test {
+	public static void main(String args[]) {
 		QuanLyDAO dao = new QuanLyDAO();
-		/* int a = dao.LayIDTaiKhoan("ctsv1", "ctsv1"); */
-		List<Khoa> list = dao.selectAllKhoa();
-		/* Khoa a = dao.selectKhoa(1); */
-		
-		 for (Khoa o : list) { System.out.println(o); } 
-		 
-			/* System.out.println(a); */
+		int a = dao.LayIDQuanLy("admin", "admin");
+		/*
+		 * List<Khoa> list = dao.selectAllKhoa(); Khoa a = dao.selectKhoa(1);
+		 * 
+		 * for (Khoa o : list) { System.out.println(o); }
+		 */
+
+		 System.out.println(a); 
 
 	}
 }
