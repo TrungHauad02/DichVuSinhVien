@@ -114,7 +114,7 @@ public class TaiKhoanController extends HttpServlet {
 		                String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
 		                request.setAttribute("encodedImage", encodedImage);
 		            }
-	                dispatcher = request.getRequestDispatcher("/SinhVien/index_SinhVien.jsp");
+	                dispatcher = request.getRequestDispatcher("/ThongTinSinhVien");
 	                dispatcher.forward(request, response);
 	                break;
 	            default:
