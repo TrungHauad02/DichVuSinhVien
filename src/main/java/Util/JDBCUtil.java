@@ -11,14 +11,11 @@ public class JDBCUtil {
 		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
-			String url = System.getenv("DB_URL");
-			String username = System.getenv("DB_USERNAME");
-			String password = System.getenv("DB_PASSWORD");
-			/*
-			 * String url = System.getenv("DB_URL"); String username =
-			 * System.getenv("DB_USERNAME"); String password = System.getenv("DB_PASSWORD");
-			 */
 			
+			  String url = System.getenv("DB_URL"); 
+			  String username = System.getenv("DB_USERNAME"); 
+			  String password = System.getenv("DB_PASSWORD");
+			 
 			conn = DriverManager.getConnection(url, username, password);
 			System.out.println("Connection Successfully!");
 		}

@@ -220,7 +220,7 @@
 					</div>
 					<div>
 						<label> <i class="fa fa-arrow-right"></i> <label>
-								Click vào: <a target="_blank" href="DoiMK.jsp">Đổi mật khẩu</a>
+								Click vào: <a target="_blank" href="DoiMatKhau">Đổi mật khẩu</a>
 						</label>
 						</label>
 					</div>
