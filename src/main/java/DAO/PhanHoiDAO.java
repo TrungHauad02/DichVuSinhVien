@@ -36,7 +36,7 @@ public class PhanHoiDAO {
 	                        phanhoi.setThoiGianPH(rs.getDate("ThoiGianPH"));
 	                        phanhoi.setID_CTSV(rs.getInt("ID_CTSV"));
 	                        phanhoi.setID_PhanHoi(rs.getInt("ID_PhanHoi"));
-	                        phanhoi.setTrangThai(rs.getString("TrangThai"));
+	                        phanhoi.setNoiDung(rs.getString("NoiDung"));
 	                        dsPhanHoi.add(phanhoi);
 	                    }
 	                }
