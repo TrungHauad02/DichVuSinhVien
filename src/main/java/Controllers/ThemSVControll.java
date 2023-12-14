@@ -36,6 +36,7 @@ public class ThemSVControll extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		List<Khoa> khoaList = dao.selectAllKhoa();
 		request.setAttribute("khoaList", khoaList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/Admin/ThemSV.jsp");
@@ -44,7 +45,7 @@ public class ThemSVControll extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+		request.setCharacterEncoding("UTF-8");
 		String tk = request.getParameter("taikhoan");
 		String matKhau = request.getParameter("matkhau");
 		String phanQuyen = "sinhvien";

@@ -30,6 +30,7 @@ public class QuanLyCTSVControll extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		List<CTSV> ctsvList = dao.selectAllCTSV();
 		request.setAttribute("ctsvList", ctsvList);
 		request.getRequestDispatcher("/Admin/QuanLyCTSV_Admin.jsp").forward(request, response);

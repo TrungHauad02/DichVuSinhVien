@@ -33,6 +33,7 @@ public class CapNhatCTSV extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int idctsv = Integer.parseInt(request.getParameter("id"));
 		QuanLyDAO dao = new QuanLyDAO();
 		CTSV ctsv = dao.selectCTSV(idctsv);
@@ -42,6 +43,7 @@ public class CapNhatCTSV extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		int idctsv = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		String cccd = request.getParameter("cccd");

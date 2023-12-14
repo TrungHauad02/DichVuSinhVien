@@ -33,6 +33,7 @@ public class CapNhatSV extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String idsv = request.getParameter("id");
 		QuanLyDAO dao = new QuanLyDAO();
 		SinhVien sv = dao.selectSV(idsv);
@@ -44,6 +45,7 @@ public class CapNhatSV extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
 		String idsv = request.getParameter("id");
 		String name = request.getParameter("name");
 		java.util.Date ngaySinh = null;
