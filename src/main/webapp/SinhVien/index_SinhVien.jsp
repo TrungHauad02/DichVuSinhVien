@@ -57,13 +57,13 @@
 				        <div class="card mb-3">
 				            <div class="card-body">
 				                <h5 class="card-title">ID Yêu Cầu: ${phanhoi.ID_YeuCau}</h5>
-				                <p class="card-text">Nội Dung: ${phanhoi.NoiDung}</p>
+				                <p class="card-text">Nội Dung: ${phanhoi.getNoiDung()}</p>
 				                <p class="card-text">Trạng Thái: 
-				                    <span style="color: ${phanhoi.TrangThai eq 'HoanThanh' ? 'green' : 'red'};">
-				                        ${phanhoi.TrangThai}
+				                    <span style="color: ${phanhoi.getTrangThai() eq 'HoanThanh' ? 'green' : 'red'};">
+				                        ${phanhoi.getTrangThai()}
 				                    </span>
 				                </p>
-				                <p class="card-text">Thời Gian Phản Hồi: ${phanhoi.ThoiGianPhanHoi}</p>
+				                <p class="card-text">Thời Gian Phản Hồi: ${phanhoi.getThoiGianPH()}</p>
 				            </div>
 				        </div>
 				    </c:forEach>
