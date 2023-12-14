@@ -18,14 +18,14 @@
     <title>Thông tin sinh viên</title>
 
     <!-- Custom fonts for this template	-->
-    <jsp:include page="../head.jsp" />
+    <jsp:include page="head.jsp" />
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <jsp:include page="./Sidebar_SinhVien.jsp" />
+        <jsp:include page="/SinhVien/Sidebar_SinhVien.jsp" />
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -43,7 +43,7 @@
                     </button>
 
                     <!-- Topbar Navigation -->
-                    <jsp:include page="./Topbar_SinhVien.jsp" />
+                    <jsp:include page="/SinhVien/Topbar_SinhVien.jsp" />
 
                 </nav>
 

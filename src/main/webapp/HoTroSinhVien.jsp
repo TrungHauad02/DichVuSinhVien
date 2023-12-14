@@ -19,14 +19,14 @@
 <title>Thông tin sinh viên</title>
 
 <!-- Custom fonts for this template	-->
-<jsp:include page="../head.jsp" />
+<jsp:include page="/head.jsp" />
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-		<jsp:include page="./Sidebar_SinhVien.jsp" />
+		<jsp:include page="/SinhVien/Sidebar_SinhVien.jsp" />
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -46,7 +46,7 @@
 					</button>
 
 					<!-- Topbar Navigation -->
-					<jsp:include page="./Topbar_SinhVien.jsp" />
+					<jsp:include page="/SinhVien/Topbar_SinhVien.jsp" />
 
 				</nav>
 
@@ -79,12 +79,13 @@
 					<div>
 						<div>
 							<div class="my-2"></div>
-							<a href="chinhsach" class="btn btn-primary btn-icon-split"> <span
-								class="text">Chính sách</span>
+							<a href="chinhsach" class="btn btn-primary btn-icon-split">
+								<span class="text">Chính sách</span>
 							</a>
 						</div>
 					</div>
 				</div>
+
 				<!-- End of Main Content -->
 
 				<!-- Footer -->
@@ -166,11 +167,11 @@
 
 	                    $.ajax({
 	                        type: "POST",
-	                        url: "<%=request.getContextPath()%>/CapNhatSinhVien",
+	                        url: "<%= request.getContextPath() %>/CapNhatSinhVien",
 	                        data: data,
 	                        success: function (response) {
 	                            console.log(response);
-	                            window.location.href = '<%=request.getContextPath()%>/ThongTinSinhVien';
+	                            window.location.href = '<%= request.getContextPath() %>/ThongTinSinhVien';
 	                        },
 	                        error: function (error) {
 	                            console.log(error);
@@ -193,37 +194,28 @@
 
 	                $.ajax({
 	                    type: "POST",
-	                    url: "<%=request.getContextPath()%>/CapNhatSinhVien",
+	                    url: "<%= request.getContextPath() %>/CapNhatSinhVien",
 	                    data: data,
 	                    success: function (response) {
 	                        console.log(response);
-	                        window.location.href = '<%=request.getContextPath()%>
-			/ThongTinSinhVien';
-																	},
-																	error : function(
-																			error) {
-																		console
-																				.log(error);
-																	}
-																});
-													}
-												});
+	                        window.location.href = '<%= request.getContextPath() %>/ThongTinSinhVien';
+	                    },
+	                    error: function (error) {
+	                        console.log(error);
+	                    }
+	                });
+	            }
+	        });
 
-								cancelButton
-										.on(
-												'click',
-												function() {
-													$('input')
-															.not(
-																	'#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name')
-															.attr('readonly',
-																	true);
-													updateButton.show();
-													confirmButton.hide();
-													cancelButton.hide();
-													$('#selectImage').hide();
-												});
-							});
-		</script>
+	
+	        cancelButton.on('click', function () {
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
+	            updateButton.show();
+	            confirmButton.hide();
+	            cancelButton.hide();
+	            $('#selectImage').hide();
+	        });
+	    });
+	</script>
 </body>
 </html>
