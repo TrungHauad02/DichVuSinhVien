@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.QuanLyDAO;
+import Models.Khoa;
 import Models.QuanLy;
 import Models.SinhVien;
 
@@ -35,6 +37,8 @@ public class CapNhatSV extends HttpServlet {
 		QuanLyDAO dao = new QuanLyDAO();
 		SinhVien sv = dao.selectSV(idsv);
 		request.setAttribute("sv", sv);
+		List<Khoa> khoaList = dao.selectAllKhoa();
+		request.setAttribute("khoaList", khoaList);
 		request.getRequestDispatcher("/Admin/CapNhatSV.jsp").forward(request, response);
 	}
 

@@ -13,8 +13,17 @@ public class TaiKhoan implements Serializable {
 
     public TaiKhoan() {
     }
+    
 
-    public int getID_TaiKhoan() {
+    public TaiKhoan(String taiKhoan, String matKhau, String phanQuyen) {
+		super();
+		TaiKhoan = taiKhoan;
+		MatKhau = matKhau;
+		PhanQuyen = phanQuyen;
+	}
+
+
+	public int getID_TaiKhoan() {
         return ID_TaiKhoan;
     }
 

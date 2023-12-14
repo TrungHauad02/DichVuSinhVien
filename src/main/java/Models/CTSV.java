@@ -37,6 +37,16 @@ public class CTSV implements Serializable {
 		Email = email;
 	}
     
+	public CTSV(String hoTen, String cCCD, String gioiTinh, Date ngaySinh, String sDT, String email, int iD_TaiKhoan) {
+		super();
+		HoTen = hoTen;
+		CCCD = cCCD;
+		GioiTinh = gioiTinh;
+		NgaySinh = ngaySinh;
+		SDT = sDT;
+		Email = email;
+		ID_TaiKhoan = iD_TaiKhoan;
+	}
 
 	public CTSV(String hoTen, String cCCD, String gioiTinh, Date ngaySinh, String sDT, String email) {
 		super();
@@ -59,9 +69,7 @@ public class CTSV implements Serializable {
     	this.ID_TaiKhoan = ID_TaiKhoan;
     	this.TrangThai = TrangThai;
     }
-    public CTSV(int idctsv, String name, Date ngaySinh2, String gioitinh2, String cccd2, String sdt2, String email2) {
-		// TODO Auto-generated constructor stub
-	}
+    
 
 	public int getID_CTSV() {
         return ID_CTSV;

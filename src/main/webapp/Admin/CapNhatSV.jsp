@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,32 +78,30 @@
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlykhoa"><span>Quản lý khoa</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
+						lý khoa</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhoatdong"><span>Quản lý hoạt động</span> </a></li>
+			<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
+						lý hoạt động</span> </a></li>
 
 			<!-- Divider -->
 			<hr class="sidebar-divider">
 			<!-- Divider -->
-			<li class="nav-item"><a class="nav-link"
-				href="quanlyhocbong"> <i class="fas fa-fw fa-user"></i>
-					<span>Quản lý học bổng</span>
+			<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
+					<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link"
-				href="quanlylophoc"> <i class='fas fa-fw fa-headset'></i>
-					<span>Quản lý lớp học</span>
+			<li class="nav-item"><a class="nav-link" href="quanlylophoc">
+					<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
 			</a></li>
 
 			<hr class="sidebar-divider">
-			<li class="nav-item"><a class="nav-link" href="hotro">
-					<i class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
+			<li class="nav-item"><a class="nav-link" href="hotro"> <i
+					class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
 			</a></li>
 
 		</ul>
@@ -233,14 +232,12 @@
 											<td>
 												<div class="form-check form-check-inline">
 													<input class="form-check-input" type="radio" name="gender"
-														id="male" value="1" 
-														checked> <label
+														id="male" value="1" checked> <label
 														class="form-check-label h4" for="male"> Nam </label>
 												</div>
 												<div class="form-check form-check-inline">
 													<input class="form-check-input" type="radio" name="gender"
-														id="female" value="0"
-														checked}> <label
+														id="female" value="0"checked}> <label
 														class="form-check-label h4" for="female"> Nữ </label>
 												</div>
 											</td>
@@ -251,9 +248,14 @@
 												class="form-control" value="${sv.getCCCD()}"></td>
 										</tr>
 										<tr>
-											<td><label for="faculty" class="h4">Khoa:</label></td>
-											<td><input type="text" id="faculty" name="khoa"
-												class="form-control" value="${sv.getKhoa()}"></td>
+											<td><label for="course" class="h4">Khoa:</label></td>
+											<td><select class="form-control" id="khoa" name="khoa"
+												required>
+													<c:forEach var="khoa" items="${khoaList}">
+														<option value="${khoa.ID_Khoa}"><c:out
+																value="${khoa.getTenKhoa()}" /></option>
+													</c:forEach>
+											</select></td>
 										</tr>
 										<tr>
 											<td><label for="course" class="h4">Khóa học:</label></td>
@@ -264,7 +266,8 @@
 								</table>
 								<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
 								<div class="text-center mt-3">
-									<button class="btn btn-primary mr-3">Cập nhật sinh viên</button>
+									<button class="btn btn-primary mr-3">Cập nhật sinh
+										viên</button>
 								</div>
 								<div style="margin-top: 40px;"></div>
 							</div>

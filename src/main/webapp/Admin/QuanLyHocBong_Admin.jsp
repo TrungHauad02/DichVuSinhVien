@@ -281,11 +281,6 @@
 											<td><input type="text" id="SLConLai" name="tienthuong"
 												class="form-control"></td>
 										</tr>
-										<tr>
-											<td><label class="h5">ID Dịch vụ:</label></td>
-											<td><input type="text" id="SLDaPhat" name="iddichvu"
-												class="form-control"></td>
-										</tr>
 
 									</tbody>
 								</table>

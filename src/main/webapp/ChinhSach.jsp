@@ -18,13 +18,20 @@
     <title>Thông tin sinh viên</title>
 
     <!-- Custom fonts for this template	-->
+
+    <jsp:include page="head.jsp" />
+
     <jsp:include page="./head.jsp" />
+
 </head>
 <body id="page-top">
     <!-- Page Wrapper -->
     <div id="wrapper">
 
         <!-- Sidebar -->
+
+        <jsp:include page="/SinhVien/Sidebar_SinhVien.jsp" />
+
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
 	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
@@ -40,6 +47,7 @@
                     <span >Giới thiệu chung</span></a>
             </li>
         </ul>
+
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->
@@ -57,6 +65,11 @@
                     </button>
 
                     <!-- Topbar Navigation -->
+
+                    <jsp:include page="/SinhVien/Topbar_SinhVien.jsp" />
+
+                </nav>
+
                     <ul class="navbar-nav" style="width: 100%;">
                     
                     	<li class ="nav-item">
@@ -79,6 +92,7 @@
                     </ul>
 
                 </nav>  
+
 
                 <!-- Your Slide bar and main content goes here -->
 					<div class="container-fluid">

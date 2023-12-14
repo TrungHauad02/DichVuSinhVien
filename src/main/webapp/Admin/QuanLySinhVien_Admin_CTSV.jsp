@@ -247,7 +247,7 @@
 													<td><c:if test="${SV.getGioiTinh()==1}">Nam</c:if> <c:if
 															test="${SV.getGioiTinh()==0}">Nữ</c:if></td>
 													<td><c:out value="${SV.getCCCD()}" /></td>
-													<td><c:out value="${SV.getKhoa()}" /></td>
+													<td><c:out value="${SV.getTenKhoa()}" /></td>
 													<td><c:out value="${SV.getNamHoc()}" /></td>
 													<td><a
 														href="updatesv?id=<c:out value='${SV.ID_SinhVien}' />">Edit</a>

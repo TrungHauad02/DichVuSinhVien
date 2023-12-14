@@ -19,13 +19,20 @@
 <title>Hỗ trợ sinh viên</title>
 
 <!-- Custom fonts for this template	-->
+
+<jsp:include page="/head.jsp" />
+
 <jsp:include page="./head.jsp" />
+
 </head>
 <body id="page-top">
 	<!-- Page Wrapper -->
 	<div id="wrapper">
 
 		<!-- Sidebar -->
+
+		<jsp:include page="/SinhVien/Sidebar_SinhVien.jsp" />
+
 		<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 			<!-- Sidebar - Brand -->
 	        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.jsp">
@@ -41,6 +48,7 @@
                     <span >Giới thiệu chung</span></a>
             </li>
         </ul>
+
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -50,6 +58,21 @@
 			<div id="content">
 
 				<!-- Topbar -->
+
+				<nav
+					class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+					<!-- Sidebar Toggle (Topbar) -->
+					<button id="sidebarToggleTop"
+						class="btn btn-link d-md-none rounded-circle mr-3">
+						<i class="fa fa-bars"></i>
+					</button>
+
+					<!-- Topbar Navigation -->
+					<jsp:include page="/SinhVien/Topbar_SinhVien.jsp" />
+
+				</nav>
+
 				<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
                     <!-- Sidebar Toggle (Topbar) -->
@@ -81,6 +104,7 @@
 
                 </nav>  
 
+
 				<!-- Your Slide bar and main content goes here -->
 				<div class="container-fluid">
 
@@ -110,12 +134,16 @@
 					<div>
 						<div>
 							<div class="my-2"></div>
-							<a href="./ChinhSach.jsp" class="btn btn-primary btn-icon-split"> <span
-								class="text">Chính sách</span>
+
+							<a href="chinhsach" class="btn btn-primary btn-icon-split">
+								<span class="text">Chính sách</span>
+
+							
 							</a>
 						</div>
 					</div>
 				</div>
+
 				<!-- End of Main Content -->
 
 				<!-- Footer -->
@@ -129,6 +157,116 @@
 		<!-- End of Page Wrapper -->
 		
 		<!-- Bootstrap core JavaScript-->
-		<jsp:include page="./Scripts.jsp" />
+
+
+		<jsp:include page="../Scripts.jsp" />
+		<script>    
+		document.getElementById('selectImage').addEventListener('change', function(event) {
+	        var files = event.target.files;
+	        if (files && files.length > 0) {
+	            var reader = new FileReader();
+	            reader.onload = function() {
+	                var dataURL = reader.result;
+	                if (dataURL != null) {
+	                    document.getElementById('image').src = dataURL;
+	                }
+	            };
+	            reader.readAsDataURL(files[0]);
+	        } else {
+	            console.error("No files selected or FileReader not supported.");
+	        }
+	    });
+	</script>
+		<script>
+		$(document).ready(function () {
+	        var updateButton = $('#update-button');
+	        var confirmButton = $('#confirm-button');
+	        var cancelButton = $('#cancel-button');
+	        console.log(updateButton);
+	
+	        updateButton.on('click', function () {
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').removeAttr('readonly');
+	            updateButton.hide();
+	            confirmButton.show();
+	            cancelButton.show();
+	            $('#selectImage').show();
+	        });
+	
+	        confirmButton.on('click', function () {
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
+	            var imageInput = document.getElementById('selectImage');
+
+	            if (imageInput.files.length > 0) {
+	                var reader = new FileReader();
+
+	                reader.onload = function () {
+	                    var dataURL = reader.result;
+
+	                    var data = {
+	                        mssv: $('#mssv').val(),
+	                        name: $('#name').val(),
+	                        dob: $('#dob').val(),
+	                        gender: $('input[name=gender]:checked').val(),
+	                        cccd: $('#cccd').val(),
+	                        phone: $('#phone').val(),
+	                        email: $('#email').val(),
+	                        address: $('#address').val(),
+	                        image: dataURL
+	                    };
+
+	                    $.ajax({
+	                        type: "POST",
+	                        url: "<%= request.getContextPath() %>/CapNhatSinhVien",
+	                        data: data,
+	                        success: function (response) {
+	                            console.log(response);
+	                            window.location.href = '<%= request.getContextPath() %>/ThongTinSinhVien';
+	                        },
+	                        error: function (error) {
+	                            console.log(error);
+	                        }
+	                    });
+	                };
+
+	                reader.readAsDataURL(imageInput.files[0]);
+	            } else {
+	                var data = {
+	                    mssv: $('#mssv').val(),
+	                    name: $('#name').val(),
+	                    dob: $('#dob').val(),
+	                    gender: $('input[name=gender]:checked').val(),
+	                    cccd: $('#cccd').val(),
+	                    phone: $('#phone').val(),
+	                    email: $('#email').val(),
+	                    address: $('#address').val()
+	                };
+
+	                $.ajax({
+	                    type: "POST",
+	                    url: "<%= request.getContextPath() %>/CapNhatSinhVien",
+	                    data: data,
+	                    success: function (response) {
+	                        console.log(response);
+	                        window.location.href = '<%= request.getContextPath() %>/ThongTinSinhVien';
+	                    },
+	                    error: function (error) {
+	                        console.log(error);
+	                    }
+	                });
+	            }
+	        });
+
+	
+	        cancelButton.on('click', function () {
+	            $('input').not('#mssv, #ctxh-score, #faculty, #course, #rl-score, #contact-name').attr('readonly', true);
+	            updateButton.show();
+	            confirmButton.hide();
+	            cancelButton.hide();
+	            $('#selectImage').hide();
+	        });
+	    });
+	</script>
+
+		<jsp:include page="./Scripts.jsp" /
 </body>
 </html>

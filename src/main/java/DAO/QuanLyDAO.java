@@ -18,6 +18,7 @@ import Models.Khoa;
 import Models.LopHoc;
 import Models.QuanLy;
 import Models.SinhVien;
+import Models.TaiKhoan;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
@@ -34,7 +35,7 @@ public class QuanLyDAO {
 
 	// ctsv
 	private static final String INSERT_CTSV_SQL = "INSERT INTO CTSV"
-			+ "(HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email) VALUES" + " (?, ?, ?, ?, ?, ?)";
+			+ "(HoTen, CCCD, GioiTinh, NgaySinh, SDT, Email, ID_TaiKhoan) VALUES" + " (?, ?, ?, ?, ?, ?, ?)";
 	private static final String SELECT_CTSV_BY_ID = "select * from CTSV where ID_CTSV =? and TrangThai = 1";
 	private static final String SELECT_ALL_CTSV = "select ID_CTSV, HoTen, NgaySinh, GioiTinh, CCCD, SDT, Email from CTSV where TrangThai = 1";
 	private static final String UPDATE_CTSV_SQL = "UPDATE CTSV SET HoTen=?, CCCD=?, GioiTinh=?, NgaySinh=?, SDT=?, Email=? WHERE ID_CTSV = ?";
@@ -56,12 +57,16 @@ public class QuanLyDAO {
 			+ "  (TenHoatDong, NoiDung, DiemRL, DiemCTXH, NgayThamGia, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
 	private static final String SELECT_ALL_HOATDONG = "select * from HOATDONG where TrangThai = 1";
 	private static final String DELETE_HOATDONG_SQL = "UPDATE HOATDONG SET TrangThai = 0 WHERE ID_HoatDong = ?";
-	
-	//HocBong
+
+	// HocBong
 	private static final String INSERT_HOCBONG_SQL = "INSERT INTO HOCBONG"
 			+ "  (TenHocBong, NoiDung, DieuKien, SoLuong, TienThuong, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
 	private static final String SELECT_ALL_HOCBONG = "select * from HOCBONG where TrangThai = 1";
 	private static final String DELETE_HOCBONG_SQL = "UPDATE HOCBONG SET TrangThai = 0 WHERE ID_HocBong = ?";
+
+	// TaiKhoan
+	private static final String INSERT_TAIKHOAN_SQL = "INSERT INTO TAIKHOAN"
+			+ "  (TaiKhoan, MatKhau, PhanQuyen) VALUES " + " (?,?,?)";
 
 	// Admin
 	public QuanLy selectAdmin(int idquanly) {
@@ -107,8 +112,8 @@ public class QuanLyDAO {
 		}
 		return rowUpdated;
 	}
-	
-	//SV
+
+	// SV
 	public void insertSV(SinhVien sinhVien) {
 		try (Connection conn = JDBCUtil.getConnection()) {
 			String storedProcedure = "{CALL ThemSinhVien(?, ?, ?, ?, ?, ?, ?, ?, ?)}";
@@ -205,12 +210,13 @@ public class QuanLyDAO {
 				String email = rs.getString("Email");
 				String namHoc = rs.getString("NamHoc");
 				int khoa = rs.getInt("Khoa");
+				String tenKhoa = LayTenKhoaTheoID(khoa);
 				int idTK = rs.getInt("ID_TaiKhoan");
 				int diemRL = rs.getInt("DiemRL");
 				int diemCTXH = rs.getInt("DiemCTXH");
 				int trangthai = rs.getInt("TrangThai");
-				sinhviens.add(new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTK,
-						diemRL, diemCTXH, trangthai));
+				sinhviens.add(new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, tenKhoa,
+						idTK, diemRL, diemCTXH, trangthai));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -243,6 +249,7 @@ public class QuanLyDAO {
 			preparedStatement.setDate(4, new java.sql.Date(ctsv.getNgaySinh().getTime()));
 			preparedStatement.setString(5, ctsv.getSDT());
 			preparedStatement.setString(6, ctsv.getEmail());
+			preparedStatement.setInt(7, ctsv.getID_TaiKhoan());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -454,6 +461,7 @@ public class QuanLyDAO {
 			HandleExeption.printSQLException(e);
 		}
 	}
+
 	public List<HoatDong> selectAllHoatDong() {
 
 		List<HoatDong> hoatDongs = new ArrayList<>();
@@ -494,8 +502,8 @@ public class QuanLyDAO {
 		}
 		return rowDeleted;
 	}
-	
-	//HocBong
+
+	// HocBong
 	public void inserHocBong(HocBong hocBong) {
 		// try-with-resource statement will auto close the connection.
 		try {
@@ -512,6 +520,7 @@ public class QuanLyDAO {
 			HandleExeption.printSQLException(e);
 		}
 	}
+
 	public List<HocBong> selectAllHocBong() {
 
 		List<HocBong> hocBongs = new ArrayList<>();
@@ -538,6 +547,7 @@ public class QuanLyDAO {
 		}
 		return hocBongs;
 	}
+
 	public boolean deleteHocBong(int idHocBong) {
 		boolean rowDeleted = false;
 		try {
@@ -551,4 +561,58 @@ public class QuanLyDAO {
 		}
 		return rowDeleted;
 	}
+
+	public String LayTenKhoaTheoID(int ID_Khoa) {
+		String tenKhoa = null;
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement("SELECT TenKhoa FROM KHOA WHERE ID_Khoa = ?");
+			preparedStatement.setInt(1, ID_Khoa);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				// Nếu có kết quả, lấy tên khoa
+				tenKhoa = rs.getString("TenKhoa");
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return tenKhoa;
+	}
+
+	public void insertTK(TaiKhoan taiKhoan) {
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_TAIKHOAN_SQL);
+			preparedStatement.setString(1, taiKhoan.getTaiKhoan());
+			preparedStatement.setString(2, taiKhoan.getMatKhau());
+			preparedStatement.setString(3, taiKhoan.getPhanQuyen());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
+
+	public int LayIDTaiKhoan(String taiKhoan, String matKhau) {
+		int idTK = 0;
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn
+					.prepareStatement("SELECT ID_TaiKhoan FROM TAIKHOAN WHERE TaiKhoan = ? AND MatKhau = ?");
+			preparedStatement.setString(1, taiKhoan);
+			preparedStatement.setString(2, matKhau);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				// Nếu có kết quả, lấy tên khoa
+				idTK = rs.getInt("ID_TaiKhoan");
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return idTK;
+	}
+
 }
