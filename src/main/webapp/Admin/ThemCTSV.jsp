@@ -212,11 +212,13 @@
 									<tbody>
 										<tr>
 											<td><label for="name" class="h4">Họ tên:</label></td>
-											<td><input type="text" id="name" name="name" class="form-control"></td>
+											<td><input type="text" id="name" name="name"
+												class="form-control"></td>
 										</tr>
 										<tr>
 											<td><label for="cccd" class="h4">CCCD:</label></td>
-											<td><input type="text" id="cccd" name="cccd" class="form-control"></td>
+											<td><input type="text" id="cccd" name="cccd"
+												class="form-control"></td>
 										</tr>
 										<tr>
 											<td><label class="h4">Giới tính:</label></td>
@@ -228,34 +230,44 @@
 											<td><input type="date" id="dob" name="date"
 												class="form-control"></td>
 										</tr>
-
-
+										<tr>
+											<td><label for="phone" class="h4">SDT:</label></td>
+											<td><input type="tel" id="phone" name="phone"
+												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="email" class="h4">Email:</label></td>
+											<td><input type="email" id="email" name="email"
+												class="form-control"></td>
+										</tr>
 									</tbody>
 								</table>
 							</div>
-
-							<!-- Bảng Thông tin liên hệ -->
+							
+							<!-- Bảng cap tk -->
 							<div class="col-lg-4">
 								<table class="table">
 									<thead>
 										<tr>
-											<th colspan="2" class="h3">Thông tin liên hệ</th>
+											<th colspan="2" class="h3">Cấp tài khoản:</th>
 										</tr>
 									</thead>
 									<tbody>
-
 										<tr>
-											<td><label for="phone" class="h4">SDT:</label></td>
-											<td><input type="tel" id="phone" name="phone" class="form-control"></td>
+											<td><label for="contact-name" class="h4">Tài
+													khoản:</label></td>
+											<td><input type="text" id="contact-name"
+												class="form-control" name="taikhoan"></td>
 										</tr>
 										<tr>
-											<td><label for="email" class="h4">Email:</label></td>
-											<td><input type="email" id="email" name="email" class="form-control"></td>
+											<td><label for="contact-name" class="h4">Mật
+													khẩu:</label></td>
+											<td><input type="text" id="contact-name"
+												class="form-control" name="matkhau"></td>
 										</tr>
 
 									</tbody>
 								</table>
-								<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
 								<div class="text-center mt-3">
 									<button class="btn btn-primary mr-3">Thêm CTSV</button>
 								</div>

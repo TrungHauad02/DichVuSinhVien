@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import DAO.QuanLyDAO;
 import Models.CTSV;
+import Models.TaiKhoan;
 
 @WebServlet("/insertctsv")
 public class ThemCTSVController extends HttpServlet {
@@ -36,6 +37,12 @@ public class ThemCTSVController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String tk = request.getParameter("taikhoan");
+		String matKhau = request.getParameter("matkhau");
+		String phanQuyen = "ctsv";
+		TaiKhoan taiKhoan = new TaiKhoan(tk, matKhau, phanQuyen);
+		dao.insertTK(taiKhoan);
+		
 		String hoTen = request.getParameter("name");
 		String cccd = request.getParameter("cccd");
 		String gioiTinh = request.getParameter("gender");
@@ -51,7 +58,8 @@ public class ThemCTSVController extends HttpServlet {
 		}
 		String sdt = request.getParameter("phone");
 		String email = request.getParameter("email");
-		CTSV ctsv = new CTSV(hoTen, cccd, gioiTinh, ngaySinh, sdt, email);
+		int id_TaiKhoan = dao.LayIDTaiKhoan(tk, matKhau);
+		CTSV ctsv = new CTSV(hoTen, cccd, gioiTinh, ngaySinh, sdt, email, id_TaiKhoan);
 		dao.insertCTSV(ctsv);
 		response.sendRedirect("quanlyctsv");
 	}

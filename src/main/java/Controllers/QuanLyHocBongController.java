@@ -47,7 +47,7 @@ public class QuanLyHocBongController extends HttpServlet {
 		float dieuKien = Float.parseFloat(request.getParameter("dieukien"));
 		int soLuong = Integer.parseInt(request.getParameter("soluong"));
 		int tienThuong = Integer.parseInt(request.getParameter("tienthuong"));
-		int idDichVu = Integer.parseInt(request.getParameter("iddichvu"));
+		int idDichVu = 1;
 		HocBong hocBong = new HocBong(tenHB, noiDung, dieuKien, soLuong, tienThuong, idDichVu);
 		dao.inserHocBong(hocBong);
 		response.sendRedirect("quanlyhocbong");

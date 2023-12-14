@@ -281,12 +281,6 @@
 											<td><input type="date" id="dob" name="date"
 												class="form-control"></td>
 										</tr>
-										<tr>
-											<td><label for="khoa" class="h5">ID Dịch vụ:</label></td>
-											<td><input type="text" id="dob" name="iddichvu"
-												class="form-control"></td>
-										</tr>
-
 									</tbody>
 								</table>
 								<div class="text-center mt-3">

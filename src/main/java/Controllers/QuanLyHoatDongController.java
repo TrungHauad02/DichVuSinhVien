@@ -53,7 +53,7 @@ public class QuanLyHoatDongController extends HttpServlet {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		int idDichVu = Integer.parseInt(request.getParameter("iddichvu"));
+		int idDichVu = 4;
 		HoatDong hoatDong = new HoatDong(tenHD, noiDung, drl, dctxh, ngaySinh, idDichVu);
 		dao.inserHoatDong(hoatDong);
 		response.sendRedirect("quanlyhoatdong");

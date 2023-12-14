@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import DAO.QuanLyDAO;
+import Models.Khoa;
 import Models.SinhVien;
 
 @WebServlet("/quanlysinhvien")
@@ -33,6 +34,8 @@ public class QuanLySV_AdminController extends HttpServlet {
 			throws ServletException, IOException {
 		List<SinhVien> svList = dao.selectAllSV();
 		request.setAttribute("svList", svList);
+		List<Khoa> khoaList = dao.selectAllKhoa();
+		request.setAttribute("khoaList", khoaList);
 		request.getRequestDispatcher("/Admin/QuanLySinhVien_Admin_CTSV.jsp").forward(request, response);
 
 	}

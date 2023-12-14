@@ -15,12 +15,12 @@ public class test
 	public static void main(String args[]) 
 	{
 		QuanLyDAO dao = new QuanLyDAO();
-		 List<HoatDong> list = dao.selectAllHoatDong(); 
+		 int a = dao.LayIDTaiKhoan("ctsv1", "ctsv1"); 
 		/* Khoa a = dao.selectKhoa(1); */
 		
-		  for (HoatDong o : list) { System.out.println(o); }
+		/* for (HoatDong o : list) { System.out.println(o); } */
 		 
-			/* System.out.println(a); */
+			 System.out.println(a); 
 
 	}
 }
