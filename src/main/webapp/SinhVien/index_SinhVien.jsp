@@ -56,7 +56,7 @@
 				    <c:forEach var="phanhoi" items="${dsphanhoi}">
 				        <div class="card mb-3">
 				            <div class="card-body">
-				                <h5 class="card-title">ID Yêu Cầu: ${phanhoi.ID_YeuCau}</h5>
+				                <h5 class="card-title">Số thứ tự yêu cầu: ${phanhoi.ID_YeuCau}</h5>
 				                <p class="card-text">Nội Dung: ${phanhoi.getNoiDung()}</p>
 				                <p class="card-text">Trạng Thái: 
 				                    <span style="color: ${phanhoi.getTrangThai() eq 'HoanThanh' ? 'green' : 'red'};">

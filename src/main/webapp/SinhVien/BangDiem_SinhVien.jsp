@@ -73,6 +73,7 @@
 							        <thead>
 							            <tr>
 							                <th>Lớp học</th>
+							                <th>Môn học</th>
 							                <th>Tín chỉ</th>
 							                <th>Điểm quá trình</th>
 							                <th>Điểm cuối kỳ</th>
@@ -82,6 +83,7 @@
 						               for (LopHoc lophoc : dslophoc) { %>
 						                <tr>
 						                    <td><%= lophoc.getTenLopHoc() %></td>
+						                    <td><%= lophoc.getMonHoc() %></td>
 						                    <td><%= lophoc.getTinChi() %></td>
 						                   
 						                    <% List<ThamGiaLopHoc> dsThamGia = (List<ThamGiaLopHoc>) request.getAttribute("bangdiem");
