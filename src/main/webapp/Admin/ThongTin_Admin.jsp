@@ -148,7 +148,7 @@
 									<div style="margin-top: 15px;"></div>
 									<div style="display: flex; justify-content: center;">
 										<div class="my-2"></div>
-										<a href="DoiMatKhau" class="btn btn-primary btn-icon-split"> <span
+										<a href="DoiMK_Admin.jsp" class="btn btn-primary btn-icon-split"> <span
 											class="text">Đổi mật khẩu</span>
 										</a>
 									</div>
@@ -165,13 +165,7 @@
 			<!-- End of Main Content -->
 
 			<!-- Footer -->
-			<footer class="sticky-footer bg-white">
-				<div class="container my-auto">
-					<div class="copyright text-center my-auto">
-						<span>Copyright &copy; Your Website 2023</span>
-					</div>
-				</div>
-			</footer>
+			<jsp:include page="./footer_admin.jsp" />
 			<!-- End of Footer -->
 
 		</div>
