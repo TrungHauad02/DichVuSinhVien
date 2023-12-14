@@ -61,7 +61,7 @@
 										<tr>
 											<td><label for="mssv" class="h4">MSSV:</label></td>
 											<td><input type="text" id="mssv" name="id"
-												class="form-control" value="${sv.ID_SinhVien}"></td>
+												class="form-control" value="${sv.ID_SinhVien}" readonly></td>
 										</tr>
 										<tr>
 											<td><label for="name" class="h4">Họ tên:</label></td>

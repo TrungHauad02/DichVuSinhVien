@@ -41,9 +41,8 @@ public class QuanLyController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String taiKhoan = request.getParameter("username");
 	    String matKhau = request.getParameter("password");
-		int idquanly = quanlyDAO.LayIDTaiKhoan(taiKhoan, matKhau);
+		int idquanly = quanlyDAO.LayIDQuanLy(taiKhoan, matKhau);
 		QuanLy quanly = quanlyDAO.selectAdmin(idquanly);
-		
 		request.setAttribute("quanly", quanly);
 		request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp").forward(request, response);
 	}

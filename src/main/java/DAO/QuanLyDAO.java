@@ -615,4 +615,24 @@ public class QuanLyDAO {
 		return idTK;
 	}
 
+	public int LayIDQuanLy(String taiKhoan, String matKhau) {
+		int idQuanLy = 0;
+
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement("SELECT ID_QuanLy FROM QUANLY WHERE ID_TaiKhoan IN (SELECT ID_TaiKhoan FROM TAIKHOAN WHERE TaiKhoan = ? AND MatKhau = ?)");
+			preparedStatement.setString(1, taiKhoan);
+			preparedStatement.setString(2, matKhau);
+			ResultSet rs = preparedStatement.executeQuery();
+
+			if (rs.next()) {
+				// Nếu có kết quả, lấy tên khoa
+				idQuanLy = rs.getInt("ID_QuanLy");
+			}
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+		return idQuanLy;
+	}
+
 }
