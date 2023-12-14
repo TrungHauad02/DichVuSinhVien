@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,31 +15,6 @@
     <title>Trang Chủ</title>
 
     <jsp:include page="../head.jsp" />
-	<style>
-	    .container {
-	      display: flex;
-	      flex-wrap: wrap;
-	    }
-	
-	    .rectangle {
-	      width: 200px;
-	      height: 100px;
-	      border: 1px solid #000;
-	      
-	      margin: 10px;
-	      display: flex;
-	      align-items: center;
-	      justify-content: center;
-	      background-color: #f0f0f0;
-      	  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-      	  
-	    }
-	    .rectangle p {
-	    	color: black; 
-      		margin: 0;
-      		text-align: center;
-    	}
-	  </style>
 </head>
 <body id="page-top">
 	<%
@@ -77,20 +53,22 @@
 
                 <!-- Your Slide bar and main content goes here -->
 				<div class="container">
-			        <div class="rectangle">
-				      <p>Trang web dịch vụ sinh viên</p>
-				    </div>
-				
-				    <div class="rectangle">
-				      <p>Trang web phục vụ cho quản lý</p>
-				    </div>
-				    <div class="rectangle">
-				      <p>Trang web phục vụ cho ctsv</p>
-				    </div>
-				    <div class="rectangle">
-				      <p>Trang web phục vụ cho sinh viên</p>
-				    </div>
-			    </div>
+				    <c:forEach var="phanhoi" items="${dsphanhoi}">
+				        <div class="card mb-3">
+				            <div class="card-body">
+				                <h5 class="card-title">ID Yêu Cầu: ${phanhoi.ID_YeuCau}</h5>
+				                <p class="card-text">Nội Dung: ${phanhoi.NoiDung}</p>
+				                <p class="card-text">Trạng Thái: 
+				                    <span style="color: ${phanhoi.TrangThai eq 'HoanThanh' ? 'green' : 'red'};">
+				                        ${phanhoi.TrangThai}
+				                    </span>
+				                </p>
+				                <p class="card-text">Thời Gian Phản Hồi: ${phanhoi.ThoiGianPhanHoi}</p>
+				            </div>
+				        </div>
+				    </c:forEach>
+				</div>
+
 				
             </div>
             <!-- End of Main Content -->

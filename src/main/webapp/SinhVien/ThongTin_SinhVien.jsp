@@ -156,7 +156,7 @@
 							</div>
 
 						    <div class="text-center mt-3">
-						        <button class="btn btn-primary mr-3">Đổi mật khẩu</button>
+						    	<button class="btn btn-primary mr-3" onclick="window.location.href='QuenMatKhau_SinhVien.jsp'">Đổi mật khẩu</button>
 						        <button id="update-button" class="btn btn-primary ml-3">Cập nhật thông tin</button>
 						        <button id="confirm-button" class="btn btn-success ml-3" style="display: none;">Xác nhận</button>
 								<button id="cancel-button" class="btn btn-danger ml-3" style="display: none;">Hủy</button>
