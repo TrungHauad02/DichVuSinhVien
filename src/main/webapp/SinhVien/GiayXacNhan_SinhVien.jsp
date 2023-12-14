@@ -17,7 +17,7 @@
     <title>Giấy xác nhận sinh viên</title>
 
     <!-- Custom fonts for this template-->
-     <jsp:include page="../head.jsp" />
+    <jsp:include page="../head.jsp" />
 
 </head>
 <body id="page-top">
@@ -122,7 +122,7 @@
 			        <div class="row notes-container">
 			            <div class="col-md-12">
 			                <fieldset style="border: 4px solid black; padding: 10px">
-					            <legend style="width: auto; border: none; padding: 0; margin: 2px 8px;">Ghi chú</legend>
+					            <legend style="width: auto; border: none; padding: 0;">Ghi chú</legend>
 					            <textarea id="noteTextArea" class="form-control h6 text-dark" rows="5" placeholder="Ghi chú" readonly></textarea>
 					        </fieldset>
 			            </div>
@@ -132,13 +132,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Trang web của nhóm 12</span>
-                    </div>
-                </div>	
-            </footer>
+    			<jsp:include page="../footer.jsp" />
             <!-- End of Footer -->
 
         </div>

@@ -10,11 +10,16 @@
     <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/styles.css" type="text/css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/gh/TrungHauad02/DichVuSinhVien@master/src/main/webapp/css/sb-admin-2.min.css" type="text/css" rel="stylesheet">
 	<style>
+	
+	.table-container {
+		  height: 100%;
+		}
     .scrollable-table {
+   		min-height: 300px;
         max-height: 400px;
         overflow-y: auto;
-        display: flex; /* Sử dụng flex container để các cột nằm theo chiều dọc */
-        flex-direction: column; /* Đặt hướng của flex container là dọc */
+        display: flex;
+        flex-direction: column;
     }
 
     .scrollable-table thead,
