@@ -18,21 +18,7 @@
 
 
 <!-- Custom fonts for this template-->
-<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
-	rel="stylesheet">
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
-	rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
-	rel="stylesheet">
+<jsp:include page="../head.jsp" />
 </head>
 
 <body id="page-top">
@@ -47,15 +33,15 @@
 
 
 		<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-			<a class="nav-link" href="admin">
+			<a class="nav-link" href="<%=request.getContextPath() %>/admin">
 				<div>
-					<span class="high">Trang chủ</span>
+					<span class="high">Thông tin cá nhân</span>
 				</div>
 
 			</a>
 			<div class="topbar-divider d-none d-sm-block"></div>
 			<div>
-				<a class="nav-link" href="hotro"> <span class="high">Hỗ
+				<a class="nav-link" href="<%=request.getContextPath() %>/hotro"> <span class="high">Hỗ
 						trợ</span>
 			</div>
 			</a>
@@ -88,7 +74,7 @@
 
 			<!-- Nav Item - User Information -->
 			<li class="nav-item dropdown no-arrow"><a
-				class="nav-link dropdown-toggle" href="DangXuat" id="userDropdown"
+				class="nav-link dropdown-toggle" href="<%=request.getContextPath() %>/DangXuat" id="userDropdown"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"> <span
 					class="mr-2 d-none d-lg-inline text-gray-600 small">Đăng

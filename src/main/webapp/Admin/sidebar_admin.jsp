@@ -19,21 +19,8 @@
 <title>Thông tin cá nhân</title>
 
 <!-- Custom fonts for this template-->
-<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
 
-<!-- Custom styles for this template-->
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
-	rel="stylesheet">
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
-	rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
-	rel="stylesheet">
+<jsp:include page="../head.jsp" />
 </head>
 
 <body id="page-top">
@@ -117,49 +104,41 @@
 			</div>
 			<div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 		</a>
-		<li class="nav-item active mt-5"><a class="nav-link" href="admin">
+		<li class="nav-item active mt-5"><a class="nav-link" href="<%=request.getContextPath()%>/admin">
 				<span>Thông tin cá nhân</span>
 		</a></li>
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="quanlysinhvien"> <span>Quản lý sinh viên</span></a></li>
+			href="<%=request.getContextPath()%>/quanlysinhvien"> <span>Quản lý sinh viên</span></a></li>
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="quanlyctsv"> <span>Quản lý CTSV</span></a></li>
+			href="<%=request.getContextPath()%>/quanlyctsv"> <span>Quản lý CTSV</span></a></li>
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="quanlykhoa">
+			href="<%=request.getContextPath()%>/quanlykhoa">
 				<span>Quản
 					lý khoa</span>
 		</a></li>
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="quanlyhoatdong"> <span>Quản
+			href="<%=request.getContextPath()%>/quanlyhoatdong"> <span>Quản
 					lý hoạt động</span></a></li>
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="quanlyhocbong"> <span>Quản lý học bổng</span></a></li>
+			href="<%=request.getContextPath()%>/quanlyhocbong"> <span>Quản lý học bổng</span></a></li>
 		<hr class="sidebar-divider my-0">
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="quanlylophoc"> <span>Quản lý lớp học</span></a></li>
+			href="<%=request.getContextPath()%>/quanlylophoc"> <span>Quản lý lớp học</span></a></li>
 		<hr class="sidebar-divider my-0">
 		<hr class="sidebar-divider my-0">
 		<li class="nav-item active mt-2"><a class="nav-link"
-			href="hotro"> <span>Hỗ trợ</span></a></li>
+			href="<%=request.getContextPath()%>/hotro"> <span>Hỗ trợ</span></a></li>
 	</ul>
 
 
 	<!-- Bootstrap core JavaScript-->
-	<script src="../vendor/jquery/jquery.min.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="../js/sb-admin-2.min.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+	<jsp:include page="../Scripts.jsp" />
 
 </body>
 

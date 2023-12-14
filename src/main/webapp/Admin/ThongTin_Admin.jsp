@@ -19,21 +19,7 @@
 <title>Thông tin cá nhân</title>
 
 <!-- Custom fonts for this template-->
-<link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
-	type="text/css">
-<link
-	href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-	rel="stylesheet">
-
-<!-- Custom styles for this template-->
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.css"
-	rel="stylesheet">
-<link
-	href="https://storage.googleapis.com/nguyenphat/css/sb-admin-2.min.css"
-	rel="stylesheet">
-<link href="https://storage.googleapis.com/nguyenphat/css/styles.css"
-	rel="stylesheet">
+<jsp:include page="../head.jsp" />
 </head>
 
 <body id="page-top">
@@ -148,7 +134,7 @@
 									<div style="margin-top: 15px;"></div>
 									<div style="display: flex; justify-content: center;">
 										<div class="my-2"></div>
-										<a href="DoiMK_Admin.jsp" class="btn btn-primary btn-icon-split"> <span
+										<a href="<%=request.getContextPath()%>/Admin/DoiMK_Admin.jsp" class="btn btn-primary btn-icon-split"> <span
 											class="text">Đổi mật khẩu</span>
 										</a>
 									</div>
@@ -174,22 +160,8 @@
 	</div>
 	<!-- End of Page Wrapper -->
 
-	<!-- Scroll to Top Button-->
-	<a class="scroll-to-top rounded" href="#page-top"> <i
-		class="fas fa-angle-up"></i>
-	</a>
-
-
-	<!-- Bootstrap core JavaScript-->
-	<script src="../vendor/jquery/jquery.min.js"></script>
-	<script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-	<!-- Core plugin JavaScript-->
-	<script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
-
-	<!-- Custom scripts for all pages-->
-	<script src="../js/sb-admin-2.min.js"></script>
-	<script src="https://cdn.lordicon.com/lordicon.js"></script>
+	<!-- Scroll to Top Button làm tiếp đi oke-->
+	<jsp:include page="../Scripts.jsp" />
 
 </body>
 
