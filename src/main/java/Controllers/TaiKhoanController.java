@@ -24,9 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import DAO.KhoaDAO;
 import DAO.TaiKhoanDao;
 import Models.TaiKhoan;
 import Models.CTSV;
+import Models.Khoa;
 import Models.QuanLy;
 import Models.SinhVien;
 
@@ -114,7 +116,7 @@ public class TaiKhoanController extends HttpServlet {
 		                String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
 		                request.setAttribute("encodedImage", encodedImage);
 		            }
-	                dispatcher = request.getRequestDispatcher("/SinhVien/index_SinhVien.jsp");
+	                dispatcher = request.getRequestDispatcher("/ThongTinSinhVien");
 	                dispatcher.forward(request, response);
 	                break;
 	            default:
@@ -138,9 +140,13 @@ public class TaiKhoanController extends HttpServlet {
 		String maND = (String) session.getAttribute("maND");
 		RequestDispatcher dispatcher;
 	    SinhVien sinhvien = new SinhVien();
+	    Khoa khoa = new Khoa();
 		try {
+			KhoaDAO khoaDAO = new KhoaDAO();
 			sinhvien = taiKhoanDao.getSinhVien(maND);
 			request.setAttribute("sinhvien", sinhvien);
+			khoa = khoaDAO.LayKhoaTheoID(sinhvien.getKhoa());
+			request.setAttribute("tenkhoa", khoa.getTenKhoa());
 		    if(sinhvien.getAnhCaNhan() != null) {
 		    	String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
 			    request.setAttribute("encodedImage", encodedImage);

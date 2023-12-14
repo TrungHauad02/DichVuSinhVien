@@ -102,7 +102,7 @@
 						            </tr>
 						            <tr>
 						                <td><label for="faculty" class="h4">Khoa:</label></td>
-						                <td><input type="text" id="faculty" class="form-control" value="${sinhvien.getKhoa()}" readonly></td>
+						                <td><input type="text" id="faculty" class="form-control" value="${tenkhoa}" readonly></td>
 						            </tr>
 						            <tr>
 						                <td><label for="course" class="h4">Khóa học:</label></td>
@@ -178,13 +178,7 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Trang web của nhóm 12</span>
-                    </div>
-                </div>	
-            </footer>
+    			<jsp:include page="../footer.jsp" />
             <!-- End of Footer -->
 
         </div>
@@ -195,7 +189,7 @@
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
+        <i class="fas fa-angle-up">top</i>
     </a>
     <!-- Bootstrap core JavaScript-->
     
