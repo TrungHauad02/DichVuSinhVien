@@ -98,7 +98,7 @@
 	                            <button type="button" class="btn btn-success" id="updateButton">Cập nhật thông tin liên lạc</button>
 	                        </div>
                             <div class="col-md-6">
-	                            <button class="btn btn-primary mr-3" onclick="window.location.href='DoiMatKhau_CTSV.jsp'">Đổi mật khẩu</button>
+	                            <button class="btn btn-primary mr-3" onclick="window.location.href='<%=request.getContextPath()%>/CTSV/DoiMatKhau_CTSV.jsp'">Đổi mật khẩu</button>
 	                        </div>
 	                        </div>
                         </div>

@@ -41,9 +41,6 @@ public class ThemDiemController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			//---
-			// TO DO... check session
-			//----
 			List<LopHoc> danhSachLopHoc = new ArrayList<>(); 
 			danhSachLopHoc = LopHocDAO.selectLopHoc();
 			
