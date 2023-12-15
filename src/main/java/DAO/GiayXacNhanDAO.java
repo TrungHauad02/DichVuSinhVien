@@ -24,7 +24,6 @@ public class GiayXacNhanDAO {
 		
 		Class.forName("com.mysql.jdbc.Driver");
         try (Connection connection = JDBCUtil.getConnection();
-                // Step 2:Create a statement using connection object
                 PreparedStatement preparedStatement = connection
                 .prepareStatement("select * from giayxacnhan where ID_SinhVien = ?")) {
         		preparedStatement.setString(1, mssv);

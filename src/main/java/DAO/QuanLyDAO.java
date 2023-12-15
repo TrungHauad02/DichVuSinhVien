@@ -49,20 +49,20 @@ public class QuanLyDAO {
 	private static final String DELETE_KHOA_SQL = "UPDATE KHOA SET TrangThai = 0 WHERE ID_Khoa = ?";
 
 	// lophoc
-	private static final String INSERT_LOPHOC_SQL = "INSERT INTO LOPHOC" + "  (MonHoc, TenLopHoc, TinChi) VALUES "
-			+ " (?,?,?)";
+	private static final String INSERT_LOPHOC_SQL = "INSERT INTO LOPHOC" + "  (MonHoc, TenLopHoc, TinChi, TrangThai) VALUES "
+			+ " (?,?,?,1)";
 	private static final String SELECT_ALL_LOPHOC = "select * from LOPHOC where TrangThai = 1";
 	private static final String DELETE_LOPHOC_SQL = "UPDATE LOPHOC SET TrangThai = 0 WHERE ID_LopHoc = ?";
 
 	// HoatDong
 	private static final String INSERT_HOATDONG_SQL = "INSERT INTO HOATDONG"
-			+ "  (TenHoatDong, NoiDung, DiemRL, DiemCTXH, NgayThamGia, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
+			+ "  (TenHoatDong, NoiDung, DiemRL, DiemCTXH, NgayThamGia, ID_DichVu, TrangThai) VALUES " + " (?,?,?,?,?,?,1)";
 	private static final String SELECT_ALL_HOATDONG = "select * from HOATDONG where TrangThai = 1";
 	private static final String DELETE_HOATDONG_SQL = "UPDATE HOATDONG SET TrangThai = 0 WHERE ID_HoatDong = ?";
 
 	// HocBong
 	private static final String INSERT_HOCBONG_SQL = "INSERT INTO HOCBONG"
-			+ "  (TenHocBong, NoiDung, DieuKien, SoLuong, TienThuong, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
+			+ "  (TenHocBong, NoiDung, DieuKien, SoLuong, TienThuong, ID_DichVu, TrangThai) VALUES " + " (?,?,?,?,?,?,1)";
 	private static final String SELECT_ALL_HOCBONG = "select * from HOCBONG where SoLuong > 0";
 	private static final String DELETE_HOCBONG_SQL = "UPDATE HOCBONG SET SoLuong = 0 WHERE ID_HocBong = ?";
 
@@ -72,7 +72,7 @@ public class QuanLyDAO {
 	
 	//ToChuc
 	private static final String INSERT_TOCHUC_SQL = "INSERT INTO TOCHUC"
-			+ "  (ID_HoatDong, ID_Khoa) VALUES " + " (?,?)";
+			+ "  (ID_HoatDong, ID_Khoa, TrangThai) VALUES " + "(?,?,1)";
 
 	// Admin
 	public QuanLy selectAdmin(int idquanly) {
@@ -186,6 +186,7 @@ public class QuanLyDAO {
 				int trangthai = rs.getInt("TrangThai");
 				sinhvien = new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, khoa, idTK,
 						diemRL, diemCTXH, trangthai);
+				sinhvien.setAnhCaNhan(rs.getBytes("AnhCaNhan"));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -221,8 +222,10 @@ public class QuanLyDAO {
 				int diemRL = rs.getInt("DiemRL");
 				int diemCTXH = rs.getInt("DiemCTXH");
 				int trangthai = rs.getInt("TrangThai");
-				sinhviens.add(new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, tenKhoa,
-						idTK, diemRL, diemCTXH, trangthai));
+				SinhVien sv = new SinhVien(iD_SinhVien, hoTen, cCCD, gioiTinh, ngaySinh, sdt, email, namHoc, tenKhoa,
+						idTK, diemRL, diemCTXH, trangthai);
+				
+				sinhviens.add(sv);
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -423,11 +426,11 @@ public class QuanLyDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int iDLopHoc = rs.getInt(1);
-				String monHoc = rs.getString(2);
-				String tenLopHoc = rs.getString(3);
-				int tinChi = rs.getInt(4);
-				int trangThai = rs.getInt(5);
+				int iDLopHoc = rs.getInt("ID_LopHoc");
+				String monHoc = rs.getString("MonHoc");
+				String tenLopHoc = rs.getString("TenLopHoc");
+				int tinChi = rs.getInt("TinChi");
+				int trangThai = rs.getInt("TrangThai");
 				lopHocs.add(new LopHoc(iDLopHoc, monHoc, tenLopHoc, tinChi, trangThai));
 			}
 		} catch (SQLException e) {
@@ -478,14 +481,14 @@ public class QuanLyDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int idHoatDong = rs.getInt(1);
-				String tenHoatDong = rs.getString(2);
-				String noiDung = rs.getString(3);
-				int diemRL = rs.getInt(4);
-				int diemCTXH = rs.getInt(5);
-				Date ngayThamGia = rs.getDate(6);
-				int idDichVu = rs.getInt(7);
-				int trangThai = rs.getInt(8);
+				int idHoatDong = rs.getInt("ID_HoatDong");
+				String tenHoatDong = rs.getString("TenHoatDong");
+				String noiDung = rs.getString("NoiDung");
+				int diemRL = rs.getInt("DiemRL");
+				int diemCTXH = rs.getInt("DiemCTXH");
+				Date ngayThamGia = rs.getDate("NgayThamGia");
+				int idDichVu = rs.getInt("ID_DichVu");
+				int trangThai = rs.getInt("TrangThai");
 				hoatDongs.add(new HoatDong(idHoatDong, tenHoatDong, noiDung, diemRL, diemCTXH, ngayThamGia, idDichVu,
 						trangThai));
 			}
@@ -537,13 +540,13 @@ public class QuanLyDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			while (rs.next()) {
-				int idHocBong = rs.getInt(1);
-				String tenHocBong = rs.getString(2);
-				String noiDung = rs.getString(3);
-				float dieuKien = rs.getFloat(4);
-				int soLuong = rs.getInt(5);
-				int tienThuong = rs.getInt(6);
-				int idDichVu = rs.getInt(7);
+				int idHocBong = rs.getInt("ID_HocBong");
+				String tenHocBong = rs.getString("TenHocBong");
+				String noiDung = rs.getString("NoiDung");
+				float dieuKien = rs.getFloat("DieuKien");
+				int soLuong = rs.getInt("SoLuong");
+				int tienThuong = rs.getInt("TienThuong");
+				int idDichVu = rs.getInt("ID_DichVu");
 				hocBongs.add(new HocBong(idHocBong, tenHocBong, noiDung, dieuKien, soLuong, tienThuong, idDichVu));
 			}
 		} catch (SQLException e) {
@@ -610,7 +613,6 @@ public class QuanLyDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 
 			if (rs.next()) {
-				// Nếu có kết quả, lấy tên khoa
 				idTK = rs.getInt("ID_TaiKhoan");
 			}
 		} catch (SQLException e) {

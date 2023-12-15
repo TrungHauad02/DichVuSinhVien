@@ -59,7 +59,7 @@
 								<div class="card-body">
 									<div style="margin-top: 20px;"></div>
 									<div class="table-responsive">
-										<table class="table table-bordered" id=" dataTable"
+										<table class="table table-bordered" id="dataTable"
 											width="100%" cellspacing="0"">
 											<thead>
 												<tr>
