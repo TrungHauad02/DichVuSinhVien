@@ -33,7 +33,7 @@
 		if (phanQuyen.equals("quanly"))
 			response.sendRedirect("Admin/ThongTin_Admin.jsp");
 		else if (phanQuyen.equals("ctsv"))
-			response.sendRedirect("CTSV/index_CTSV.jsp");
+			response.sendRedirect("ThongTin_CTSV");
 		else
 			response.sendRedirect("SinhVien/index_SinhVien.jsp");
 	}

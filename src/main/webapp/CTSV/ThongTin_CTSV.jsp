@@ -94,6 +94,15 @@
                                 <input type="text" id= "email" class="form-control" value="${ctsv.getEmail()}">
                             </div>
 	                        <div class = "row">
+	                        <!-- Hình ảnh -->
+							<input type="hidden" name="encodedImage" id="encodedImage" value="${encodedImage}">
+							<div class="col-md-12 d-flex flex-column justify-content-center">
+					            <div class="mb-3 text-center" style="height: 200px;">
+						            <img id="image" src="data:image/jpeg;base64,${encodedImage}"
+		                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
+	                 			</div>
+					            <div class="text-center"><input type="file" id="selectImage" accept="image/*"></div>
+				        	</div>
 	                        <div class="col-md-6">
 	                            <button type="button" class="btn btn-success" id="updateButton">Cập nhật thông tin liên lạc</button>
 	                        </div>
@@ -134,9 +143,11 @@
 <script>
 
 $("#updateButton").on("click", function(){
+	console.log("Đã click update");
     const sdtValue = $("#sdt").val(); 
     const emailValue = $("#email").val();
-	const url = "/DichVuSinhVien/ThongTin_CTSV/" + ${ctsv.ID_CTSV};
+    const encodedImage = $("#encodedImage").val();
+	const url = "<%=request.getContextPath()%>/ThongTin_CTSV";
     $.ajax({
         url: url,
         method: "PUT",
@@ -144,6 +155,7 @@ $("#updateButton").on("click", function(){
         data: JSON.stringify({
             sdt: sdtValue,
             email: emailValue,
+            encodedImage: encodedImage,
         }),
         success: function (data) {
         	 window.location.href = url
@@ -154,10 +166,26 @@ $("#updateButton").on("click", function(){
     });		
 	})
 	
-$("#reset-password-button").on("click", function(){
-    const sdtValue = $("#sdt").val(); 
-	window.location.href = "/DichVuSinhVien/reset-password"
-	})	
+	$("#reset-password-button").on("click", function(){
+	    const sdtValue = $("#sdt").val(); 
+		window.location.href = "/DichVuSinhVien/reset-password"
+		})	
+	document.getElementById('selectImage').addEventListener('change', function(event) {
+	        var files = event.target.files;
+	        if (files && files.length > 0) {
+	            var reader = new FileReader();
+	            reader.onload = function() {
+	                var dataURL = reader.result;
+	                if (dataURL != null) {
+	                    document.getElementById('image').src = dataURL;
+	                    document.getElementById('encodedImage').value = dataURL;
+	                }
+	            };
+	            reader.readAsDataURL(files[0]);
+	        } else {
+	            console.error("No files selected or FileReader not supported.");
+	        }
+	    });	
 </script>
 </body>
 </html>

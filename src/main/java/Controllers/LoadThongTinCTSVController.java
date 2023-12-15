@@ -2,6 +2,7 @@ package Controllers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.util.Base64;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -39,16 +40,20 @@ public class LoadThongTinCTSVController extends HttpServlet {
 		int ctsvId = Integer.parseInt(maND);
         CTSV ctsv = CTSVDao.selectctsv(ctsvId);
         request.setAttribute("ctsv", ctsv); 
+        if (ctsv.getAnhCaNhan() != null) {
+			String encodedImage = Base64.getEncoder().encodeToString(ctsv.getAnhCaNhan());
+			request.setAttribute("encodedImage", encodedImage);
+		}
         RequestDispatcher dispatcher = request.getRequestDispatcher("/CTSV/ThongTin_CTSV.jsp");
         dispatcher.forward(request, response);
 	}
-
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
 		HttpSession session = request.getSession();
 		String maND = (String) session.getAttribute("maND");
 		int ctsvId = Integer.parseInt(maND);
@@ -61,9 +66,10 @@ public class LoadThongTinCTSVController extends HttpServlet {
         JSONObject jsonObject = new JSONObject(jsonData.toString());
         String sdt = jsonObject.getString("sdt");
         String email = jsonObject.getString("email");
-        
-
-        CTSVDao.updateThongTinCTSV(sdt, email, ctsvId);
+        String image = jsonObject.getString("encodedImage");
+		String base64Image = image.replaceAll("data:image/\\w+;base64,", "");
+		byte[] encodedImage = Base64.getDecoder().decode(base64Image);
+        CTSVDao.updateThongTinCTSV(sdt, email, ctsvId, encodedImage);
 
 	}
 

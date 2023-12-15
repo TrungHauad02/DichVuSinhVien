@@ -89,7 +89,6 @@
 										<td><label for="course" class="h4">Email:</label></td>
 										<td><input type="text" id="course" name="email" class="form-control" value="${quanly.getEmail()}"></td>
 									</tr>
-									<input type="hidden" name="encodedImage" id="encodedImage" value="${encodedImage}">
 								</tbody>
 							</table>
 							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
@@ -102,6 +101,7 @@
 						</form>
 
 						<!-- Hình ảnh -->
+						<input type="hidden" name="encodedImage" id="encodedImage" value="${encodedImage}">
 						<div class="col-lg-2 d-flex flex-column justify-content-center">
 				            <div class="mb-3 text-center" style="height: 200px;">
 					            <img id="image" src="data:image/jpeg;base64,${encodedImage}"

@@ -113,7 +113,11 @@ public class TaiKhoanController extends HttpServlet {
 	            case "ctsv":
 	            	CTSV ctsv = taiKhoanDao.getCTSV(maND);
 	                session.setAttribute("ctsv", ctsv);
-	                dispatcher = request.getRequestDispatcher("/CTSV/ThongTin_CTSV.jsp");
+	                if(ctsv.getAnhCaNhan() != null) {
+		                String encodedImage = Base64.getEncoder().encodeToString(ctsv.getAnhCaNhan());
+		                request.setAttribute("encodedImage", encodedImage);
+		            }
+	                dispatcher = request.getRequestDispatcher("ThongTin_CTSV");
 	                dispatcher.forward(request, response);
 	                break;
 	            case "sinhvien":     
