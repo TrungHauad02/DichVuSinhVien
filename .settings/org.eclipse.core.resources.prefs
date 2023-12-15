@@ -5,6 +5,7 @@ encoding//src/main/java/Controllers/DangKyGiayXacNhanController.java=UTF-8
 encoding//src/main/java/Controllers/DangKyHoatDongController.java=UTF-8
 encoding//src/main/java/Controllers/DangKyHocBongController.java=UTF-8
 encoding//src/main/java/Controllers/GuiOTPController.java=UTF-8
+encoding//src/main/java/Controllers/QuanLyHoatDongController.java=UTF-8
 encoding//src/main/java/Controllers/TaiKhoanController.java=UTF-8
 encoding//src/main/java/DAO/QuanLyDAO.java=UTF-8
 encoding//src/main/java/DAO/YeuCauDAO.java=UTF-8

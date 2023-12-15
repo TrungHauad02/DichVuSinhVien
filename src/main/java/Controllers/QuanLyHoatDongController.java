@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import DAO.QuanLyDAO;
 import Models.HoatDong;
 import Models.Khoa;
+import Models.ToChuc;
 
 @WebServlet("/quanlyhoatdong")
 public class QuanLyHoatDongController extends HttpServlet {
@@ -35,6 +36,8 @@ public class QuanLyHoatDongController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		List<HoatDong> hoatDongList = dao.selectAllHoatDong();
 		request.setAttribute("hoatDongList", hoatDongList);
+		List<Khoa> khoaList = dao.selectAllKhoa();
+		request.setAttribute("khoaList", khoaList);
 		request.getRequestDispatcher("/Admin/QuanLyHoatDong_Admin.jsp").forward(request, response);
 	}
 
@@ -56,9 +59,17 @@ public class QuanLyHoatDongController extends HttpServlet {
 			e.printStackTrace();
 		}
 		int idDichVu = 4;
+		
 		HoatDong hoatDong = new HoatDong(tenHD, noiDung, drl, dctxh, ngaySinh, idDichVu);
 		dao.inserHoatDong(hoatDong);
+		int idHoatDong = dao.layIDHoatDong(hoatDong);
+		int khoa = Integer.parseInt(request.getParameter("khoa"));
+		ToChuc toChuc = new ToChuc(idHoatDong, khoa);
+		dao.insertToChuc(toChuc);
 		response.sendRedirect("quanlyhoatdong");
+		
+		
+		 
 	}
 
 }
