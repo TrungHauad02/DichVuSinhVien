@@ -15,7 +15,15 @@ public class ToChuc implements Serializable {
     public ToChuc() {
     }
 
-    public int getID_HoatDong() {
+    public ToChuc(int iD_HoatDong, int iD_Khoa) {
+		super();
+		ID_HoatDong = iD_HoatDong;
+		ID_Khoa = iD_Khoa;
+	}
+
+
+
+	public int getID_HoatDong() {
         return ID_HoatDong;
     }
 

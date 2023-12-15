@@ -24,6 +24,19 @@ public class HocBong implements Serializable {
     
 
     public HocBong(int iD_HocBong, String tenHocBong, String noiDung, float dieuKien, int soLuong, int tienThuong,
+			int iD_DichVu) {
+		super();
+		ID_HocBong = iD_HocBong;
+		TenHocBong = tenHocBong;
+		NoiDung = noiDung;
+		DieuKien = dieuKien;
+		SoLuong = soLuong;
+		TienThuong = tienThuong;
+		ID_DichVu = iD_DichVu;
+	}
+
+
+	public HocBong(int iD_HocBong, String tenHocBong, String noiDung, float dieuKien, int soLuong, int tienThuong,
 			int iD_DichVu, int trangThai) {
 		super();
 		ID_HocBong = iD_HocBong;

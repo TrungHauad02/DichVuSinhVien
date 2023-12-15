@@ -10,15 +10,14 @@ public class JDBCUtil {
 		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
-			String url = System.getenv("DB_URL");
-			String username = System.getenv("DB_USERNAME");
-			String password = System.getenv("DB_PASSWORD");
-
 			/*
-			 * String url =
-			 * "jdbc:mysql://localhost:3306/dichvusinhvien?useUnicode=true&characterEncoding=UTF-8";
-			 * String username = "root"; String password = "1234";
+			 * String url = System.getenv("DB_URL"); String username =
+			 * System.getenv("DB_USERNAME"); String password = System.getenv("DB_PASSWORD");
 			 */
+
+			String url = "jdbc:mysql://localhost:3306/dvsv?useUnicode=true&characterEncoding=UTF-8";
+			String username = "root";
+			String password = "1234";
 
 			conn = DriverManager.getConnection(url, username, password);
 			System.out.println("Connection Successfully!");

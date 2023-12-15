@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,7 @@ import Models.LopHoc;
 import Models.QuanLy;
 import Models.SinhVien;
 import Models.TaiKhoan;
+import Models.ToChuc;
 import Util.HandleExeption;
 import Util.JDBCUtil;
 
@@ -61,12 +63,16 @@ public class QuanLyDAO {
 	// HocBong
 	private static final String INSERT_HOCBONG_SQL = "INSERT INTO HOCBONG"
 			+ "  (TenHocBong, NoiDung, DieuKien, SoLuong, TienThuong, ID_DichVu) VALUES " + " (?,?,?,?,?,?)";
-	private static final String SELECT_ALL_HOCBONG = "select * from HOCBONG where TrangThai = 1";
-	private static final String DELETE_HOCBONG_SQL = "UPDATE HOCBONG SET TrangThai = 0 WHERE ID_HocBong = ?";
+	private static final String SELECT_ALL_HOCBONG = "select * from HOCBONG where SoLuong > 0";
+	private static final String DELETE_HOCBONG_SQL = "UPDATE HOCBONG SET SoLuong = 0 WHERE ID_HocBong = ?";
 
 	// TaiKhoan
 	private static final String INSERT_TAIKHOAN_SQL = "INSERT INTO TAIKHOAN"
 			+ "  (TaiKhoan, MatKhau, PhanQuyen) VALUES " + " (?,?,?)";
+	
+	//ToChuc
+	private static final String INSERT_TOCHUC_SQL = "INSERT INTO TOCHUC"
+			+ "  (ID_HoatDong, ID_Khoa) VALUES " + " (?,?)";
 
 	// Admin
 	public QuanLy selectAdmin(int idquanly) {
@@ -538,9 +544,7 @@ public class QuanLyDAO {
 				int soLuong = rs.getInt(5);
 				int tienThuong = rs.getInt(6);
 				int idDichVu = rs.getInt(7);
-				int trangThai = rs.getInt(8);
-				hocBongs.add(new HocBong(idHocBong, tenHocBong, noiDung, dieuKien, soLuong, tienThuong, idDichVu,
-						trangThai));
+				hocBongs.add(new HocBong(idHocBong, tenHocBong, noiDung, dieuKien, soLuong, tienThuong, idDichVu));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -633,6 +637,51 @@ public class QuanLyDAO {
 			HandleExeption.printSQLException(e);
 		}
 		return idQuanLy;
+	}
+	
+	public void insertToChuc(ToChuc toChuc) {
+		try {
+			Connection conn = JDBCUtil.getConnection();
+			PreparedStatement preparedStatement = conn.prepareStatement(INSERT_TOCHUC_SQL);
+			preparedStatement.setInt(1, toChuc.getID_HoatDong());
+			preparedStatement.setInt(2, toChuc.getID_Khoa());
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			HandleExeption.printSQLException(e);
+		}
+	}
+	
+	public int layIDHoatDong(HoatDong hoatDong) {
+		int idHoatDong = 0;
+		String sql = INSERT_HOATDONG_SQL;
+	    try (Connection connection = JDBCUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.
+	        prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+	    	preparedStatement.setString(1, hoatDong.getTenHoatDong());
+			preparedStatement.setString(2, hoatDong.getNoiDung());
+			preparedStatement.setInt(3, hoatDong.getDiemRL());
+			preparedStatement.setInt(4, hoatDong.getDiemCTXH());
+			preparedStatement.setDate(5, new java.sql.Date(hoatDong.getNgayThamGia().getTime()));
+			preparedStatement.setInt(6, hoatDong.getID_DichVu());
+	        
+	        System.out.println(preparedStatement);
+	        int affectedRows = preparedStatement.executeUpdate();
+	        if (affectedRows > 0) {
+	        	try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+	                if (generatedKeys.next()) {
+	                	idHoatDong = generatedKeys.getInt(1);
+	                } else {
+	                    throw new SQLException("Không thể lấy ID được sinh ra.");
+	                }
+	            }
+	        }
+	    } catch (SQLException e) {
+	        HandleExeption.printSQLException(e);
+	    }
+	    System.out.println(idHoatDong);
+
+	    return idHoatDong;
 	}
 
 }

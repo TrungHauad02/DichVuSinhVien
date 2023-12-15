@@ -20,13 +20,13 @@
 </head>
 
 <body id="page-top">
-<%
-	    String maND = (String) session.getAttribute("maND");
-	    if (maND == null) {
-	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
-	        RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
-	        dispatcher.forward(request, response);
-	    }
+	<%
+	String maND = (String) session.getAttribute("maND");
+	if (maND == null) {
+		request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("../DangNhap.jsp");
+		dispatcher.forward(request, response);
+	}
 	%>
 	<!-- Page Wrapper -->
 	<div id="wrapper">
@@ -121,6 +121,16 @@
 											<td><label class="h5">Điểm CTXH:</label></td>
 											<td><input type="text" id="tenHD" name="diemctxh"
 												class="form-control"></td>
+										</tr>
+										<tr>
+											<td><label for="course" class="h4">Khoa tổ chức:</label></td>
+											<td><select class="form-control" id="khoa" name="khoa"
+												required>
+													<c:forEach var="khoa" items="${khoaList}">
+														<option value="${khoa.ID_Khoa}"><c:out
+																value="${khoa.getTenKhoa()}" /></option>
+													</c:forEach>
+											</select></td>
 										</tr>
 										<tr>
 											<td><label for="dob" class="h5">Ngày tổ chức:</label></td>

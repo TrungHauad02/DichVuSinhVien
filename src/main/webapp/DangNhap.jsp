@@ -31,7 +31,7 @@
 	if (user != null) {
 		String phanQuyen = (String) session.getAttribute("phanQuyen");
 		if (phanQuyen.equals("quanly"))
-			response.sendRedirect("Admin/index_Admin.jsp");
+			response.sendRedirect("Admin/ThongTin_Admin.jsp");
 		else if (phanQuyen.equals("ctsv"))
 			response.sendRedirect("CTSV/index_CTSV.jsp");
 		else
