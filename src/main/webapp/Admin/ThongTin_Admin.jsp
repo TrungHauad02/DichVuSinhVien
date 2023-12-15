@@ -120,9 +120,11 @@
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
-									<div style="display: flex; justify-content: center;">
-										<img src="https://storage.googleapis.com/nguyenphat/assets/anhnen.png" width="130" height="160">
-									</div>
+									<div class="mb-3 text-center" style="height: 200px;">
+							            <img id="image" src="data:image/jpeg;base64,${encodedImage}"
+			                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
+		                 			</div>
+									<input type="hidden" name="encodedImage" id="encodedImage" value="${encodedImage}">
 									<div style="margin-top: 15px;"></div>
 									<div style="display: flex; justify-content: center;">
 										<div class="my-2"></div>

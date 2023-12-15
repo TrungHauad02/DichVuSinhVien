@@ -89,6 +89,7 @@
 										<td><label for="course" class="h4">Email:</label></td>
 										<td><input type="text" id="course" name="email" class="form-control" value="${quanly.getEmail()}"></td>
 									</tr>
+									<input type="hidden" name="encodedImage" id="encodedImage" value="${encodedImage}">
 								</tbody>
 							</table>
 							<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
@@ -106,7 +107,7 @@
 					            <img id="image" src="data:image/jpeg;base64,${encodedImage}"
 	                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
                  			</div>
-				            <div class="text-center"><input type="file" id="selectImage" accept="image/*" style="display: none;"></div>
+				            <div class="text-center"><input type="file" id="selectImage" accept="image/*"></div>
 				        </div>
 					</div>
 				</div>
@@ -136,7 +137,7 @@
 
 	<!-- Bootstrap core JavaScript-->
 	<jsp:include page="../Scripts.jsp" />
-<script>    
+	<script>    
 		document.getElementById('selectImage').addEventListener('change', function(event) {
 	        var files = event.target.files;
 	        if (files && files.length > 0) {
@@ -145,6 +146,7 @@
 	                var dataURL = reader.result;
 	                if (dataURL != null) {
 	                    document.getElementById('image').src = dataURL;
+	                    document.getElementById('encodedImage').value = dataURL;
 	                }
 	            };
 	            reader.readAsDataURL(files[0]);

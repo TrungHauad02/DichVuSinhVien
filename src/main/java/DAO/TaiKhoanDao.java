@@ -156,6 +156,7 @@ public class TaiKhoanDao {
 	                quanLy.setEmail(rs.getString("Email"));
 	                quanLy.setID_TaiKhoan(rs.getInt("ID_TaiKhoan"));
 	                quanLy.setTrangThai(rs.getInt("TrangThai"));
+	                quanLy.setAnhCaNhan(rs.getBytes("AnhCaNhan"));
 	            }
 
 	        } catch (SQLException e) {

@@ -26,7 +26,7 @@ import Util.JDBCUtil;
 
 public class QuanLyDAO {
 	// admin
-	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?,SDT=?, Email=? WHERE ID_QuanLY = ? and TrangThai = 1";
+	private static final String UPDATE_ADMIN_SQL = "UPDATE QUANLY SET HoTen=?,  NgaySinh=?, GioiTinh=?,CCCD=?,SDT=?, Email=?, AnhCaNhan=? WHERE ID_QuanLY = ? and TrangThai = 1";
 	private static final String SELECT_ADMIN_BY_ID = "select * from QUANLY where ID_QuanLy =? and TrangThai = 1";
 
 	// sv
@@ -93,6 +93,7 @@ public class QuanLyDAO {
 				int id_TaiKhoan = rs.getInt("ID_TaiKhoan");
 				int trangthai = rs.getInt("TrangThai");
 				quanly = new QuanLy(id, hoten, cccd, gioitinh, ngaysinh, sdt, email, id_TaiKhoan, trangthai);
+				quanly.setAnhCaNhan(rs.getBytes("AnhCaNhan"));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);
@@ -111,7 +112,8 @@ public class QuanLyDAO {
 			statement.setString(4, quanly.getCCCD());
 			statement.setString(5, quanly.getSDT());
 			statement.setString(6, quanly.getEmail());
-			statement.setInt(7, quanly.getID_QuanLy());
+			statement.setBytes(7, quanly.getAnhCaNhan());
+			statement.setInt(8, quanly.getID_QuanLy());
 			rowUpdated = statement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);

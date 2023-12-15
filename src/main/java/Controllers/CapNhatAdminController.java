@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -38,12 +39,19 @@ public class CapNhatAdminController extends HttpServlet {
 		QuanLyDAO dao = new QuanLyDAO();
 		QuanLy quanly = dao.selectAdmin(idQuanly);
 		request.setAttribute("quanly", quanly);
+		if (quanly.getAnhCaNhan() != null) {
+			String encodedImage = Base64.getEncoder().encodeToString(quanly.getAnhCaNhan());
+			request.setAttribute("encodedImage", encodedImage);
+		}
 		request.getRequestDispatcher("/Admin/CapNhatAdmin.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String encodedImage = request.getParameter("encodedImage");
+		String base64Image = encodedImage.replaceAll("data:image/\\w+;base64,", "");
+		byte[] imageBytes = Base64.getDecoder().decode(base64Image);
 		int idQuanly = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("name");
 		java.util.Date ngaySinh = null;
@@ -63,6 +71,7 @@ public class CapNhatAdminController extends HttpServlet {
 		String email = request.getParameter("email");
 		
 		QuanLy quanly = new QuanLy(idQuanly, name, ngaySinh, gioitinh, cccd, sdt, email);
+		quanly.setAnhCaNhan(imageBytes);
 		dao.updateAdmin(quanly);
 		response.sendRedirect("ThongTinQuanLy");
 	}
