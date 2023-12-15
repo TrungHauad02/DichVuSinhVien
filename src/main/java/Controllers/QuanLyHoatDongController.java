@@ -61,7 +61,7 @@ public class QuanLyHoatDongController extends HttpServlet {
 		int idDichVu = 4;
 		
 		HoatDong hoatDong = new HoatDong(tenHD, noiDung, drl, dctxh, ngaySinh, idDichVu);
-		dao.inserHoatDong(hoatDong);
+		/* dao.inserHoatDong(hoatDong); */
 		int idHoatDong = dao.layIDHoatDong(hoatDong);
 		int khoa = Integer.parseInt(request.getParameter("khoa"));
 		ToChuc toChuc = new ToChuc(idHoatDong, khoa);
