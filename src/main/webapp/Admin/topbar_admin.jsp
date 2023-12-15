@@ -33,7 +33,7 @@
 
 
 		<ul class="navbar-nav mr-auto ml-md-3 my-2 my-md-0 mw-100 ml-auto">
-			<a class="nav-link" href="<%=request.getContextPath() %>/admin">
+			<a class="nav-link" href="<%=request.getContextPath() %>/ThongTinQuanLy">
 				<div>
 					<span class="high">Trang chủ</span>
 				</div>

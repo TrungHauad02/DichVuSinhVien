@@ -64,7 +64,7 @@ public class CapNhatAdminController extends HttpServlet {
 		
 		QuanLy quanly = new QuanLy(idQuanly, name, ngaySinh, gioitinh, cccd, sdt, email);
 		dao.updateAdmin(quanly);
-		response.sendRedirect("admin");
+		response.sendRedirect("ThongTinQuanLy");
 	}
 
 }
