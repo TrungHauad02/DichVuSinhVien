@@ -103,6 +103,10 @@ public class TaiKhoanController extends HttpServlet {
 	            case "quanly":
 	                QuanLy quanly = taiKhoanDao.getQuanLy(maND);
 	                session.setAttribute("quanly", quanly);
+	                if(quanly.getAnhCaNhan() != null) {
+		                String encodedImage = Base64.getEncoder().encodeToString(quanly.getAnhCaNhan());
+		                request.setAttribute("encodedImage", encodedImage);
+		            }
 	                dispatcher = request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
 	                dispatcher.forward(request, response);
 	                break;     
@@ -170,6 +174,10 @@ public class TaiKhoanController extends HttpServlet {
 		try {
 			quanly = taiKhoanDao.getQuanLy(maND);
 			request.setAttribute("quanly", quanly);
+			if (quanly.getAnhCaNhan() != null) {
+				String encodedImage = Base64.getEncoder().encodeToString(quanly.getAnhCaNhan());
+				request.setAttribute("encodedImage", encodedImage);
+			}
 			dispatcher = request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
 			dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {

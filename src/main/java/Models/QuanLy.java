@@ -15,6 +15,7 @@ public class QuanLy implements Serializable {
     private String Email;
     private int ID_TaiKhoan;
     private int TrangThai;
+    private byte[] AnhCaNhan;
 
     public QuanLy() {
     }
@@ -128,5 +129,17 @@ public class QuanLy implements Serializable {
 	public String toString() {
 		return "QuanLy [ID_QuanLy=" + ID_QuanLy + ", HoTen=" + HoTen + ", CCCD=" + CCCD + ", GioiTinh=" + GioiTinh
 				+ ", NgaySinh=" + NgaySinh + ", SDT=" + SDT + ", Email=" + Email + "]";
+	}
+
+
+
+	public byte[] getAnhCaNhan() {
+		return AnhCaNhan;
+	}
+
+
+
+	public void setAnhCaNhan(byte[] anhCaNhan) {
+		AnhCaNhan = anhCaNhan;
 	}
 }
