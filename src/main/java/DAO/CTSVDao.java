@@ -13,8 +13,8 @@ public class CTSVDao {
 	public CTSVDao() {
 		
 	}
-	private static final String SELECT_CTSV_BY_ID = "select ID_CTSV,HoTen,CCCD,GioiTinh,NgaySinh,SDT,Email,ID_TaiKhoan,TrangThai from CTSV where ID_CTSV =?";
-	private static final String UPDATE_CTSV_BY_ID = "UPDATE CTSV SET SDT = ?, Email = ? WHERE ID_CTSV = ?;";
+	private static final String SELECT_CTSV_BY_ID = "select ID_CTSV,HoTen,CCCD,GioiTinh,NgaySinh,SDT,Email,ID_TaiKhoan,TrangThai,AnhCaNhan from CTSV where ID_CTSV =?";
+	private static final String UPDATE_CTSV_BY_ID = "UPDATE CTSV SET SDT = ?, Email = ?, AnhCaNhan= ? WHERE ID_CTSV = ?;";
 	public static CTSV selectctsv(int CTSVId) {
         CTSV ctsv = null;
         // Step 1: Establishing a Connection
@@ -37,20 +37,22 @@ public class CTSVDao {
                 int id_TaiKhoan = rs.getInt("ID_TaiKhoan");
                 int trangthai = rs.getInt("TrangThai");
                 ctsv = new CTSV(id, hoten, cccd, gioitinh, ngaysinh, sdt, email, id_TaiKhoan, trangthai);
+                ctsv.setAnhCaNhan(rs.getBytes("AnhCaNhan"));
             }
         } catch (SQLException exception) {
             HandleExeption.printSQLException(exception);
         }
         return ctsv;
 	}
-	public static void updateThongTinCTSV(String SDT, String Email, int CTSVId)
+	public static void updateThongTinCTSV(String SDT, String Email, int CTSVId, byte[] encodedImage)
 	{
 		try(Connection connection = JDBCUtil.getConnection();
             // Step 2:Create a statement using connection object
             PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_CTSV_BY_ID);){
 			preparedStatement.setString(1, SDT); 
 			preparedStatement.setString(2, Email);
-			preparedStatement.setInt(3, CTSVId);
+			preparedStatement.setBytes(3, encodedImage);
+			preparedStatement.setInt(4, CTSVId);
 	            // Step 3: Execute the query or update query
 	        preparedStatement.executeUpdate();
 	           
