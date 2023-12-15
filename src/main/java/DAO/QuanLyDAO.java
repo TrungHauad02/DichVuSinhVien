@@ -167,6 +167,7 @@ public class QuanLyDAO {
 			Connection conn = JDBCUtil.getConnection();
 			PreparedStatement preparedStatement = conn.prepareStatement(SELECT_SV_BY_ID);
 			preparedStatement.setString(1, iD_SinhVien);
+			System.out.println(preparedStatement);
 			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
 

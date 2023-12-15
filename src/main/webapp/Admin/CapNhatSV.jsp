@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="Models.SinhVien" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,16 +113,14 @@
 								</table>
 								<!-- Nút Đổi mật khẩu và Cập nhật thông tin -->
 								<div class="text-center mt-3">
-									<button class="btn btn-primary mr-3">Cập nhật sinh
-										viên</button>
+									<button class="btn btn-primary mr-3">Cập nhật sinh viên</button>
 								</div>
 								<div style="margin-top: 40px;"></div>
 							</div>
 					</form>
-
 					<!-- Hình ảnh -->
-					<div class="col-lg-2 d-flex justify-content-center">
-						<img id="image" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(sv.getAnhCaNhan())}"
+					<div class="col-lg-2 d-flex justify-content-center" style="height: 200px;">
+						<img id="image" src="data:image/jpeg;base64,${encodedImage}"
 	                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
 					</div>
 				</div>

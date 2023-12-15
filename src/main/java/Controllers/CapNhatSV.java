@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.ServletConfig;
@@ -37,6 +38,10 @@ public class CapNhatSV extends HttpServlet {
 		String idsv = request.getParameter("id");
 		QuanLyDAO dao = new QuanLyDAO();
 		SinhVien sv = dao.selectSV(idsv);
+		if(sv.getAnhCaNhan() != null) {
+            String encodedImage = Base64.getEncoder().encodeToString(sv.getAnhCaNhan());
+            request.setAttribute("encodedImage", encodedImage);
+        }
 		request.setAttribute("sv", sv);
 		List<Khoa> khoaList = dao.selectAllKhoa();
 		request.setAttribute("khoaList", khoaList);

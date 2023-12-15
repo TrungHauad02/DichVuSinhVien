@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="java.util.Base64" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -82,7 +83,7 @@
                     <ul class="navbar-nav" style="width: 100%;">
                     
                     	<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="./index.jsp">Trang Chủ</a>
+							<a class ="nav-link text-gray-900 medium" href="<%=request.getContextPath()%>s/index.jsp">Trang Chủ</a>
 						</li>
 						<li class ="nav-item">
 							<a class ="nav-link text-gray-900 medium" href="<%=request.getContextPath()%>/HoTroSinhVien.jsp">Hỗ Trợ</a>
@@ -107,7 +108,6 @@
 			        <div class="rectangle">
 				      <p>Trang web dịch vụ sinh viên</p>
 				    </div>
-				
 				    <div class="rectangle">
 				      <p>Trang web phục vụ cho quản lý</p>
 				    </div>
