@@ -99,7 +99,7 @@
 							</div>
 						</div>
 						<div class="ccol-xl-6 col-lg-6 col-md-12 col-sm-12">
-							<form action="quanlyhoatdong" method="post">
+							<form action="<%=request.getContextPath()%>/quanlyhoatdong" method="post">
 								<table class="table">
 									<tbody>
 										<tr>
@@ -140,7 +140,7 @@
 									</tbody>
 								</table>
 								<div class="text-center mt-3">
-									<button class="btn btn-primary mr-3">Thêm hoạt động</button>
+									<button type="submit" class="btn btn-primary mr-3">Thêm hoạt động</button>
 								</div>
 							</form>
 						</div>

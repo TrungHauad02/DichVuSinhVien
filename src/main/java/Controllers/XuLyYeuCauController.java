@@ -19,6 +19,7 @@ import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
+import DAO.HocBongDAO;
 import DAO.LopHocDAO;
 import DAO.ThamGiaLopHocDAO;
 import DAO.ThemSinhVienLopDao;
@@ -104,6 +105,12 @@ public class XuLyYeuCauController extends HttpServlet {
 	        String noidungphanhoi = jsonObject.getString("noidungph");
 	        LocalDateTime thoidiemphanhoi = LocalDateTime.now();
 	        XuLyYeuCauDao.themPhanHoi(noidungphanhoi, trangthai, thoidiemphanhoi, idCtsv, idYeuCau);
+	        try {
+				HocBongDAO.UpdateSoLuongHocBong(idYeuCau);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			}
 			    catch (SQLException e) {
 				// TODO Auto-generated catch block 
