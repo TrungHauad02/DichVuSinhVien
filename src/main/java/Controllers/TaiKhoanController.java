@@ -106,11 +106,8 @@ public class TaiKhoanController extends HttpServlet {
 	            case "ctsv":
 	            	CTSV ctsv = taiKhoanDao.getCTSV(maND);
 	                session.setAttribute("ctsv", ctsv);
-	            	int ID_TK = taiKhoanDao.LayID_TaiKhoan(tk);
-	            	tk.setID_TaiKhoan(ID_TK);
-	            	String _maND = taiKhoanDao.MaNguoiDung(tk);
-	            	
-	                response.sendRedirect("/DichVuSinhVien/ThongTin_CTSV/" + _maND.toString());
+	                dispatcher = request.getRequestDispatcher("/CTSV/ThongTin_CTSV.jsp");
+	                dispatcher.forward(request, response);
 	                break;
 	            case "sinhvien":     
 	            	SinhVien sinhvien = taiKhoanDao.getSinhVien(maND);

@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -50,10 +51,9 @@ public class XuLyYeuCauController extends HttpServlet {
 			danhSachYeuCau = XuLyYeuCauDao.selectDSYeuCau();
 	        request.setAttribute("danhSachYeuCau", danhSachYeuCau);
  
-	        int ctsvId = 0;
-	        if(request.getParameter("ctsvId") != null) {
-	        	ctsvId = Integer.parseInt(request.getParameter("ctsvId"));			
-	        }
+	        HttpSession session = request.getSession();
+			String maND = (String) session.getAttribute("maND");
+	        int ctsvId = Integer.parseInt(maND);
 	        request.setAttribute("ctsvId", ctsvId);
 	        
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("/CTSV/XuLyYeuCau_CTSV.jsp");
@@ -84,6 +84,7 @@ public class XuLyYeuCauController extends HttpServlet {
 			}
 	}
 	/**
+	 * Debug đi
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -95,8 +96,10 @@ public class XuLyYeuCauController extends HttpServlet {
 	            jsonData.append(line);
 	        } 
 	        JSONObject jsonObject = new JSONObject(jsonData.toString());
+	        System.out.println(jsonObject);
 	        String trangthai = jsonObject.getString("trangthai");
 	        int idYeuCau = Integer.parseInt(jsonObject.getString("idYC"));
+	        System.out.println(idYeuCau);
 	        int idCtsv = jsonObject.getInt("idctsv");
 	        String noidungphanhoi = jsonObject.getString("noidungph");
 	        LocalDateTime thoidiemphanhoi = LocalDateTime.now();
@@ -104,7 +107,7 @@ public class XuLyYeuCauController extends HttpServlet {
 			}
 			    catch (SQLException e) {
 				// TODO Auto-generated catch block 
-				e.printStackTrace();
+				e.printStackTrace();  
 			}
 		}
 }

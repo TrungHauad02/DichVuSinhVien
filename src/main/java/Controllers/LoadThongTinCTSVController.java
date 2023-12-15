@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -18,7 +19,7 @@ import Models.CTSV;
 /**
  * Servlet implementation class CTSVControllers
  */
-@WebServlet("/ThongTin_CTSV/*")
+@WebServlet("/ThongTin_CTSV")
 public class LoadThongTinCTSVController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     public LoadThongTinCTSVController() {
@@ -33,7 +34,9 @@ public class LoadThongTinCTSVController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int ctsvId = Integer.parseInt(request.getPathInfo().substring(1));
+		HttpSession session = request.getSession();
+		String maND = (String) session.getAttribute("maND");
+		int ctsvId = Integer.parseInt(maND);
         CTSV ctsv = CTSVDao.selectctsv(ctsvId);
         request.setAttribute("ctsv", ctsv); 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/CTSV/ThongTin_CTSV.jsp");
@@ -46,7 +49,9 @@ public class LoadThongTinCTSVController extends HttpServlet {
 	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		int ctsvId = Integer.parseInt(request.getPathInfo().substring(1));
+		HttpSession session = request.getSession();
+		String maND = (String) session.getAttribute("maND");
+		int ctsvId = Integer.parseInt(maND);
 		BufferedReader reader = request.getReader();
         StringBuilder jsonData = new StringBuilder();
         String line;

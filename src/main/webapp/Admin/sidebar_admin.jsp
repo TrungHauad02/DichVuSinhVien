@@ -24,72 +24,7 @@
 </head>
 
 <body id="page-top">
-	<!-- <ul
-		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
-		id="accordionSidebar">
-
-		Sidebar - Brand
-		<a
-			class="sidebar-brand d-flex align-items-center justify-content-center"
-			href="admin">
-			<div class="sidebar-brand-icon rotate-n-15">
-				<i class="fas fa-laugh-wink"></i>
-			</div>
-			<div class="sidebar-brand-text mx-3">Dịch vụ sinh viên</div>
-		</a>
-
-		Divider
-		<hr class="sidebar-divider my-0">
-
-		Nav Item - Dashboard
-		<li class="nav-item"><a class="nav-link" href="admin"> <i
-				class="fas fa-home"></i> <span>Trang chủ</span>
-		</a></li>
-
-		Divider
-		<hr class="sidebar-divider">
-		Divider
-		<li class="nav-item"><a class="nav-link" href="quanlysinhvien">
-				<span>Quản lý sinh viên</span>
-		</a></li>
-
-		Divider
-		<hr class="sidebar-divider">
-		Divider
-		<li class="nav-item"><a class="nav-link" href="quanlyctsv"> <span>Quản
-					lý CTSV</span>
-		</a></li>
-
-		Divider
-		<hr class="sidebar-divider">
-		Divider
-		<li class="nav-item"><a class="nav-link" href="quanlykhoa"><span>Quản
-					lý khoa</span> </a></li>
-
-		Divider
-		<hr class="sidebar-divider">
-		Divider
-		<li class="nav-item"><a class="nav-link" href="quanlyhoatdong"><span>Quản
-					lý hoạt động</span> </a></li>
-
-		Divider
-		<hr class="sidebar-divider">
-		Divider
-		<li class="nav-item"><a class="nav-link" href="quanlyhocbong">
-				<i class="fas fa-fw fa-user"></i> <span>Quản lý học bổng</span>
-		</a></li>
-
-		<hr class="sidebar-divider">
-		<li class="nav-item"><a class="nav-link" href="quanlylophoc">
-				<i class='fas fa-fw fa-headset'></i> <span>Quản lý lớp học</span>
-		</a></li>
-
-		<hr class="sidebar-divider">
-		<li class="nav-item"><a class="nav-link" href="hotro"> <i
-				class='fas fa-fw fa-headset'></i> <span>Hỗ trợ</span>
-		</a></li>
-
-	</ul> -->
+	
 	<ul
 		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 		id="accordionSidebar">
