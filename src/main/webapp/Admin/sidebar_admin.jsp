@@ -24,7 +24,6 @@
 </head>
 
 <body id="page-top">
-	
 	<ul
 		class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
 		id="accordionSidebar">
@@ -39,7 +38,7 @@
 			</div>
 			<div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 		</a>
-		<li class="nav-item active mt-5"><a class="nav-link" href="<%=request.getContextPath()%>/admin">
+		<li class="nav-item active mt-5"><a class="nav-link" href="<%=request.getContextPath()%>/ThongTinQuanLy">
 				<span>Thông tin cá nhân</span>
 		</a></li>
 		<hr class="sidebar-divider my-0">

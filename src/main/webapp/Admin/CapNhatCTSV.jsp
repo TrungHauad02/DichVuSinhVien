@@ -59,7 +59,7 @@
 								<tbody>
 									<tr>
 										<td><label for="mssv" class="h4">ID:</label></td>
-										<td><input type="text" id="mssv" name="id" class="form-control" value="${ctsv.ID_CTSV}"></td>
+										<td><input type="text" id="mssv" name="id" class="form-control" value="${ctsv.ID_CTSV}" readonly></td>
 									</tr>
 									<tr>
 										<td><label for="name" class="h4">Họ tên:</label></td>

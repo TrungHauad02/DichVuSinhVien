@@ -72,7 +72,7 @@
 										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
 											style="text-align: left; width: 50%;">Mã số admin:</div>
 										<div class="col-xl-7 col-lg-8 col-md-6 col-sm-6"
-											style="text-align: left; width: 50%;">${quanly.ID_QuanLy}
+											style="text-align: left; width: 50%;" name="id">${quanly.ID_QuanLy}
 										</div>
 										<div style="margin-top: 40px;"></div>
 										<div class="col-xl-5 col-lg-4 col-md-6 col-sm-6"
