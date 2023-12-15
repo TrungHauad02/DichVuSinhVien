@@ -17,6 +17,85 @@
     <!-- Custom fonts for this template-->
     <jsp:include page="../head.jsp" />
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<style>
+	* Reset some default styles for better consistency */
+	  body, h1, h2, h3, p, ul, li {
+	    margin: 0;
+	    padding: 0;
+	  }
+	
+	  body {
+	    font-family: 'Arial', sans-serif;
+	    line-height: 1.6;
+	    background-color: #f8f9fa;
+	  }
+	
+	  /* Style for tables */
+	  table {
+	    width: 100%;
+	    margin-bottom: 20px;
+	    border-collapse: collapse;
+	    background-color: #fff;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	  }
+	
+	  th, td {
+	    padding: 10px;
+	    text-align: center;
+	    border: 1px solid #dee2e6;
+	  }
+	
+	  th {
+	    background-color: #007bff;
+	    color: #fff;
+	  }
+	
+	  /* Style for buttons */
+	  button {
+	    margin-top: 10px;
+	    padding: 10px;
+	    background-color: #007bff;
+	    color: #fff;
+	    border: none;
+	    cursor: pointer;
+	  }
+	
+	  /* Style for the container */
+	  .container-fluid {
+	    padding: 20px;
+	  }
+	
+	  /* Style for the row */
+	  .row {
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+	  }
+	
+	  /* Style for each column */
+	  .col-md-4 {
+	    flex-basis: calc(33.33% - 20px); /* Adjust the width as needed, considering margin */
+	    margin-bottom: 20px;
+	  }
+	
+	  /* Additional styling for select and input */
+	  label {
+	    margin-top: 10px;
+	    display: block;
+	    font-weight: bold;
+	  }
+	
+	  select, input {
+	    width: 100%;
+	    padding: 10px;
+	    margin-top: 5px;
+	    margin-bottom: 15px;
+	    box-sizing: border-box;
+	    border: 1px solid #ced4da;
+	    border-radius: 4px;
+	    background-color: #fff;
+	  }
+	</style>
 </head>
 
 <body id="page-top">

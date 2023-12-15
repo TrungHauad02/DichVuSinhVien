@@ -16,7 +16,7 @@
 	            <div class="sidebar-brand-text mx-3 h4">HCMUTE</div>
 	        </a>
         	<li class="nav-item active mt-5">
-                <a class="nav-link" href="<%=request.getContextPath()%>/ThongTinCTSV">
+                <a class="nav-link" href="<%=request.getContextPath()%>/ThongTin_CTSV">
                     <span >Thông tin cá nhân</span></a>
             </li>
             <hr class="sidebar-divider my-0">

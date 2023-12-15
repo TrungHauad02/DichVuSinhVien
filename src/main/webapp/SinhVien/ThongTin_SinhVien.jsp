@@ -168,7 +168,7 @@
 					            <img id="image" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan())}"
 	                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
                  			</div>
-				            <div class="text-center"><input type="file" id="selectImage" accept="image/*" style="display: none;"></div>
+				            <div class="text-center"><input type="file" id="selectImage" accept="image/*" style="display: inline;"></div>
 				        </div>
 						
 				</div>
