@@ -200,7 +200,6 @@
 	            diemCK: diemCKValue,
 	            mssv: mssvValue,
 	            lopHoc: lopHocValue
-	            // Add more data properties as needed
 	        }),
 	        success: function (data) {
 	        	 window.location.href = "/DichVuSinhVien/ThemDiem?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;

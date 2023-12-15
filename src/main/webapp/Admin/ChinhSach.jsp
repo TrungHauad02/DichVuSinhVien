@@ -12,7 +12,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Chính sách</title>
+<title>Chính sách của chúng tôi</title>
 
 <!-- Custom fonts for this template-->
 <jsp:include page="../head.jsp" />

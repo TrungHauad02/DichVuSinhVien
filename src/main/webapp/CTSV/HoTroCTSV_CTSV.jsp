@@ -1,9 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="Models.SinhVien"%>
-<%@ page import="DAO.TaiKhoanDao"%>
-<%@ page import="java.util.Base64"%>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -16,7 +13,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Hỗ trợ sinh viên</title>
+<title>Hỗ trợ CTSV</title>
 
 <!-- Custom fonts for this template	-->
 <jsp:include page="../head.jsp" />
@@ -34,7 +31,7 @@
 	<div id="wrapper">
 
 		<!-- Sidebar -->
-        	<jsp:include page="./Sidebar_SinhVien.jsp" />
+        	<jsp:include page="./Sidebar_CTSV.jsp" />
 		<!-- End of Sidebar -->
 
 		<!-- Content Wrapper -->
@@ -52,7 +49,7 @@
                     </button>
 
                     <!-- Topbar Navigation -->
-                    <jsp:include page="./Topbar_SinhVien.jsp" />
+                    <jsp:include page="./Topbar_CTSV.jsp" />
 
                 </nav>  
 
