@@ -44,4 +44,15 @@ public class HocBongDAO {
 		
 		return dshb;
 	}
+	public static void UpdateSoLuongHocBong(int idYC) throws ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		try (Connection connection = JDBCUtil.getConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement("UPDATE NHANHOCBONG INNER JOIN HOCBONG ON NHANHOCBONG.ID_HocBong = HOCBONG.ID_HocBong SET SoLuong = SoLuong - 1 WHERE NHANHOCBONG.ID_YeuCau = ? AND SoLuong > 0;")){
+			preparedStatement.setInt(1, idYC);
+			preparedStatement.executeUpdate();
+		}	catch (SQLException e) {
+            HandleExeption.printSQLException(e);
+        }
+	}
 }

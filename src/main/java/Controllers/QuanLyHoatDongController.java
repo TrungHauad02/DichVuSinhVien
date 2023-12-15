@@ -66,10 +66,7 @@ public class QuanLyHoatDongController extends HttpServlet {
 		int khoa = Integer.parseInt(request.getParameter("khoa"));
 		ToChuc toChuc = new ToChuc(idHoatDong, khoa);
 		dao.insertToChuc(toChuc);
-		response.sendRedirect("quanlyhoatdong");
-		
-		
-		 
+		response.sendRedirect("quanlyhoatdong");	 
 	}
 
 }
