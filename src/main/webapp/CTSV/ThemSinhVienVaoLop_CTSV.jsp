@@ -150,7 +150,7 @@
 						  tr.addEventListener("click", function() {
 							  const lopHocId = tr.querySelector("td:first-child").textContent.trim();
 							  const ctsvId = ${ctsvId}
-							  window.location.href = "/DichVuSinhVien/ThemSinhVien?ctsvId=" + ctsvId + "&lophoc=" + lopHocId;
+							  window.location.href = "<%=request.getContextPath()%>/ThemSinhVien?ctsvId=" + ctsvId + "&lophoc=" + lopHocId;
 							  });
 						});
 						
@@ -175,7 +175,7 @@
 					            const lopHocValue = ${lopHoc}
 					            const ctsvId = ${ctsvId}
 					            $.ajax({
-					    	        url: "/DichVuSinhVien/ThemSinhVien",
+					    	        url: "<%=request.getContextPath()%>/ThemSinhVien",
 					    	        method: "DELETE",
 					    	        contentType: "application/json; charset=utf-8",
 					    	        data: JSON.stringify({
@@ -183,7 +183,7 @@
 					    	            lopHoc: lopHocValue.toString()
 					    	        }),
 					    	        success: function (data) {
-					    	        	 window.location.href = "/DichVuSinhVien/ThemSinhVien?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;
+					    	        	 window.location.href = "<%=request.getContextPath()%>/ThemSinhVien?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;
 					    	        },
 					    	        error: function () {
 					    	            console.log("Error saving data");
@@ -196,7 +196,7 @@
 	    const lopHocValue = $("#lophoc").val();
 	    const ctsvId = ${ctsvId}
 	    $.ajax({
-	        url: "/DichVuSinhVien/ThemSinhVien",
+	        url: "<%=request.getContextPath()%>/ThemSinhVien",
 	        method: "POST",
 	        contentType: "application/json; charset=utf-8",
 	        data: JSON.stringify({
@@ -204,7 +204,7 @@
 	            lopHoc: lopHocValue,
 	        }),
 	        success: function (data) {
-	        	 window.location.href = "/DichVuSinhVien/ThemSinhVien?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;
+	        	 window.location.href = "<%=request.getContextPath()%>/ThemSinhVien?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;
 	        },
 	        error: function () {
 	            console.log("Error saving data");

@@ -21,7 +21,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%=request.getContextPath()%>/ThemDiem">
+                <a id= "themDiemLink" class="nav-link" href="<%=request.getContextPath()%>/ThemDiem">
                     <span >Thêm điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">

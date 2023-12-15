@@ -50,7 +50,6 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-
                     <!-- Topbar Navbar -->
                     <jsp:include page="./Topbar_CTSV.jsp" />
 
@@ -114,7 +113,7 @@
 						  tr.addEventListener("click", function() {
 							  const lopHocId = tr.querySelector("td:first-child").textContent.trim();
 							  const ctsvId = ${ctsvId}
-							  window.location.href = "/DichVuSinhVien/ThemDiem?ctsvId=" + ctsvId + "&lophoc=" + lopHocId;
+							  window.location.href = "<%=request.getContextPath()%>/ThemDiem?ctsvId=" + ctsvId + "&lophoc=" + lopHocId;
 							  });
 						});
 						
@@ -192,7 +191,7 @@
 	    const lopHocValue = $("#lopHocId").text();
 	    const ctsvId = ${ctsvId}
 	    $.ajax({
-	        url: "/DichVuSinhVien/ThemDiem",
+	        url: "<%=request.getContextPath()%>/ThemDiem",
 	        method: "POST",
 	        contentType: "application/json; charset=utf-8",
 	        data: JSON.stringify({
@@ -200,9 +199,10 @@
 	            diemCK: diemCKValue,
 	            mssv: mssvValue,
 	            lopHoc: lopHocValue
+	            // Add more data properties as needed
 	        }),
 	        success: function (data) {
-	        	 window.location.href = "/DichVuSinhVien/ThemDiem?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;
+	        	 window.location.href = "<%=request.getContextPath()%>/ThemDiem?ctsvId=" + ctsvId + "&lophoc=" + lopHocValue;
 	        },
 	        error: function () {
 	            console.log("Error saving data");

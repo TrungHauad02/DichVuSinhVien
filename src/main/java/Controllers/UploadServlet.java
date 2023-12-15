@@ -29,6 +29,7 @@ import Util.JDBCUtil;
 @WebServlet("/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
+	private static final long serialVersionUID = 1L;
 	
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	       
@@ -51,7 +52,6 @@ public class UploadServlet extends HttpServlet {
 	            Sheet sheet = wb.getSheetAt(0);
 	            Connection conn = JDBCUtil.getConnection(); 
 	            for (Row row : sheet) {
-	                // Iterate through cells 
 	                for (Cell cell : row) {
 	                    ArrayD.add(cell.toString());
 	                }
@@ -61,6 +61,7 @@ public class UploadServlet extends HttpServlet {
 		                    statement.setString(2, ArrayD.get(1));
 		                    statement.setFloat(3, Float.parseFloat(ArrayD.get(2)));
 		                    statement.setFloat(4, Float.parseFloat(ArrayD.get(3)));
+		                    System.out.println(sql);
 		                    statement.executeUpdate();
 		                }
 		                	catch (SQLException e) {
@@ -74,8 +75,7 @@ public class UploadServlet extends HttpServlet {
 	        	ctsvId = Integer.parseInt(request.getParameter("ctsvId"));			
 	        }
 	        request.setAttribute("ctsvId", ctsvId);
-	        response.sendRedirect("/DichVuSinhVien/ThemDiem?ctsvId=" + ctsvId);
-	      //  response.getWriter().println("File " + file.getAbsolutePath() + " has been uploaded successfully!");
+	        response.sendRedirect("/CTSV/ThemDiem_CTSV.jsp");
 	    }
 
 	    // Utility method to get the submitted file name 
