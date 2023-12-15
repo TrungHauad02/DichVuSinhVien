@@ -101,9 +101,13 @@
 						</form>
 
 						<!-- Hình ảnh -->
-						<div class="col-lg-3 " >
-							<img src="https://storage.googleapis.com/nguyenphat/assets/anhnen.png" alt="Hình ảnh" width="330" height="380">
-						</div>
+						<div class="col-lg-2 d-flex flex-column justify-content-center">
+				            <div class="mb-3 text-center" style="height: 200px;">
+					            <img id="image" src="data:image/jpeg;base64,${encodedImage}"
+	                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
+                 			</div>
+				            <div class="text-center"><input type="file" id="selectImage" accept="image/*" style="display: none;"></div>
+				        </div>
 					</div>
 				</div>
 
@@ -132,7 +136,23 @@
 
 	<!-- Bootstrap core JavaScript-->
 	<jsp:include page="../Scripts.jsp" />
-
+<script>    
+		document.getElementById('selectImage').addEventListener('change', function(event) {
+	        var files = event.target.files;
+	        if (files && files.length > 0) {
+	            var reader = new FileReader();
+	            reader.onload = function() {
+	                var dataURL = reader.result;
+	                if (dataURL != null) {
+	                    document.getElementById('image').src = dataURL;
+	                }
+	            };
+	            reader.readAsDataURL(files[0]);
+	        } else {
+	            console.error("No files selected or FileReader not supported.");
+	        }
+	    });
+	</script>
 </body>
 
 </html>

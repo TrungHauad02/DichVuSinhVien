@@ -284,6 +284,7 @@ public class QuanLyDAO {
 				int id_TaiKhoan = rs.getInt("ID_TaiKhoan");
 				int trangthai = rs.getInt("TrangThai");
 				ctsv = new CTSV(id, hoten, cccd, gioitinh, ngaysinh, sdt, email, id_TaiKhoan, trangthai);
+				ctsv.setAnhCaNhan(rs.getBytes("AnhCaNhan"));
 			}
 		} catch (SQLException e) {
 			HandleExeption.printSQLException(e);

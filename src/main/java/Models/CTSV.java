@@ -22,7 +22,8 @@ public class CTSV implements Serializable {
     private String Email;
     private int ID_TaiKhoan;
     private int TrangThai;
-
+	private byte[] AnhCaNhan;
+    
     public CTSV() {
     }
     
@@ -142,4 +143,12 @@ public class CTSV implements Serializable {
     public void setTrangThai(int TrangThai) {
         this.TrangThai = TrangThai;
     }
+
+	public byte[] getAnhCaNhan() {
+		return AnhCaNhan;
+	}
+
+	public void setAnhCaNhan(byte[] anhCaNhan) {
+		AnhCaNhan = anhCaNhan;
+	}
 }
