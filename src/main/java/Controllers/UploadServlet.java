@@ -55,7 +55,7 @@ public class UploadServlet extends HttpServlet {
 	                for (Cell cell : row) {
 	                    ArrayD.add(cell.toString());
 	                }
-		                String sql = "INSERT INTO ThamGiaLopHoc (ID_LopHoc, ID_SinhVien, DiemQuaTrinh, DiemCuoiKy, TrangThai) VALUES (?, ?, ?, ?, 1)";
+		                String sql = "update ThamGiaLopHoc SET (ID_LopHoc, ID_SinhVien, DiemQuaTrinh, DiemCuoiKy, TrangThai) VALUES (?, ?, ?, ?, 1)";
 		                try (PreparedStatement statement = conn.prepareStatement(sql)) {
 		                    statement.setInt(1, Integer.parseInt(ArrayD.get(0)));
 		                    statement.setString(2, ArrayD.get(1));
@@ -64,8 +64,21 @@ public class UploadServlet extends HttpServlet {
 		                    System.out.println(sql);
 		                    statement.executeUpdate();
 		                }
-		                	catch (SQLException e) {
-		                		e.printStackTrace();
+		                catch (SQLException e) {
+	                		sql = "UPDATE ThamGiaLopHoc SET DiemQuaTrinh = ?, "
+	    	                		+ "DiemCuoiKy = ?, TrangThai = 1 WHERE ID_SinhVien = ? AND ID_LopHoc = ?";
+
+    		                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+    		                    statement.setFloat(1, Float.parseFloat(ArrayD.get(2)));
+    		                    statement.setFloat(2, Float.parseFloat(ArrayD.get(3)));
+    		                    statement.setString(3, ArrayD.get(1));
+    		                    statement.setInt(4, Integer.parseInt(ArrayD.get(0)));
+    		                    System.out.println(sql);
+    		                    statement.executeUpdate();
+    		                }catch (SQLException ex) {
+    		                	e.printStackTrace();
+    		                	ex.printStackTrace();
+    		                }
 		                }
 		               ArrayD.clear();
 	            }  
