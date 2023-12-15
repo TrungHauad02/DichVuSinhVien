@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -53,10 +54,9 @@ public class ThemSinhVienVaoLopController extends HttpServlet {
 	        }
 	        request.setAttribute("lopHoc", lopHoc);
 	        
-	        int ctsvId = 0;
-	        if(request.getParameter("ctsvId") != null) {
-	        	ctsvId = Integer.parseInt(request.getParameter("ctsvId"));			
-	        }
+	        HttpSession session = request.getSession();
+			String maND = (String) session.getAttribute("maND");
+	        int ctsvId = Integer.parseInt(maND);
 	        request.setAttribute("ctsvId", ctsvId);
 	        
 	        List<SinhVien> DSSinhVien = new ArrayList<>();

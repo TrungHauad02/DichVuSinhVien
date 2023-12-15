@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.JSONObject;
 
@@ -29,7 +30,7 @@ public class ThemDiemController extends HttpServlet {
        
     /**
      * @see HttpServlet#HttpServlet()
-     */
+     */ 
     public ThemDiemController() {
         super();
         // TODO Auto-generated constructor stub
@@ -43,7 +44,7 @@ public class ThemDiemController extends HttpServlet {
 			//---
 			// TO DO... check session
 			//----
-			List<LopHoc> danhSachLopHoc = new ArrayList<>();
+			List<LopHoc> danhSachLopHoc = new ArrayList<>(); 
 			danhSachLopHoc = LopHocDAO.selectLopHoc();
 			
 	        request.setAttribute("danhSachLopHoc", danhSachLopHoc);
@@ -53,11 +54,9 @@ public class ThemDiemController extends HttpServlet {
 				lopHoc = Integer.parseInt(request.getParameter("lophoc"));			
 	        }
 	        request.setAttribute("lopHoc", lopHoc);
-	        
-	        int ctsvId = 0;
-	        if(request.getParameter("ctsvId") != null) {
-	        	ctsvId = Integer.parseInt(request.getParameter("ctsvId"));			
-	        }
+	        HttpSession session = request.getSession();
+			String maND = (String) session.getAttribute("maND");
+	        int ctsvId = Integer.parseInt(maND);
 	        request.setAttribute("ctsvId", ctsvId);
 	        
 	        List<ThamGiaLopHoc> DSSinhVienLop = new ArrayList<>();

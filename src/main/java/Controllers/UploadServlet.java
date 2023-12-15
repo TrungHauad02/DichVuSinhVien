@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -30,45 +29,12 @@ import Util.JDBCUtil;
 @WebServlet("/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
-	/*   
-	 * protected void doPost(HttpServletRequest request, HttpServletResponse
-	 * response) throws ServletException, IOException { Part filePart =
-	 * request.getPart("excelFile"); // "excelFile" is the name attribute of the
-	 * file input in the form InputStream fileContent = filePart.getInputStream();
-	 * Connection conn = JDBCUtil.getConnection();
-	 * 
-	 * try (Workbook workbook = new XSSFWorkbook()) { Sheet sheet =
-	 * workbook.getSheetAt(0); System.out.println(workbook);
-	 * 
-	 * for (Row row : sheet) { System.out.println(row.getRowNum()); for (Cell cell :
-	 * row) { String col1 = cell.getStringCellValue(); String col2 =
-	 * cell.getStringCellValue(); String col3 = cell.getStringCellValue(); String
-	 * col4 = cell.getStringCellValue(); // Insert into the database String sql =
-	 * "INSERT INTO ThamGiaLopHoc (ID_LopHoc, ID_SinhVien, DiemQuaTrinh, DiemCuoiKy, TrangThai) VALUES (?, ?, ?, ?, 1)"
-	 * ; try (PreparedStatement statement = conn.prepareStatement(sql)) {
-	 * statement.setString(1, col1); statement.setString(2, col2);
-	 * statement.setString(3, col3); statement.setString(4, col4);
-	 * statement.executeUpdate(); } }
-	 *    
-	 * 
-	 * 
-	 * } catch (Exception e) { e.printStackTrace(); } }
-	 */ 
+	
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        // Retrieves <input type="file" name="file">
+	       
 	        Part filePart = request.getPart("excelFile");
-
-	        // Retrieves the filename
 	        String fileName = getSubmittedFileName(filePart);
-
-	        // Get the InputStream to store the file somewhere
 	        InputStream fileContent = filePart.getInputStream();
-
-	        // Process the file content as needed
-
-	        // You can save the file to a specific location or perform other actions
-
-	        // Example: Save the file to the server's root directory
 	        File file= new File(fileName);
 	        try (FileOutputStream out = new FileOutputStream(file)) {
 	            int read;
@@ -82,11 +48,8 @@ public class UploadServlet extends HttpServlet {
 	        if (fileInputStream != null) {
 	        	HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(fileInputStream));
 	            System.out.println("1AFFFFFFFFFF23");
-	            // Assuming the data is in the first sheet
 	            Sheet sheet = wb.getSheetAt(0);
-	            Connection conn = JDBCUtil.getConnection(); 	
-	            
-	            // Iterate through rows
+	            Connection conn = JDBCUtil.getConnection(); 
 	            for (Row row : sheet) {
 	                // Iterate through cells 
 	                for (Cell cell : row) {
@@ -100,15 +63,11 @@ public class UploadServlet extends HttpServlet {
 		                    statement.setFloat(4, Float.parseFloat(ArrayD.get(3)));
 		                    statement.executeUpdate();
 		                }
-		            
 		                	catch (SQLException e) {
 		                		e.printStackTrace();
-		                    
 		                }
 		               ArrayD.clear();
 	            }  
-	            
-		        
 		        wb.close();  } 
 	        int ctsvId = 0;
 	        if(request.getParameter("ctsvId") != null) {

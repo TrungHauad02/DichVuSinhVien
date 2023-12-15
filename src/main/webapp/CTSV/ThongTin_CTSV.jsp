@@ -62,9 +62,7 @@
                 
                     <h2>Thông tin cá nhân</h2>
                     <div class="row">
-                    
                         <div class="col-md-6">
-                            
 					         <div class="form-group">
                                 <label for="msctsv">MSCTSV</label>
                                 <label for="msctsv" class="form-control">${ctsv.ID_CTSV}</label>
@@ -85,8 +83,6 @@
                                 <label for="cccd">CCCD</label>
                                 <label for="cccd" class="form-control">${ctsv.getCCCD()}</label>
                             </div>
-                            
-                            
                         </div>
                         <div class="col-md-6">
                         	<div class="form-group">

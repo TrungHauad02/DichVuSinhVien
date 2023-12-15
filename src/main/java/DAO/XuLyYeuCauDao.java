@@ -57,8 +57,8 @@ public class XuLyYeuCauDao {
 	        preparedStatement.setString(1, noidung);
 	        preparedStatement.setString(2, trangthai);
 	        preparedStatement.setTimestamp(3, Timestamp.from(thoigianph.atZone(ZoneId.systemDefault()).toInstant()));
-	        preparedStatement.setInt(4, idYeuCau);
-	        preparedStatement.setInt(5, idctsv);
+	        preparedStatement.setInt(5, idYeuCau);
+	        preparedStatement.setInt(4, idctsv);
 	        preparedStatement.executeUpdate();
 	    } 
 	}

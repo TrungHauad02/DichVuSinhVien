@@ -81,63 +81,60 @@ public class TaiKhoanController extends HttpServlet {
 	}
 
 	private void dangNhap(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		String taiKhoan = request.getParameter("username");
-		String matKhau = request.getParameter("password");
-		TaiKhoan tk = new TaiKhoan();
-		tk.setTaiKhoan(taiKhoan);
-		tk.setMatKhau(matKhau);
-		try {
-			int login = taiKhoanDao.DangNhap(tk);
-			if (login != -1) {
-				tk.setID_TaiKhoan(login);
-				HttpSession session = request.getSession();
-				tk.setPhanQuyen(taiKhoanDao.LayPhanQuyen(tk));
-				String maND = taiKhoanDao.MaNguoiDung(tk);
-				session.setAttribute("maND", maND);
-				session.setAttribute("phanQuyen", tk.getPhanQuyen());
-				RequestDispatcher dispatcher;
-				System.out.println(maND);
+	        throws SQLException, ServletException, IOException {
+	    String taiKhoan = request.getParameter("username");
+	    String matKhau = request.getParameter("password");
+	    TaiKhoan tk = new TaiKhoan();
+	    tk.setTaiKhoan(taiKhoan);
+	    tk.setMatKhau(matKhau);
+	    try {
+		    int login = taiKhoanDao.DangNhap(tk);
+	        if (login != -1) {
+	        	tk.setID_TaiKhoan(login);
+	            HttpSession session = request.getSession();              
+	            tk.setPhanQuyen(taiKhoanDao.LayPhanQuyen(tk));
+	            String maND = taiKhoanDao.MaNguoiDung(tk);
+	            session.setAttribute("maND", maND);
+	            session.setAttribute("phanQuyen", tk.getPhanQuyen());
+	            RequestDispatcher dispatcher;
+	            System.out.println(maND);
 
-				switch (tk.getPhanQuyen()) {
-				case "quanly":
-					QuanLy quanly = taiKhoanDao.getQuanLy(maND);
-					session.setAttribute("quanly", quanly);
-					dispatcher = request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
-					dispatcher.forward(request, response);
-					break;
-				case "ctsv":
-					CTSV ctsv = taiKhoanDao.getCTSV(maND);
-					session.setAttribute("ctsv", ctsv);
-					int ID_TK = taiKhoanDao.LayID_TaiKhoan(tk);
-					tk.setID_TaiKhoan(ID_TK);
-					String _maND = taiKhoanDao.MaNguoiDung(tk);
-
-					response.sendRedirect("/DichVuSinhVien/ThongTin_CTSV/" + _maND.toString());
-					break;
-				case "sinhvien":
-					SinhVien sinhvien = taiKhoanDao.getSinhVien(maND);
-					session.setAttribute("sinhvien", sinhvien);
-					if (sinhvien.getAnhCaNhan() != null) {
-						String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
-						request.setAttribute("encodedImage", encodedImage);
-					}
-					dispatcher = request.getRequestDispatcher("/ThongTinSinhVien");
-					dispatcher.forward(request, response);
-					break;
-				default:
-					dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
-					dispatcher.forward(request, response);
-					break;
-				}
-			} else {
-				request.setAttribute("errMsg", "Thông tin đăng nhập không chính xác");
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
-				dispatcher.forward(request, response);
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
+	            switch (tk.getPhanQuyen()) {
+	            case "quanly":
+	                QuanLy quanly = taiKhoanDao.getQuanLy(maND);
+	                session.setAttribute("quanly", quanly);
+	                dispatcher = request.getRequestDispatcher("/Admin/ThongTin_Admin.jsp");
+	                dispatcher.forward(request, response);
+	                break;     
+	            case "ctsv":
+	            	CTSV ctsv = taiKhoanDao.getCTSV(maND);
+	                session.setAttribute("ctsv", ctsv);
+	                dispatcher = request.getRequestDispatcher("/CTSV/ThongTin_CTSV.jsp");
+	                dispatcher.forward(request, response);
+	                break;
+	            case "sinhvien":     
+	            	SinhVien sinhvien = taiKhoanDao.getSinhVien(maND);
+	            	session.setAttribute("sinhvien", sinhvien);
+	                if(sinhvien.getAnhCaNhan() != null) {
+		                String encodedImage = Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan());
+		                request.setAttribute("encodedImage", encodedImage);
+		            }
+	                dispatcher = request.getRequestDispatcher("/ThongTinSinhVien");
+	                dispatcher.forward(request, response);
+	                break;
+	            default:
+	                dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
+	                dispatcher.forward(request, response);
+	                break;
+	            }
+	        } else {
+	            request.setAttribute("errMsg", "Thông tin đăng nhập không chính xác");
+	            RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
+	            dispatcher.forward(request, response);
+	        }
+	    } catch (ClassNotFoundException e) {
+	        e.printStackTrace();
+	    }
 	}
 
 	private void ThongTinSinhVien(HttpServletRequest request, HttpServletResponse response)
