@@ -3,6 +3,7 @@ package Controllers;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Base64;
 import java.util.Date;
 
 import javax.servlet.ServletConfig;
@@ -38,6 +39,10 @@ public class CapNhatCTSV extends HttpServlet {
 		QuanLyDAO dao = new QuanLyDAO();
 		CTSV ctsv = dao.selectCTSV(idctsv);
 		request.setAttribute("ctsv", ctsv);
+		if(ctsv.getAnhCaNhan() != null) {
+            String encodedImage = Base64.getEncoder().encodeToString(ctsv.getAnhCaNhan());
+            request.setAttribute("encodedImage", encodedImage);
+        }
 		request.getRequestDispatcher("/Admin/CapNhatCTSV.jsp").forward(request, response);
 	}
 

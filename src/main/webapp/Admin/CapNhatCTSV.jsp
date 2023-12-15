@@ -103,8 +103,9 @@
 						</form>
 
 						<!-- Hình ảnh -->
-						<div class="col-lg-2 d-flex justify-content-center">
-							<img src="đường dẫn đến hình ảnh của bạn" alt="Hình ảnh">
+						<div class="col-lg-2 d-flex justify-content-center" style="height: 200px;">
+							<img id="image" src="data:image/jpeg;base64,${encodedImage}"
+		                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
 						</div>
 					</div>
 				</div>
