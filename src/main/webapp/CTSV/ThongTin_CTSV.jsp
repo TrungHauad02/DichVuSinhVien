@@ -12,14 +12,93 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Thông tin công tác sinh viên</title>
+    <title>Ứng dụng dịch vụ sinh viên</title>
 
     <!-- Custom fonts for this template-->
     <jsp:include page="../head.jsp" />
 	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+	<style>
+	  /* Reset some default styles for better consistency */
+	  body, h1, h2, h3, p, ul, li {
+	    margin: 0;
+	    padding: 0;
+	  }
+	
+	  body {
+	    font-family: 'Arial', sans-serif;
+	    line-height: 1.6;
+	    background-color: #f8f9fa;
+	  }
+	
+	  /* Style for tables */
+	  table {
+	    width: 100%;
+	    margin-bottom: 20px;
+	    border-collapse: collapse;
+	    background-color: #fff;
+	    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	  }
+	
+	  th, td {
+	    padding: 10px;
+	    text-align: center;
+	    border: 1px solid #dee2e6;
+	  }
+	
+	  th {
+	    background-color: #007bff;
+	    color: #fff;
+	  }
+	
+	  /* Style for buttons */
+	  button {
+	    margin-top: 10px;
+	    padding: 10px;
+	    background-color: #007bff;
+	    color: #fff;
+	    border: none;
+	    cursor: pointer;
+	  }
+	
+	  /* Style for the container */
+	  .container-fluid {
+	    padding: 20px;
+	  }
+	
+	  /* Style for the row */
+	  .row {
+	    display: flex;
+	    flex-wrap: wrap;
+	    justify-content: space-between;
+	  }
+	
+	  /* Style for each column */
+	  .col-md-4 {
+	    flex-basis: calc(33.33% - 20px); /* Adjust the width as needed, considering margin */
+	    margin-bottom: 20px;
+	  }
+	
+	  /* Additional styling for select and input */
+	  label {
+	    margin-top: 10px;
+	    display: block;
+	    font-weight: bold;
+	  }
+	
+	  select, input {
+	    width: 100%;
+	    padding: 10px;
+	    margin-top: 5px;
+	    margin-bottom: 15px;
+	    box-sizing: border-box;
+	    border: 1px solid #ced4da;
+	    border-radius: 4px;
+	    background-color: #fff;
+	  }
+	</style>
 </head>
 <body id="page-top">
-<%
+	<%
 	    String maND = (String) session.getAttribute("maND");
 	    if (maND == null) {
 	    	request.setAttribute("errMsg", "Phải đăng nhập trước khi sử dụng");
@@ -29,7 +108,7 @@
 	%>
     <!-- Page Wrapper -->
    <div id="wrapper">
-
+	
         <!-- Sidebar -->
         <jsp:include page="./Sidebar_CTSV.jsp" />
         <!-- End of Sidebar -->
@@ -52,8 +131,6 @@
                     <!-- Topbar Navbar -->
                     <jsp:include page="./Topbar_CTSV.jsp" />
 
-                    </ul>
-
                 </nav>
                 <!-- End of Topbar -->
 
@@ -62,7 +139,9 @@
                 
                     <h2>Thông tin cá nhân</h2>
                     <div class="row">
+                    
                         <div class="col-md-6">
+                            
 					         <div class="form-group">
                                 <label for="msctsv">MSCTSV</label>
                                 <label for="msctsv" class="form-control">${ctsv.ID_CTSV}</label>
@@ -83,8 +162,19 @@
                                 <label for="cccd">CCCD</label>
                                 <label for="cccd" class="form-control">${ctsv.getCCCD()}</label>
                             </div>
+                            
+                            
                         </div>
                         <div class="col-md-6">
+	                        <div class="col-lg-2 d-flex flex-column justify-content-center">
+					            <div class="mb-3 text-center" style="height: 200px;">
+						            <img id="image" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan())}"
+		                 			alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
+	                 			</div>
+					            <div class="text-center" style = "width:400px; height:100px"><input type="file" id="selectImage" accept="image/*" style="display: none;"></div>
+					       		
+					        </div>
+					        <button id="confirm-button" class="btn btn-success ml-3" style="display: none;">Xác nhận</button>
                         	<div class="form-group">
                                 <label for="sodienthoai">Số điện thoại</label>
                                 <input type="" id="sdt"  class="form-control" value="${ctsv.getSDT()}">
@@ -93,6 +183,7 @@
                                 <label for="email">Email</label>
                                 <input type="text" id= "email" class="form-control" value="${ctsv.getEmail()}">
                             </div>
+                            
 	                        <div class = "row">
 	                        <!-- Hình ảnh -->
 							<input type="hidden" name="encodedImage" id="encodedImage" value="${encodedImage}">
@@ -107,7 +198,7 @@
 	                            <button type="button" class="btn btn-success" id="updateButton">Cập nhật thông tin liên lạc</button>
 	                        </div>
                             <div class="col-md-6">
-	                            <button class="btn btn-primary mr-3" onclick="window.location.href='<%=request.getContextPath()%>/CTSV/DoiMatKhau_CTSV.jsp'">Đổi mật khẩu</button>
+	                            <button type="button" class="btn btn-primary" id="reset-password-button">Đổi mật khẩu</button>
 	                        </div>
 	                        </div>
                         </div>
@@ -141,7 +232,23 @@
     <jsp:include page="../Scripts.jsp" />
 
 <script>
-
+$('#selectImage').show();	
+$('#confirm-button').show();
+document.getElementById('selectImage').addEventListener('change', function(event) {
+    var files = event.target.files;
+    if (files && files.length > 0) {
+        var reader = new FileReader();
+        reader.onload = function() {
+            var dataURL = reader.result;
+            if (dataURL != null) {
+                document.getElementById('image').src = dataURL;
+            }
+        };
+        reader.readAsDataURL(files[0]);
+    } else {
+        console.error("No files selected or FileReader not supported.");
+    }
+});
 $("#updateButton").on("click", function(){
 	console.log("Đã click update");
     const sdtValue = $("#sdt").val(); 

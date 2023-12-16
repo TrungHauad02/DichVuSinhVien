@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.poifs.filesystem.POIFSFileSystem;
@@ -29,10 +30,7 @@ import Util.JDBCUtil;
 @WebServlet("/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	
 	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	       
 	        Part filePart = request.getPart("excelFile");
 	        String fileName = getSubmittedFileName(filePart);
 	        InputStream fileContent = filePart.getInputStream();
@@ -48,50 +46,38 @@ public class UploadServlet extends HttpServlet {
 	        List <String> ArrayD = new ArrayList<>();
 	        if (fileInputStream != null) {
 	        	HSSFWorkbook wb = new HSSFWorkbook(new POIFSFileSystem(fileInputStream));
-	            System.out.println("1AFFFFFFFFFF23");
 	            Sheet sheet = wb.getSheetAt(0);
 	            Connection conn = JDBCUtil.getConnection(); 
 	            for (Row row : sheet) {
-	                for (Cell cell : row) {
-	                    ArrayD.add(cell.toString());
-	                }
-		                String sql = "update ThamGiaLopHoc SET (ID_LopHoc, ID_SinhVien, DiemQuaTrinh, DiemCuoiKy, TrangThai) VALUES (?, ?, ?, ?, 1)";
-		                try (PreparedStatement statement = conn.prepareStatement(sql)) {
-		                    statement.setInt(1, Integer.parseInt(ArrayD.get(0)));
-		                    statement.setString(2, ArrayD.get(1));
-		                    statement.setFloat(3, Float.parseFloat(ArrayD.get(2)));
-		                    statement.setFloat(4, Float.parseFloat(ArrayD.get(3)));
-		                    System.out.println(sql);
-		                    statement.executeUpdate();
+	            	  if (row == null || row.getCell(0) == null || row.getCell(0).getStringCellValue().isEmpty()) {
+	            	    break;
+	            	  }
+	            	  for (Cell cell : row) {
+		                    ArrayD.add(cell.toString());
 		                }
-		                catch (SQLException e) {
-	                		sql = "UPDATE ThamGiaLopHoc SET DiemQuaTrinh = ?, "
-	    	                		+ "DiemCuoiKy = ?, TrangThai = 1 WHERE ID_SinhVien = ? AND ID_LopHoc = ?";
-
-    		                try (PreparedStatement statement = conn.prepareStatement(sql)) {
-    		                    statement.setFloat(1, Float.parseFloat(ArrayD.get(2)));
-    		                    statement.setFloat(2, Float.parseFloat(ArrayD.get(3)));
-    		                    statement.setString(3, ArrayD.get(1));
-    		                    statement.setInt(4, Integer.parseInt(ArrayD.get(0)));
-    		                    System.out.println(sql);
-    		                    statement.executeUpdate();
-    		                }catch (SQLException ex) {
-    		                	e.printStackTrace();
-    		                	ex.printStackTrace();
-    		                }
-		                }
-		               ArrayD.clear();
-	            }  
+			                String sql = "UPDATE ThamGiaLopHoc SET DiemQuaTrinh = ?, DiemCuoiKy = ? WHERE ID_LopHoc = ? AND ID_SinhVien = ? AND TrangThai = 1";
+			                try (PreparedStatement statement = conn.prepareStatement(sql)) {
+			                    statement.setInt(3, Integer.parseInt(ArrayD.get(0)));
+			                    statement.setString(4, ArrayD.get(1));
+			                    statement.setFloat(1, Float.parseFloat(ArrayD.get(2)));
+			                    statement.setFloat(2, Float.parseFloat(ArrayD.get(3)));
+			                    statement.executeUpdate();
+			                }
+			                	catch (SQLException e) {
+			                		e.printStackTrace();
+			                }
+			               ArrayD.clear();
+	            	}
+		        
 		        wb.close();  } 
 	        int ctsvId = 0;
 	        if(request.getParameter("ctsvId") != null) {
 	        	ctsvId = Integer.parseInt(request.getParameter("ctsvId"));			
 	        }
 	        request.setAttribute("ctsvId", ctsvId);
-	        response.sendRedirect("/CTSV/ThemDiem_CTSV.jsp");
+	        response.sendRedirect("/DichVuSinhVien/ThemDiem?ctsvId=" + ctsvId);
+	    
 	    }
-
-	    // Utility method to get the submitted file name 
 	    private String getSubmittedFileName(Part part) {
 	        for (String content : part.getHeader("content-disposition").split(";")) {
 	            if (content.trim().startsWith("filename")) {
