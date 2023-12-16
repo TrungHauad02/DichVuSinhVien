@@ -165,7 +165,7 @@
 						<!-- Hình ảnh -->
 						<div class="col-lg-2 d-flex flex-column justify-content-center">
 				            <div class="mb-3 text-center" style="height: 200px;">
-					            <img id="image" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan())}"
+					            <img id="image" src="data:image/jpeg;base64,${encodedImage}"
 	                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
                  			</div>
 				            <div class="text-center"><input type="file" id="selectImage" accept="image/*" style="display: inline;"></div>

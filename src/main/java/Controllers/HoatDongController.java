@@ -72,7 +72,8 @@ public class HoatDongController extends HttpServlet {
 			request.setAttribute("dstochuc", dstochuc);
 			request.setAttribute("dsthamgiahd", dsthamgiahd);
 			request.setAttribute("dsyeucau", dsyeucau);
-
+			String completeMsg = request.getParameter("completeMsg");
+			request.setAttribute("completeMsg", completeMsg);
 		    dispatcher = request.getRequestDispatcher("/SinhVien/DangKyHoatDong_SinhVien.jsp");
 		    dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {

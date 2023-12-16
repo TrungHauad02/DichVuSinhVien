@@ -62,9 +62,6 @@ public class TaiKhoanController extends HttpServlet {
 			case "/CapNhatSinhVien":
 				CapNhatSinhVien(request, response);
 				break;
-			case "/BangDiem1SinhVien":
-				BangDiem1SinhVien(request, response);
-				break;
 			default:
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
 				dispatcher.forward(request, response);
@@ -232,22 +229,6 @@ public class TaiKhoanController extends HttpServlet {
 			if (!status) {
 				request.setAttribute("errMsg", "Cập nhật không thành công");
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void BangDiem1SinhVien(HttpServletRequest request, HttpServletResponse response)
-			throws SQLException, ServletException, IOException {
-		HttpSession session = request.getSession();
-		String maND = (String) session.getAttribute("maND");
-		RequestDispatcher dispatcher;
-		SinhVien sinhvien = new SinhVien();
-		try {
-			sinhvien = taiKhoanDao.getSinhVien(maND);
-			request.setAttribute("sinhvien", sinhvien);
-			dispatcher = request.getRequestDispatcher("/SinhVien/BangDiem_SinhVien.jsp");
-			dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}

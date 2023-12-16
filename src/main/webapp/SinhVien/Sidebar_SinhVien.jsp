@@ -21,7 +21,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiem1SinhVien">
+                <a class="nav-link" href="<%= request.getContextPath()%>/BangDiemSinhVien">
                     <span >Bảng điểm</span></a>
             </li>
             <hr class="sidebar-divider my-0">
