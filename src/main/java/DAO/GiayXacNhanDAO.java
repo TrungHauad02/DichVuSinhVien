@@ -47,6 +47,34 @@ public class GiayXacNhanDAO {
 		
 		return dsGiayXN;
 	}
+	public List<GiayXacNhan> getAllDSGiayXN() throws ClassNotFoundException 
+	{
+		List<GiayXacNhan> dsGiayXN = new ArrayList<>();
+		
+		Class.forName("com.mysql.jdbc.Driver");
+        try (Connection connection = JDBCUtil.getConnection();
+                PreparedStatement preparedStatement = connection
+                .prepareStatement("select * from giayxacnhan")) {
+                System.out.println(preparedStatement);
+                ResultSet rs = preparedStatement.executeQuery();
+                while (rs.next()) {
+                    GiayXacNhan giayxn = new GiayXacNhan();
+                    giayxn.setID_GiayXN(rs.getInt("ID_GiayXN"));
+                    giayxn.setNoiDung(rs.getString("NoiDung"));
+                    giayxn.setNgayNhan(rs.getDate("NgayNhan"));
+                    giayxn.setID_SinhVien(rs.getString("ID_SinhVien"));
+                    giayxn.setID_DichVu(rs.getInt("ID_DichVu"));
+                    giayxn.setTrangThai(rs.getInt("TrangThai"));
+                    giayxn.setID_YeuCau(rs.getInt("ID_YeuCau"));
+
+                    dsGiayXN.add(giayxn);
+                }
+            } catch (SQLException e) {
+                HandleExeption.printSQLException(e);
+            }
+		
+		return dsGiayXN;
+	}
 	public boolean ThemGiayXN(GiayXacNhan giayxn) throws ClassNotFoundException {
 	    boolean status = false;
 		String sql = "INSERT INTO GIAYXACNHAN (NoiDung, NgayNhan, ID_SinhVien, ID_DichVu, TrangThai, ID_YeuCau)\r\n"
@@ -70,4 +98,5 @@ public class GiayXacNhanDAO {
 
 	    return status;
 	}
+	
 }

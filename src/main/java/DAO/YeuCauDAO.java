@@ -76,5 +76,44 @@ public class YeuCauDAO {
 
 	    return status;
 	}
-	
+	public int SuaTrangThaiYeuCau(YeuCau yc) throws ClassNotFoundException {
+		int status = -1;
+		String sql = "UPDATE YEUCAU SET TrangThai = ? WHERE ID_YeuCau = ?";
+	    try (Connection connection = JDBCUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.
+	        prepareStatement(sql)) {
+
+	        preparedStatement.setString(1, yc.getTrangThai());
+	        preparedStatement.setInt(2, yc.getID_YeuCau());
+	        
+	        System.out.println(preparedStatement);
+	        status = preparedStatement.executeUpdate();
+
+	    } catch (SQLException e) {
+	        HandleExeption.printSQLException(e);
+	    }
+
+	    return status;
+	}
+	public String LoaiDichVuYeuCau(int ID_YeuCau) throws ClassNotFoundException {
+		String status = "";
+		String sql = "SELECT D.LoaiDichVu " +
+	             "FROM YEUCAU Y " +
+	             "JOIN DICHVU D ON Y.ID_DichVu = D.ID_DichVu And Y.ID_YeuCau = ?";
+	    try (Connection connection = JDBCUtil.getConnection();
+	         PreparedStatement preparedStatement = connection.
+	        prepareStatement(sql)) {
+
+	        preparedStatement.setInt(1, ID_YeuCau);
+	        
+	        System.out.println(preparedStatement);
+	        ResultSet rs = preparedStatement.executeQuery();
+	        rs.next();
+	        status = rs.getString("LoaiDichVu");
+	    } catch (SQLException e) {
+	        HandleExeption.printSQLException(e);
+	    }
+
+	    return status;
+	}
 }

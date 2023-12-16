@@ -45,7 +45,34 @@ public class GiayVayVonDAO {
 			
 			return dsGiayVay;
 		}
-		
+		public List<GiayVayVon> getAllDSGiayVay() throws ClassNotFoundException 
+		{
+			List<GiayVayVon> dsGiayVay = new ArrayList<>();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+	        try (Connection connection = JDBCUtil.getConnection();
+	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM GIAYVAYVON")) {
+
+	            ResultSet rs = preparedStatement.executeQuery();
+	            while (rs.next()) {
+	                GiayVayVon giayVayVon = new GiayVayVon();
+	                giayVayVon.setID_GiayVay(rs.getInt("ID_GiayVay"));
+	                giayVayVon.setNoiDung(rs.getString("NoiDung"));
+	                giayVayVon.setNgayNhan(rs.getDate("NgayNhan"));
+	                giayVayVon.setID_SinhVien(rs.getString("ID_SinhVien"));
+	                giayVayVon.setID_DichVu(rs.getInt("ID_DichVu"));
+	                giayVayVon.setSoTien(rs.getInt("SoTien"));
+	                giayVayVon.setTrangThai(rs.getInt("TrangThai"));
+	                giayVayVon.setID_YeuCau(rs.getInt("ID_YeuCau"));
+
+	                dsGiayVay.add(giayVayVon);
+	               }
+	            } catch (SQLException e) {
+	                HandleExeption.printSQLException(e);
+	            }
+			
+			return dsGiayVay;
+		}
 		public boolean ThemGiayVayVon(GiayVayVon giayvay)throws ClassNotFoundException 
 		{
 			boolean status = false;

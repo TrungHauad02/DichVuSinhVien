@@ -31,7 +31,7 @@
             </li>
             <hr class="sidebar-divider my-0">
             <li class="nav-item active mt-2">
-                <a class="nav-link" href="<%=request.getContextPath()%>/xu-ly-yeu-cau">
+                <a class="nav-link" href="<%=request.getContextPath()%>/DSXuLyYeuCau">
                     <span >Xử lý yêu cầu</span></a>
             </li>
             <hr class="sidebar-divider my-0">

@@ -40,6 +40,30 @@ public class ThamGiaHoatDongDAO {
 		
 		return dsThamGiaHD;
 	}
+	public List<ThamGiaHD> LayDSThamGiaHD() throws ClassNotFoundException {
+		List<ThamGiaHD> dsThamGiaHD = new ArrayList<>();
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		try (Connection connection = JDBCUtil.getConnection();
+	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM thamgiahd")) {
+			
+			System.out.println(preparedStatement);    
+			ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+	            	ThamGiaHD tghd = new ThamGiaHD();
+	            	tghd.setID_SinhVien(rs.getString("ID_SinhVien"));
+	            	tghd.setID_HoatDong(rs.getInt("ID_HoatDong"));
+	            	tghd.setTrangThai(rs.getInt("TrangThai"));
+	            	tghd.setID_YeuCau(rs.getInt("ID_YeuCau"));
+	            	dsThamGiaHD.add(tghd);
+	               }
+	            } catch (SQLException e) {
+	                HandleExeption.printSQLException(e);
+	            }
+		
+		return dsThamGiaHD;
+	}
 	
 	public boolean ThemThamGiaHD(ThamGiaHD thamgiahd) throws ClassNotFoundException {
 		boolean status = false;
