@@ -47,9 +47,9 @@ public class HoatDongDAO {
 		Class.forName("com.mysql.jdbc.Driver");
 		String idSV="";
 		try (Connection connection = JDBCUtil.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement("Select * from YEUCAU where ID_YeuCau = ? "
-						+ "Where ID_HoatDong = ?")){
+				PreparedStatement preparedStatement = connection.prepareStatement("Select * from YEUCAU where ID_YeuCau = ?")){
 					preparedStatement.setInt(1, idYC);
+					System.out.println(preparedStatement);
 					ResultSet rs = preparedStatement.executeQuery();
 					rs.next();
 					idSV = rs.getString("ID_SinhVien");
@@ -62,6 +62,7 @@ public class HoatDongDAO {
 					preparedStatement.setString(1, idSV);
 					preparedStatement.setInt(2, idHD);
 					preparedStatement.setInt(3, idYC);
+					System.out.println(preparedStatement);
 					preparedStatement.executeUpdate();
 				}	catch (SQLException e) {
 		            HandleExeption.printSQLException(e);
@@ -72,6 +73,7 @@ public class HoatDongDAO {
 				PreparedStatement preparedStatement = connection.prepareStatement("Select * from HOATDONG "
 						+ "Where ID_HoatDong = ?")){
 					preparedStatement.setInt(1, idHD);
+					System.out.println(preparedStatement);
 					ResultSet rs = preparedStatement.executeQuery();
 					rs.next();
 					diemRL = rs.getInt("DiemRL");
@@ -85,6 +87,7 @@ public class HoatDongDAO {
 					preparedStatement.setInt(1, diemRL);
 					preparedStatement.setInt(2, diemCTXH);
 					preparedStatement.setString(3, idSV);
+					System.out.println(preparedStatement);
 					preparedStatement.executeUpdate();
 				}	catch (SQLException e) {
 		            HandleExeption.printSQLException(e);

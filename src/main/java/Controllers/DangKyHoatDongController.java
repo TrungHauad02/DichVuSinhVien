@@ -75,9 +75,8 @@ public class DangKyHoatDongController extends HttpServlet {
 		try {			
 			int id_yc = yeucauDAO.ThemYeuCau(yc);
 			thamgiahd.setID_YeuCau(id_yc);
-			thamgiaHDDAO.ThemThamGiaHD(thamgiahd);
 			request.setAttribute("completeMsg", "Đăng ký thành công hoạt động ");   
-		    dispatcher = request.getRequestDispatcher("/SinhVien/DangKyHoatDong_SinhVien.jsp");
+		    dispatcher = request.getRequestDispatcher("/DSHoatDong");
 			dispatcher.forward(request, response);
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
