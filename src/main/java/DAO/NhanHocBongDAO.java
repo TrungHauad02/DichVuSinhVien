@@ -20,7 +20,7 @@ public class NhanHocBongDAO {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		try (Connection connection = JDBCUtil.getConnection();
-	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM NHANHOCBONG")) {
+	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM NHANHOCBONG Where TrangThai=1")) {
 	        System.out.println(preparedStatement);    
 			ResultSet rs = preparedStatement.executeQuery();
 

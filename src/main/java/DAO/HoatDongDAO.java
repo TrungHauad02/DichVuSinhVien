@@ -21,7 +21,7 @@ public class HoatDongDAO {
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		try (Connection connection = JDBCUtil.getConnection();
-	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM HOATDONG")) {
+	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM HOATDONG WHERE TrangThai=1")) {
 	            ResultSet rs = preparedStatement.executeQuery();
 
 	            while (rs.next()) {
@@ -42,5 +42,52 @@ public class HoatDongDAO {
 	            }
 		
 		return dsHD;
+	}
+	public static void UpdateThamGiaHD(int idYC, int idHD) throws ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+		String idSV="";
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement("Select * from YEUCAU where ID_YeuCau = ? "
+						+ "Where ID_HoatDong = ?")){
+					preparedStatement.setInt(1, idYC);
+					ResultSet rs = preparedStatement.executeQuery();
+					rs.next();
+					idSV = rs.getString("ID_SinhVien");
+				}	catch (SQLException e) {
+		            HandleExeption.printSQLException(e);
+		        }
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO THAMGIAHD "
+						+ "(ID_SinhVien, ID_HoatDong, ID_YeuCau, TrangThai) value (?,?,?,1)")){
+					preparedStatement.setString(1, idSV);
+					preparedStatement.setInt(2, idHD);
+					preparedStatement.setInt(3, idYC);
+					preparedStatement.executeUpdate();
+				}	catch (SQLException e) {
+		            HandleExeption.printSQLException(e);
+		        }
+		int diemRL =0;
+		int diemCTXH =0;
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement("Select * from HOATDONG "
+						+ "Where ID_HoatDong = ?")){
+					preparedStatement.setInt(1, idHD);
+					ResultSet rs = preparedStatement.executeQuery();
+					rs.next();
+					diemRL = rs.getInt("DiemRL");
+					diemCTXH = rs.getInt("DiemCTXH"); 
+				}	catch (SQLException e) {
+		            HandleExeption.printSQLException(e);
+		        }
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement("UPDATE SINHVIEN "
+						+ "SET DiemRL = DiemRL + ?, DiemCTXH = DiemCTXH + ? Where ID_SinhVien = ?")){
+					preparedStatement.setInt(1, diemRL);
+					preparedStatement.setInt(2, diemCTXH);
+					preparedStatement.setString(3, idSV);
+					preparedStatement.executeUpdate();
+				}	catch (SQLException e) {
+		            HandleExeption.printSQLException(e);
+		        }
 	}
 }

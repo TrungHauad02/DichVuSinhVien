@@ -44,15 +44,50 @@ public class HocBongDAO {
 		
 		return dshb;
 	}
-	public static void UpdateSoLuongHocBong(int idYC) throws ClassNotFoundException {
+	public List<HocBong> LayDSTatCaHocBong() throws ClassNotFoundException {
+		List<HocBong> dshb = new ArrayList<>();
 		Class.forName("com.mysql.jdbc.Driver");
 		
 		try (Connection connection = JDBCUtil.getConnection();
-		PreparedStatement preparedStatement = connection.prepareStatement("UPDATE NHANHOCBONG INNER JOIN HOCBONG ON NHANHOCBONG.ID_HocBong = HOCBONG.ID_HocBong SET SoLuong = SoLuong - 1 WHERE NHANHOCBONG.ID_YeuCau = ? AND SoLuong > 0;")){
-			preparedStatement.setInt(1, idYC);
+	        	PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM HOCBONG where SoLuong > 0")) {
+	        System.out.println(preparedStatement);    
+			ResultSet rs = preparedStatement.executeQuery();
+
+	            while (rs.next()) {
+	            	HocBong hb = new HocBong();
+	                hb.setID_HocBong(rs.getInt("ID_HocBong"));
+	            	hb.setTenHocBong(rs.getString("TenHocBong"));
+	            	hb.setDieuKien(rs.getFloat("DieuKien"));
+	                hb.setSoLuong(rs.getInt("SoLuong"));
+	                hb.setTienThuong(rs.getInt("TienThuong"));
+	                hb.setID_DichVu(rs.getInt("ID_DichVu"));
+	                hb.setNoiDung(rs.getString("NoiDung"));
+	            	dshb.add(hb);
+	               }
+	            } catch (SQLException e) {
+	                HandleExeption.printSQLException(e);
+	            }
+		
+		return dshb;
+	}
+	public static void UpdateSoLuongHocBong(int idYC, int idHB) throws ClassNotFoundException {
+		Class.forName("com.mysql.jdbc.Driver");
+		
+		try (Connection connection = JDBCUtil.getConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement("Update HOCBONG SET SoLuong = SoLuong - 1 Where ID_HocBong = ?")){
+			preparedStatement.setInt(1, idHB);
 			preparedStatement.executeUpdate();
 		}	catch (SQLException e) {
             HandleExeption.printSQLException(e);
         }
+		try (Connection connection = JDBCUtil.getConnection();
+				PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO NHANHOCBONG "
+						+ "(ID_HocBong, ID_YeuCau, TrangThai) value (?,?, 1)")){
+					preparedStatement.setInt(1, idHB);
+					preparedStatement.setInt(2, idYC);
+					preparedStatement.executeUpdate();
+				}	catch (SQLException e) {
+		            HandleExeption.printSQLException(e);
+		        }
 	}
 }
