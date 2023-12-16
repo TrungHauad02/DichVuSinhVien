@@ -166,16 +166,7 @@
                             
                         </div>
                         <div class="col-md-6">
-	                        <div class="col-lg-2 d-flex flex-column justify-content-center">
-					            <div class="mb-3 text-center" style="height: 200px;">
-						            <img id="image" src="data:image/jpeg;base64,${Base64.getEncoder().encodeToString(sinhvien.getAnhCaNhan())}"
-		                 			alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
-	                 			</div>
-					            <div class="text-center" style = "width:400px; height:100px"><input type="file" id="selectImage" accept="image/*" style="display: none;"></div>
-					       		
-					        </div>
-					        <button id="confirm-button" class="btn btn-success ml-3" style="display: none;">Xác nhận</button>
-                        	<div class="form-group">
+	                       <div class="form-group">
                                 <label for="sodienthoai">Số điện thoại</label>
                                 <input type="" id="sdt"  class="form-control" value="${ctsv.getSDT()}">
                             </div>

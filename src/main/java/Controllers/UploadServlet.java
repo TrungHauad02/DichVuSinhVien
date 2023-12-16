@@ -30,7 +30,9 @@ import Util.JDBCUtil;
 @WebServlet("/UploadServlet")
 @MultipartConfig
 public class UploadServlet extends HttpServlet {
-	  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	  
+	private static final long serialVersionUID = 1L;
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        Part filePart = request.getPart("excelFile");
 	        String fileName = getSubmittedFileName(filePart);
 	        InputStream fileContent = filePart.getInputStream();
@@ -61,6 +63,7 @@ public class UploadServlet extends HttpServlet {
 			                    statement.setString(4, ArrayD.get(1));
 			                    statement.setFloat(1, Float.parseFloat(ArrayD.get(2)));
 			                    statement.setFloat(2, Float.parseFloat(ArrayD.get(3)));
+			                    System.out.println(statement);
 			                    statement.executeUpdate();
 			                }
 			                	catch (SQLException e) {
