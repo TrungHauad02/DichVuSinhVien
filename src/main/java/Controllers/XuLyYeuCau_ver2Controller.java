@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +14,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import DAO.GiayXacNhanDAO;
 import DAO.HoatDongDAO;
 import DAO.HocBongDAO;
-import DAO.LopHocDAO;
-import DAO.ThamGiaLopHocDAO;
 import DAO.XuLyYeuCauDao;
 import DAO.YeuCauDAO;
-import Models.LopHoc;
 import Models.PhanHoi;
-import Models.ThamGiaLopHoc;
 import Models.YeuCau;
 
 @WebServlet("/XuLyYeuCau")
