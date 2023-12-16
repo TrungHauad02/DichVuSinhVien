@@ -9,7 +9,7 @@
 
 					<ul class="navbar-nav" style="width: 100%;">                    
                     	<li class ="nav-item">
-							<a class ="nav-link text-gray-900 medium" href="<%= request.getContextPath()%>/index_CTSV.jsp">Trang Chủ</a>
+							<a class ="nav-link text-gray-900 medium" href="<%=request.getContextPath()%>/ThongTin_CTSV">Trang Chủ</a>
 						</li>
 						<li class ="nav-item">
 							<a class ="nav-link text-gray-900 medium" href="<%= request.getContextPath()%>/CTSV/HoTroCTSV_CTSV.jsp">Hỗ Trợ</a>
