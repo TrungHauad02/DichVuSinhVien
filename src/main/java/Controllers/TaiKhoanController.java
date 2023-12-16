@@ -62,8 +62,8 @@ public class TaiKhoanController extends HttpServlet {
 			case "/CapNhatSinhVien":
 				CapNhatSinhVien(request, response);
 				break;
-			case "/BangDiemSinhVien":
-				BangDiemSinhVien(request, response);
+			case "/BangDiem1SinhVien":
+				BangDiem1SinhVien(request, response);
 				break;
 			default:
 				RequestDispatcher dispatcher = request.getRequestDispatcher("/DangNhap.jsp");
@@ -237,7 +237,7 @@ public class TaiKhoanController extends HttpServlet {
 		}
 	}
 
-	private void BangDiemSinhVien(HttpServletRequest request, HttpServletResponse response)
+	private void BangDiem1SinhVien(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, ServletException, IOException {
 		HttpSession session = request.getSession();
 		String maND = (String) session.getAttribute("maND");
