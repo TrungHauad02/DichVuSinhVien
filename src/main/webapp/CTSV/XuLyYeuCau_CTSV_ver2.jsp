@@ -263,9 +263,8 @@
 
                 $("#ID_YeuCau").val(idYeuCau);
                 $("#ID_XuLy").val(idxuly);
-                $("#btnXuLy").show();
                 $("#loaiYeuCau").val(loaiYeuCau);
-                $("#trangThai").val(trangThai);
+                $("#trangThai").val(trangThai === "DangXuLy" ? "Đang xử lý" : (trangThai === "HoanThanh" ? "Hoàn thành" : "Từ chối"));
                 $("#mssv").val(mssv);
                 $("#ngayGui").val(ngayGui);
                 $("#tenYeuCau").val(tenYeuCau);
@@ -273,6 +272,11 @@
                 $("#noiDung").prop("readonly", false);
                 $("#noiDung").val(noiDung);
                 $("#noiDung").prop("readonly", true);
+                if (trangThai === "DangXuLy") {
+                    $("#btnXuLy").show();
+                } else {
+                    $("#btnXuLy").hide();
+                }
             });
             function openModal() {
                 $('#myModal').modal('show');
