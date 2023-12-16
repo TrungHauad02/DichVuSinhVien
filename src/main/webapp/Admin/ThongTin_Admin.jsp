@@ -120,7 +120,7 @@
 								</div>
 								<!-- Card Body -->
 								<div class="card-body">
-									<div class="mb-3 text-center" style="height: 200px;">
+									<div class="mb-3 text-center" style=" height: 157px;">
 							            <img id="image" src="data:image/jpeg;base64,${encodedImage}"
 			                 alt="Hình ảnh" class="img-fluid mx-auto d-block mw-100 mh-100">
 		                 			</div>
